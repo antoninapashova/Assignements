@@ -1,0 +1,15 @@
+C:\Users\PC\Desktop\Assignements\Assignements\C#Basics_07.11\Animal_Hierarchy\Animal_Hierarchy\bin\Debug\net6.0\Animal_Hierarchy.exe
+C:\Users\PC\Desktop\Assignements\Assignements\C#Basics_07.11\Animal_Hierarchy\Animal_Hierarchy\bin\Debug\net6.0\Animal_Hierarchy.deps.json
+C:\Users\PC\Desktop\Assignements\Assignements\C#Basics_07.11\Animal_Hierarchy\Animal_Hierarchy\bin\Debug\net6.0\Animal_Hierarchy.runtimeconfig.json
+C:\Users\PC\Desktop\Assignements\Assignements\C#Basics_07.11\Animal_Hierarchy\Animal_Hierarchy\bin\Debug\net6.0\Animal_Hierarchy.dll
+C:\Users\PC\Desktop\Assignements\Assignements\C#Basics_07.11\Animal_Hierarchy\Animal_Hierarchy\bin\Debug\net6.0\Animal_Hierarchy.pdb
+C:\Users\PC\Desktop\Assignements\Assignements\C#Basics_07.11\Animal_Hierarchy\Animal_Hierarchy\obj\Debug\net6.0\Animal_Hierarchy.csproj.AssemblyReference.cache
+C:\Users\PC\Desktop\Assignements\Assignements\C#Basics_07.11\Animal_Hierarchy\Animal_Hierarchy\obj\Debug\net6.0\Animal_Hierarchy.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PC\Desktop\Assignements\Assignements\C#Basics_07.11\Animal_Hierarchy\Animal_Hierarchy\obj\Debug\net6.0\Animal_Hierarchy.AssemblyInfoInputs.cache
+C:\Users\PC\Desktop\Assignements\Assignements\C#Basics_07.11\Animal_Hierarchy\Animal_Hierarchy\obj\Debug\net6.0\Animal_Hierarchy.AssemblyInfo.cs
+C:\Users\PC\Desktop\Assignements\Assignements\C#Basics_07.11\Animal_Hierarchy\Animal_Hierarchy\obj\Debug\net6.0\Animal_Hierarchy.csproj.CoreCompileInputs.cache
+C:\Users\PC\Desktop\Assignements\Assignements\C#Basics_07.11\Animal_Hierarchy\Animal_Hierarchy\obj\Debug\net6.0\Animal_Hierarchy.dll
+C:\Users\PC\Desktop\Assignements\Assignements\C#Basics_07.11\Animal_Hierarchy\Animal_Hierarchy\obj\Debug\net6.0\refint\Animal_Hierarchy.dll
+C:\Users\PC\Desktop\Assignements\Assignements\C#Basics_07.11\Animal_Hierarchy\Animal_Hierarchy\obj\Debug\net6.0\Animal_Hierarchy.pdb
+C:\Users\PC\Desktop\Assignements\Assignements\C#Basics_07.11\Animal_Hierarchy\Animal_Hierarchy\obj\Debug\net6.0\Animal_Hierarchy.genruntimeconfig.cache
+C:\Users\PC\Desktop\Assignements\Assignements\C#Basics_07.11\Animal_Hierarchy\Animal_Hierarchy\obj\Debug\net6.0\ref\Animal_Hierarchy.dll
