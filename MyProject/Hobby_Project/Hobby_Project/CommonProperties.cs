@@ -24,13 +24,15 @@ namespace Hobby_Project
             }
         }
 
-        public DateTime addedOn { get; set; }
+        public DateTime AddedOn { get; set; }
 
         protected CommonProperties(string name, DateTime addedOn)
         {
             this.name = name;
-            this.addedOn = addedOn;
+            this.AddedOn = addedOn;
         }
+
+    
 
         public abstract void editName();
 

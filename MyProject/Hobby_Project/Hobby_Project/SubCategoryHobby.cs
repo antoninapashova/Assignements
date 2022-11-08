@@ -8,8 +8,7 @@ using System.Threading.Tasks;
 namespace Hobby_Project
 {
     public class SubCategoryHobby : CommonProperties, IPrint
-    {
-        
+    {  
         public CategoryHobby categoryHobby { get; set; }
         public SubCategoryHobby(string name, DateTime addedOn, CategoryHobby categoryHobby) : base(name, addedOn)
         {

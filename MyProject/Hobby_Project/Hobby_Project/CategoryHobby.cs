@@ -9,8 +9,7 @@ namespace Hobby_Project
 {
     public class CategoryHobby : CommonProperties, IPrint
     {
-
-        public CategoryHobby(string name) : base(name)
+        public CategoryHobby(string name, DateTime addedOn) : base(name, addedOn)
         {
         }
 
