@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Hobby_Project.Exceprtions;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,18 +12,18 @@ namespace Hobby_Project
     public class Hobby : IPrint
     {
         private string title;
-        
-        public SubCategoryHobby SubCategoryHobby { get; set; }
         public string Description { get; set; }
-        public DateTime AddedOn { get; set; }
 
-    
-        public Hobby(string title, SubCategoryHobby subCategoryHobby, string description, DateTime addedOn)
+        private HobbySubCategory hobbySubCategory;
+        public DateTime AddedOn { get; set; }
+        public List<HobbyComment> Comments { get; set; }
+
+        public Hobby(string title, string description, HobbySubCategory hobbySubCategory)
         {
             Title = title;
-            SubCategoryHobby = subCategoryHobby;
             Description = description;
-            AddedOn = addedOn;
+            HobbySubCategory = hobbySubCategory;
+            AddedOn = DateTime.Now;
         }
         
         public string Title
@@ -28,31 +31,50 @@ namespace Hobby_Project
             get { return title; }
             set
             {
-                if (!string.IsNullOrWhiteSpace(value))
+                if (string.IsNullOrWhiteSpace(value))
                 {
-                    title = value;
+                    throw new NullReferenceException("The title should not be NULL!"); 
                 }
+
+                title = value;
             }
         }
+        public HobbySubCategory HobbySubCategory
+        {
+            get { return hobbySubCategory; }
+            set
+            {
+                if (value == null)
+                {
+                    throw new HobySubCategoryDoesNotSetException("The Sub category of the hoby is not set!");
+                }
+                hobbySubCategory = value;
+            }
+        }
+       
 
-        public string editDescription()
+        public string EditDescription()
         {
             return Description.ToUpper();
         }
 
-        public string editDescription(string addationDescription)
+        public string EditDescription(string addationDescription)
         {
             return string.Format(this.Description + " " + addationDescription);
         }
 
-        public string printInfo()
+        public void AddComment(HobbyComment hobbyComment)
         {
-          StringBuilder str = new StringBuilder();
+            this.Comments.Add(hobbyComment);
+        }
+
+        public string PrintInfo()
+        {
+            StringBuilder str = new StringBuilder();
             str.AppendLine("All info about the hobby");
             str.AppendLine("    Title: "+ this.title);
             str.AppendLine("    Description: " + this.Description);
             str.AppendLine("    Date and time: " + this.AddedOn);
-            str.AppendLine("    Subcategory: " + this.SubCategoryHobby.Name);
             return str.ToString();
         }
     }

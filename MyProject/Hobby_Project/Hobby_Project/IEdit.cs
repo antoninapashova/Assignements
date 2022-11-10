@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Hobby_Project
 {
-    public interface IPrint
+   public interface IEdit
     {
-        String PrintInfo();
+        void ChangeName(String name);
+        void EditName();
     }
 }
