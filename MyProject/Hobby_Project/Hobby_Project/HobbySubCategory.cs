@@ -9,7 +9,7 @@ namespace Hobby_Project
 {
     public class HobbySubCategory : HobbyCategory
     {
-        public HobbySubCategory(string name, DateTime addedOn) : base(name, addedOn)
+        public HobbySubCategory(string name) : base(name)
         {
         }
      

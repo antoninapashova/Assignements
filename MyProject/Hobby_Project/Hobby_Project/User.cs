@@ -1,4 +1,4 @@
-﻿using Hobby_Project.Exceprtions;
+﻿using Hobby_Project.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Globalization;

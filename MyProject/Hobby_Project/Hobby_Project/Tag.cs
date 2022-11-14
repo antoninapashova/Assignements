@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace Hobby_Project
 {
-    public class HobbyComment
+    public class Tag
     {
         public string Title { get; set; }
         public string CommentContent { get; set; }
-
         public User user { get; set; }
         public DateTime AddedOn { get; set; }
 
-        public HobbyComment(string title, string coommentContent)
+        public Tag(string title, string coommentContent)
         {
             Title = title;
             CommentContent = coommentContent;

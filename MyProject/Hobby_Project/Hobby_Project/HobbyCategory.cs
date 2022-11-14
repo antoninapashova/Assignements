@@ -10,13 +10,12 @@ namespace Hobby_Project
     public class HobbyCategory :  IPrint, IEdit
      {
         private string name;
-
         public DateTime AddedOn { get; set; }
 
-        public HobbyCategory(string name, DateTime addedOn)
+        public HobbyCategory(string name)
         {
             Name = name;
-            AddedOn = addedOn;
+            AddedOn = DateTime.Now;
         }
 
         public string Name

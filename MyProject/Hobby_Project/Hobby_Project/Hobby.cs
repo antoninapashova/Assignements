@@ -1,4 +1,5 @@
-﻿using Hobby_Project.Exceprtions;
+﻿
+using Hobby_Project.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -17,6 +18,7 @@ namespace Hobby_Project
         private HobbySubCategory hobbySubCategory;
         public DateTime AddedOn { get; set; }
         public List<HobbyComment> Comments { get; set; }
+        public List<Tag> Tags { get; set; }
 
         public Hobby(string title, string description, HobbySubCategory hobbySubCategory)
         {
@@ -25,7 +27,15 @@ namespace Hobby_Project
             HobbySubCategory = hobbySubCategory;
             AddedOn = DateTime.Now;
         }
-        
+
+        public Hobby(string description, List<HobbyComment> comments, string title, HobbySubCategory hobbySubCategory)
+        {
+            Description = description;
+            Comments = comments;
+            Title = title;
+            HobbySubCategory = hobbySubCategory;
+        }
+
         public string Title
         {
             get { return title; }
