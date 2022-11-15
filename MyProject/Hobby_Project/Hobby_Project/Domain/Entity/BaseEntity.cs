@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hobby_Project
+namespace Hobby_Project.Domain.Entity
 {
-    public interface IPrint
+    public abstract class BaseEntity
     {
-        String PrintInfo();
+        public int ID { get; set; }
     }
 }

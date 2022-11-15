@@ -1,16 +1,19 @@
 ﻿
+using Hobby_Project.Domain.Entity;
+using Hobby_Project.Domain.Interfaces;
 using Hobby_Project.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Hobby_Project
 {
-    public class Hobby : IPrint
+    public class Hobby :BaseEntity, IPrint
     {
         private string title;
         public string Description { get; set; }
@@ -26,14 +29,8 @@ namespace Hobby_Project
             Description = description;
             HobbySubCategory = hobbySubCategory;
             AddedOn = DateTime.Now;
-        }
-
-        public Hobby(string description, List<HobbyComment> comments, string title, HobbySubCategory hobbySubCategory)
-        {
-            Description = description;
-            Comments = comments;
-            Title = title;
-            HobbySubCategory = hobbySubCategory;
+            Comments = new List<HobbyComment>();
+            Tags = new List<Tag>();
         }
 
         public string Title
@@ -61,23 +58,19 @@ namespace Hobby_Project
                 hobbySubCategory = value;
             }
         }
+
+        public Guid Id { get; internal set; }
+
+        public string EditDescription() => Description.ToUpper();
+
+        public string EditDescription(string addationDescription) => string.Format(this.Description + " " + addationDescription);
+        
+        public void AddComment(HobbyComment hobbyComment) =>this.Comments.Add(hobbyComment);
+        
+        public void AddTag(Tag tag)=>this.Tags.Add(tag);
+        public void changeSubCategory(HobbySubCategory hobbySubCategory) => this.HobbySubCategory = hobbySubCategory;
        
-
-        public string EditDescription()
-        {
-            return Description.ToUpper();
-        }
-
-        public string EditDescription(string addationDescription)
-        {
-            return string.Format(this.Description + " " + addationDescription);
-        }
-
-        public void AddComment(HobbyComment hobbyComment)
-        {
-            this.Comments.Add(hobbyComment);
-        }
-
+        
         public string PrintInfo()
         {
             StringBuilder str = new StringBuilder();

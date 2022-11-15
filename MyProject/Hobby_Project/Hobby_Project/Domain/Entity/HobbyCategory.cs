@@ -4,10 +4,13 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Domain.Interfaces;
+using Hobby_Project.Domain.Entity;
+using Hobby_Project.Domain.Interfaces;
 
 namespace Hobby_Project
 {
-    public class HobbyCategory :  IPrint, IEdit
+    public class HobbyCategory :BaseEntity,  IPrint, IEdit
      {
         private string name;
         public DateTime AddedOn { get; set; }

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hobby_Project
+namespace Domain.Interfaces
 {
-   public interface IEdit
+    public interface IEdit
     {
-        void ChangeName(String name);
+        void ChangeName(string name);
         void EditName();
     }
 }
