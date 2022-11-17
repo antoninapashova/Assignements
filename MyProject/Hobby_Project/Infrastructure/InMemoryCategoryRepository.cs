@@ -8,7 +8,7 @@ using Hobby_Project;
 
 namespace Infrastructure
 {
-    internal class InMemoryCategoryRepository : ICategoryRepository
+     public class InMemoryCategoryRepository : ICategoryRepository
     {
 
         List<HobbyCategory> _categories = new();
