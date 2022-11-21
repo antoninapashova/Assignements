@@ -11,6 +11,7 @@ namespace Application.Comments.Commands
     {
         public string Title { get; set; }
         public string CommentContent { get; set; }
+        public UserDTO User { get; set; }
      }
-    }
+    
 }

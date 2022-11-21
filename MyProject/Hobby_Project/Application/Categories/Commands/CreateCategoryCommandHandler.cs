@@ -24,7 +24,7 @@ namespace Application.Categories.Commands
 
 
             var hobbyCategory = new HobbyCategory(command.Name, hobbySubCategories.ToList());
-
+            _repository.CreateCategory(hobbyCategory);
             return Task.FromResult(hobbyCategory.ID);
            
         }

@@ -22,6 +22,7 @@ namespace Application.Categories.Queries
             {
                 ID = category.ID,
                 Name = category.Name,
+                AddedOn = category.AddedOn,
                 HobbySubCategories = category.HobbySubCategories.Select(sub => new HobbySubCategoryDTO
                 {
                     Name = sub.Name,

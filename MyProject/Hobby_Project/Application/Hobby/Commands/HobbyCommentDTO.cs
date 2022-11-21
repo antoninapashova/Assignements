@@ -1,19 +1,17 @@
-﻿using Application.Categories.Queries;
-using MediatR;
+﻿using Hobby_Project;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Comments.Queries
+namespace Application.Hobby.Commands
 {
-    public class GetCommentsListQuery : IRequest<IEnumerable<CommentListVm>>
+    public class HobbyCommentDTO
     {
-        public int CommentId { get; set; }
         public string Title { get; set; }
         public string CommentContent { get; set; }
+        public User User { get; set; }
         public DateTime AddedOn { get; set; }
-        public CommentUserDTO User { get; set; }
     }
 }
