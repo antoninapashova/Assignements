@@ -8,28 +8,17 @@ using System.Threading.Tasks;
 
 namespace Hobby_Project
 {
-    public class Tag : BaseEntity, IEdit
+    public class Tag : BaseEntity
     {
-  
         public string Name{ get; set; }
-        public User user { get; set; }
         public DateTime AddedOn { get; set; }
 
-        public Tag(string name, User user)
+        public Tag(string name)
         {
             Name = name;
-            this.user = user;
+           
             this.AddedOn = DateTime.Now;
         }
 
-        public void ChangeName(string name)
-        {
-            this.Name = name;
-        }
-
-        public void EditName()
-        {
-            this.Name.ToUpper();
-        }
     }
 }

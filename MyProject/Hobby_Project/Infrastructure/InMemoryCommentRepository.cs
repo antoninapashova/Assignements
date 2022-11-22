@@ -43,7 +43,7 @@ namespace Infrastructure
             comment.Title = newHobbyComment.Title;
             comment.CommentContent = newHobbyComment.CommentContent;
             comment.AddedOn = DateTime.Now;
-            comment.user = newHobbyComment.user;
+            comment.User = newHobbyComment.User;
 
         }
     }

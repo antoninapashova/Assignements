@@ -8,6 +8,7 @@ namespace Application.Hobby.Commands
 {
     public class HobbySubCategoryDTO
     {
+        public int SubCategoryID { get; set; }
         public string Name { get; set; }
     }
 }

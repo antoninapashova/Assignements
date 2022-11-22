@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "iYiiKS9Kt/7L0cg8F95AiRhVfLdpSjueWVOEpA320cRz9jFaIunvZP4YCy3MNYpeGfs8rv7h/bCE4qvTVqXhCA==",
+  "dgSpecHash": "3tOis1CCrXNRcuUmuIfDH5aKM+qUZDv+qEOYmEYWZ+jqoTuEEBF6Inxg1yZkwrmKCPWhqZ9FzQCVtIzDE6DeOA==",
   "success": true,
   "projectFilePath": "C:\\Users\\PC\\Desktop\\Assignements\\Assignements\\MyProject\\Hobby_Project\\Infrastructure\\Infrastructure.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\PC\\.nuget\\packages\\mediatr\\11.0.0\\mediatr.11.0.0.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512"
+  ],
   "logs": []
 }

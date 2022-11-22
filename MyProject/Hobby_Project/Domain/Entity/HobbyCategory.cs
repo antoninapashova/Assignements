@@ -10,7 +10,7 @@ using Hobby_Project.Domain.Interfaces;
 
 namespace Hobby_Project
 {
-    public class HobbyCategory :BaseEntity,  IPrint, IEdit
+    public class HobbyCategory :BaseEntity
      {
         private string name;
         public DateTime AddedOn { get; set; }
@@ -35,24 +35,6 @@ namespace Hobby_Project
             }
         }
 
-        public string PrintInfo()
-        {
-            StringBuilder str = new StringBuilder();
-            str.AppendLine("All info about the category");
-            str.AppendLine("    Title: " + this.Name);
-            return str.ToString();
-        }
-
-     
-        public void ChangeName(string name)
-        {
-            this.Name = name;
-        }
-
-        public void EditName()
-        {
-            this.name = this.name.ToUpper();
-            
-        }
+       
     }
 }

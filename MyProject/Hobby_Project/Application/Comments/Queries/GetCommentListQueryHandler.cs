@@ -11,20 +11,25 @@ namespace Application.Comments.Queries
     public class GetCommentListQueryHandler : IRequestHandler<GetCommentsListQuery, IEnumerable<CommentListVm>>
     {
         private readonly ICommentRepository _commentRepository;
+        
 
         public GetCommentListQueryHandler(ICommentRepository commentRepository)
         {
             _commentRepository = commentRepository;
+            
         }
 
         public Task<IEnumerable<CommentListVm>> Handle(GetCommentsListQuery request, CancellationToken cancellationToken)
         {
+            
+
             var result = _commentRepository.GetAllComments().Select(comment => new CommentListVm
             {
-                commentId = comment.ID,
+                CommentId = comment.ID,
                 Title = comment.Title,
                 AddedOn = comment.AddedOn,
-                CommentContent = comment.CommentContent
+                CommentContent = comment.CommentContent,
+                Username = comment.User.Username
             });
             return Task.FromResult(result);
         }

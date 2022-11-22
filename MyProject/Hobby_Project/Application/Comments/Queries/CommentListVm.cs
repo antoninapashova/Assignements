@@ -12,7 +12,7 @@ namespace Application.Comments.Queries
         public string Title { get; set; }
         public string CommentContent { get; set; }
         public DateTime AddedOn { get; set; }
-        public CommentUserDTO User { get; set; }
+        public string Username { get; set; }
 
     }
 }

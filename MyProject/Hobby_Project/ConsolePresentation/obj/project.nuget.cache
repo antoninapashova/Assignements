@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "auUVnY/rOYVKOz5bAPPFQjnKJhw+8m4YjyPYup04wXtij8KMDYosmIGR3N281+gDRZXOmdJW/fXRuBI23dKctQ==",
+  "dgSpecHash": "Wux1dPBaSnnw0tGyObMVoAxOnspH0mP2rsLr6wGWcU72TxwbhHpJjS9xDT4Z61Pqh/ZKCohE6mFKwQoskpcBZw==",
   "success": true,
   "projectFilePath": "C:\\Users\\PC\\Desktop\\Assignements\\Assignements\\MyProject\\Hobby_Project\\ConsolePresentation\\ConsolePresentation.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\PC\\.nuget\\packages\\mediatr\\11.0.0\\mediatr.11.0.0.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512"
+  ],
   "logs": []
 }

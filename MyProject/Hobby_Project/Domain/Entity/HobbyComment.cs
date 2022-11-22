@@ -8,29 +8,21 @@ using System.Threading.Tasks;
 
 namespace Hobby_Project
 {
-    public class HobbyComment :BaseEntity, IEdit
+    public class HobbyComment :BaseEntity
     {
         public string Title { get; set; }
         public string CommentContent { get; set; }
-
+        public User User { get; set; }
         public DateTime AddedOn { get; set; }
 
-        public HobbyComment(string title, string commentContent)
+        public HobbyComment(string title, string commentContent, User user)
         {
             Title = title;
             CommentContent = commentContent;
-           
+            User = user;
             AddedOn = DateTime.Now;
         }
 
-        public void ChangeName(string name)
-        {
-            this.Title = name;
-        }
-
-        public void EditName()
-        {
-            this.Title.ToUpper();
-        }
+        
     }
 }

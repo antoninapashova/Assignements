@@ -12,21 +12,29 @@ namespace Application.Hobby.Commands
     internal class CreateHobbyCommandHandler : IRequestHandler<CreateHobbyCommand, int>
     {
         private readonly IHobbyRepository _repository;
+        private readonly ISubCategoryRepository _subCategoryRepository;
+        private readonly ITagRepository _tagRepository;
 
-        public CreateHobbyCommandHandler(IHobbyRepository repository)
+        public CreateHobbyCommandHandler(IHobbyRepository repository, ISubCategoryRepository subCategoryRepository, ITagRepository tagRepository)
         {
             _repository = repository;
+            _subCategoryRepository = subCategoryRepository;
+            _tagRepository = tagRepository;
         }
 
         public Task<int> Handle(CreateHobbyCommand command, CancellationToken cancellationToken)
         {
-            var hobbySubCategory = new HobbySubCategory(command.HobbySubCategory.Name);
+            var hobbySubCategory =_subCategoryRepository.GetSubCategory(command.HobbySubCategory.SubCategoryID);
 
-            var hobbyComments = command.Comments.Select(hobbyCommentDTO =>
-                  new HobbyComment(hobbyCommentDTO.Title, hobbyCommentDTO.CommentContent, hobbyCommentDTO.User)).ToList();
+            var hobbyComments = new List<HobbyComment>();
+            var hobbyTags=new List<Tag>();
 
-            var hobbyTags = command.Tags.Select(tagDTO =>
-                 new Tag(tagDTO.Name)).ToList();
+            foreach(var tag in command.Tags)
+            {
+                Tag tag1 = _tagRepository.GetTag(tag.TagId);
+                hobbyTags.Add(tag1);
+
+            }
 
             var hobby = new HobbyArticle(command.Title, command.Description, hobbySubCategory, hobbyComments, hobbyTags);
             _repository.CreateHobby(hobby);

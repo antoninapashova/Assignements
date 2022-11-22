@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hobby_Project.Domain.Entity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Hobby_Project
 {
-    public class HobbySubCategory 
+    public class HobbySubCategory : BaseEntity
     {
         public string Name { get; set; }
         public DateTime AddedOn { get; set; }

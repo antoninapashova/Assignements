@@ -10,7 +10,7 @@ namespace Application.Categories.Queries
     public class GetCategoryListQueryHandler : IRequestHandler<GetCategoriesListQuery, IEnumerable<CategoryListVm>>
     {
         private readonly ICategoryRepository _repository;
-
+     
         public GetCategoryListQueryHandler(ICategoryRepository repository)
         {
             _repository = repository;
