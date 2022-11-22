@@ -20,8 +20,7 @@ namespace Application.Users.Commands
 
         Task<int> IRequestHandler<CreateUserCommand, int>.Handle(CreateUserCommand userCommand, CancellationToken cancellationToken)
         {
-            var userHobbies = userCommand.Hobbies.Select(hobby =>
-               new HobbyArticle(hobby.Title, hobby.Description, hobby.HobbySubCategory, hobby.Comments, hobby.Tags)).ToList();
+            var userHobbies = new List<HobbyArticle>();
 
             var user = new User(userCommand.Username, userCommand.FirstName, userCommand.LastName, userCommand.Email, userCommand.Age, userHobbies);
             _userRepository.CreateUser(user);

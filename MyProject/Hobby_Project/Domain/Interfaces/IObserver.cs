@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Domain.Interfaces
 {
-    public interface IEdit
+    public interface IObserver
     {
-        void ChangeName(string name);
-        void EditName();
+        void Update(ISubject subject);
     }
 }

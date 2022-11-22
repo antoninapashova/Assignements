@@ -40,7 +40,7 @@ namespace Infrastructure
             var searchedTag = _hobbyTags.FirstOrDefault(t => t.ID == tagId);
             if (searchedTag == null)
             {
-                throw new InvalidOperationException("Tag with id: " + tag.ID + " does not exist!!!");
+                throw new InvalidOperationException("Tag with id: " + tagId + " does not exist!!!");
             }
 
             return searchedTag;
@@ -50,7 +50,7 @@ namespace Infrastructure
         {
             var searchedTag = _hobbyTags.FirstOrDefault(t => t.ID == tagId);
             if (searchedTag == null) throw new InvalidOperationException("Tag with id: " + tag.ID + " does not exist!!!");
-            searchedTag.ChangeName(tag.Name);
+            searchedTag.Name = tag.Name;
             
         }
     }

@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hobby_Project.Domain.Interfaces
+namespace Domain.Interfaces
 {
-    public interface IPrint
+     public interface ISubject
     {
-        string PrintInfo();
+        void Attach(IObserver observer);
+
+        void Notify();
     }
 }

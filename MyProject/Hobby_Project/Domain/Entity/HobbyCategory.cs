@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Domain.Interfaces;
 using Hobby_Project.Domain.Entity;
-using Hobby_Project.Domain.Interfaces;
+using Hobby_Project.Domain;
 
 namespace Hobby_Project
 {
