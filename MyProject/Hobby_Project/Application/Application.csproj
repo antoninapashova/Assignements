@@ -1,18 +1,28 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="11.0.0" />
+    <PackageReference Include="MediatR" Version="11.1.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Comments\Commands\Delete\" />
+    <Folder Include="Comments\Commands\Edit\" />
+    <Folder Include="HobbySubCategories\Commands\Edit\" />
+    <Folder Include="HobbyTags\Commands\Edit\" />
+    <Folder Include="HobbyTags\Commands\Delete\" />
+    <Folder Include="Users\Commands\Edit\" />
+    <Folder Include="Users\Commands\Delete\" />
   </ItemGroup>
 
 </Project>

@@ -8,7 +8,8 @@ namespace Application
     {
         void CreateHobby(HobbyArticle hobbyArticle);
         void DeleteHobby(HobbyArticle hobbyArticle);
-        void EditHobby(int hobbyId, HobbyArticle hobbyArticle);
+        HobbyArticle DeleteHobbyById(int hobbyId);
+        void EditHobby(int hobbyId, string title, string description);
         HobbyArticle GetHobby(int hobbyId);
         List<HobbyArticle> GetAllHobbies();
     }

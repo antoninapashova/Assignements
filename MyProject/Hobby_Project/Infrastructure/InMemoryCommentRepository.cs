@@ -14,13 +14,12 @@ namespace Infrastructure
         public void CreateComment(HobbyComment comment)
         {
             _comments.Add(comment);
-            comment.ID = _comments.Count;
+            comment.Id = _comments.Count;
         }
 
         public void DeleteComment(HobbyComment hobbyComment)
         {
-            var comment = _comments.FirstOrDefault(c => c.ID == hobbyComment.ID);
-            if (comment== null) throw new InvalidOperationException("Comment with that ID does not exist!");
+            HobbyComment comment = isValid(hobbyComment.Id);
             this._comments.Remove(comment);
         }
 
@@ -31,20 +30,25 @@ namespace Infrastructure
 
         public HobbyComment getHobbyComment(int commentId)
         {
-            var comment = _comments.FirstOrDefault(c => c.ID == commentId);
-            if (comment == null) throw new InvalidOperationException("Comment with that ID does not exist!");
+            HobbyComment comment = isValid(commentId);
             return comment;
         }
 
         public void UpdateComment(int commentId, HobbyComment newHobbyComment)
         {
-            var comment = _comments.FirstOrDefault(c => c.ID == commentId);
-            if (comment == null) throw new InvalidOperationException("Comment with that ID does not exist!");
+            HobbyComment comment = isValid(commentId);
             comment.Title = newHobbyComment.Title;
             comment.CommentContent = newHobbyComment.CommentContent;
             comment.AddedOn = DateTime.Now;
             comment.User = newHobbyComment.User;
 
+        }
+
+        private HobbyComment isValid(int commentId)
+        {
+            var comment = _comments.FirstOrDefault(c => c.Id == commentId);
+            if (comment == null) throw new InvalidOperationException("Comment with that ID does not exist!");
+            return comment;
         }
     }
 }

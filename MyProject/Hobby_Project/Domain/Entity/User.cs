@@ -1,5 +1,4 @@
 ﻿using Domain.Entity;
-using Domain.Interfaces;
 using Hobby_Project.Domain.Entity;
 using Hobby_Project.Exceptions;
 using System;
@@ -11,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Hobby_Project
 {
-    public class User :BaseEntity, IObserver
+    public class User : BaseEntity
     {
        
         private string username;
@@ -31,7 +30,6 @@ namespace Hobby_Project
             Hobbies = hobbies;
         }
 
-
         public string Username {
             get { return username; }  
             set
@@ -43,7 +41,6 @@ namespace Hobby_Project
                 username = value;
             }
         }
-
         public int Age
         {
             get { return age; }
@@ -56,13 +53,5 @@ namespace Hobby_Project
                 age = value;
             }
         }
-
-        public void Update(ISubject subject)
-        {
-            if(subject is HobbySubCategory hobbySubCategory)
-            {
-                Console.WriteLine("New HobbyArticle is added to the {0} SubCategory", hobbySubCategory.Name);
-            }
-        }
-    }
+   }
 }

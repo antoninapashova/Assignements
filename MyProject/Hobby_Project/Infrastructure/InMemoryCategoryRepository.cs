@@ -15,24 +15,29 @@ namespace Infrastructure
 
         public void AddSubCategoryToCategory(int categoryId, HobbySubCategory hobbySubCategory)
         {
-            var category = _categories.FirstOrDefault(c => c.ID == categoryId);
+            var category = _categories.FirstOrDefault(c => c.Id == categoryId);
             if (category == null) throw new InvalidOperationException("Category with that id does not exist");
             category.HobbySubCategories.Add(hobbySubCategory);
         
-    }
+        }
 
         public void CreateCategory(HobbyCategory hobbyCategory)
         {
             _categories.Add(hobbyCategory);
-            hobbyCategory.ID = _categories.Count;
+            hobbyCategory.Id = _categories.Count;
         }
 
         public void DeleteCategory(HobbyCategory hobbyCategory)
         {
-            var category = _categories.FirstOrDefault(c => c.ID == hobbyCategory.ID);
-            if (category == null) throw new InvalidOperationException("Category with that id does not exist");
 
+            HobbyCategory category = isValid(hobbyCategory.Id);
             this._categories.Remove(hobbyCategory);
+        }
+
+        public void DeleteCategoryByID(int id)
+        {
+            HobbyCategory category = isValid(id);
+            this._categories.Remove(category);
         }
 
         public IEnumerable<HobbyCategory> GetAllCategories()
@@ -42,17 +47,22 @@ namespace Infrastructure
 
         public HobbyCategory GetHobbyCategory(int id)
         {
-            var category = _categories.FirstOrDefault(c => c.ID == id);
-            if (category == null) throw new InvalidOperationException("Category with that id does not exist");
+            HobbyCategory category = isValid(id);
             return category;
         }
 
-        public void UpdateCategory(int categoryId,HobbyCategory newHobbyCategory)
+        public void UpdateCategory(int categoryId, string name)
         {
-            var category = _categories.FirstOrDefault(c => c.ID == categoryId);
-            if (category == null) throw new InvalidOperationException("Category with that id does not exist");
-            category.ChangeName(newHobbyCategory.Name);
+            HobbyCategory category = isValid(categoryId);
+            category.Name = name;
             category.AddedOn = DateTime.Now;
+        }
+
+        private HobbyCategory isValid(int id)
+        {
+            var category = _categories.FirstOrDefault(c => c.Id == id);
+            if (category == null) throw new InvalidOperationException("Category with that id does not exist");
+            return category;
         }
     }
 }

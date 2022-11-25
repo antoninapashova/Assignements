@@ -28,7 +28,7 @@ namespace Infrastructure
         public void DeleteHobby(int userID, int hobbyID)
         {
             User user = isValid(userID);
-            var hobby = user.Hobbies.FirstOrDefault(h => h.ID == hobbyID);
+            var hobby = user.Hobbies.FirstOrDefault(h => h.Id == hobbyID);
             if (hobby == null) throw new InvalidOperationException("The user does not have hobby with id: " + hobby);
 
             user.Hobbies.Remove(hobby);
@@ -66,7 +66,7 @@ namespace Infrastructure
 
         private User isValid(int ID)
         {
-            var user = users.FirstOrDefault(u => u.ID == ID);
+            var user = users.FirstOrDefault(u => u.Id == ID);
             if (user == null) throw new InvalidOperationException("User with ID: " + ID + "does not exist");
             return user;
         }

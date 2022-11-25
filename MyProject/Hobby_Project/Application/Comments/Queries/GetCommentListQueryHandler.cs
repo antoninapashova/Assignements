@@ -25,7 +25,7 @@ namespace Application.Comments.Queries
 
             var result = _commentRepository.GetAllComments().Select(comment => new CommentListVm
             {
-                CommentId = comment.ID,
+                CommentId = comment.Id,
                 Title = comment.Title,
                 AddedOn = comment.AddedOn,
                 CommentContent = comment.CommentContent,

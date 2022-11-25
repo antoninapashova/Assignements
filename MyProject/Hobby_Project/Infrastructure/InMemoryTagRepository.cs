@@ -16,16 +16,12 @@ namespace Infrastructure
         public void CreateTag(Tag tag)
         {
             _hobbyTags.Add(tag);
-            tag.ID = _hobbyTags.Count;
+            tag.Id = _hobbyTags.Count;
         }
 
         public void DeleteTag(Tag tag)
         {
-            var tagForDeletion = _hobbyTags.FirstOrDefault(t => t.ID == tag.ID);
-            if (tagForDeletion == null)
-            {
-                throw new InvalidOperationException("Tag with id: " + tag.ID + " does not exist!!!");
-            }
+            Tag tagForDeletion = IsValid(tag.Id);
 
             _hobbyTags.Remove(tagForDeletion);
         }
@@ -37,21 +33,26 @@ namespace Infrastructure
 
         public Tag GetTag(int tagId)
         {
-            var searchedTag = _hobbyTags.FirstOrDefault(t => t.ID == tagId);
-            if (searchedTag == null)
-            {
-                throw new InvalidOperationException("Tag with id: " + tagId + " does not exist!!!");
-            }
+            Tag tag = IsValid(tagId);
 
-            return searchedTag;
+            return tag;
         }
 
         public void UpdateTag(int tagId, Tag tag)
         {
-            var searchedTag = _hobbyTags.FirstOrDefault(t => t.ID == tagId);
-            if (searchedTag == null) throw new InvalidOperationException("Tag with id: " + tag.ID + " does not exist!!!");
+            Tag searchedTag = IsValid(tagId);
             searchedTag.Name = tag.Name;
             
         }
+        private Tag IsValid(int id)
+        {
+            var tag = _hobbyTags.FirstOrDefault(t => t.Id == id);
+            if (tag == null)
+            {
+                throw new InvalidOperationException("Tag with id: " + id + " does not exist!!!");
+            }
+            return tag;
+        }
+
     }
 }

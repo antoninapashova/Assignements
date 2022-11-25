@@ -12,8 +12,9 @@ namespace Application
         void CreateCategory(HobbyCategory hobbyCategory);
         void AddSubCategoryToCategory(int categoryId, HobbySubCategory hobbySubCategory);
         void DeleteCategory(HobbyCategory hobbyCategory);
-        void UpdateCategory(int categoryID, HobbyCategory hobbyCategory);
+        void UpdateCategory(int categoryID, string name);
         HobbyCategory GetHobbyCategory(int id);
         IEnumerable<HobbyCategory> GetAllCategories();
+        void DeleteCategoryByID(int id);
     }
 }

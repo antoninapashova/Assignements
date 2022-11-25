@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure
 {
-    internal class InMemorySubCategoryRepository : ISubCategoryRepository
+    public class InMemorySubCategoryRepository : ISubCategoryRepository
     {
         List<HobbySubCategory> subCategories = new();
         public void AddSubCategory(HobbySubCategory hobbySubCategory)
@@ -42,7 +42,7 @@ namespace Infrastructure
 
         private HobbySubCategory isValid(int ID)
         {
-            var subCategory = subCategories.FirstOrDefault(s => s.ID == ID);
+            var subCategory = subCategories.FirstOrDefault(s => s.Id == ID);
             if (subCategory == null) throw new InvalidOperationException("SubCategory with ID: " + ID + "does not exist");
             return subCategory;
         }

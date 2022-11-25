@@ -3,16 +3,10 @@ C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\obj
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\obj\Debug\net6.0\Domain.AssemblyInfoInputs.cache
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\obj\Debug\net6.0\Domain.AssemblyInfo.cs
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\obj\Debug\net6.0\Domain.csproj.CoreCompileInputs.cache
-C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\bin\Debug\net6.0\Domain.exe
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\bin\Debug\net6.0\Domain.deps.json
-C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\bin\Debug\net6.0\Domain.runtimeconfig.json
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\bin\Debug\net6.0\Domain.dll
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\bin\Debug\net6.0\Domain.pdb
-C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\bin\Debug\net6.0\MediatR.dll
-C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\bin\Debug\net6.0\MediatR.Contracts.dll
-C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\obj\Debug\net6.0\Domain.csproj.CopyComplete
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\obj\Debug\net6.0\Domain.dll
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\obj\Debug\net6.0\refint\Domain.dll
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\obj\Debug\net6.0\Domain.pdb
-C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\obj\Debug\net6.0\Domain.genruntimeconfig.cache
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\obj\Debug\net6.0\ref\Domain.dll

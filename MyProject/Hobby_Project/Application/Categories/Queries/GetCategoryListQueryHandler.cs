@@ -20,7 +20,7 @@ namespace Application.Categories.Queries
         {
             var result = _repository.GetAllCategories().Select(category => new CategoryListVm
             {
-                ID = category.ID,
+                ID = category.Id,
                 Name = category.Name,
                 AddedOn = category.AddedOn,
                 HobbySubCategories = category.HobbySubCategories.Select(sub => new HobbySubCategoryDTO
