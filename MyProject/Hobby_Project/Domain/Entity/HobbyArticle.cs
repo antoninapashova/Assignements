@@ -11,16 +11,17 @@ using Hobby_Project.Domain;
 namespace Domain.Entity
 {
       public class HobbyArticle : BaseEntity
-    {
-        private string title;
+      {
+        public string Title { get; set; }
         public string Description { get; set; }
 
-        private HobbySubCategory hobbySubCategory;
+        public HobbySubCategory HobbySubCategory { get; set; }
         public DateTime AddedOn { get; set; }
         public List<HobbyComment> Comments { get; set; }
         public List<Tag> Tags { get; set; }
 
-        public HobbyArticle(string title, string description, HobbySubCategory hobbySubCategory, List<HobbyComment> comments, List<Tag> tags)
+        public HobbyArticle(string title, string description, HobbySubCategory hobbySubCategory, 
+            List<HobbyComment> comments, List<Tag> tags)
         {
             Title = title;
             Description = description;
@@ -30,33 +31,18 @@ namespace Domain.Entity
             Tags = tags;
         }
 
-        public string Title
+        public HobbyArticle(int id, string title, string description, HobbySubCategory hobbySubCategory, 
+            List<HobbyComment> comments, List<Tag> tags)
         {
-            get { return title; }
-            set
-            {
-                if (string.IsNullOrWhiteSpace(value))
-                {
-                    throw new NullReferenceException("The title should not be NULL!");
-                }
-
-                title = value;
-            }
+            Id = id;
+            Title = title;
+            Description = description;
+            HobbySubCategory = hobbySubCategory;
+            AddedOn = DateTime.Now;
+            Comments = comments;
+            Tags = tags;
+         
         }
-        public HobbySubCategory HobbySubCategory
-        {
-            get { return hobbySubCategory; }
-            set
-            {
-                if (value == null)
-                {
-                    throw new HobySubCategoryDoesNotSetException("The Sub category of the hoby is not set!");
-                }
-                hobbySubCategory = value;
-            }
-        }
-
- 
     }
 
 }

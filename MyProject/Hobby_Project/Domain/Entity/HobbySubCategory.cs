@@ -26,6 +26,10 @@ namespace Hobby_Project
            
          }
 
+        public HobbySubCategory()
+        {
+
+        }
 
       
     }

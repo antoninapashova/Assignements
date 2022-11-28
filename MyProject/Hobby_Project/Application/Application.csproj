@@ -21,8 +21,6 @@
     <Folder Include="HobbySubCategories\Commands\Edit\" />
     <Folder Include="HobbyTags\Commands\Edit\" />
     <Folder Include="HobbyTags\Commands\Delete\" />
-    <Folder Include="Users\Commands\Edit\" />
-    <Folder Include="Users\Commands\Delete\" />
   </ItemGroup>
 
 </Project>

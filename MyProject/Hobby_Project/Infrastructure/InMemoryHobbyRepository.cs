@@ -19,8 +19,7 @@ namespace Infrastructure
 
         public void DeleteHobby(HobbyArticle hobbyArticle)
         {
-            var hobbyArticle1 = hobbyArticles.FirstOrDefault(h=>h.Id==hobbyArticle.Id);
-            if (hobbyArticle1 == null) throw new InvalidOperationException("HobbyArticle with ID: " + hobbyArticle.Id + "does not exist");
+            var hobbyArt = isValid(hobbyArticle.Id);
             hobbyArticles.Remove(hobbyArticle);
         }
 

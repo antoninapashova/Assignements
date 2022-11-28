@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure
 {
-    internal class InMemoryUserRepository : IUserRepository
+    public class InMemoryUserRepository : IUserRepository
     {
         List<User> users = new();
 
@@ -34,11 +34,12 @@ namespace Infrastructure
             user.Hobbies.Remove(hobby);
         }
 
-        public void DeleteUser(int userID)
+        public User DeleteUser(int userID)
         {
             var user = isValid(userID);
 
             this.users.Remove(user);
+            return user;
         }
 
         public IEnumerable<User> GetAllUsers()
@@ -52,16 +53,16 @@ namespace Infrastructure
             return user;
         }
 
-        public void UpdateUser(int userID, User user)
+        public void UpdateUser(int userID, string username, string firstName, string lastName, string email)
         {
             var searchedUser = isValid(userID);
 
-            searchedUser.Username = user.Username;
-            searchedUser.FirstName = user.FirstName;
-            searchedUser.LastName = user.LastName;
-            searchedUser.Email = user.Email;
-            searchedUser.Age = user.Age;
-            searchedUser.Hobbies = user.Hobbies;
+            searchedUser.Username = username;
+            searchedUser.FirstName = firstName;
+            searchedUser.LastName = lastName;
+            searchedUser.Email = email;
+            
+            
         }
 
         private User isValid(int ID)

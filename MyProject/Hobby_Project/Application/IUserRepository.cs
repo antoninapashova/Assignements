@@ -13,8 +13,8 @@ namespace Application
         void CreateUser(User user);
         void AddHobbyToUser(int userID,HobbyArticle hobby);
         void DeleteHobby(int userID, int hobbyID);
-        void UpdateUser(int userID, User user);
-        void DeleteUser(int userID);
+        void UpdateUser(int userID, string username, string firstName, string lastName, string email);
+        User DeleteUser(int userID);
         User GetUser (int userID);
         IEnumerable<User> GetAllUsers();
 

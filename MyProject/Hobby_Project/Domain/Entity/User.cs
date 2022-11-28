@@ -13,11 +13,11 @@ namespace Hobby_Project
     public class User : BaseEntity
     {
        
-        private string username;
+        public string Username { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        private int age;
+        public int Age { get; set;}
         public List<HobbyArticle> Hobbies { get; set; }
 
         public User(string username, string firstName, string lastName, string email, int age, List<HobbyArticle> hobbies)
@@ -30,28 +30,19 @@ namespace Hobby_Project
             Hobbies = hobbies;
         }
 
-        public string Username {
-            get { return username; }  
-            set
-            {
-                if(value.Length<5)
-                {
-                    throw new ArgumentException("The username must be 5 or more characters!");
-                }
-                username = value;
-            }
-        }
-        public int Age
+        public User(int id,string username, string firstName, string lastName, string email, int age, List<HobbyArticle> hobbies)
         {
-            get { return age; }
-            set
-            {
-                if (value <=0)
-                {
-                    throw new Exception("The age can not be negative or zero!");
-                }
-                age = value;
-            }
+            Id = id;
+            Username = username;
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
+            Age = age;
+            Hobbies = hobbies;
         }
+
+
+
+        
    }
 }
