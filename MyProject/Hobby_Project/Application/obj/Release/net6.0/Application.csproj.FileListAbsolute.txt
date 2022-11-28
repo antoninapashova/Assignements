@@ -1,5 +1,0 @@
-C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Application\obj\Release\net6.0\Application.csproj.AssemblyReference.cache
-C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Application\obj\Release\net6.0\Application.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Application\obj\Release\net6.0\Application.AssemblyInfoInputs.cache
-C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Application\obj\Release\net6.0\Application.AssemblyInfo.cs
-C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Application\obj\Release\net6.0\Application.csproj.CoreCompileInputs.cache
