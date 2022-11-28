@@ -1,5 +1,0 @@
-C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Infrastructure\obj\Release\net6.0\Infrastructure.csproj.AssemblyReference.cache
-C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Infrastructure\obj\Release\net6.0\Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Infrastructure\obj\Release\net6.0\Infrastructure.AssemblyInfoInputs.cache
-C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Infrastructure\obj\Release\net6.0\Infrastructure.AssemblyInfo.cs
-C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Infrastructure\obj\Release\net6.0\Infrastructure.csproj.CoreCompileInputs.cache
