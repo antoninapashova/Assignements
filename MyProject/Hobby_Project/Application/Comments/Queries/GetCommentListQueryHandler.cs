@@ -21,8 +21,6 @@ namespace Application.Comments.Queries
 
         public Task<IEnumerable<CommentListVm>> Handle(GetCommentsListQuery request, CancellationToken cancellationToken)
         {
-            
-
             var result = _commentRepository.GetAllComments().Select(comment => new CommentListVm
             {
                 CommentId = comment.Id,

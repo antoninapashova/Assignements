@@ -1,4 +1,5 @@
 ﻿using Domain.Entity;
+using Hobby_Project;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,6 @@ namespace Domain.Interfaces
     public interface ISubscriber
     {
         public int Id { get; set; }
-        void Notify(HobbyArticle hobbyArticle);
+        void Notify(HobbySubCategory hobbySubCategory);
     }
 }

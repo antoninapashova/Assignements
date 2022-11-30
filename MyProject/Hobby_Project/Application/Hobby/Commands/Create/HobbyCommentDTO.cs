@@ -12,6 +12,6 @@ namespace Application.Hobby.Commands.Create
         public string Title { get; set; }
         public string CommentContent { get; set; }
         public User User { get; set; }
-        public DateTime AddedOn { get; set; }
+       
     }
 }

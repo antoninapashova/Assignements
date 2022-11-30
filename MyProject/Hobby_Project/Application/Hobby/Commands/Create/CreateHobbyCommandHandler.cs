@@ -1,4 +1,5 @@
-﻿using Application.Notifications;
+﻿using Application.Logger;
+using Application.Notifications;
 using Domain.Entity;
 using Hobby_Project;
 using MediatR;
@@ -13,17 +14,15 @@ namespace Application.Hobby.Commands.Create
     public class CreateHobbyCommandHandler : IRequestHandler<CreateHobbyCommand, int>
     {
         private readonly IHobbyRepository _repository;
-        private readonly HobbyPublisher _publisher;
+      
         private readonly ISubCategoryRepository _subCategoryRepository;
         private readonly ITagRepository _tagRepository;
 
-        public CreateHobbyCommandHandler(IHobbyRepository repository, HobbyPublisher hobbyPublisher, ISubCategoryRepository subCategoryRepository, ITagRepository tagRepository)
+        public CreateHobbyCommandHandler(IHobbyRepository repository, ISubCategoryRepository subCategoryRepository, ITagRepository tagRepository)
         {
             _repository = repository;
             _subCategoryRepository = subCategoryRepository;
             _tagRepository = tagRepository;
-            _publisher = hobbyPublisher;
-
         }
 
         public Task<int> Handle(CreateHobbyCommand command, CancellationToken cancellationToken)
@@ -41,9 +40,7 @@ namespace Application.Hobby.Commands.Create
 
             var hobby = new HobbyArticle(command.Title, command.Description, hobbySubCategory, hobbyComments, hobbyTags);
             _repository.CreateHobby(hobby);
-
-            _publisher.Publish(hobby);
-
+            SingletonLogger.Instance.LogMessage("create", "A new hobby with title: " + command.Title + " is added");
             return Task.FromResult(hobby.Id);
         }
     }

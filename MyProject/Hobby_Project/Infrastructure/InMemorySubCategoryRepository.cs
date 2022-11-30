@@ -14,6 +14,7 @@ namespace Infrastructure
         public void AddSubCategory(HobbySubCategory hobbySubCategory)
         {
             subCategories.Add(hobbySubCategory);
+            hobbySubCategory.Id = subCategories.Count;
         }
 
         public void DeleteSubCategory(int subCategoryId)

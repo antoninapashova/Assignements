@@ -25,7 +25,7 @@ namespace HobbyProjectTests
         }
 
         [Fact]
-        public void Add_Category()
+        public void AddCategoryTest()
         {             
             var savedCategory = Assert.Single(_categoryRepository.GetAllCategories());
             Assert.NotNull(savedCategory);
@@ -33,26 +33,25 @@ namespace HobbyProjectTests
         }
 
         [Fact]
-        public void Update_UpdateName()
+        public void UpdateCategotyTest()
         {            
             _categoryRepository.UpdateCategory(1, "Sports");
             var category = _categoryRepository.GetAllCategories().First();
-            //Assert
+            
             Assert.NotNull(category);
             Assert.Equal("Sports", category.Name);
         }
 
         [Fact]
-        public void Get_CategoryById()
+        public void CategoryByIdTest()
         {
             HobbyCategory hobbyCategory = _categoryRepository.GetHobbyCategory(1);
-           
             Assert.NotNull(hobbyCategory);
             Assert.Equal("Sport", hobbyCategory.Name);
         }
 
         [Fact]
-        public void Delete_CategoryById()
+        public void DeleteCategoryByIdTest()
         {
             _categoryRepository.DeleteCategoryByID(1);
             Assert.Empty(_categoryRepository.GetAllCategories());

@@ -1,4 +1,5 @@
-﻿using Hobby_Project;
+﻿using Application.Logger;
+using Hobby_Project;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace Application.Comments.Commands.Create
 
             var hobbyComment = new HobbyComment(command.Title, command.CommentContent, user);
             _repository.CreateComment(hobbyComment);
+            SingletonLogger.Instance.LogMessage("create", "User " + user.Username + " write new comment with title " + hobbyComment.CommentContent);
             return Task.FromResult(hobbyComment.Id);
 
         }

@@ -21,8 +21,7 @@ namespace Application.HobbyTags.Queries
         {
             var result = _tagRepository.GetAllTags().Select(tag => new TagListVm
             {
-              
-                Name = tag.Name
+                 Name = tag.Name
             });
 
             return Task.FromResult(result);

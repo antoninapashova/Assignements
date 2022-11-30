@@ -1,7 +1,9 @@
-﻿using Hobby_Project;
+﻿using Application.Logger;
+using Hobby_Project;
 using MediatR;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,10 +24,9 @@ namespace Application.Users.Commands.Delete
         public Task<int> Handle(DeleteUserCommand command, CancellationToken cancellationToken)
         {
             User user = _userRepository.DeleteUser(command.Id);
-            user.Hobbies.ForEach(c=>_hobbyRepository.DeleteHobby(c));
-
+            user.Hobbies.ForEach(h=>_hobbyRepository.DeleteHobby(h));
+            SingletonLogger.Instance.LogMessage("delete", "User with username " + user.Username + " is deleted");
             return Task.FromResult(user.Id);
-
         }
     }
 }

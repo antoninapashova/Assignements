@@ -1,33 +1,31 @@
 ﻿using Domain.Entity;
 using Domain.Interfaces;
+using Hobby_Project;
 
 namespace Application.Notifications
 {
     public class HobbyPublisher
     {
-        Dictionary<int, List<ISubscriber>> dict_subscribers; //dict<subcategoryId, list<users>
+        private List<ISubscriber> subscribers;
 
-        public HobbyPublisher(Dictionary<int, List<ISubscriber>> dict_subscribers)
+        public HobbyPublisher(List<ISubscriber> subscribers)
         {
-            this.dict_subscribers = dict_subscribers;
+            this.subscribers = subscribers;
         }
 
-        public void RemoveSubscriber(int subcategoryId, ISubscriber subscriber)
+        public void RemoveSubscriber(ISubscriber subscriber)
         {
-            dict_subscribers[subcategoryId].Remove(subscriber);
+            subscribers.Remove(subscriber);
         }
 
-        public void AddSubscriber(int subcategoryId, ISubscriber subscriber)
+        public void AddSubscriber( ISubscriber subscriber)
         {
-            dict_subscribers[subcategoryId].Add(subscriber);
+            subscribers.Add(subscriber);
         }
 
-        public  void Publish(HobbyArticle hobby)
+        public  void Publish(HobbySubCategory hobbySubCategory)
         {
-            
-            List<ISubscriber> subscribers = dict_subscribers[hobby.HobbySubCategory.Id]; // match Dicttionary
-
-            subscribers.ForEach(s => s.Notify(hobby));
+            subscribers.ForEach(s => s.Notify(hobbySubCategory));
         }
 
     }

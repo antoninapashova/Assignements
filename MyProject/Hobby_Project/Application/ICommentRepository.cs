@@ -11,9 +11,8 @@ namespace Application
     {
         void CreateComment(HobbyComment comment);
         void DeleteComment(HobbyComment hobbyComment);
-
         void UpdateComment(int commentId, HobbyComment comment);
-        HobbyComment getHobbyComment(int commentId);
+        HobbyComment GetHobbyComment(int commentId);
         IEnumerable<HobbyComment> GetAllComments();
     }
 }

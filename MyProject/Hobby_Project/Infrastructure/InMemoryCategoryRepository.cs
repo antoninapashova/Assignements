@@ -9,14 +9,13 @@ using Hobby_Project;
 namespace Infrastructure
 {
      public class InMemoryCategoryRepository : ICategoryRepository
-    {
+     {
 
         List<HobbyCategory> _categories = new();
 
         public void AddSubCategoryToCategory(int categoryId, HobbySubCategory hobbySubCategory)
         {
-            var category = _categories.FirstOrDefault(c => c.Id == categoryId);
-            if (category == null) throw new InvalidOperationException("Category with that id does not exist");
+            var category = isValid(categoryId);
             category.HobbySubCategories.Add(hobbySubCategory);
         
         }
@@ -31,7 +30,7 @@ namespace Infrastructure
         {
 
             HobbyCategory category = isValid(hobbyCategory.Id);
-            this._categories.Remove(hobbyCategory);
+            this._categories.Remove(category);
         }
 
         public void DeleteCategoryByID(int id)
@@ -64,5 +63,5 @@ namespace Infrastructure
             if (category == null) throw new InvalidOperationException("Category with that id does not exist");
             return category;
         }
-    }
+     }
 }

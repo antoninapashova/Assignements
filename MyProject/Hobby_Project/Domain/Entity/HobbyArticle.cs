@@ -14,7 +14,6 @@ namespace Domain.Entity
       {
         public string Title { get; set; }
         public string Description { get; set; }
-
         public HobbySubCategory HobbySubCategory { get; set; }
         public DateTime AddedOn { get; set; }
         public List<HobbyComment> Comments { get; set; }

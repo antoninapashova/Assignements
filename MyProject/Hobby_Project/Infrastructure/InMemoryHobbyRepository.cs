@@ -15,12 +15,13 @@ namespace Infrastructure
         public void CreateHobby(HobbyArticle hobbyArticle)
         {
             hobbyArticles.Add(hobbyArticle);
+            hobbyArticle.Id = hobbyArticles.Count;
         }
 
         public void DeleteHobby(HobbyArticle hobbyArticle)
         {
             var hobbyArt = isValid(hobbyArticle.Id);
-            hobbyArticles.Remove(hobbyArticle);
+            hobbyArticles.Remove(hobbyArt);
         }
 
         public HobbyArticle DeleteHobbyById(int hobbyId)
@@ -36,7 +37,6 @@ namespace Infrastructure
             hobbyArticle1.Title = title;
             hobbyArticle1.Description = description;
             hobbyArticle1.AddedOn = DateTime.Now;
-            
             
         }
 

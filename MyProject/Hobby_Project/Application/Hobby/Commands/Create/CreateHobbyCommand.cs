@@ -15,7 +15,6 @@ namespace Application.Hobby.Commands.Create
         public string Description { get; set; }
 
         public HobbySubCategoryDTO HobbySubCategory;
-        public List<HobbyCommentDTO> Comments { get; set; }
         public List<TagDTO> Tags { get; set; }
     }
 }

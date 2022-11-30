@@ -15,14 +15,16 @@ namespace Infrastructure
 
         public void AddHobbyToUser(int userID, HobbyArticle hobby)
         {
-            var user = isValid(userID);
+            var user =    isValid(userID);
             user.Hobbies.Add(hobby);
+             
         
         }
 
         public void CreateUser(User user)
         {
             this.users.Add(user);
+            user.Id = users.Count;
         }
 
         public void DeleteHobby(int userID, int hobbyID)
@@ -56,13 +58,10 @@ namespace Infrastructure
         public void UpdateUser(int userID, string username, string firstName, string lastName, string email)
         {
             var searchedUser = isValid(userID);
-
             searchedUser.Username = username;
             searchedUser.FirstName = firstName;
             searchedUser.LastName = lastName;
             searchedUser.Email = email;
-            
-            
         }
 
         private User isValid(int ID)

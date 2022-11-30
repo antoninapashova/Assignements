@@ -47,10 +47,8 @@ namespace Infrastructure
         private Tag IsValid(int id)
         {
             var tag = _hobbyTags.FirstOrDefault(t => t.Id == id);
-            if (tag == null)
-            {
-                throw new InvalidOperationException("Tag with id: " + id + " does not exist!!!");
-            }
+            if (tag == null) throw new InvalidOperationException("Tag with id: " + id + " does not exist!!!");
+            
             return tag;
         }
 

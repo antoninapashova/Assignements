@@ -25,8 +25,7 @@ namespace Application.Categories.Queries
                 AddedOn = category.AddedOn,
                 HobbySubCategories = category.HobbySubCategories.Select(sub => new HobbySubCategoryDTO
                 {
-                    Name = sub.Name,
-                    AddedOn = sub.AddedOn
+                    Name = sub.Name
 
                 }).ToList()
             });

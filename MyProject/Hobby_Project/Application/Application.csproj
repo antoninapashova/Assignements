@@ -16,11 +16,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Comments\Commands\Delete\" />
-    <Folder Include="Comments\Commands\Edit\" />
     <Folder Include="HobbySubCategories\Commands\Edit\" />
     <Folder Include="HobbyTags\Commands\Edit\" />
-    <Folder Include="HobbyTags\Commands\Delete\" />
   </ItemGroup>
 
 </Project>

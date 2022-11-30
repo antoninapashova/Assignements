@@ -1,4 +1,5 @@
-﻿using Domain.Entity;
+﻿using Application.Logger;
+using Domain.Entity;
 using Hobby_Project;
 using MediatR;
 using System;
@@ -24,6 +25,7 @@ namespace Application.Hobby.Commands.Delete
         {
             HobbyArticle hobbyArticle = _hobbyRepository.DeleteHobbyById(command.Id);
             hobbyArticle.Comments.ForEach(c => _commentRepository.DeleteComment(c));
+            SingletonLogger.Instance.LogMessage("delete", "Hobby article with title: " + hobbyArticle.Title + " is removed");
             return Task.FromResult(command.Id);
         }
     }

@@ -1,4 +1,5 @@
-﻿using Domain.Entity;
+﻿using Application.Logger;
+using Domain.Entity;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -21,6 +22,7 @@ namespace Application.Hobby.Commands.Edit
         {
 
             _hobbyRepository.EditHobby(command.Id, command.Title, command.Description);
+            SingletonLogger.Instance.LogMessage("update", "Hobby with title: " + command.Id + " is updated");
             return Task.FromResult(command.Id);
         }
     }

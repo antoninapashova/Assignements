@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using Application;
 using Application.Hobby.Commands.Create;
+using Application.Logger;
 using Application.Notifications;
 using Domain.Entity;
 using Domain.Interfaces;
@@ -11,9 +12,19 @@ public class Program
 {
     public static void Main()
     {
-        //create hobby
-        
+        /*
+        Logger logger = Logger.Instance;
+        logger.LogMessage("create", "Ivan post new hobby with title: It was a great day!");
+        logger.ReadMessages("create");
 
+       
+        logger.LogMessage("delete", "Ivan delete hobby with title: It was a great day!");
+        logger.ReadMessages("delete");
+        */
+
+       //create hobby
+
+        /*
         Console.WriteLine("Hello, World!");
 
         Dictionary<int, List<ISubscriber>> keyValuePairs = new Dictionary<int, List<ISubscriber>>();
@@ -31,6 +42,7 @@ public class Program
 
         HobbyArticle hobbyArticle = new HobbyArticle("Last Voleyball game", "It was a great time", hobbySubCategory, hobbyComments, tags);
         publisher.Publish(hobbyArticle);
+        */
     }
 }
 

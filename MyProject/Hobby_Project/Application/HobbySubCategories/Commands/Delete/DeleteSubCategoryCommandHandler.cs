@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Application.Logger;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace Application.HobbySubCategories.Commands.Delete
         public Task<int> Handle(DeleteSubCategoryCommand command, CancellationToken cancellationToken)
         {
             _subCategoryRepository.DeleteSubCategory(command.Id);
+            SingletonLogger.Instance.LogMessage("delete", "Subcategory with Id " + command.Id + " is deleted");
             return Task.FromResult(command.Id);
 
         }

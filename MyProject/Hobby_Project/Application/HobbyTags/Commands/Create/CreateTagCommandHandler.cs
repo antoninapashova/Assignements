@@ -1,4 +1,5 @@
 ﻿using Application.HobbyTags.Queries;
+using Application.Logger;
 using Hobby_Project;
 using MediatR;
 using System;
@@ -23,9 +24,8 @@ namespace Application.HobbyTags.Commands.Create
             var tag = new Tag(tagCommand.Name);
 
             _tagRepository.CreateTag(tag);
+            SingletonLogger.Instance.LogMessage("create", "Tag with name " + tag.Name + " is added");
             return Task.FromResult(tag.Id);
-
-
         }
     }
 }
