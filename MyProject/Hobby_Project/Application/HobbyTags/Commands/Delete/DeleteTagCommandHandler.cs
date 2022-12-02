@@ -12,18 +12,27 @@ namespace Application.HobbyTags.Commands.Delete
     internal class DeleteTagCommandHandler : IRequestExceptionHandler<DeleteTagCommand, int>
     {
         private readonly ITagRepository _tagRepository;
-
+        private ILog _log;
         public DeleteTagCommandHandler(ITagRepository tagRepository)
         {
             _tagRepository = tagRepository;
+            _log = SingletonLogger.Instance;
         }
 
-        public Task Handle(DeleteTagCommand request, Exception exception, RequestExceptionHandlerState<int> state, CancellationToken cancellationToken)
+        public Task Handle(DeleteTagCommand command, Exception exception, RequestExceptionHandlerState<int> state, CancellationToken cancellationToken)
         {
-            Tag tag = _tagRepository.GetTag(request.Id);
-            _tagRepository.DeleteTag(tag);
-            SingletonLogger.Instance.LogMessage("delete", "Tag with Id " + tag.Id + " is deleted");
-            return Task.FromResult(request.Id);
+            try
+            {
+               if (command == null) throw new NullReferenceException("Delete Tag command is null!");
+               Tag tag = _tagRepository.GetTag(command.Id);
+               _tagRepository.DeleteTag(tag);
+               return Task.FromResult(command.Id);
+            }catch(Exception e)
+            {
+                _log.LogError(e.Message);
+                return Task.FromResult(0);
+            }
+           
         }
     }
 }

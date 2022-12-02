@@ -12,18 +12,25 @@ namespace Application.Comments.Commands.Delete
     public  class DeleteHobbyCommandHandler : IRequestHandler<DeleteCommentCommand, int>
     {
         private readonly ICommentRepository _commentRepository;
-
+        private ILog _log;
         public DeleteHobbyCommandHandler(ICommentRepository commentRepository)
         {
             _commentRepository = commentRepository;
+            _log = SingletonLogger.Instance;
         }
 
         public Task<int> Handle(DeleteCommentCommand request, CancellationToken cancellationToken)
         {
-            HobbyComment hobbyComment = _commentRepository.GetHobbyComment(request.Id);
-            _commentRepository.DeleteComment(hobbyComment);
-            SingletonLogger.Instance.LogMessage("delete", "User " + hobbyComment.User.Username + " delete comment with title: " + hobbyComment.Title);
-            return Task.FromResult(hobbyComment.Id);
+            try
+            {
+               HobbyComment hobbyComment = _commentRepository.GetHobbyComment(request.Id);
+              _commentRepository.DeleteComment(hobbyComment);
+               return Task.FromResult(hobbyComment.Id);
+            }catch (Exception e)
+            {
+                _log.LogError(e.Message);
+                return Task.FromResult(0);
+            }
         }
     }
 }

@@ -25,7 +25,6 @@ namespace Application.Users.Commands.Delete
         {
             User user = _userRepository.DeleteUser(command.Id);
             user.Hobbies.ForEach(h=>_hobbyRepository.DeleteHobby(h));
-            SingletonLogger.Instance.LogMessage("delete", "User with username " + user.Username + " is deleted");
             return Task.FromResult(user.Id);
         }
     }

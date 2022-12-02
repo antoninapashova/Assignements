@@ -40,9 +40,5 @@ namespace Hobby_Project
             Age = age;
             Hobbies = hobbies;
         }
-
-
-
-        
-   }
+    }
 }

@@ -14,19 +14,27 @@ namespace Application.Hobby.Commands.Delete
     {
         private readonly IHobbyRepository _hobbyRepository;
         private readonly ICommentRepository _commentRepository;
-
+        private ILog _log;
         public DeleteHobbyCommandHandler(IHobbyRepository hobbyRepository, ICommentRepository commentRepository)
         {
             _hobbyRepository = hobbyRepository;
             _commentRepository = commentRepository;
+            _log = SingletonLogger.Instance;
         }
 
         public Task<int> Handle(DeleteHobbyCommand command, CancellationToken cancellationToken)
         {
-            HobbyArticle hobbyArticle = _hobbyRepository.DeleteHobbyById(command.Id);
-            hobbyArticle.Comments.ForEach(c => _commentRepository.DeleteComment(c));
-            SingletonLogger.Instance.LogMessage("delete", "Hobby article with title: " + hobbyArticle.Title + " is removed");
-            return Task.FromResult(command.Id);
+            try
+            {
+                if (command == null) throw new NullReferenceException("Delete hobby command is null");
+                HobbyArticle hobbyArticle = _hobbyRepository.DeleteHobbyById(command.Id);
+                hobbyArticle.Comments.ForEach(c => _commentRepository.DeleteComment(c));
+                return Task.FromResult(command.Id);
+            }catch (Exception e)
+            {
+                _log.LogError(e.Message);
+                return Task.FromResult(0);
+            }
         }
     }
 }

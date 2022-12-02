@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,7 +12,7 @@ namespace Application.Logger
     {
         private static SingletonLogger instance = null;
         private static readonly object padlock = new object();
-        private const string FILE_PATH = @"C:\\Users\\PC\\Desktop\\Assignements\\Assignements\\MyProject\\Hobby_Project\\Application\\Logger\\";
+        private const string FILE_PATH = @"C:\\Users\\PC\\Desktop\\Assignements\\Assignements\\MyProject\\Hobby_Project\\Application\\Logger\\Logger.txt ";
         SingletonLogger() { }
 
         public static SingletonLogger Instance
@@ -31,19 +32,19 @@ namespace Application.Logger
                 return instance;
             }
         }
-
-        public void LogMessage(string commandType, string message)
+        
+        public void LogError(string message)
         {
             StringBuilder sb = new StringBuilder();
+            //only for log error
             sb.AppendLine("*-------------------------------*");
+            sb.Append("[Error]");
             sb.Append(DateTime.Now.ToShortTimeString() + " ");
             sb.Append(message);
 
             try
             {
-                string fileName = checkFileName(commandType);
-                string filePath = FILE_PATH + fileName;
-                using (StreamWriter writer = new StreamWriter(filePath, true))
+                using (StreamWriter writer = new StreamWriter(FILE_PATH, true))
                 {
                     writer.WriteLine(sb.ToString());
                     writer.Flush();
@@ -53,47 +54,47 @@ namespace Application.Logger
                 Console.WriteLine(e.Message);
             }
         }
-        public void ReadMessages(string commandType)
+
+        public void LogWarning(string message)
         {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("[Warning]");
+            sb.Append(DateTime.Now.ToShortTimeString() + " ");
+            sb.Append(message);
+
             try
             {
-                string file = checkFileName(commandType);
-                string filePath = FILE_PATH + file;
-                using (StreamReader sr = new StreamReader(filePath))
+                using (StreamWriter writer = new StreamWriter(FILE_PATH, true))
                 {
-                    string line;
-
-                    while ((line = sr.ReadLine()) != null)
-                    {
-                        Console.WriteLine(line);
-                    }
+                    writer.WriteLine(sb.ToString());
+                    writer.Flush();
                 }
             }
             catch (Exception e)
             {
-                Console.WriteLine("The file could not be read:");
                 Console.WriteLine(e.Message);
             }
         }
 
-        private string checkFileName(string commandType)
+        public void LogInfo(string message)
         {
-            string fileName = "";
-            switch (commandType.ToUpper())
-            {
-            case "CREATE":
-                fileName = "CreateCommands.txt";
-                break;
-            case "UPDATE":
-                fileName = "UpdateCommands.txt";
-                break;
-            case "DELETE":
-                fileName = "DeleteCommands.txt";
-                break;
-                default:
-                    throw new Exception("Not supported opeartion!");
-             }
-           return fileName;
+            StringBuilder sb = new StringBuilder();
+            sb.Append("[Info]");
+            sb.Append(DateTime.Now.ToShortTimeString() + " ");
+            sb.Append(message);
+
+           try
+           {
+                using (StreamWriter writer = new StreamWriter(FILE_PATH, true))
+                {
+                    writer.WriteLine(sb.ToString());
+                    writer.Flush();
+                }
+           }
+           catch (Exception e)
+           {
+                Console.WriteLine(e.Message);
+           }
         }
     }
     

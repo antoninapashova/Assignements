@@ -9,9 +9,8 @@ using System.Threading.Tasks;
 
 namespace Infrastructure
 {
-       public class InMemoryTagRepository : ITagRepository
-       {
-
+    public class InMemoryTagRepository : ITagRepository
+    {
         List<Tag> _hobbyTags = new();
         public void CreateTag(Tag tag)
         {
@@ -42,13 +41,13 @@ namespace Infrastructure
         {
             Tag searchedTag = IsValid(tagId);
             searchedTag.Name = tag.Name;
-            
+
         }
-        private Tag IsValid(int id)
+        private Tag IsValid(int Id)
         {
-            var tag = _hobbyTags.FirstOrDefault(t => t.Id == id);
-            if (tag == null) throw new InvalidOperationException("Tag with id: " + id + " does not exist!!!");
-            
+            if (Id <= 0) throw new NullReferenceException("Id must be positive!");
+            var tag = _hobbyTags.FirstOrDefault(t => t.Id == Id);
+            if (tag == null) throw new InvalidOperationException("Tag with id: " + Id + " does not exist!!!");
             return tag;
         }
 

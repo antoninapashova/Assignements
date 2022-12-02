@@ -17,7 +17,6 @@ namespace Infrastructure
         {
             var category = isValid(categoryId);
             category.HobbySubCategories.Add(hobbySubCategory);
-        
         }
 
         public void CreateCategory(HobbyCategory hobbyCategory)
@@ -28,7 +27,6 @@ namespace Infrastructure
 
         public void DeleteCategory(HobbyCategory hobbyCategory)
         {
-
             HobbyCategory category = isValid(hobbyCategory.Id);
             this._categories.Remove(category);
         }
@@ -57,9 +55,10 @@ namespace Infrastructure
             category.AddedOn = DateTime.Now;
         }
 
-        private HobbyCategory isValid(int id)
+        private HobbyCategory isValid(int Id)
         {
-            var category = _categories.FirstOrDefault(c => c.Id == id);
+            if (Id <= 0)  throw new ArgumentException("Id must be positive");
+            var category = _categories.FirstOrDefault(c => c.Id == Id);
             if (category == null) throw new InvalidOperationException("Category with that id does not exist");
             return category;
         }

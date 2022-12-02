@@ -17,8 +17,6 @@ namespace Infrastructure
         {
             var user =    isValid(userID);
             user.Hobbies.Add(hobby);
-             
-        
         }
 
         public void CreateUser(User user)
@@ -64,10 +62,11 @@ namespace Infrastructure
             searchedUser.Email = email;
         }
 
-        private User isValid(int ID)
+        private User isValid(int Id)
         {
-            var user = users.FirstOrDefault(u => u.Id == ID);
-            if (user == null) throw new InvalidOperationException("User with ID: " + ID + "does not exist");
+            if (Id <= 0) throw new NullReferenceException("Id must be positive!");
+            var user = users.FirstOrDefault(u => u.Id == Id);
+            if (user == null) throw new InvalidOperationException("User with ID: " + Id + "does not exist");
             return user;
         }
     }

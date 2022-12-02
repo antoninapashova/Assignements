@@ -8,7 +8,8 @@ namespace Application.Logger
 {
     public interface ILog
     {
-        void LogMessage(string commandType, string message);
-        void ReadMessages(string commandType);
+        void LogError(string message);
+        void LogWarning(string message);
+        void LogInfo(string message);
     }
 }

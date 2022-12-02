@@ -11,18 +11,25 @@ namespace Application.HobbySubCategories.Commands.Delete
     internal class DeleteSubCategoryCommandHandler : IRequestHandler<DeleteSubCategoryCommand, int>
     {
         private readonly ISubCategoryRepository _subCategoryRepository;
-
+        private ILog _log;
         public DeleteSubCategoryCommandHandler(ISubCategoryRepository subCategoryRepository)
         {
             _subCategoryRepository = subCategoryRepository;
+            _log = SingletonLogger.Instance;
         }
 
         public Task<int> Handle(DeleteSubCategoryCommand command, CancellationToken cancellationToken)
         {
-            _subCategoryRepository.DeleteSubCategory(command.Id);
-            SingletonLogger.Instance.LogMessage("delete", "Subcategory with Id " + command.Id + " is deleted");
-            return Task.FromResult(command.Id);
-
+            try
+            {
+                if (command == null) throw new NullReferenceException("Delete sub category command is null!");
+               _subCategoryRepository.DeleteSubCategory(command.Id);
+               return Task.FromResult(command.Id);
+            }catch(Exception e)
+            {
+                _log.LogError(e.Message);
+                return Task.FromResult(0);
+            }
         }
     }
 }

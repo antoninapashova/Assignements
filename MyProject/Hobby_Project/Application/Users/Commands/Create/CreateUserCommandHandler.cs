@@ -25,7 +25,6 @@ namespace Application.Users.Commands.Create
 
             var user = new User(userCommand.Username, userCommand.FirstName, userCommand.LastName, userCommand.Email, userCommand.Age, userHobbies);
             _userRepository.CreateUser(user);
-            SingletonLogger.Instance.LogMessage("create", "User with username " + user.Username + " is added");
             return Task.FromResult(user.Id);
         }
     }

@@ -11,6 +11,6 @@ namespace Application.Categories.Commands.Create
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public List<HobbySubCategoryDTO> hobbySubCategories { get; set; }
+      
     }
 }

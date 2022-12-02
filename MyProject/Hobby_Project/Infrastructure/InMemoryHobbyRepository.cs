@@ -51,10 +51,12 @@ namespace Infrastructure
             return hobbyArticle;
         }
 
-        private HobbyArticle isValid(int ID)
+        private HobbyArticle isValid(int Id)
         {
-            var hobby = hobbyArticles.FirstOrDefault(h => h.Id == ID);
-            if (hobby == null) throw new InvalidOperationException("HobbyArticle with ID: " + ID + "does not exist");
+            if (Id <= 0) throw new ArgumentException("Id must be positive");
+
+            var hobby = hobbyArticles.FirstOrDefault(h => h.Id == Id);
+            if (hobby == null) throw new InvalidOperationException("HobbyArticle with Id: " + Id + "does not exist");
             return hobby;
         }
     }

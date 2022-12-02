@@ -10,24 +10,33 @@ using System.Threading.Tasks;
 
 namespace Application.HobbySubCategories.Commands.Create
 {
-    public class CreateSubCategoryCommandHandler : IRequestHandler<CreateSubCategoryCommand, int>
+    internal class CreateSubCategoryCommandHandler : IRequestHandler<CreateSubCategoryCommand, int>
     {
         private readonly ISubCategoryRepository _repository;
         private readonly HobbyPublisher _hobbyPublisher;
-
+        private ILog _log;
         public CreateSubCategoryCommandHandler(ISubCategoryRepository repository, HobbyPublisher hobbyPublisher)
         {
             _repository = repository;
             _hobbyPublisher = hobbyPublisher;
+            _log = SingletonLogger.Instance;
         }
-
-        Task<int> IRequestHandler<CreateSubCategoryCommand, int>.Handle(CreateSubCategoryCommand command, CancellationToken cancellationToken)
+        public Task<int> Handle(CreateSubCategoryCommand command, CancellationToken cancellationToken)
         {
-            var hobbySubCategory = new HobbySubCategory(command.Name);
-            _repository.AddSubCategory(hobbySubCategory);
-            _hobbyPublisher.Publish(hobbySubCategory);
-            SingletonLogger.Instance.LogMessage("create", "Subcategory with name " + hobbySubCategory.Name + " is added");
-            return Task.FromResult(hobbySubCategory.Id);
+            try
+            {
+                if (command == null) throw new NullReferenceException("Create sub category command is null!");
+
+                var hobbySubCategory = new HobbySubCategory(command.Name);
+                _repository.AddSubCategory(hobbySubCategory);
+                _hobbyPublisher.Publish(hobbySubCategory);
+                return Task.FromResult(hobbySubCategory.Id);
+            }
+            catch (Exception e)
+            {
+                _log.LogError(e.Message);
+                return Task.FromResult(0);
+            }
         }
     }
 }

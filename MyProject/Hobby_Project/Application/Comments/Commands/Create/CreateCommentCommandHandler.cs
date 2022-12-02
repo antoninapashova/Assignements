@@ -13,22 +13,30 @@ namespace Application.Comments.Commands.Create
     {
         private readonly ICommentRepository _repository;
         private readonly IUserRepository _userRepository;
+        private ILog _log;
 
         public CreateCommentCommandHandler(ICommentRepository repository, IUserRepository userRepository)
         {
             _repository = repository;
             _userRepository = userRepository;
+            _log = SingletonLogger.Instance;
         }
 
-        Task<int> IRequestHandler<CreateCommentCommand, int>.Handle(CreateCommentCommand command, CancellationToken cancellationToken)
+        public Task<int> Handle(CreateCommentCommand command, CancellationToken cancellationToken)
         {
-            User user = _userRepository.GetUser(command.User.ID);
+            try
+            {
+                if (command == null) throw new NullReferenceException("Create comment command is null");
+                User user = _userRepository.GetUser(command.User.ID);
 
-            var hobbyComment = new HobbyComment(command.Title, command.CommentContent, user);
-            _repository.CreateComment(hobbyComment);
-            SingletonLogger.Instance.LogMessage("create", "User " + user.Username + " write new comment with title " + hobbyComment.CommentContent);
-            return Task.FromResult(hobbyComment.Id);
-
+                var hobbyComment = new HobbyComment(command.Title, command.CommentContent, user);
+                _repository.CreateComment(hobbyComment);
+                return Task.FromResult(hobbyComment.Id);
+            } catch(Exception e)
+            {
+                _log.LogError(e.Message);
+                return Task.FromResult(0);
+            }
         }
     }
 }

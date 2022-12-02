@@ -41,10 +41,11 @@ namespace Infrastructure
             subCategory.AddedOn = DateTime.Now;
         }
 
-        private HobbySubCategory isValid(int ID)
+        private HobbySubCategory isValid(int Id)
         {
-            var subCategory = subCategories.FirstOrDefault(s => s.Id == ID);
-            if (subCategory == null) throw new InvalidOperationException("SubCategory with ID: " + ID + "does not exist");
+            if (Id <= 0) throw new NullReferenceException("Id must be positive");
+            var subCategory = subCategories.FirstOrDefault(s => s.Id == Id);
+            if (subCategory == null) throw new InvalidOperationException("SubCategory with Id: " + Id + "does not exist");
             return subCategory;
         }
     }

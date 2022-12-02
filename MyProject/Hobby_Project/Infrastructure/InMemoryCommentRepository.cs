@@ -44,8 +44,9 @@ namespace Infrastructure
 
         private HobbyComment IsValid(int commentId)
         {
+            if (commentId <= 0) throw new NullReferenceException("Comment Id musr be positive");
             var comment = _comments.FirstOrDefault(c => c.Id == commentId);
-            if (comment == null) throw new InvalidOperationException("Comment with that ID does not exist!");
+            if (comment == null) throw new InvalidOperationException("Comment with Id" + commentId + "does not exist!");
             return comment;
         }
     }

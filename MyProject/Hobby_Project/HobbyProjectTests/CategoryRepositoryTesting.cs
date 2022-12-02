@@ -14,47 +14,48 @@ namespace HobbyProjectTests
 {
     public class CategoryRepositoryTesting
     {
-        private readonly ICategoryRepository _categoryRepository;
-        private readonly Mock<List<HobbySubCategory>> _hobbySubCategory;
+        //xUnit void,  mock repository
+        private readonly Mock<ICategoryRepository> _categoryRepository = new();
+        private readonly Mock<List<HobbySubCategory>> _hobbySubCategory = new();
+
         public CategoryRepositoryTesting()
         {
-            _categoryRepository = new InMemoryCategoryRepository();
-            _hobbySubCategory = new Mock<List<HobbySubCategory>>();
-            _categoryRepository.CreateCategory(new("Sport", _hobbySubCategory.Object));
-            
+            var category = new HobbyCategory("Sport", _hobbySubCategory.Object);
+            _categoryRepository.Setup(x => x.CreateCategory(category));
         }
+
 
         [Fact]
         public void AddCategoryTest()
-        {             
-            var savedCategory = Assert.Single(_categoryRepository.GetAllCategories());
+        {
+
+
+          
+            var savedCategory = Assert.Single(_categoryRepository.Object.GetAllCategories());
             Assert.NotNull(savedCategory);
             Assert.Equal("Sport", savedCategory.Name);
+           
         }
 
         [Fact]
         public void UpdateCategotyTest()
-        {            
-            _categoryRepository.UpdateCategory(1, "Sports");
-            var category = _categoryRepository.GetAllCategories().First();
-            
-            Assert.NotNull(category);
-            Assert.Equal("Sports", category.Name);
+        {
+            _categoryRepository.Verify(x => x.UpdateCategory(-1, "Sports"), Times.Never);
+
         }
+        
 
         [Fact]
         public void CategoryByIdTest()
         {
-            HobbyCategory hobbyCategory = _categoryRepository.GetHobbyCategory(1);
-            Assert.NotNull(hobbyCategory);
-            Assert.Equal("Sport", hobbyCategory.Name);
+            _categoryRepository.Verify(x => x.GetHobbyCategory(-1), Times.Never);
         }
 
         [Fact]
         public void DeleteCategoryByIdTest()
         {
-            _categoryRepository.DeleteCategoryByID(1);
-            Assert.Empty(_categoryRepository.GetAllCategories());
+            _categoryRepository.Verify(x => x.GetHobbyCategory(-1), Times.Never);
         }
+       
     }
 }
