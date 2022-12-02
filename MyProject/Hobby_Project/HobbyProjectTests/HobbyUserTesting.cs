@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace HobbyProjectTests
 {
-    public  class HobbyUserTesting
+    public class HobbyUserTesting
     {
         private readonly IUserRepository _userRepository;
         private readonly Mock<List<HobbyArticle>> _userArticlesMock=new();
@@ -41,7 +41,7 @@ namespace HobbyProjectTests
         [Fact]
         public void DeleteUser()
         {
-            User user1 = _userRepository.DeleteUser(1);
+            _userRepository.DeleteUser(1);
             Assert.Empty(_userRepository.GetAllUsers());
         }
     }
