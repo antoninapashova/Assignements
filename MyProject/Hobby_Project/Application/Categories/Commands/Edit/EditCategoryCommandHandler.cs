@@ -7,6 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Logger;
 using System.Reflection.Emit;
+using Application.Repositories;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using AutoMapper;
 
 namespace Application.Categories.Commands.Edit
 {
@@ -14,25 +17,27 @@ namespace Application.Categories.Commands.Edit
     {
         private readonly ICategoryRepository _categoryRepository;
         private ILog _log;
+        private IMapper _mapper;
 
-        public EditCategoryCommandHandler(ICategoryRepository categoryRepository)
+        public EditCategoryCommandHandler(ICategoryRepository categoryRepository, IMapper mapper)
         {
             _categoryRepository = categoryRepository;
             _log = SingletonLogger.Instance;
+            _mapper = mapper;
         }
-
-        public Task<int> Handle(EditCategoryCommand command, CancellationToken cancellationToken)
+        public async Task<int> Handle(EditCategoryCommand command, CancellationToken cancellationToken)
         {
             try
             {
                 if (command == null) throw new NullReferenceException("Edit category command is null");
-                _categoryRepository.UpdateCategory(command.Id, command.Name);
-                return Task.FromResult(command.Id);
+                
+                await _categoryRepository.UpdateAsync(command.Id, _mapper.Map<HobbyCategory>(command));
+                return await Task.FromResult(command.Id);
             }
             catch (Exception e)
             {
                 _log.LogError(e.Message);
-                return Task.FromResult(0);
+                return await Task.FromResult(0);
             }
         }
     }

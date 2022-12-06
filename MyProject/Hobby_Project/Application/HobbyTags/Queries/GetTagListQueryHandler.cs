@@ -1,4 +1,5 @@
 ﻿using Application.Categories.Queries;
+using Application.Repositories;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -17,14 +18,15 @@ namespace Application.HobbyTags.Queries
             _tagRepository = tagRepository;
         }
 
-        Task<IEnumerable<TagListVm>> IRequestHandler<GetTagsListQuery, IEnumerable<TagListVm>>.Handle(GetTagsListQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<TagListVm>> Handle(GetTagsListQuery request, CancellationToken cancellationToken)
         {
-            var result = _tagRepository.GetAllTags().Select(tag => new TagListVm
+            var result = await _tagRepository.GetAllEntitiesAsync();
+            var tags = result.Select(tag => new TagListVm
             {
-                 Name = tag.Name
+                Name = tag.Name
             });
 
-            return Task.FromResult(result);
+            return await Task.FromResult(tags.ToList());
         }
     }
 }

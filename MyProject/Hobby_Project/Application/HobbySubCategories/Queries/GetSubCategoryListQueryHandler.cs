@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Application.Repositories;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,16 +17,15 @@ namespace Application.HobbySubCategories.Queries
             _repository = repository;
         }
 
-        public Task<IEnumerable<HobbySubCategoryListVm>> Handle(GetSubCategoryListQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<HobbySubCategoryListVm>> Handle(GetSubCategoryListQuery request, CancellationToken cancellationToken)
         {
-            var subCategory = _repository.GetAllSubCategories().Select(subCategory =>
+            var result= await _repository.GetAllEntitiesAsync();
+            var subcategories = result.Select(subCategory =>
             new HobbySubCategoryListVm
             {
-                
-                Name = subCategory.Name,
-
+                 Name = subCategory.Name,
             });
-            return Task.FromResult(subCategory);
+            return await Task.FromResult(subcategories.ToList());
         }
 
     }

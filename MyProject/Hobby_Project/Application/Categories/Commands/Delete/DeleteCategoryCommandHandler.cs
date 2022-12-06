@@ -1,4 +1,5 @@
 ﻿using Application.Logger;
+using Application.Repositories;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -19,18 +20,18 @@ namespace Application.Categories.Commands.Delete
             _log = SingletonLogger.Instance;
         }
 
-        public Task<int> Handle(DeleteCategoryCommand command, CancellationToken cancellationToken)
+        public async Task<int> Handle(DeleteCategoryCommand command, CancellationToken cancellationToken)
         {
             try
             {
                if (command == null) throw new NullReferenceException("Delete category command is null");
                         
-               _categoryRepository.DeleteCategoryByID(command.Id);
-               return Task.FromResult(command.Id);
+               await _categoryRepository.DeleteAsync(command.Id);
+               return await Task.FromResult(command.Id);
             }catch(Exception e)
             {
                 _log.LogError(e.Message);
-                return Task.FromResult(0);
+                return await Task.FromResult(0);
 ;           }
         }
     }

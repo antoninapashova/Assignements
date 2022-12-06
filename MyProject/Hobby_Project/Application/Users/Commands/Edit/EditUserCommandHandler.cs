@@ -1,4 +1,5 @@
 ﻿using Application.Logger;
+using Application.Repositories;
 using Hobby_Project;
 using MediatR;
 using System;
@@ -9,7 +10,8 @@ using System.Threading.Tasks;
 
 namespace Application.Users.Commands.Edit
 {
-    internal class EditUserCommandHandler : IRequestHandler<EditUserCommand, int>
+    internal class EditUserCommandHandler 
+        //: IRequestHandler<EditUserCommand, int>
     {
         private readonly IUserRepository _userRepository;
 
@@ -17,12 +19,13 @@ namespace Application.Users.Commands.Edit
         {
             _userRepository = userRepository;
         }
-
-        public Task<int> Handle(EditUserCommand command, CancellationToken cancellationToken)
+        /*
+        public async Task<int> Handle(EditUserCommand command, CancellationToken cancellationToken)
         {
-            User currentUser = _userRepository.GetUser(command.Id);
-            _userRepository.UpdateUser(command.Id, command.Username, command.FirstName, command.LastName, command.Email);
-            return Task.FromResult(command.Id);
+            User newUser = new User(command.Username, command.FirstName, command.LastName, command.Email, command.Age);
+            await _userRepository.UpdateAsync(command.Id, newUser);
+            return await Task.FromResult(command.Id);
         }
+        */
     }
 }

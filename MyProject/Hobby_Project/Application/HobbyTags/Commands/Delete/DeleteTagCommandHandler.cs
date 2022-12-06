@@ -1,15 +1,18 @@
 ﻿using Application.Logger;
+using Application.Repositories;
 using Hobby_Project;
+using MediatR;
 using MediatR.Pipeline;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Application.HobbyTags.Commands.Delete
 {
-    internal class DeleteTagCommandHandler : IRequestExceptionHandler<DeleteTagCommand, int>
+    internal class DeleteTagCommandHandler : IRequestHandler<DeleteTagCommand, int>
     {
         private readonly ITagRepository _tagRepository;
         private ILog _log;
@@ -19,20 +22,21 @@ namespace Application.HobbyTags.Commands.Delete
             _log = SingletonLogger.Instance;
         }
 
-        public Task Handle(DeleteTagCommand command, Exception exception, RequestExceptionHandlerState<int> state, CancellationToken cancellationToken)
+        public async Task<int> Handle(DeleteTagCommand command, CancellationToken cancellationToken)
         {
             try
             {
-               if (command == null) throw new NullReferenceException("Delete Tag command is null!");
-               Tag tag = _tagRepository.GetTag(command.Id);
-               _tagRepository.DeleteTag(tag);
-               return Task.FromResult(command.Id);
-            }catch(Exception e)
+                if (command == null) throw new NullReferenceException("Delete Tag command is null!");
+                Tag tag = await _tagRepository.GetByIdAsync(command.Id);
+                await _tagRepository.DeleteAsync(tag.Id);
+                return await Task.FromResult(command.Id);
+            }
+            catch (Exception e)
             {
                 _log.LogError(e.Message);
-                return Task.FromResult(0);
+                return await Task.FromResult(0);
             }
-           
+
         }
     }
 }

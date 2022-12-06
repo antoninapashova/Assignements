@@ -1,4 +1,5 @@
 ﻿using Application.Logger;
+using Application.Repositories;
 using Hobby_Project;
 using MediatR;
 using System;
@@ -13,19 +14,21 @@ namespace Application.Users.Commands.Delete
     internal class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, int>
     {
         private readonly IUserRepository _userRepository;
-        private readonly IHobbyRepository _hobbyRepository;
+        private readonly IHobbyArticleRepository _hobbyRepository;
 
-        public DeleteUserCommandHandler(IUserRepository userRepository, IHobbyRepository hobbyRepository)
+        public DeleteUserCommandHandler(IUserRepository userRepository, IHobbyArticleRepository hobbyRepository)
         {
             _userRepository = userRepository;
             _hobbyRepository = hobbyRepository;
         }
 
-        public Task<int> Handle(DeleteUserCommand command, CancellationToken cancellationToken)
+        public async Task<int> Handle(DeleteUserCommand command, CancellationToken cancellationToken)
         {
-            User user = _userRepository.DeleteUser(command.Id);
-            user.Hobbies.ForEach(h=>_hobbyRepository.DeleteHobby(h));
-            return Task.FromResult(user.Id);
+            User user = await _userRepository.GetByIdAsync(command.Id);
+            user.Hobbies.ToList().ForEach(h=>_hobbyRepository.DeleteAsync(h.Id));
+            await _userRepository.DeleteAsync(command.Id);
+            
+            return await Task.FromResult(user.Id);
         }
     }
 }

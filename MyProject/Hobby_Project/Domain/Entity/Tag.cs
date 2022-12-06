@@ -1,4 +1,5 @@
-﻿using Hobby_Project.Domain.Entity;
+﻿using Domain.Entity;
+using Hobby_Project.Domain.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +10,15 @@ namespace Hobby_Project
 {
     public class Tag : BaseEntity
     {
-        public string Name{ get; set; }
-        public DateTime AddedOn { get; set; }
+        public Tag(){}
 
         public Tag(string name)
         {
             Name = name;
-           
-            this.AddedOn = DateTime.Now;
         }
+
+        public string Name{ get; set; }
+        public ICollection<ArticleTag> HobbyArticles{ get; set; }
 
     }
 }

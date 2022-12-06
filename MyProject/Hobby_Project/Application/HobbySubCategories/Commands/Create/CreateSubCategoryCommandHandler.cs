@@ -1,5 +1,6 @@
 ﻿using Application.Logger;
 using Application.Notifications;
+using Application.Repositories;
 using Hobby_Project;
 using MediatR;
 using System;
@@ -21,21 +22,21 @@ namespace Application.HobbySubCategories.Commands.Create
             _hobbyPublisher = hobbyPublisher;
             _log = SingletonLogger.Instance;
         }
-        public Task<int> Handle(CreateSubCategoryCommand command, CancellationToken cancellationToken)
+        public async Task<int> Handle(CreateSubCategoryCommand command, CancellationToken cancellationToken)
         {
             try
             {
                 if (command == null) throw new NullReferenceException("Create sub category command is null!");
 
                 var hobbySubCategory = new HobbySubCategory(command.Name);
-                _repository.AddSubCategory(hobbySubCategory);
+                await _repository.Add(hobbySubCategory);
                 _hobbyPublisher.Publish(hobbySubCategory);
-                return Task.FromResult(hobbySubCategory.Id);
+                return await Task.FromResult(hobbySubCategory.Id);
             }
             catch (Exception e)
             {
                 _log.LogError(e.Message);
-                return Task.FromResult(0);
+                return await Task.FromResult(0);
             }
         }
     }

@@ -12,25 +12,18 @@ namespace Hobby_Project
 {
     public class HobbySubCategory : HobbyBaseCategory
     {
-       
-        public HobbySubCategory(int subCategoryId, string name)
+        public HobbySubCategory()
         {
-            Id = subCategoryId;
-            Name = name;
         }
 
         public HobbySubCategory(string name)
         {
             Name = name;
-            this.AddedOn = DateTime.Now;
-           
-         }
-
-        public HobbySubCategory()
-        {
-
         }
 
-      
+        public int HobbyCategoryId { get; set; }
+        public HobbyCategory HobbyCategory { get; set; }
+        public ICollection<HobbyArticle> HobbyArticles { get; set; }
+
     }
 }

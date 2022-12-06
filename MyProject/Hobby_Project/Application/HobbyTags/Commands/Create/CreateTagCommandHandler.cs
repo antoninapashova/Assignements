@@ -1,5 +1,6 @@
 ﻿using Application.HobbyTags.Queries;
 using Application.Logger;
+using Application.Repositories;
 using Hobby_Project;
 using MediatR;
 using System;
@@ -20,19 +21,19 @@ namespace Application.HobbyTags.Commands.Create
             _log = SingletonLogger.Instance;
         }
 
-        public Task<int> Handle(CreateTagCommand command, CancellationToken cancellationToken)
+        public  async Task<int> Handle(CreateTagCommand command, CancellationToken cancellationToken)
         {
             try
             {
                 if (command == null) throw new NullReferenceException("Create tag command is null!");
                var tag = new Tag(command.Name);
 
-               _tagRepository.CreateTag(tag);
-               return Task.FromResult(tag.Id);
+               await _tagRepository.Add(tag);
+               return await Task.FromResult(tag.Id);
             }catch(Exception e)
             {
                 _log.LogError(e.Message);
-                return Task.FromResult(0);
+                return await Task.FromResult(0);
             }
             
         }

@@ -15,3 +15,5 @@ C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Infrastruc
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Infrastructure\bin\Debug\net6.0\Domain.pdb
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Infrastructure\obj\Debug\net6.0\Infrastructure.csproj.CopyComplete
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Infrastructure\obj\Debug\net6.0\ref\Infrastructure.dll
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Infrastructure\bin\Debug\net6.0\Infrastructure.runtimeconfig.json
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Infrastructure\obj\Debug\net6.0\Infrastructure.genruntimeconfig.cache

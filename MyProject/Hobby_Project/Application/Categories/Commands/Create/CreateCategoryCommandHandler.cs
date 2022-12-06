@@ -1,4 +1,6 @@
 ﻿using Application.Logger;
+using Application.Repositories;
+using AutoMapper;
 using Hobby_Project;
 using MediatR;
 using System;
@@ -6,38 +8,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Application.Categories.Commands.Create
 {
-    internal class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, int>
+    internal class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, HobbyCategory>
     {
         private readonly ICategoryRepository _repository;
         private ILog _log;
+        private IMapper _mapper;
         
-        public CreateCategoryCommandHandler(ICategoryRepository repository)
+        public CreateCategoryCommandHandler(ICategoryRepository repository, IMapper mapper)
         {
             _repository = repository;
             _log = SingletonLogger.Instance;
+            _mapper = mapper;
         }
 
-        public Task<int> Handle(CreateCategoryCommand command, CancellationToken cancellationToken)
+        public async Task<HobbyCategory> Handle(CreateCategoryCommand command, CancellationToken cancellationToken)
         {
             try
             {
-                if (command == null) throw new NullReferenceException("Create category comand is null!");
+                if (command == null) throw new NullReferenceException("Create category command is null!");
 
-                List<HobbySubCategory> subCategories = new List<HobbySubCategory>();
-            
-                var hobbyCategory = new HobbyCategory(command.Name, subCategories);
-                _repository.CreateCategory(hobbyCategory);
-                return Task.FromResult(hobbyCategory.Id);
+                HobbyCategory hobbyCategory = await _repository.Add(_mapper.Map<HobbyCategory>(command));
+                return await Task.FromResult(hobbyCategory);
             }
             catch (Exception e)
             {
                 _log.LogError(e.Message);
-                return Task.FromResult(0);
+                return await Task.FromResult<HobbyCategory>(null);
             }
-            
         }
     }
 }

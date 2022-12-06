@@ -1,4 +1,4 @@
-﻿using Application;
+﻿using Application.Repositories;
 using Hobby_Project;
 using Infrastructure;
 using Moq;
@@ -14,6 +14,7 @@ namespace HobbyProjectTests
 {
     public class CategoryRepositoryTesting
     {
+        /*
         //xUnit void,  mock repository
         private readonly Mock<ICategoryRepository> _categoryRepository = new();
         private readonly Mock<List<HobbySubCategory>> _hobbySubCategory = new();
@@ -56,6 +57,8 @@ namespace HobbyProjectTests
         {
             _categoryRepository.Verify(x => x.GetHobbyCategory(-1), Times.Never);
         }
+
+        */
        
     }
 }

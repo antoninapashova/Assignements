@@ -8,6 +8,7 @@ namespace Application.HobbyTags.Queries
 {
     public class TagListVm
     {
+        public int Id;
         public string Name { get; set; }
     }
 }

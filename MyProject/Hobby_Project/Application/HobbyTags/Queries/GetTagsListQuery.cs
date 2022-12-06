@@ -9,6 +9,7 @@ namespace Application.HobbyTags.Queries
 {
    public class GetTagsListQuery : IRequest<IEnumerable<TagListVm>>
     {
+        public int Id { get; set; }
         public string Name { get; set; }
 
     }

@@ -12,12 +12,10 @@ namespace Hobby_Project
 {
     public class HobbyCategory : HobbyBaseCategory
      {
-        public List<HobbySubCategory> HobbySubCategories { get; set;}
-        public HobbyCategory(string name, List<HobbySubCategory> hobbySubCategories)
-        {
-            Name = name;
-            AddedOn = DateTime.Now;
-            this.HobbySubCategories = hobbySubCategories;
-        }
+        public HobbyCategory() { }
+
+
+        public ICollection<HobbySubCategory> HobbySubCategories { get; set;}
+  
     }
 }

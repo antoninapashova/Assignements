@@ -1,4 +1,6 @@
 ﻿using Application.Logger;
+using Application.Repositories;
+using AutoMapper;
 using Hobby_Project;
 using MediatR;
 using System;
@@ -13,29 +15,28 @@ namespace Application.Comments.Commands.Edit
     {
         private readonly ICommentRepository _commentRepository;
         private ILog _log;
+        private IMapper _mapper;
 
-        public EditCommentCommandHandler(ICommentRepository commentRepository)
+        public EditCommentCommandHandler(ICommentRepository commentRepository, IMapper mapper)
         {
             _commentRepository = commentRepository;
             _log = SingletonLogger.Instance;
+            _mapper = mapper;
         }
 
-        public Task<int> Handle(EditCommentCommand command, CancellationToken cancellationToken)
+        public async Task<int> Handle(EditCommentCommand command, CancellationToken cancellationToken)
         {
             try
             {
-                if (command == null) throw new NullReferenceException("Edit comment command is null");
-                HobbyComment hobbyComment = _commentRepository.GetHobbyComment(command.Id);
-                HobbyComment newHobbyComment = new HobbyComment(command.Title, command.CommentContent, hobbyComment.User);
-                _commentRepository.UpdateComment(command.Id, newHobbyComment);
-                return Task.FromResult(command.Id);
+                if (command == null) throw new NullReferenceException("Edit comment command is null");                
+                await _commentRepository.UpdateAsync(command.Id, _mapper.Map<HobbyComment>(command));
+                return await Task.FromResult(command.Id);
 
             }catch (Exception e)
             {
                 _log.LogError(e.Message);
-                return Task.FromResult(0);
+                return await Task.FromResult(0);
             }
-           
         }
     }
 }

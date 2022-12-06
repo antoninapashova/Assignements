@@ -7,6 +7,6 @@ namespace Application.Hobby.Queries
     
         public string Title { get; set; }
         public string CommentContent { get; set; }
-        public User User { get; set; }
+        public string Username { get; set; }
     }
 }

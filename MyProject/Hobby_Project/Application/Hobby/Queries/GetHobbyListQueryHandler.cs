@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Application.Repositories;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,40 +8,36 @@ using System.Threading.Tasks;
 
 namespace Application.Hobby.Queries
 {
-     public class GetHobbyListQueryHandler : IRequestHandler<GetHobbyListQuery, IEnumerable<HobbyListVm>>
+    public class GetHobbyListQueryHandler : IRequestHandler<GetHobbyListQuery, IEnumerable<HobbyListVm>>
      {
-       private readonly IHobbyRepository _repository;
+       private readonly IHobbyArticleRepository _repository;
 
-        public GetHobbyListQueryHandler(IHobbyRepository repository)
+        public GetHobbyListQueryHandler(IHobbyArticleRepository repository)
         {
             _repository = repository;
         }
 
-        public Task<IEnumerable<HobbyListVm>> Handle(GetHobbyListQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<HobbyListVm>> Handle(GetHobbyListQuery request, CancellationToken cancellationToken)
         {
-            var result = _repository.GetAllHobbies().Select(hobby => new HobbyListVm
+            var result = await _repository.GetAllEntitiesAsync();
+            var hobbies = result.Select(hobby => new HobbyListVm
             {
-                
                 Title = hobby.Title,
                 Description = hobby.Description,
                 hobbySubCategory = hobby.HobbySubCategory,
-                Comments = hobby.Comments.Select(com => new HobbyCommentDTO
+                Comments = hobby.HobbyComments.Select(com => new HobbyCommentDTO
                 {
-                   
                     CommentContent = com.CommentContent,
                     Title = com.Title,
-                    User = com.User,
-
-
+                    Username = com.User.Username,
                 }).ToList(),
-                Tags = hobby.Tags.Select(tag=>new TagDTO
+                Tags = hobby.HobbyTags.Select(tag => new TagDTO
                 {
-                    
-                    Name = tag.Name
+                    Name = tag.Tag.Name
                 }).ToList()
-            });
+            }); 
 
-            return Task.FromResult(result);
+            return await Task.FromResult(hobbies.ToList());
         }
      }
 }

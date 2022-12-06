@@ -1,4 +1,5 @@
 ﻿using Application.Logger;
+using Application.Repositories;
 using Hobby_Project;
 using MediatR;
 using System;
@@ -19,17 +20,16 @@ namespace Application.Comments.Commands.Delete
             _log = SingletonLogger.Instance;
         }
 
-        public Task<int> Handle(DeleteCommentCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(DeleteCommentCommand request, CancellationToken cancellationToken)
         {
             try
             {
-               HobbyComment hobbyComment = _commentRepository.GetHobbyComment(request.Id);
-              _commentRepository.DeleteComment(hobbyComment);
-               return Task.FromResult(hobbyComment.Id);
+               await _commentRepository.DeleteAsync(request.Id);
+               return await Task.FromResult(request.Id);
             }catch (Exception e)
             {
                 _log.LogError(e.Message);
-                return Task.FromResult(0);
+                return await Task.FromResult(0);
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Hobby_Project;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace Application.Categories.Commands.Create
 {
-    public class CreateCategoryCommand : IRequest<int>
-    {
-        public int ID { get; set; }
+    public class CreateCategoryCommand : IRequest<HobbyCategory>
+    { 
         public string Name { get; set; }
       
     }

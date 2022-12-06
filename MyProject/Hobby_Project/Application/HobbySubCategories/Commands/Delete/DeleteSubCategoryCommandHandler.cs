@@ -1,4 +1,5 @@
 ﻿using Application.Logger;
+using Application.Repositories;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -18,17 +19,17 @@ namespace Application.HobbySubCategories.Commands.Delete
             _log = SingletonLogger.Instance;
         }
 
-        public Task<int> Handle(DeleteSubCategoryCommand command, CancellationToken cancellationToken)
+        public async Task<int> Handle(DeleteSubCategoryCommand command, CancellationToken cancellationToken)
         {
             try
             {
                 if (command == null) throw new NullReferenceException("Delete sub category command is null!");
-               _subCategoryRepository.DeleteSubCategory(command.Id);
-               return Task.FromResult(command.Id);
+                await _subCategoryRepository.DeleteAsync(command.Id);
+                return await Task.FromResult(command.Id);
             }catch(Exception e)
             {
                 _log.LogError(e.Message);
-                return Task.FromResult(0);
+                return await Task.FromResult(0);
             }
         }
     }

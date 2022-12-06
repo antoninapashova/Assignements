@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Application.Repositories;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,24 +17,23 @@ namespace Application.Users.Queries
             _repository = repository;
         }
 
-        public Task<IEnumerable<UserListVm>> Handle(GetUserListQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<UserListVm>> Handle(GetUserListQuery request, CancellationToken cancellationToken)
         {
-            var result = _repository.GetAllUsers().Select(user => new UserListVm
+            var result = await _repository.GetAllEntitiesAsync();
+            var users = result.Select(user => new UserListVm
             {
-               
                 Username = request.Username,
                 Hobbies = user.Hobbies.Select(h => new HobbyArticleDTO
                 {
                     Title = h.Title,
                     Description = h.Description,
                     HobbySubCategory = h.HobbySubCategory,
-                    AddedOn = h.AddedOn,
-                    Comments = h.Comments,
-                    Tags = h.Tags,
+                    AddedOn = h.CreatedDate,
+                   
                 }).ToList()
-            });
+            }).ToList();
 
-            return Task.FromResult(result);
+            return await Task.FromResult(users);
         }
     }
 }

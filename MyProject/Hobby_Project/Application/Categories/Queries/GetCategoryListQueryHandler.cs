@@ -1,4 +1,6 @@
-﻿using MediatR;
+﻿using Application.Repositories;
+using AutoMapper;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,27 +12,18 @@ namespace Application.Categories.Queries
     public class GetCategoryListQueryHandler : IRequestHandler<GetCategoriesListQuery, IEnumerable<CategoryListVm>>
     {
         private readonly ICategoryRepository _repository;
-     
-        public GetCategoryListQueryHandler(ICategoryRepository repository)
+        private IMapper _mapper;
+        public GetCategoryListQueryHandler(ICategoryRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
 
-        public Task<IEnumerable<CategoryListVm>> Handle(GetCategoriesListQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<CategoryListVm>> Handle(GetCategoriesListQuery request, CancellationToken cancellationToken)
         {
-            var result = _repository.GetAllCategories().Select(category => new CategoryListVm
-            {
-                ID = category.Id,
-                Name = category.Name,
-                AddedOn = category.AddedOn,
-                HobbySubCategories = category.HobbySubCategories.Select(sub => new HobbySubCategoryDTO
-                {
-                    Name = sub.Name
-
-                }).ToList()
-            });
-
-            return Task.FromResult(result);
+            var result = await _repository.GetAllEntitiesAsync();
+            List<CategoryListVm> categoryListVms = _mapper.Map<List<CategoryListVm>>(result);
+            return await Task.FromResult(categoryListVms.ToList());
         }
     }
 }

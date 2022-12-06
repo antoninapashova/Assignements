@@ -10,6 +10,6 @@ namespace Domain.Entity
     public abstract class HobbyBaseCategory : BaseEntity
     {
         public string Name { get; set; }
-        public DateTime AddedOn { get; set; }
+        
     }
 }

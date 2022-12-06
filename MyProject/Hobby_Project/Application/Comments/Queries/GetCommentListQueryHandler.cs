@@ -1,4 +1,6 @@
 ﻿using Application.Categories.Queries;
+using Application.Repositories;
+using AutoMapper;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -11,25 +13,19 @@ namespace Application.Comments.Queries
     public class GetCommentListQueryHandler : IRequestHandler<GetCommentsListQuery, IEnumerable<CommentListVm>>
     {
         private readonly ICommentRepository _commentRepository;
-        
-
-        public GetCommentListQueryHandler(ICommentRepository commentRepository)
+        private IMapper _mapper;
+        public GetCommentListQueryHandler(ICommentRepository commentRepository, IMapper mapper)
         {
             _commentRepository = commentRepository;
-            
+            _mapper = mapper;
         }
 
-        public Task<IEnumerable<CommentListVm>> Handle(GetCommentsListQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<CommentListVm>> Handle(GetCommentsListQuery request, CancellationToken cancellationToken)
         {
-            var result = _commentRepository.GetAllComments().Select(comment => new CommentListVm
-            {
-                CommentId = comment.Id,
-                Title = comment.Title,
-                AddedOn = comment.AddedOn,
-                CommentContent = comment.CommentContent,
-                Username = comment.User.Username
-            });
-            return Task.FromResult(result);
+            var result = await _commentRepository.GetAllEntitiesAsync();
+            List<CommentListVm> commentListVms = _mapper.Map<List<CommentListVm>>(result);
+
+            return await Task.FromResult(commentListVms);
         }
     }
 }
