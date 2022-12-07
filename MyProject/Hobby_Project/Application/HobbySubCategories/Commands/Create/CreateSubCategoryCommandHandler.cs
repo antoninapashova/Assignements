@@ -1,6 +1,7 @@
 ﻿using Application.Logger;
 using Application.Notifications;
 using Application.Repositories;
+using AutoMapper;
 using Hobby_Project;
 using MediatR;
 using System;
@@ -11,32 +12,36 @@ using System.Threading.Tasks;
 
 namespace Application.HobbySubCategories.Commands.Create
 {
-    internal class CreateSubCategoryCommandHandler : IRequestHandler<CreateSubCategoryCommand, int>
+    internal class CreateSubCategoryCommandHandler : IRequestHandler<CreateSubCategoryCommand, HobbySubCategory>
     {
-        private readonly ISubCategoryRepository _repository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly HobbyPublisher _hobbyPublisher;
         private ILog _log;
-        public CreateSubCategoryCommandHandler(ISubCategoryRepository repository, HobbyPublisher hobbyPublisher)
+        private IMapper _mapper;
+
+        public CreateSubCategoryCommandHandler(IUnitOfWork unitOfWork, HobbyPublisher hobbyPublisher, IMapper mapper)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
             _hobbyPublisher = hobbyPublisher;
             _log = SingletonLogger.Instance;
+            _mapper= mapper;
         }
-        public async Task<int> Handle(CreateSubCategoryCommand command, CancellationToken cancellationToken)
+
+        public async Task<HobbySubCategory> Handle(CreateSubCategoryCommand command, CancellationToken cancellationToken)
         {
             try
             {
                 if (command == null) throw new NullReferenceException("Create sub category command is null!");
-
-                var hobbySubCategory = new HobbySubCategory(command.Name);
-                await _repository.Add(hobbySubCategory);
+                HobbySubCategory hobbySubCategory = _mapper.Map<HobbySubCategory>(command);
+                await  _unitOfWork.SubCategoryRepository.Add(hobbySubCategory);
+                await _unitOfWork.Save();
                 _hobbyPublisher.Publish(hobbySubCategory);
-                return await Task.FromResult(hobbySubCategory.Id);
+                return await Task.FromResult(hobbySubCategory);
             }
             catch (Exception e)
             {
                 _log.LogError(e.Message);
-                return await Task.FromResult(0);
+                return await Task.FromResult<HobbySubCategory>(null);
             }
         }
     }

@@ -15,17 +15,13 @@ namespace Application.Hobby.Commands.Create
 {
     public class CreateHobbyCommandHandler : IRequestHandler<CreateHobbyCommand, int>
     {
-        private readonly IHobbyArticleRepository _repository;
-        private readonly ISubCategoryRepository _subCategoryRepository;
-        private readonly ITagRepository _tagRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private ILog _log;
         private IMapper _mapper;
 
-        public CreateHobbyCommandHandler(IHobbyArticleRepository repository, ISubCategoryRepository subCategoryRepository, ITagRepository tagRepository, IMapper mapper)
+        public CreateHobbyCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _repository = repository;
-            _subCategoryRepository = subCategoryRepository;
-            _tagRepository = tagRepository;
+            _unitOfWork = unitOfWork;
             _log = SingletonLogger.Instance;
             _mapper = mapper;
         }
@@ -36,7 +32,8 @@ namespace Application.Hobby.Commands.Create
             {
                 if (command == null) throw new NullReferenceException("Create hobby command is null!");
                 var hobby = _mapper.Map<HobbyArticle>(command);
-                await _repository.Add(hobby);
+                await _unitOfWork.HobbyArticleRepository.Add(hobby);
+                await _unitOfWork.Save();
                 return await Task.FromResult(hobby.Id);
             }catch(Exception e)
             {

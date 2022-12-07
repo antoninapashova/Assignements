@@ -14,7 +14,7 @@ namespace Application.Repositories
        public ITagRepository TagRepository { get; }
        public ISubCategoryRepository SubCategoryRepository { get; }
        public ICategoryRepository CategoryRepository { get; }
-        Task Save();
+       Task Save();
 
     }
 }

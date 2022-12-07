@@ -15,13 +15,13 @@ namespace Application.Categories.Commands.Edit
 {
     public class EditCategoryCommandHandler : IRequestHandler<EditCategoryCommand, int>
     {
-        private readonly ICategoryRepository _categoryRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private ILog _log;
         private IMapper _mapper;
 
-        public EditCategoryCommandHandler(ICategoryRepository categoryRepository, IMapper mapper)
+        public EditCategoryCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _categoryRepository = categoryRepository;
+            _unitOfWork = unitOfWork;
             _log = SingletonLogger.Instance;
             _mapper = mapper;
         }
@@ -30,8 +30,9 @@ namespace Application.Categories.Commands.Edit
             try
             {
                 if (command == null) throw new NullReferenceException("Edit category command is null");
-                
-                await _categoryRepository.UpdateAsync(command.Id, _mapper.Map<HobbyCategory>(command));
+                HobbyCategory hobbyCategory = _mapper.Map<HobbyCategory>(command);
+                await _unitOfWork.CategoryRepository.UpdateAsync(command.Id, hobbyCategory);
+                await _unitOfWork.Save();
                 return await Task.FromResult(command.Id);
             }
             catch (Exception e)

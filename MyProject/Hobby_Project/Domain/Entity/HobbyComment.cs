@@ -11,16 +11,7 @@ namespace Hobby_Project
 {
     public class HobbyComment :BaseEntity
     {
-        public HobbyComment()
-        {
-        }
-
-        public HobbyComment(string title, string commentContent, User user)
-        {
-            Title = title;
-            CommentContent = commentContent;
-            User = user;
-        }
+        public HobbyComment(){}
 
         public string CommentContent { get; set; }
         public int UserId { get; set; }

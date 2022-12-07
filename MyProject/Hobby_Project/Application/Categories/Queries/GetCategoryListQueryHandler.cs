@@ -1,5 +1,6 @@
 ﻿using Application.Repositories;
 using AutoMapper;
+using Hobby_Project;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -11,19 +12,19 @@ namespace Application.Categories.Queries
 {
     public class GetCategoryListQueryHandler : IRequestHandler<GetCategoriesListQuery, IEnumerable<CategoryListVm>>
     {
-        private readonly ICategoryRepository _repository;
+        private readonly IUnitOfWork _unitOfWork;
         private IMapper _mapper;
-        public GetCategoryListQueryHandler(ICategoryRepository repository, IMapper mapper)
+        public GetCategoryListQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 
         public async Task<IEnumerable<CategoryListVm>> Handle(GetCategoriesListQuery request, CancellationToken cancellationToken)
         {
-            var result = await _repository.GetAllEntitiesAsync();
-            List<CategoryListVm> categoryListVms = _mapper.Map<List<CategoryListVm>>(result);
-            return await Task.FromResult(categoryListVms.ToList());
+            IEnumerable<HobbyCategory> categories = await _unitOfWork.CategoryRepository.GetAllEntitiesAsync();
+            List<CategoryListVm> categoryListVms = _mapper.Map<List<CategoryListVm>>(categories);
+            return await Task.FromResult(categoryListVms);
         }
     }
 }

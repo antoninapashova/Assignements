@@ -13,13 +13,13 @@ namespace Application.Comments.Commands.Edit
 {
     internal class EditCommentCommandHandler : IRequestHandler<EditCommentCommand, int>
     {
-        private readonly ICommentRepository _commentRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private ILog _log;
         private IMapper _mapper;
 
-        public EditCommentCommandHandler(ICommentRepository commentRepository, IMapper mapper)
+        public EditCommentCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _commentRepository = commentRepository;
+            _unitOfWork = unitOfWork;
             _log = SingletonLogger.Instance;
             _mapper = mapper;
         }
@@ -28,8 +28,10 @@ namespace Application.Comments.Commands.Edit
         {
             try
             {
-                if (command == null) throw new NullReferenceException("Edit comment command is null");                
-                await _commentRepository.UpdateAsync(command.Id, _mapper.Map<HobbyComment>(command));
+                if (command == null) throw new NullReferenceException("Edit comment command is null");
+                HobbyComment hobbyComment = _mapper.Map<HobbyComment>(command);
+                await _unitOfWork.CommentRepository.UpdateAsync(command.Id, hobbyComment);
+                await _unitOfWork.Save();
                 return await Task.FromResult(command.Id);
 
             }catch (Exception e)

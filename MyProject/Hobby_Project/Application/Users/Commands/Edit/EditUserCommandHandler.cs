@@ -1,5 +1,6 @@
 ﻿using Application.Logger;
 using Application.Repositories;
+using AutoMapper;
 using Hobby_Project;
 using MediatR;
 using System;
@@ -10,22 +11,24 @@ using System.Threading.Tasks;
 
 namespace Application.Users.Commands.Edit
 {
-    internal class EditUserCommandHandler 
-        //: IRequestHandler<EditUserCommand, int>
+    internal class EditUserCommandHandler : IRequestHandler<EditUserCommand, int>
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IUnitOfWork _unitOfWork;
+        private IMapper _mapper;
 
-        public EditUserCommandHandler(IUserRepository userRepository)
+        public EditUserCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _userRepository = userRepository;
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
-        /*
+        
         public async Task<int> Handle(EditUserCommand command, CancellationToken cancellationToken)
         {
-            User newUser = new User(command.Username, command.FirstName, command.LastName, command.Email, command.Age);
-            await _userRepository.UpdateAsync(command.Id, newUser);
+            User user = _mapper.Map<User>(command);
+            await _unitOfWork.UserRepository.UpdateAsync(command.Id, user);
+            await _unitOfWork.Save();
             return await Task.FromResult(command.Id);
         }
-        */
+        
     }
 }

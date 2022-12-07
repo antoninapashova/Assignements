@@ -12,7 +12,6 @@ namespace Infrastructure.Data
 {
     public class HobbyDbContext : DbContext
     {
-
         public DbSet<HobbyArticle> HobbyArticles { get; set; }
         public DbSet<HobbyCategory> HobbyCategories { get; set; }
         public DbSet<HobbyComment> HobbyComments { get; set; }
@@ -20,9 +19,7 @@ namespace Infrastructure.Data
         public DbSet<Tag> Tags { get; set; }
         public DbSet<User> Users { get; set; }
 
-        public HobbyDbContext() : base()
-        {
-        }
+        public HobbyDbContext() : base(){}
 
         public HobbyDbContext(DbContextOptions<HobbyDbContext> options) : base(options) { }
 
@@ -62,7 +59,11 @@ namespace Infrastructure.Data
 
                 a.HasOne(x => x.User).WithMany(x => x.Hobbies).HasForeignKey(x => x.UserId);
                 a.HasOne(x => x.HobbySubCategory).WithMany(x => x.HobbyArticles).HasForeignKey(x => x.HobbySubCategoryId);
-                a.HasMany(x => x.HobbyComments).WithOne(x => x.HobbyArticle).HasForeignKey(x => x.HobbyArticleId).OnDelete(DeleteBehavior.Cascade);
+                //************************************************//
+                a.HasMany(x => x.HobbyComments).WithOne(x => x.HobbyArticle)
+                .HasForeignKey(x => x.HobbyArticleId).OnDelete(DeleteBehavior.Cascade);
+                //*************************************************//
+
                 a.HasMany(x => x.HobbyTags).WithOne(x => x.HobbyArticle).HasForeignKey(x => x.HobbyArticleId);
             });
 

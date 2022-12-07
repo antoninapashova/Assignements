@@ -14,13 +14,13 @@ namespace Application.Categories.Commands.Create
 {
     internal class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, HobbyCategory>
     {
-        private readonly ICategoryRepository _repository;
+        private readonly IUnitOfWork _unitOfWork;
         private ILog _log;
         private IMapper _mapper;
         
-        public CreateCategoryCommandHandler(ICategoryRepository repository, IMapper mapper)
+        public CreateCategoryCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
             _log = SingletonLogger.Instance;
             _mapper = mapper;
         }
@@ -30,8 +30,9 @@ namespace Application.Categories.Commands.Create
             try
             {
                 if (command == null) throw new NullReferenceException("Create category command is null!");
-
-                HobbyCategory hobbyCategory = await _repository.Add(_mapper.Map<HobbyCategory>(command));
+                HobbyCategory hobbyCategory = _mapper.Map<HobbyCategory>(command);
+                await _unitOfWork.CategoryRepository.Add(hobbyCategory);
+                await _unitOfWork.Save();
                 return await Task.FromResult(hobbyCategory);
             }
             catch (Exception e)
@@ -42,6 +43,4 @@ namespace Application.Categories.Commands.Create
         }
     }
 }
-//2 unit tests with mock repository
-  // -- test for throwing RIGHT exception with null command
-  // -- test for checking Assert.equal(1,hobbyCategoryId)
+

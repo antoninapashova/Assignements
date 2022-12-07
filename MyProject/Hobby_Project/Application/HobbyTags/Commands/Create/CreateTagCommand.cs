@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Hobby_Project;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace Application.HobbyTags.Commands.Create
 {
-    public class CreateTagCommand : IRequest<int>
+    public class CreateTagCommand : IRequest<Tag>
     {
-        public int ID { get; set; }
         public string Name { get; set; }
     }
 }

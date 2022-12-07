@@ -1,5 +1,6 @@
 ﻿using Application.Logger;
 using Application.Repositories;
+using AutoMapper;
 using Domain.Entity;
 using Hobby_Project;
 using MediatR;
@@ -11,27 +12,33 @@ using System.Threading.Tasks;
 
 namespace Application.Users.Commands.Create
 {
-    public class CreateUserCommandHandler 
-        //: IRequestHandler<CreateUserCommand, int>
+    public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, User>
     {
-        private readonly IUserRepository _userRepository;
+        private readonly IUnitOfWork _unitOfWork;
+        private IMapper _mapper;
+        private ILog _logger;
 
-        public CreateUserCommandHandler(IUserRepository userRepository)
+        public CreateUserCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _userRepository = userRepository;
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
+            _logger = SingletonLogger.Instance;
         }
 
-        /*
-          async Task<int> IRequestHandler<CreateUserCommand, int>.Handle(CreateUserCommand userCommand, CancellationToken cancellationToken)
-         {
-             var userHobbies = new List<HobbyArticle>();
-
-             var user = new User(userCommand.Username, userCommand.FirstName, userCommand.LastName, userCommand.Email, userCommand.Age, userHobbies);
-             await _userRepository.Add(user);
-             return await Task.FromResult(user.Id);
-         }
-        */
-         
+        public async Task<User> Handle(CreateUserCommand command, CancellationToken cancellationToken)
+        {
+            try
+            {
+                User user = _mapper.Map<User>(command);
+               await  _unitOfWork.UserRepository.Add(user);
+                await _unitOfWork.Save();
+               return await Task.FromResult(user);
+            }
+            catch(Exception e)
+            {
+                _logger.LogError(e.Message);
+                return await Task.FromResult<User>(null);
+            }
+       }
     }
-
 }

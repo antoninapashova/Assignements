@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure
+namespace Infrastructure.Repository
 {
     internal class CommentRepository : ICommentRepository
     {
@@ -23,7 +23,7 @@ namespace Infrastructure
         public async Task<HobbyComment> Add(HobbyComment entity)
         {
             await _context.HobbyComments.AddAsync(entity);
-            _context.SaveChanges();
+           
             return entity;
         }
 
@@ -31,7 +31,7 @@ namespace Infrastructure
         {
             HobbyComment comment = await IsValid(id);
             _context.HobbyComments.Remove(comment);
-            _context.SaveChanges();
+            
         }
 
         public async Task<IEnumerable<HobbyComment>> GetAllEntitiesAsync()
@@ -46,13 +46,13 @@ namespace Infrastructure
         }
         public async Task UpdateAsync(int id, HobbyComment comment)
         {
-            //HobbyComment comment = await IsValid(id);
+            HobbyComment existingComment = await IsValid(id);
             _context.Update(comment);
             //Refactor
-            _context.SaveChanges();
+           
         }
 
-       private async Task<HobbyComment> IsValid(int commentId)
+        private async Task<HobbyComment> IsValid(int commentId)
         {
             if (commentId <= 0) throw new NullReferenceException("Comment Id musr be positive");
             var comment = await _context.HobbyComments.FirstOrDefaultAsync(c => c.Id == commentId);

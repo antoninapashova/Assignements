@@ -13,13 +13,12 @@ namespace Application.Hobby.Commands.Delete
 {
     public  class DeleteHobbyCommandHandler : IRequestHandler<DeleteHobbyCommand, int>
     {
-        private readonly IHobbyArticleRepository _hobbyRepository;
-        private readonly ICommentRepository _commentRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private ILog _log;
-        public DeleteHobbyCommandHandler(IHobbyArticleRepository hobbyRepository, ICommentRepository commentRepository)
+
+        public DeleteHobbyCommandHandler(IUnitOfWork unitOfWork)
         {
-            _hobbyRepository = hobbyRepository;
-            _commentRepository = commentRepository;
+            _unitOfWork = unitOfWork;
             _log = SingletonLogger.Instance;
         }
 
@@ -28,8 +27,8 @@ namespace Application.Hobby.Commands.Delete
             try
             {
                 if (command == null) throw new NullReferenceException("Delete hobby command is null");
-                HobbyArticle hobbyArticle = await _hobbyRepository.GetByIdAsync(command.Id);
-                hobbyArticle.HobbyComments.ToList().ForEach(c => _commentRepository.DeleteAsync(c.Id));
+                await _unitOfWork.HobbyArticleRepository.GetByIdAsync(command.Id);
+                await _unitOfWork.Save();
                 return await Task.FromResult(command.Id);
             }catch (Exception e)
             {

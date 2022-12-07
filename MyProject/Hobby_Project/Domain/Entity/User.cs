@@ -19,6 +19,7 @@ namespace Hobby_Project
         public string LastName { get; set; }
         public string Email { get; set; }
         public int Age { get; set;}
+        public string Password { get; set; }
         public ICollection<HobbyArticle> Hobbies { get; set; }
         public ICollection<HobbyComment> Comments { get; set; }
     }

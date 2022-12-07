@@ -11,12 +11,12 @@ namespace Application.Categories.Commands.Delete
 {
     public class DeleteCategoryCommandHandler : IRequestHandler<DeleteCategoryCommand, int>
     {
-        private readonly ICategoryRepository _categoryRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private ILog _log;
 
-        public DeleteCategoryCommandHandler(ICategoryRepository categoryRepository)
+        public DeleteCategoryCommandHandler(IUnitOfWork unitOfWork)
         {
-            _categoryRepository = categoryRepository;
+            _unitOfWork = unitOfWork;
             _log = SingletonLogger.Instance;
         }
 
@@ -25,8 +25,8 @@ namespace Application.Categories.Commands.Delete
             try
             {
                if (command == null) throw new NullReferenceException("Delete category command is null");
-                        
-               await _categoryRepository.DeleteAsync(command.Id);
+                await _unitOfWork.CategoryRepository.DeleteAsync(command.Id);
+                await _unitOfWork.Save();
                return await Task.FromResult(command.Id);
             }catch(Exception e)
             {

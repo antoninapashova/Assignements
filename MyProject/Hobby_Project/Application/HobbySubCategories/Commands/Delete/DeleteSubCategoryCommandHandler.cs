@@ -11,11 +11,11 @@ namespace Application.HobbySubCategories.Commands.Delete
 {
     internal class DeleteSubCategoryCommandHandler : IRequestHandler<DeleteSubCategoryCommand, int>
     {
-        private readonly ISubCategoryRepository _subCategoryRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private ILog _log;
-        public DeleteSubCategoryCommandHandler(ISubCategoryRepository subCategoryRepository)
+        public DeleteSubCategoryCommandHandler(IUnitOfWork unitOfWork)
         {
-            _subCategoryRepository = subCategoryRepository;
+            _unitOfWork = unitOfWork;
             _log = SingletonLogger.Instance;
         }
 
@@ -24,7 +24,8 @@ namespace Application.HobbySubCategories.Commands.Delete
             try
             {
                 if (command == null) throw new NullReferenceException("Delete sub category command is null!");
-                await _subCategoryRepository.DeleteAsync(command.Id);
+                await _unitOfWork.SubCategoryRepository.DeleteAsync(command.Id);
+                await _unitOfWork.Save();
                 return await Task.FromResult(command.Id);
             }catch(Exception e)
             {

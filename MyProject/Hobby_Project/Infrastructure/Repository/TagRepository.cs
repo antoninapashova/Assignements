@@ -9,9 +9,9 @@ using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure
+namespace Infrastructure.Repository
 {
-    public class TagRepository  : ITagRepository
+    public class TagRepository : ITagRepository
     {
         private readonly HobbyDbContext _context;
 
@@ -22,18 +22,16 @@ namespace Infrastructure
 
         public async Task<Tag> Add(Tag entity)
         {
-           await _context.Tags.AddAsync(entity);
-           _context.SaveChanges();
+            await _context.Tags.AddAsync(entity);
             return entity;
         }
 
-        public async Task DeleteAsync(int id) 
-        { 
+        public async Task DeleteAsync(int id)
+        {
             Tag tagForDeletion = await IsValid(id);
             _context.Tags.Remove(tagForDeletion);
-            _context.SaveChanges();
         }
-        
+
         public async Task<IEnumerable<Tag>> GetAllEntitiesAsync()
         {
             return await _context.Tags.ToListAsync();
@@ -47,15 +45,15 @@ namespace Infrastructure
 
         public async Task UpdateAsync(int id, Tag entity)
         {
-            Tag searchedTag =await IsValid(id);
-            _context.SaveChanges();
-            //Refactor
+            Tag searchedTag = await IsValid(id);
+            _context.Update(entity);
+            //TO DO
         }
 
         private async Task<Tag> IsValid(int Id)
         {
             if (Id <= 0) throw new NullReferenceException("Id must be positive!");
-            var tag =await _context.Tags.FirstOrDefaultAsync(t => t.Id == Id);
+            var tag = await _context.Tags.FirstOrDefaultAsync(t => t.Id == Id);
             if (tag == null) throw new InvalidOperationException("Tag with id: " + Id + " does not exist!!!");
             return tag;
         }

@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure
+namespace Infrastructure.Repository
 {
     public class HobbyRepository : IHobbyArticleRepository
     {
@@ -23,7 +23,6 @@ namespace Infrastructure
         public async Task<HobbyArticle> Add(HobbyArticle entity)
         {
             await _context.HobbyArticles.AddAsync(entity);
-            _context.SaveChanges();
             return entity;
         }
 
@@ -31,7 +30,6 @@ namespace Infrastructure
         {
             var hobbyArt = await isValid(id);
             _context.HobbyArticles.Remove(hobbyArt);
-            _context.SaveChanges();
         }
         public async Task<IEnumerable<HobbyArticle>> GetAllEntitiesAsync()
         {
@@ -45,16 +43,15 @@ namespace Infrastructure
 
         public async Task UpdateAsync(int id, HobbyArticle hobbyArticle)
         {
-            var currentHobbyArticle =await isValid(id);
-            //Refactor
+            var currentHobbyArticle = await isValid(id);
+            //TO DO
             _context.Update(hobbyArticle);
-            _context.SaveChanges();
         }
 
         private async Task<HobbyArticle> isValid(int Id)
         {
             if (Id <= 0) throw new ArgumentException("Id must be positive");
-            var hobby =await _context.HobbyArticles.FirstOrDefaultAsync(h => h.Id == Id);
+            var hobby = await _context.HobbyArticles.FirstOrDefaultAsync(h => h.Id == Id);
             if (hobby == null) throw new InvalidOperationException("HobbyArticle with Id: " + Id + "does not exist");
             return hobby;
         }

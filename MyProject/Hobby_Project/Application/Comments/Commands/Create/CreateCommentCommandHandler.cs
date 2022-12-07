@@ -13,16 +13,13 @@ namespace Application.Comments.Commands.Create
 {
     public class CreateCommentCommandHandler : IRequestHandler<CreateCommentCommand, int>
     {
-        private readonly ICommentRepository _repository;
-        private readonly IUserRepository _userRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private ILog _log;
         private IMapper _mapper;
 
-        public CreateCommentCommandHandler(ICommentRepository repository, 
-            IUserRepository userRepository, IMapper mapper)
+        public CreateCommentCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _repository = repository;
-            _userRepository = userRepository;
+            _unitOfWork = unitOfWork;
             _log = SingletonLogger.Instance;
             _mapper = mapper;
         }
@@ -33,7 +30,8 @@ namespace Application.Comments.Commands.Create
             {
                 if (command == null) throw new NullReferenceException("Create comment command is null");
                 HobbyComment hobbyComment = _mapper.Map<HobbyComment>(command);
-                await _repository.Add(hobbyComment);
+                await _unitOfWork.CommentRepository.Add(hobbyComment);
+                await _unitOfWork.Save();
                 return await Task.FromResult(hobbyComment.Id);
             } catch(Exception e)
             {

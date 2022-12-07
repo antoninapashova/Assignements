@@ -1,5 +1,6 @@
 ﻿using Application.Categories.Queries;
 using Application.Repositories;
+using AutoMapper;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -11,22 +12,21 @@ namespace Application.HobbyTags.Queries
 {
     public class GetTagListQueryHandler : IRequestHandler<GetTagsListQuery, IEnumerable<TagListVm>>
     {
-        private readonly ITagRepository _tagRepository;
+        private readonly IUnitOfWork _unitOfWork;
+        private IMapper _mapper;
 
-        public GetTagListQueryHandler(ITagRepository tagRepository)
+        public GetTagListQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _tagRepository = tagRepository;
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         public async Task<IEnumerable<TagListVm>> Handle(GetTagsListQuery request, CancellationToken cancellationToken)
         {
-            var result = await _tagRepository.GetAllEntitiesAsync();
-            var tags = result.Select(tag => new TagListVm
-            {
-                Name = tag.Name
-            });
+            var result = await _unitOfWork.TagRepository.GetAllEntitiesAsync();
+            IEnumerable<TagListVm> enumerable = _mapper.Map<IEnumerable<TagListVm>>(result);
 
-            return await Task.FromResult(tags.ToList());
+            return await Task.FromResult(enumerable);
         }
     }
 }

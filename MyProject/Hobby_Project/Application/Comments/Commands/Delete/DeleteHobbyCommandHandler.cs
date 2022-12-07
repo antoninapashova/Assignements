@@ -12,20 +12,21 @@ namespace Application.Comments.Commands.Delete
 {
     public  class DeleteHobbyCommandHandler : IRequestHandler<DeleteCommentCommand, int>
     {
-        private readonly ICommentRepository _commentRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private ILog _log;
-        public DeleteHobbyCommandHandler(ICommentRepository commentRepository)
+        public DeleteHobbyCommandHandler(IUnitOfWork unitOfWork)
         {
-            _commentRepository = commentRepository;
+            _unitOfWork = unitOfWork;
             _log = SingletonLogger.Instance;
         }
 
-        public async Task<int> Handle(DeleteCommentCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(DeleteCommentCommand command, CancellationToken cancellationToken)
         {
             try
             {
-               await _commentRepository.DeleteAsync(request.Id);
-               return await Task.FromResult(request.Id);
+                await _unitOfWork.CommentRepository.DeleteAsync(command.Id);
+                await _unitOfWork.Save();
+               return await Task.FromResult(command.Id);
             }catch (Exception e)
             {
                 _log.LogError(e.Message);

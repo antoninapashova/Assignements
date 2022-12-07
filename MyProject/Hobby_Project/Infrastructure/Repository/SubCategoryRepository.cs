@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Infrastructure
+namespace Infrastructure.Repository
 {
     public class SubCategoryRepository : ISubCategoryRepository
     {
@@ -22,15 +22,13 @@ namespace Infrastructure
         public async Task<HobbySubCategory> Add(HobbySubCategory entity)
         {
             await _context.HobbySubCategories.AddAsync(entity);
-            _context.SaveChanges();
             return entity;
         }
 
         public async Task DeleteAsync(int id)
         {
             HobbySubCategory subCategory = await isValid(id);
-             _context.HobbySubCategories.Remove(subCategory);
-            _context.SaveChanges();
+            _context.HobbySubCategories.Remove(subCategory);
 
         }
         public async Task<IEnumerable<HobbySubCategory>> GetAllEntitiesAsync()
@@ -38,16 +36,17 @@ namespace Infrastructure
             return await _context.HobbySubCategories.ToListAsync();
         }
 
-       public async Task<HobbySubCategory> GetByIdAsync(int id)
+        public async Task<HobbySubCategory> GetByIdAsync(int id)
         {
             HobbySubCategory subCategory = await isValid(id);
             return subCategory;
         }
         public async Task UpdateAsync(int id, HobbySubCategory hobbySubCategory)
         {
-            HobbySubCategory subCategory =await isValid(id);
-            //Refactor
-            
+            HobbySubCategory subCategory = await isValid(id);
+            //TO DO
+            _context.Update(hobbySubCategory);
+
         }
 
         private async Task<HobbySubCategory> isValid(int Id)

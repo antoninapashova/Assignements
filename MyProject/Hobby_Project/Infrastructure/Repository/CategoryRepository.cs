@@ -8,12 +8,12 @@ using Hobby_Project;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace Infrastructure
+namespace Infrastructure.Repository
 {
     public class CategoryRepository : ICategoryRepository
     {
 
-       private readonly HobbyDbContext _context;
+        private readonly HobbyDbContext _context;
 
         public CategoryRepository(HobbyDbContext context)
         {
@@ -23,18 +23,17 @@ namespace Infrastructure
         public async Task<HobbyCategory> Add(HobbyCategory entity)
         {
             await _context.HobbyCategories.AddAsync(entity);
-            _context.SaveChanges();
+            
             return entity;
-         }
+        }
 
-       
+
         public async Task DeleteAsync(int id)
         {
             HobbyCategory hobbyCategory = await isValid(id);
             _context.Remove(hobbyCategory);
-            _context.SaveChanges();
         }
-        
+
 
         public async Task<IEnumerable<HobbyCategory>> GetAllEntitiesAsync()
         {
@@ -43,7 +42,7 @@ namespace Infrastructure
                   .ThenInclude(s => s.Name)
                   .ToListAsync();
         }
-        
+
         public async Task<HobbyCategory> GetByIdAsync(int id)
         {
             var hobbyCategory = await isValid(id);
@@ -52,10 +51,10 @@ namespace Infrastructure
 
         public async Task UpdateAsync(int id, HobbyCategory hobbyCategory)
         {
-           var category= await isValid(id);
+            var category = await isValid(id);
             _context.HobbyCategories.Update(category);
-            //Refactor 
-            _context.SaveChanges();
+            //TO DO
+           
         }
 
         private async Task<HobbyCategory> isValid(int id)
@@ -66,6 +65,6 @@ namespace Infrastructure
             if (category == null) throw new InvalidOperationException("Category with that id does not exist");
             return category;
         }
-       
+
     }
 }

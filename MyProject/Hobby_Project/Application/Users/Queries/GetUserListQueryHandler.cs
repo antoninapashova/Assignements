@@ -1,4 +1,5 @@
 ﻿using Application.Repositories;
+using AutoMapper;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,30 +11,20 @@ namespace Application.Users.Queries
 {
     public class GetUserListQueryHandler : IRequestHandler<GetUserListQuery, IEnumerable<UserListVm>>
     {
-        private readonly IUserRepository _repository;
-
-        public GetUserListQueryHandler(IUserRepository repository)
+        private readonly IUnitOfWork _unitOfWork;
+        private IMapper _mapper;
+        public GetUserListQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _repository = repository;
+            _unitOfWork = unitOfWork;
+            _mapper = mapper;
         }
 
         public async Task<IEnumerable<UserListVm>> Handle(GetUserListQuery request, CancellationToken cancellationToken)
         {
-            var result = await _repository.GetAllEntitiesAsync();
-            var users = result.Select(user => new UserListVm
-            {
-                Username = request.Username,
-                Hobbies = user.Hobbies.Select(h => new HobbyArticleDTO
-                {
-                    Title = h.Title,
-                    Description = h.Description,
-                    HobbySubCategory = h.HobbySubCategory,
-                    AddedOn = h.CreatedDate,
-                   
-                }).ToList()
-            }).ToList();
+            var result = await _unitOfWork.UserRepository.GetAllEntitiesAsync();
 
-            return await Task.FromResult(users);
+            IEnumerable<UserListVm> users = _mapper.Map<IEnumerable<UserListVm>>(result);
+             return await Task.FromResult(users);
         }
     }
 }

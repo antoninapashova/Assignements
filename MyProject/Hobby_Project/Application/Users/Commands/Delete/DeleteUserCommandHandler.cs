@@ -13,22 +13,18 @@ namespace Application.Users.Commands.Delete
 {
     internal class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, int>
     {
-        private readonly IUserRepository _userRepository;
-        private readonly IHobbyArticleRepository _hobbyRepository;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public DeleteUserCommandHandler(IUserRepository userRepository, IHobbyArticleRepository hobbyRepository)
+        public DeleteUserCommandHandler(IUnitOfWork unitOfWork)
         {
-            _userRepository = userRepository;
-            _hobbyRepository = hobbyRepository;
+            _unitOfWork = unitOfWork;
         }
 
         public async Task<int> Handle(DeleteUserCommand command, CancellationToken cancellationToken)
         {
-            User user = await _userRepository.GetByIdAsync(command.Id);
-            user.Hobbies.ToList().ForEach(h=>_hobbyRepository.DeleteAsync(h.Id));
-            await _userRepository.DeleteAsync(command.Id);
-            
-            return await Task.FromResult(user.Id);
+            await _unitOfWork.UserRepository.DeleteAsync(command.Id);
+            await _unitOfWork.Save();
+            return await Task.FromResult(command.Id);
         }
     }
 }

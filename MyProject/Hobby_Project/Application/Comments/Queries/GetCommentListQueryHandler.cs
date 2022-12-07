@@ -12,20 +12,20 @@ namespace Application.Comments.Queries
 {
     public class GetCommentListQueryHandler : IRequestHandler<GetCommentsListQuery, IEnumerable<CommentListVm>>
     {
-        private readonly ICommentRepository _commentRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private IMapper _mapper;
-        public GetCommentListQueryHandler(ICommentRepository commentRepository, IMapper mapper)
+        public GetCommentListQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            _commentRepository = commentRepository;
+            _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 
         public async Task<IEnumerable<CommentListVm>> Handle(GetCommentsListQuery request, CancellationToken cancellationToken)
         {
-            var result = await _commentRepository.GetAllEntitiesAsync();
-            List<CommentListVm> commentListVms = _mapper.Map<List<CommentListVm>>(result);
+            var result = await _unitOfWork.CommentRepository.GetAllEntitiesAsync();
+            List<CommentListVm> comments = _mapper.Map<List<CommentListVm>>(result);
 
-            return await Task.FromResult(commentListVms);
+            return await Task.FromResult(comments);
         }
     }
 }
