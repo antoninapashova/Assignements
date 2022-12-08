@@ -10,13 +10,6 @@ namespace Hobby_Project
 {
     public class Tag : BaseEntity
     {
-        public Tag(){}
-
-        public Tag(string name)
-        {
-            Name = name;
-        }
-
         public string Name{ get; set; }
         public ICollection<ArticleTag> HobbyArticles{ get; set; }
 

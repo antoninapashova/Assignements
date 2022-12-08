@@ -12,7 +12,6 @@ namespace Domain.Entity
 {
       public class HobbyArticle : BaseEntity
       {
-        public HobbyArticle() {}
 
          public string Title { get; set; }
         public string Description { get; set; }
@@ -20,6 +19,8 @@ namespace Domain.Entity
         public int HobbySubCategoryId { get; set; }
         public User User { get; set; }
         public HobbySubCategory HobbySubCategory { get; set; }
+       // public int PhotoId { get; set; }
+        //public HobbyPhoto HobbyPhoto { get; set; }
         public ICollection<HobbyComment> HobbyComments { get; }
         public ICollection<ArticleTag> HobbyTags { get; }
     }

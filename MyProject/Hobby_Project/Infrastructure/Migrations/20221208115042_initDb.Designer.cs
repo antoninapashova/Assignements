@@ -4,6 +4,7 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(HobbyDbContext))]
-    partial class HobbyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221208115042_initDb")]
+    partial class initDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -89,20 +92,6 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("HobbyCategories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(2022, 12, 8, 13, 56, 55, 781, DateTimeKind.Local).AddTicks(7611),
-                            Name = "Sports"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedDate = new DateTime(2022, 12, 8, 13, 56, 55, 781, DateTimeKind.Local).AddTicks(7663),
-                            Name = "Cooking"
-                        });
                 });
 
             modelBuilder.Entity("Hobby_Project.HobbyComment", b =>
@@ -158,22 +147,6 @@ namespace Infrastructure.Migrations
                     b.HasIndex("HobbyCategoryId");
 
                     b.ToTable("HobbySubCategories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(2022, 12, 8, 13, 56, 55, 781, DateTimeKind.Local).AddTicks(7804),
-                            HobbyCategoryId = 1,
-                            Name = "Volleyball"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedDate = new DateTime(2022, 12, 8, 13, 56, 55, 781, DateTimeKind.Local).AddTicks(7812),
-                            HobbyCategoryId = 2,
-                            Name = "Salads"
-                        });
                 });
 
             modelBuilder.Entity("Hobby_Project.Tag", b =>
@@ -194,20 +167,6 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tags");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(2022, 12, 8, 13, 56, 55, 781, DateTimeKind.Local).AddTicks(7855),
-                            Name = "Ouside sports"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedDate = new DateTime(2022, 12, 8, 13, 56, 55, 781, DateTimeKind.Local).AddTicks(7860),
-                            Name = "Vegetarin food"
-                        });
                 });
 
             modelBuilder.Entity("Hobby_Project.User", b =>

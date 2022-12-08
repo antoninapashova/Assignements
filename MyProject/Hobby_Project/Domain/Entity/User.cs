@@ -11,16 +11,14 @@ using System.Threading.Tasks;
 namespace Hobby_Project
 {
     public class User : BaseEntity
-    {
-        public User(){}
-
+    { 
         public string Username { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
         public int Age { get; set;}
         public string Password { get; set; }
-        public ICollection<HobbyArticle> Hobbies { get; set; }
-        public ICollection<HobbyComment> Comments { get; set; }
+        public virtual ICollection<HobbyArticle> Hobbies { get; set; }
+        public virtual  ICollection<HobbyComment> Comments { get; set; }
     }
 }

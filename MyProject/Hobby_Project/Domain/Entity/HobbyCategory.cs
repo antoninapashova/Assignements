@@ -12,9 +12,6 @@ namespace Hobby_Project
 {
     public class HobbyCategory : HobbyBaseCategory
      {
-        public HobbyCategory() { }
-
-
         public ICollection<HobbySubCategory> HobbySubCategories { get; set;}
   
     }
