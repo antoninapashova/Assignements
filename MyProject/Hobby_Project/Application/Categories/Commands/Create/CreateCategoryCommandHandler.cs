@@ -12,7 +12,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Application.Categories.Commands.Create
 {
-    internal class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, HobbyCategory>
+    public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, HobbyCategory>
     {
         private readonly IUnitOfWork _unitOfWork;
         private ILog _log;

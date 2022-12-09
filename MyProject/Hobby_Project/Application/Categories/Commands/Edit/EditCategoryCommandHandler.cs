@@ -25,6 +25,7 @@ namespace Application.Categories.Commands.Edit
             _log = SingletonLogger.Instance;
             _mapper = mapper;
         }
+
         public async Task<int> Handle(EditCategoryCommand command, CancellationToken cancellationToken)
         {
             try

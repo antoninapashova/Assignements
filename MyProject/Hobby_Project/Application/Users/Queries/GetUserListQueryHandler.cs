@@ -23,8 +23,8 @@ namespace Application.Users.Queries
         {
             var result = await _unitOfWork.UserRepository.GetAllEntitiesAsync();
 
-            IEnumerable<UserListVm> users = _mapper.Map<IEnumerable<UserListVm>>(result);
-             return await Task.FromResult(users);
+            IEnumerable<UserListVm> users = _mapper.Map<IEnumerable<UserListVm>>(result.ToList());
+            return await Task.FromResult(users);
         }
     }
 }

@@ -23,7 +23,6 @@ namespace Infrastructure.Repository
         public async Task<HobbyCategory> Add(HobbyCategory entity)
         {
             await _context.HobbyCategories.AddAsync(entity);
-            
             return entity;
         }
 
@@ -35,12 +34,11 @@ namespace Infrastructure.Repository
         }
 
 
-        public async Task<IEnumerable<HobbyCategory>> GetAllEntitiesAsync()
+        public async Task<IQueryable<HobbyCategory>> GetAllEntitiesAsync()
         {
-            return await _context.HobbyCategories
+            return _context.HobbyCategories
                   .Include(h => h.HobbySubCategories)
-                  .ThenInclude(s => s.Name)
-                  .ToListAsync();
+                  .ThenInclude(s => s.Name);
         }
 
         public async Task<HobbyCategory> GetByIdAsync(int id)

@@ -71,6 +71,39 @@ namespace Infrastructure.Migrations
                     b.ToTable("HobbyArticles");
                 });
 
+            modelBuilder.Entity("Domain.Entity.HobbyPhoto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("HobbyArticleId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PublicId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Url")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HobbyArticleId");
+
+                    b.ToTable("HobbyPhotos");
+                });
+
             modelBuilder.Entity("Hobby_Project.HobbyCategory", b =>
                 {
                     b.Property<int>("Id")
@@ -94,13 +127,13 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 12, 8, 13, 56, 55, 781, DateTimeKind.Local).AddTicks(7611),
+                            CreatedDate = new DateTime(2022, 12, 9, 12, 27, 0, 761, DateTimeKind.Local).AddTicks(1858),
                             Name = "Sports"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2022, 12, 8, 13, 56, 55, 781, DateTimeKind.Local).AddTicks(7663),
+                            CreatedDate = new DateTime(2022, 12, 9, 12, 27, 0, 761, DateTimeKind.Local).AddTicks(1919),
                             Name = "Cooking"
                         });
                 });
@@ -163,14 +196,14 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 12, 8, 13, 56, 55, 781, DateTimeKind.Local).AddTicks(7804),
+                            CreatedDate = new DateTime(2022, 12, 9, 12, 27, 0, 761, DateTimeKind.Local).AddTicks(2048),
                             HobbyCategoryId = 1,
-                            Name = "Volleyball"
+                            Name = "Voleyball"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2022, 12, 8, 13, 56, 55, 781, DateTimeKind.Local).AddTicks(7812),
+                            CreatedDate = new DateTime(2022, 12, 9, 12, 27, 0, 761, DateTimeKind.Local).AddTicks(2055),
                             HobbyCategoryId = 2,
                             Name = "Salads"
                         });
@@ -199,14 +232,14 @@ namespace Infrastructure.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedDate = new DateTime(2022, 12, 8, 13, 56, 55, 781, DateTimeKind.Local).AddTicks(7855),
-                            Name = "Ouside sports"
+                            CreatedDate = new DateTime(2022, 12, 9, 12, 27, 0, 761, DateTimeKind.Local).AddTicks(2083),
+                            Name = "Outside sports"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedDate = new DateTime(2022, 12, 8, 13, 56, 55, 781, DateTimeKind.Local).AddTicks(7860),
-                            Name = "Vegetarin food"
+                            CreatedDate = new DateTime(2022, 12, 9, 12, 27, 0, 761, DateTimeKind.Local).AddTicks(2087),
+                            Name = "Vegetariаn food"
                         });
                 });
 
@@ -287,6 +320,17 @@ namespace Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Domain.Entity.HobbyPhoto", b =>
+                {
+                    b.HasOne("Domain.Entity.HobbyArticle", "HobbyArticle")
+                        .WithMany("HobbyPhoto")
+                        .HasForeignKey("HobbyArticleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("HobbyArticle");
+                });
+
             modelBuilder.Entity("Hobby_Project.HobbyComment", b =>
                 {
                     b.HasOne("Domain.Entity.HobbyArticle", "HobbyArticle")
@@ -318,6 +362,8 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entity.HobbyArticle", b =>
                 {
                     b.Navigation("HobbyComments");
+
+                    b.Navigation("HobbyPhoto");
 
                     b.Navigation("HobbyTags");
                 });

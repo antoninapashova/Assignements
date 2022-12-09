@@ -23,26 +23,7 @@ namespace Application.Hobby.Queries
         public async Task<IEnumerable<HobbyListVm>> Handle(GetHobbyListQuery request, CancellationToken cancellationToken)
         {
             var result = await _repository.GetAllEntitiesAsync();
-            List<HobbyListVm> hobbyListVms = _mapper.Map<List<HobbyListVm>>(result);
-            /*
-            var hobbies = result.Select(hobby => new HobbyListVm
-            {
-                Title = hobby.Title,
-                Description = hobby.Description,
-                hobbySubCategory = hobby.HobbySubCategory,
-                Comments = hobby.HobbyComments.Select(com => new HobbyCommentDTO
-                {
-                    CommentContent = com.CommentContent,
-                    Title = com.Title,
-                    Username = com.User.Username,
-                }).ToList(),
-                Tags = hobby.HobbyTags.Select(tag => new TagDTO
-                {
-                    Name = tag.Tag.Name
-                }).ToList()
-            }); 
-            */
-
+            List<HobbyListVm> hobbyListVms = _mapper.Map<List<HobbyListVm>>(result.ToList());
             return await Task.FromResult(hobbyListVms);
         }
      }

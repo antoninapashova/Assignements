@@ -33,9 +33,9 @@ namespace Infrastructure.Repository
             _context.Users.Remove(user);
         }
 
-        public async Task<IEnumerable<User>> GetAllEntitiesAsync()
+        public async Task<IQueryable<User>> GetAllEntitiesAsync()
         {
-            return await _context.Users.ToListAsync();
+            return _context.Users;
         }
 
         public async Task<User> GetByIdAsync(int id)

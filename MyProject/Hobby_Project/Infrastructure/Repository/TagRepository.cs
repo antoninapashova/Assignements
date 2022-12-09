@@ -32,9 +32,9 @@ namespace Infrastructure.Repository
             _context.Tags.Remove(tagForDeletion);
         }
 
-        public async Task<IEnumerable<Tag>> GetAllEntitiesAsync()
+        public async Task<IQueryable<Tag>> GetAllEntitiesAsync()
         {
-            return await _context.Tags.ToListAsync();
+            return _context.Tags;
         }
 
         public async Task<Tag> GetByIdAsync(int id)

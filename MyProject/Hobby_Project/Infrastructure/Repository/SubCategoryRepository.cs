@@ -31,9 +31,9 @@ namespace Infrastructure.Repository
             _context.HobbySubCategories.Remove(subCategory);
 
         }
-        public async Task<IEnumerable<HobbySubCategory>> GetAllEntitiesAsync()
+        public async Task<IQueryable<HobbySubCategory>> GetAllEntitiesAsync()
         {
-            return await _context.HobbySubCategories.ToListAsync();
+            return  _context.HobbySubCategories;
         }
 
         public async Task<HobbySubCategory> GetByIdAsync(int id)

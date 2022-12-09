@@ -23,7 +23,7 @@ namespace Application.HobbySubCategories.Queries
         public async Task<IEnumerable<HobbySubCategoryListVm>> Handle(GetSubCategoryListQuery request, CancellationToken cancellationToken)
         {
             var result= await _unitOfWork.SubCategoryRepository.GetAllEntitiesAsync();
-            List<HobbySubCategoryListVm> subCategories= _mapper.Map<List<HobbySubCategoryListVm>>(result);
+            List<HobbySubCategoryListVm> subCategories= _mapper.Map<List<HobbySubCategoryListVm>>(result.ToList());
             return await Task.FromResult(subCategories);
         }
     }

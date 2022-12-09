@@ -34,9 +34,9 @@ namespace Infrastructure.Repository
             
         }
 
-        public async Task<IEnumerable<HobbyComment>> GetAllEntitiesAsync()
+        public async Task<IQueryable<HobbyComment>> GetAllEntitiesAsync()
         {
-            return await _context.HobbyComments.ToListAsync();
+            return _context.HobbyComments;
         }
 
         public async Task<HobbyComment> GetByIdAsync(int id)

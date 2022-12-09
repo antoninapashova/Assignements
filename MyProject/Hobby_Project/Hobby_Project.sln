@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{D86EC95F-1BFF-4810-9B92-7A78AF6ABDA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HobbyProject.Infrastructure", "Infrastructure\HobbyProject.Infrastructure.csproj", "{D86EC95F-1BFF-4810-9B92-7A78AF6ABDA0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{F2CE7252-FB2F-41C3-A247-AD25A72AE5E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HobbyProject.Application", "Application\HobbyProject.Application.csproj", "{F2CE7252-FB2F-41C3-A247-AD25A72AE5E8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{28E102A5-8E65-45A6-8BBA-D455BDD54921}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HobbyProject.Domain", "Domain\HobbyProject.Domain.csproj", "{28E102A5-8E65-45A6-8BBA-D455BDD54921}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsolePresentation", "ConsolePresentation\ConsolePresentation.csproj", "{219F9005-CE14-4A1E-A171-217DB7B3BB13}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HobbyProject.ConsolePresentation", "ConsolePresentation\HobbyProject.ConsolePresentation.csproj", "{219F9005-CE14-4A1E-A171-217DB7B3BB13}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HobbyProjectTests", "HobbyProjectTests\HobbyProjectTests.csproj", "{B2D4A3D5-D492-4E75-A2CB-8F5F09B062DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HobbyProjectTests", "HobbyProjectTests\HobbyProjectTests.csproj", "{B2D4A3D5-D492-4E75-A2CB-8F5F09B062DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

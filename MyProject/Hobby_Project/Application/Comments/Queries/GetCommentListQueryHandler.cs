@@ -23,7 +23,7 @@ namespace Application.Comments.Queries
         public async Task<IEnumerable<CommentListVm>> Handle(GetCommentsListQuery request, CancellationToken cancellationToken)
         {
             var result = await _unitOfWork.CommentRepository.GetAllEntitiesAsync();
-            List<CommentListVm> comments = _mapper.Map<List<CommentListVm>>(result);
+            List<CommentListVm> comments = _mapper.Map<List<CommentListVm>>(result.ToList());
 
             return await Task.FromResult(comments);
         }

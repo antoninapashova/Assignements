@@ -22,8 +22,8 @@ namespace Application.Categories.Queries
 
         public async Task<IEnumerable<CategoryListVm>> Handle(GetCategoriesListQuery request, CancellationToken cancellationToken)
         {
-            IEnumerable<HobbyCategory> categories = await _unitOfWork.CategoryRepository.GetAllEntitiesAsync();
-            List<CategoryListVm> categoryListVms = _mapper.Map<List<CategoryListVm>>(categories);
+            IQueryable<HobbyCategory> categories = await _unitOfWork.CategoryRepository.GetAllEntitiesAsync();
+            List<CategoryListVm> categoryListVms = _mapper.Map<List<CategoryListVm>>(categories.ToList());
             return await Task.FromResult(categoryListVms);
         }
     }

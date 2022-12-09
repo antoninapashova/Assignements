@@ -19,9 +19,9 @@ namespace Infrastructure.Data
         public DbSet<HobbySubCategory> HobbySubCategories { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<HobbyPhoto> HobbyPhotos { get; set; }
 
-        public HobbyDbContext() : base() { }
-
+        public HobbyDbContext() { }
         public HobbyDbContext(DbContextOptions<HobbyDbContext> options) : base(options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -48,7 +48,6 @@ namespace Infrastructure.Data
                 {
                     Id = 1,
                     Name = "Sports",
-
                 },
                 new HobbyCategory()
                 {
@@ -60,7 +59,6 @@ namespace Infrastructure.Data
 
             modelBuilder.Entity<HobbySubCategory>(sc =>
             {
-
                 sc.HasData(new HobbySubCategory()
                 {
                     Id = 1,
@@ -85,8 +83,20 @@ namespace Infrastructure.Data
                 new Tag()
                 {
                     Id = 2,
-                    Name = "Vegetarin food",
+                    Name = "Vegetariаn food",
                 });
+            });
+
+            modelBuilder.Entity<HobbyArticle>(a =>
+            {
+                a.HasMany(x => x.HobbyComments).WithOne(x => x.HobbyArticle).HasForeignKey(x => x.HobbyArticleId).OnDelete(DeleteBehavior.Cascade);
+                a.HasMany(x => x.HobbyPhoto).WithOne(x => x.HobbyArticle).HasForeignKey(x => x.HobbyArticleId).OnDelete(DeleteBehavior.Cascade);
+               
+            });
+
+            modelBuilder.Entity<User>(u =>
+            {
+                u.HasMany(x => x.Hobbies).WithOne(x => x.User).HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.Cascade);
             });
         }
     }
