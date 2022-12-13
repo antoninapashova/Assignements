@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Repository
 {
-    internal class CommentRepository : ICommentRepository
+    public class CommentRepository : ICommentRepository
     {
         private readonly HobbyDbContext _context;
 
@@ -34,7 +34,7 @@ namespace Infrastructure.Repository
             
         }
 
-        public async Task<IQueryable<HobbyComment>> GetAllEntitiesAsync()
+        public async Task<IEnumerable<HobbyComment>> GetAllEntitiesAsync()
         {
             return _context.HobbyComments;
         }

@@ -33,7 +33,7 @@ namespace Infrastructure.Repository
             _context.Users.Remove(user);
         }
 
-        public async Task<IQueryable<User>> GetAllEntitiesAsync()
+        public async Task<IEnumerable<User>> GetAllEntitiesAsync()
         {
             return _context.Users;
         }

@@ -13,6 +13,6 @@ namespace Application.Repositories
         Task UpdateAsync(int id, T entity);
         Task DeleteAsync(int id);
         Task<T> GetByIdAsync(int id);
-        Task<IQueryable<T>> GetAllEntitiesAsync();
+        Task<IEnumerable<T>> GetAllEntitiesAsync();
     }
 }

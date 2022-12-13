@@ -1,4 +1,4 @@
-﻿using Application.Categories.Queries;
+﻿
 using Application.Repositories;
 using AutoMapper;
 using MediatR;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Comments.Queries
+namespace Application.Comments.Queries.GetAllCategories
 {
     public class GetCommentListQueryHandler : IRequestHandler<GetCommentsListQuery, IEnumerable<CommentListVm>>
     {

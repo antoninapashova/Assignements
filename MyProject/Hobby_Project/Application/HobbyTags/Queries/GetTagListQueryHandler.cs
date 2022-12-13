@@ -1,5 +1,4 @@
-﻿using Application.Categories.Queries;
-using Application.Repositories;
+﻿using Application.Repositories;
 using AutoMapper;
 using MediatR;
 using System;

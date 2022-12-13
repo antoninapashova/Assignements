@@ -25,8 +25,6 @@ namespace Infrastructure.Repository
             await _context.HobbyCategories.AddAsync(entity);
             return entity;
         }
-
-
         public async Task DeleteAsync(int id)
         {
             HobbyCategory hobbyCategory = await isValid(id);
@@ -34,16 +32,15 @@ namespace Infrastructure.Repository
         }
 
 
-        public async Task<IQueryable<HobbyCategory>> GetAllEntitiesAsync()
+        public async Task<IEnumerable<HobbyCategory>> GetAllEntitiesAsync()
         {
-            return _context.HobbyCategories
-                  .Include(h => h.HobbySubCategories)
-                  .ThenInclude(s => s.Name);
+            return _context.HobbyCategories.Include(h => h.HobbySubCategories).AsEnumerable();
         }
 
         public async Task<HobbyCategory> GetByIdAsync(int id)
         {
             var hobbyCategory = await isValid(id);
+            
             return hobbyCategory;
         }
 
@@ -58,7 +55,7 @@ namespace Infrastructure.Repository
         private async Task<HobbyCategory> isValid(int id)
         {
             if (id <= 0) throw new ArgumentException("Id must be positive");
-            var hobbyCategories = _context.HobbyCategories;
+            var hobbyCategories = _context.HobbyCategories.Include(x=>x.HobbySubCategories);
             var category = await hobbyCategories.FirstOrDefaultAsync(c => c.Id == id);
             if (category == null) throw new InvalidOperationException("Category with that id does not exist");
             return category;

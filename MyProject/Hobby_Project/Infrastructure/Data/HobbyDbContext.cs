@@ -24,15 +24,6 @@ namespace Infrastructure.Data
         public HobbyDbContext() { }
         public HobbyDbContext(DbContextOptions<HobbyDbContext> options) : base(options) { }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-                const string connectionString = "Server=DESKTOP-AI1LMFV\\SQLEXPRESS;Database=HobbyDB;Trusted_Connection=SSPI;Encrypt=false;TrustServerCertificate=true";
-                optionsBuilder.UseSqlServer(connectionString);
-            }
-        }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

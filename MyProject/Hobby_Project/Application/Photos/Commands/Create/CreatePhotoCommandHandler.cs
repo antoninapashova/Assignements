@@ -1,4 +1,5 @@
-﻿using Application.Cloudinary;
+﻿
+using Application.Photos;
 using CloudinaryDotNet;
 using Domain.Entity;
 using MediatR;
@@ -11,26 +12,23 @@ using System.Threading.Tasks;
 
 namespace HobbyProject.Application.Photos.Commands.Create
 {
-    public class CreatePhotoCommandHandler 
+    public class CreatePhotoCommandHandler
         //: IRequestHandler<CreatePhotoCommand, int>
     {
-        public IConfiguration Configuration;
+        
         private CloudinarySettings _settings;
         private Cloudinary _cloudinary;
-        public CreatePhotoCommandHandler(IConfiguration configuration)
+
+        public CreatePhotoCommandHandler()
         {
-            Configuration = configuration;
-            //_settings = Configuration.GetSection("CloudibnarySettings");
+              //_settings = Configuration.GetSection("CloudinarySettings");
                 //.GetSection<CloudinarySettings>();
             Account account = new Account(_settings.CloudName, _settings.ApiKey, _settings.ApiSecret);
 
             _cloudinary = new Cloudinary();
-            
         }
-
-
         /*
-        private public Task<int> Handle(CreatePhotoCommand command, CancellationToken cancellationToken)
+        public Task<int> Handle(CreatePhotoCommand request, CancellationToken cancellationToken)
         {
             
         }

@@ -1,6 +1,5 @@
 ﻿using Application.Categories.Commands.Create;
 using Application.Categories.Commands.Edit;
-using Application.Categories.Queries;
 using Application.Comments.Commands.Create;
 using Application.Comments.Commands.Edit;
 using Application.Comments.Queries;
@@ -15,6 +14,8 @@ using Application.Users.Commands.Edit;
 using AutoMapper;
 using Domain.Entity;
 using Hobby_Project;
+using HobbyProject.Application.Categories.Queries.GetAllCategories;
+using HobbyProject.Application.Categories.Queries.GetSubCategoryFromCategory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,10 +41,12 @@ namespace Application.Mapping
             CreateMap<EditUserCommand, User>();
             //Get
             CreateMap<HobbyComment, CommentListVm>();
-            CreateMap<HobbyCategory, CategoryListVm>();
+            CreateMap<HobbySubCategory, HobbySubCategoryDTO>();
             CreateMap<HobbyArticle, HobbyListVm>();
             CreateMap<HobbySubCategory, HobbySubCategoryListVm>();
+            CreateMap<HobbyCategory, CategoryListVm>();
+            CreateMap<HobbyCategory, CategoryWithSubCategoryVm>();
             CreateMap<Tag, TagListVm>();
-        }
+       }
     }
 }

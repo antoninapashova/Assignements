@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Repository
 {
-    internal class HobbyPhotoRepository : IPhotoRepository
+    public class HobbyPhotoRepository : IPhotoRepository
     {
         private readonly HobbyDbContext _context;
 
@@ -33,7 +33,7 @@ namespace Infrastructure.Repository
             _context.HobbyPhotos.Remove(hobbyPhoto);
         }
 
-        public async Task<IQueryable<HobbyPhoto>> GetAllEntitiesAsync()
+        public async Task<IEnumerable<HobbyPhoto>> GetAllEntitiesAsync()
         {
             return _context.HobbyPhotos;
         }

@@ -31,7 +31,7 @@ namespace Infrastructure.Repository
             var hobbyArt = await isValid(id);
             _context.HobbyArticles.Remove(hobbyArt);
         }
-        public async Task<IQueryable<HobbyArticle>> GetAllEntitiesAsync()
+        public async Task<IEnumerable<HobbyArticle>> GetAllEntitiesAsync()
         {
             return _context.HobbyArticles;
         }
