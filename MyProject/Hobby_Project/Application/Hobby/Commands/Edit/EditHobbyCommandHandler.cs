@@ -31,7 +31,7 @@ namespace Application.Hobby.Commands.Edit
             {
                 if (command == null) throw new NullReferenceException("Edit hobby command is null");
                 HobbyArticle hobbyArticle = _mapper.Map<HobbyArticle>(command);
-                await _unitOfWork.HobbyArticleRepository.UpdateAsync(command.Id,hobbyArticle);
+                await _unitOfWork.HobbyArticleRepository.Update(hobbyArticle);
                 await _unitOfWork.Save();
                 return await Task.FromResult(command.Id);
             }

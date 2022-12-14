@@ -32,7 +32,7 @@ namespace Application.Categories.Commands.Edit
             {
                 if (command == null) throw new NullReferenceException("Edit category command is null");
                 HobbyCategory hobbyCategory = _mapper.Map<HobbyCategory>(command);
-                await _unitOfWork.CategoryRepository.UpdateAsync(command.Id, hobbyCategory);
+                await _unitOfWork.CategoryRepository.Update(hobbyCategory);
                 await _unitOfWork.Save();
                 return await Task.FromResult(command.Id);
             }

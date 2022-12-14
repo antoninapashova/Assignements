@@ -8,3 +8,27 @@
 [Error]12:40 Value cannot be null. (Parameter 'source')
 *-------------------------------*
 [Error]12:41 Value cannot be null. (Parameter 'source')
+*-------------------------------*
+[Error]15:43 Id must be positive
+*-------------------------------*
+[Error]15:47 The instance of entity type 'HobbyCategory' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+*-------------------------------*
+[Error]15:48 The instance of entity type 'HobbyCategory' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+*-------------------------------*
+[Error]16:12 Id must be positive
+*-------------------------------*
+[Error]16:13 Id must be positive
+*-------------------------------*
+[Error]16:15 The instance of entity type 'HobbyCategory' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+*-------------------------------*
+[Error]16:15 The instance of entity type 'HobbyCategory' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+*-------------------------------*
+[Error]16:20 The instance of entity type 'HobbyCategory' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+*-------------------------------*
+[Error]17:55 Category with that id does not exist
+*-------------------------------*
+[Error]18:00 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]18:02 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]9:06 An error occurred while saving the entity changes. See the inner exception for details.

@@ -44,12 +44,9 @@ namespace Infrastructure.Repository
             HobbyComment comment = await IsValid(id);
             return comment;
         }
-        public async Task UpdateAsync(int id, HobbyComment comment)
+        public async Task Update(HobbyComment comment)
         {
-            HobbyComment existingComment = await IsValid(id);
             _context.Update(comment);
-            //Refactor
-           
         }
 
         private async Task<HobbyComment> IsValid(int commentId)

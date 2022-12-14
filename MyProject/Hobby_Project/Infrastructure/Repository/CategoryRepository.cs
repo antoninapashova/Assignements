@@ -44,12 +44,9 @@ namespace Infrastructure.Repository
             return hobbyCategory;
         }
 
-        public async Task UpdateAsync(int id, HobbyCategory hobbyCategory)
+        public async Task Update(HobbyCategory hobbyCategory)
         {
-            var category = await isValid(id);
-            _context.HobbyCategories.Update(category);
-            //TO DO
-           
+            _context.HobbyCategories.Update(hobbyCategory);           
         }
 
         private async Task<HobbyCategory> isValid(int id)

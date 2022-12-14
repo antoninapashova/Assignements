@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HobbyProject.Application.Categories.Queries.GetAllCategories
 {
-    public class GetCategoriesListQuery : IRequest<List<CategoryListVm>>
+    public class GetCategoriesListQuery : IRequest<List<CategoryVm>>
     {
 
         public int Id { get; set; }

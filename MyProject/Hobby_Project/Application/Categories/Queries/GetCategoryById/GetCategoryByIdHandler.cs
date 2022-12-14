@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace HobbyProject.Application.Categories.Queries.GetCategoryById
 {
-    public class GetCategoryByIdHandler : IRequestHandler<GetCategoryByIdQuery, CategoryListVm>
+    public class GetCategoryByIdHandler : IRequestHandler<GetCategoryByIdQuery, CategoryVm>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -25,17 +25,17 @@ namespace HobbyProject.Application.Categories.Queries.GetCategoryById
             _mapper = mapper;
         }
 
-        public async Task<CategoryListVm> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
+        public async Task<CategoryVm> Handle(GetCategoryByIdQuery request, CancellationToken cancellationToken)
         {
             try
             {
                 var category = await _unitOfWork.CategoryRepository.GetByIdAsync(request.Id);
-                var result =  _mapper.Map<CategoryListVm>(category);
-                return await Task.FromResult(result);
+                var result =  _mapper.Map<CategoryVm>(category);
+                 return await Task.FromResult(result);
             }catch (Exception e)
             {
                 _log.LogError(e.Message);
-                return await Task.FromResult<CategoryListVm>(null);
+                return await Task.FromResult<CategoryVm>(null);
             }
            
         }

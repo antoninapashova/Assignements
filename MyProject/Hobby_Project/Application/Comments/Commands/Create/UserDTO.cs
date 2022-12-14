@@ -8,6 +8,6 @@ namespace Application.Comments.Commands.Create
 {
     public class UserDTO
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
    }
 }

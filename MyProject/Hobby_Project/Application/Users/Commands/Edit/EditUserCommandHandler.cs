@@ -14,20 +14,30 @@ namespace Application.Users.Commands.Edit
     internal class EditUserCommandHandler : IRequestHandler<EditUserCommand, int>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private IMapper _mapper;
+        private readonly IMapper _mapper;
+        private ILog _log;
 
         public EditUserCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _log = SingletonLogger.Instance;
         }
         
         public async Task<int> Handle(EditUserCommand command, CancellationToken cancellationToken)
         {
-            User user = _mapper.Map<User>(command);
-            await _unitOfWork.UserRepository.UpdateAsync(command.Id, user);
-            await _unitOfWork.Save();
+            try
+            {
+                 User user = _mapper.Map<User>(command);
+                    await _unitOfWork.UserRepository.Update(user);
+                    await _unitOfWork.Save();
             return await Task.FromResult(command.Id);
+            }catch(Exception e)
+            {
+                _log.LogError(e.Message);
+                return await Task.FromResult(0);
+            }
+            
         }
         
     }

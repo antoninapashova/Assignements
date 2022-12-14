@@ -41,12 +41,10 @@ namespace Infrastructure.Repository
             HobbySubCategory subCategory = await isValid(id);
             return subCategory;
         }
-        public async Task UpdateAsync(int id, HobbySubCategory hobbySubCategory)
+        public async Task Update(HobbySubCategory hobbySubCategory)
         {
-            HobbySubCategory subCategory = await isValid(id);
-            //TO DO
+      
             _context.Update(hobbySubCategory);
-
         }
 
         private async Task<HobbySubCategory> isValid(int Id)

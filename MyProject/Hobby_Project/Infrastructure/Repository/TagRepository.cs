@@ -34,7 +34,7 @@ namespace Infrastructure.Repository
 
         public async Task<IEnumerable<Tag>> GetAllEntitiesAsync()
         {
-            return _context.Tags;
+            return await _context.Tags.ToListAsync();
         }
 
         public async Task<Tag> GetByIdAsync(int id)
@@ -43,11 +43,9 @@ namespace Infrastructure.Repository
             return tag;
         }
 
-        public async Task UpdateAsync(int id, Tag entity)
+        public async Task Update(Tag entity)
         {
-            Tag searchedTag = await IsValid(id);
-            _context.Update(entity);
-            //TO DO
+             _context.Update(entity);
         }
 
         private async Task<Tag> IsValid(int Id)

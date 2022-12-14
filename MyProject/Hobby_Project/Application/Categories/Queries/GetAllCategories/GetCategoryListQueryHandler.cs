@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace HobbyProject.Application.Categories.Queries.GetAllCategories
 {
-    public class GetCategoryListQueryHandler : IRequestHandler<GetCategoriesListQuery, List<CategoryListVm>>
+    public class GetCategoryListQueryHandler : IRequestHandler<GetCategoriesListQuery, List<CategoryVm>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -20,10 +20,10 @@ namespace HobbyProject.Application.Categories.Queries.GetAllCategories
             _mapper = mapper;
         }
 
-        public async Task<List<CategoryListVm>> Handle(GetCategoriesListQuery request, CancellationToken cancellationToken)
+        public async Task<List<CategoryVm>> Handle(GetCategoriesListQuery request, CancellationToken cancellationToken)
         {
             IEnumerable<HobbyCategory> categories = await _unitOfWork.CategoryRepository.GetAllEntitiesAsync();
-            List<CategoryListVm> categoryListVms = _mapper.Map<List<CategoryListVm>>(categories.ToList());
+            List<CategoryVm> categoryListVms = _mapper.Map<List<CategoryVm>>(categories.ToList());
             return await Task.FromResult(categoryListVms.ToList());
         }
     }

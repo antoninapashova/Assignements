@@ -7,7 +7,6 @@ using Application.Hobby.Commands.Create;
 using Application.Hobby.Commands.Edit;
 using Application.Hobby.Queries;
 using Application.HobbySubCategories.Commands.Create;
-using Application.HobbySubCategories.Queries;
 using Application.HobbyTags.Commands.Create;
 using Application.HobbyTags.Queries;
 using Application.Users.Commands.Edit;
@@ -16,6 +15,7 @@ using Domain.Entity;
 using Hobby_Project;
 using HobbyProject.Application.Categories.Queries.GetAllCategories;
 using HobbyProject.Application.Categories.Queries.GetSubCategoryFromCategory;
+using HobbyProject.Application.HobbySubCategories.Queries;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +36,7 @@ namespace Application.Mapping
             CreateMap<CreateTagCommand, Tag>();
             //Edit
             CreateMap<EditCategoryCommand, HobbyCategory>();
+    
             CreateMap<EditCommentCommand, HobbyComment>();
             CreateMap<EditHobbyCommand, HobbyArticle>();
             CreateMap<EditUserCommand, User>();
@@ -43,8 +44,8 @@ namespace Application.Mapping
             CreateMap<HobbyComment, CommentListVm>();
             CreateMap<HobbySubCategory, HobbySubCategoryDTO>();
             CreateMap<HobbyArticle, HobbyListVm>();
-            CreateMap<HobbySubCategory, HobbySubCategoryListVm>();
-            CreateMap<HobbyCategory, CategoryListVm>();
+            CreateMap<HobbySubCategory, HobbySubCategoryVm>();
+            CreateMap<HobbyCategory, CategoryVm>();
             CreateMap<HobbyCategory, CategoryWithSubCategoryVm>();
             CreateMap<Tag, TagListVm>();
        }

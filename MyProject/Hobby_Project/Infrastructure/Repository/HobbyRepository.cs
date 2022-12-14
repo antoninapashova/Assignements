@@ -41,10 +41,8 @@ namespace Infrastructure.Repository
             return hobbyArticle;
         }
 
-        public async Task UpdateAsync(int id, HobbyArticle hobbyArticle)
+        public async Task Update( HobbyArticle hobbyArticle)
         {
-            var currentHobbyArticle = await isValid(id);
-            //TO DO
             _context.Update(hobbyArticle);
         }
 

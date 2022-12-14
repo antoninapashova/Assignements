@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Application.HobbySubCategories.Commands.Create
 {
-    internal class CreateSubCategoryCommandHandler : IRequestHandler<CreateSubCategoryCommand, HobbySubCategory>
+    public class CreateSubCategoryCommandHandler : IRequestHandler<CreateSubCategoryCommand, HobbySubCategory>
     {
         private readonly IUnitOfWork _unitOfWork;
         //private readonly HobbyPublisher _hobbyPublisher;
@@ -35,7 +35,7 @@ namespace Application.HobbySubCategories.Commands.Create
             {
                 if (command == null) throw new NullReferenceException("Create sub category command is null!");
                 HobbySubCategory hobbySubCategory = _mapper.Map<HobbySubCategory>(command);
-                await  _unitOfWork.SubCategoryRepository.Add(hobbySubCategory);
+                await _unitOfWork.SubCategoryRepository.Add(hobbySubCategory);
                 await _unitOfWork.Save();
                 //_hobbyPublisher.Publish(hobbySubCategory);
                 return await Task.FromResult(hobbySubCategory);
