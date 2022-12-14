@@ -30,9 +30,9 @@ namespace Application.Users.Commands.Create
             try
             {
                 User user = _mapper.Map<User>(command);
-               await  _unitOfWork.UserRepository.Add(user);
+                await  _unitOfWork.UserRepository.Add(user);
                 await _unitOfWork.Save();
-               return await Task.FromResult(user);
+                return await Task.FromResult(user);
             }
             catch(Exception e)
             {

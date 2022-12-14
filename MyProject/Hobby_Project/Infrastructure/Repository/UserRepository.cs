@@ -27,6 +27,16 @@ namespace Infrastructure.Repository
             return entity;
         }
 
+        public async Task<bool> Authenticate(string username, string password)
+        {
+            if (await Task.FromResult(_context.Users.
+                SingleOrDefault(x => x.Username == username && x.Password == password)) != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public async Task DeleteAsync(int id)
         {
             User user = await isValid(id);

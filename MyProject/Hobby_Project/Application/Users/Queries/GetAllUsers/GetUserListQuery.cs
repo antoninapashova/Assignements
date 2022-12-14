@@ -1,15 +1,15 @@
-﻿using MediatR;
+﻿using Application.Users.Queries;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Users.Queries
+namespace HobbyProject.Application.Users.Queries.GetAllUsers
 {
-    public  class GetUserListQuery : IRequest<IEnumerable<UserListVm>>
+    public class GetUserListQuery : IRequest<IEnumerable<UserVm>>
     {
-      
         public string Username { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

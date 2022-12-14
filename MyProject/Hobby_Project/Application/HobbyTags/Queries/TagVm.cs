@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.HobbyTags.Queries
+namespace HobbyProject.Application.HobbyTags.Queries
 {
-    public class TagListVm
+    public class TagVm
     {
         public int Id;
         public string Name { get; set; }

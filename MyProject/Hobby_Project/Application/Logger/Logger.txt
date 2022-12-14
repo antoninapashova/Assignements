@@ -32,3 +32,21 @@
 [Error]18:02 An error occurred while saving the entity changes. See the inner exception for details.
 *-------------------------------*
 [Error]9:06 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]9:36 SubCategory with Id: 1does not exist
+*-------------------------------*
+[Error]9:36 SubCategory with Id: 6does not exist
+*-------------------------------*
+[Error]9:37 SubCategory with Id: 6does not exist
+*-------------------------------*
+[Error]9:39 SubCategory with Id: 6does not exist
+*-------------------------------*
+[Error]11:19 Missing type map configuration or unsupported mapping.
+
+Mapping types:
+CreateUserCommand -> User
+Application.Users.Commands.Create.CreateUserCommand -> Hobby_Project.User
+*-------------------------------*
+[Error]11:40 Category with that id does not exist
+*-------------------------------*
+[Error]11:42 Category with that id does not exist

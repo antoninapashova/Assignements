@@ -9,5 +9,6 @@ namespace Application.Repositories
 {
     public interface IUserRepository : IRepository<User>
     {
+        Task<bool> Authenticate(string username, string password);
     }
 }

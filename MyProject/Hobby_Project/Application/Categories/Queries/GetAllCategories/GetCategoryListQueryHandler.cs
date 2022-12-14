@@ -1,4 +1,5 @@
-﻿using Application.Repositories;
+﻿using Application.Logger;
+using Application.Repositories;
 using AutoMapper;
 using Hobby_Project;
 using MediatR;
@@ -18,6 +19,7 @@ namespace HobbyProject.Application.Categories.Queries.GetAllCategories
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            
         }
 
         public async Task<List<CategoryVm>> Handle(GetCategoriesListQuery request, CancellationToken cancellationToken)

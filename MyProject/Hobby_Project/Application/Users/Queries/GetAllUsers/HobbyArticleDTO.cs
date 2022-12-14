@@ -1,10 +1,10 @@
 ﻿using Hobby_Project;
 
-namespace Application.Users.Queries
+namespace HobbyProject.Application.Users.Queries.GetAllUsers
 {
     public class HobbyArticleDTO
     {
-       
+
         public string Title { get; set; }
         public string Description { get; set; }
 

@@ -9,6 +9,7 @@ using Domain.Entity;
 using System.Reflection;
 using HobbyProject.Presentation;
 using HobbyProject.Application.Categories.Queries.GetAllCategories;
+using Microsoft.AspNetCore.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +40,9 @@ builder.Services.AddOptions();
 //builder.Services.Configure<CloudinarySettings>(
 //builder.Configuration.GetSection("CloudinarySettings"));
 
+//builder.Services.AddAuthentication("BasicAuthentication").
+  //          AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>
+    //        ("BasicAuthentication", null);
 
 var app = builder.Build();
 

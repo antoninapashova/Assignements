@@ -1,4 +1,5 @@
 ﻿using Domain.Entity;
+using HobbyProject.Application.Users.Queries.GetAllUsers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.Users.Queries
 {
-    public class UserListVm
+    public class UserVm
     {
         public string Username { get; set; }
         public string FirstName { get; set; }
