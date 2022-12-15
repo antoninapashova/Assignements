@@ -2,7 +2,6 @@
 using Application.Repositories;
 using AutoMapper;
 using Hobby_Project;
-using HobbyProject.Application.Categories.Queries.GetAllCategories;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -33,7 +32,7 @@ namespace HobbyProject.Application.Categories.Queries.GetSubCategoryFromCategory
 
                 //SubCategory
                 var hobbySubCategory = result.HobbySubCategories.FirstOrDefault(x => x.Id == request.HobbySubCategotyId);
-                HobbySubCategoryDTO hobbySubCategoryDTO = _mapper.Map<HobbySubCategoryDTO>(hobbySubCategory);
+                HobbySubCategoryDto hobbySubCategoryDTO = _mapper.Map<HobbySubCategoryDto>(hobbySubCategory);
 
                 CategoryWithSubCategoryVm categoryWithSubCategoryVm = _mapper.Map<CategoryWithSubCategoryVm>(result);
                 categoryWithSubCategoryVm.HobbySubCategoryDTO = hobbySubCategoryDTO;

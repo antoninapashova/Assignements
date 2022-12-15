@@ -29,16 +29,14 @@ namespace Application.Users.Commands.Edit
             try
             {
                  User user = _mapper.Map<User>(command);
-                    await _unitOfWork.UserRepository.Update(user);
-                    await _unitOfWork.Save();
-            return await Task.FromResult(command.Id);
+                 await _unitOfWork.UserRepository.Update(user);
+                 await _unitOfWork.Save();
+                 return await Task.FromResult(command.Id);
             }catch(Exception e)
             {
                 _log.LogError(e.Message);
                 return await Task.FromResult(0);
             }
-            
         }
-        
     }
 }

@@ -18,9 +18,6 @@ C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProje
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\MediatR.dll
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\MediatR.Contracts.dll
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\MediatR.Extensions.Microsoft.DependencyInjection.dll
-C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\Microsoft.AspNetCore.Html.Abstractions.dll
-C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\Microsoft.AspNetCore.Http.Abstractions.dll
-C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\Microsoft.AspNetCore.Http.Features.dll
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\Microsoft.VisualStudio.CodeCoverage.Shim.dll
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
@@ -61,7 +58,6 @@ C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProje
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\NuGet.Frameworks.dll
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\System.CodeDom.dll
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
-C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\System.Diagnostics.EventLog.dll
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\System.Drawing.Common.dll
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\System.Memory.Data.dll
@@ -147,8 +143,6 @@ C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProje
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Diagnostics.EventLog.Messages.dll
-C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Diagnostics.EventLog.dll
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
@@ -172,3 +166,15 @@ C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProje
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\obj\Debug\net6.0\HobbyProjectTests.pdb
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\obj\Debug\net6.0\HobbyProjectTests.genruntimeconfig.cache
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\obj\Debug\net6.0\ref\HobbyProjectTests.dll
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\HobbyProject.Presentation.deps.json
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\HobbyProject.Presentation.runtimeconfig.json
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\appsettings.json
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\HobbyProject.Presentation.exe
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\HobbyProject.Presentation.dll
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProjectTests\bin\Debug\net6.0\HobbyProject.Presentation.pdb

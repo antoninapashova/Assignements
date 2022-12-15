@@ -1,6 +1,7 @@
 ﻿using Domain.Entity;
 using Domain.Interfaces;
 using Hobby_Project;
+using HobbyProject.Application.Categories.Queries;
 
 namespace Application.Notifications
 {

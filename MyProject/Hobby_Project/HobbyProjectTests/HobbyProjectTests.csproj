@@ -38,6 +38,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Application\HobbyProject.Application.csproj" />
+    <ProjectReference Include="..\HobbyProject.Presentation\HobbyProject.Presentation.csproj" />
     <ProjectReference Include="..\Infrastructure\HobbyProject.Infrastructure.csproj" />
   </ItemGroup>
 

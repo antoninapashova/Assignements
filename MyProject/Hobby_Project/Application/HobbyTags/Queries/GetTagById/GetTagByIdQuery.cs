@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HobbyProject.Application.HobbyTags.Queries.GetTagById
 {
-    public class GetTagByIdQuery : IRequest<TagVm>
+    public class GetTagByIdQuery : IRequest<TagDto>
     {
         public int Id { get; set; }
     }

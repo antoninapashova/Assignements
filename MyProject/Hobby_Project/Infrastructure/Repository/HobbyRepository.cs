@@ -33,7 +33,13 @@ namespace Infrastructure.Repository
         }
         public async Task<IEnumerable<HobbyArticle>> GetAllEntitiesAsync()
         {
-            return _context.HobbyArticles;
+            return await _context.HobbyArticles
+                .Include(x=>x.HobbyComments)
+                   .ThenInclude(x=>x.User)
+                .Include(x=>x.HobbySubCategory)
+                .Include(x=>x.HobbyPhoto)
+                .Include(x=>x.User)
+                .ToListAsync();
         }
         public async Task<HobbyArticle> GetByIdAsync(int id)
         {

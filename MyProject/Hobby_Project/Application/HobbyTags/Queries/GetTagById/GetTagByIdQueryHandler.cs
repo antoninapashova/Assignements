@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace HobbyProject.Application.HobbyTags.Queries.GetTagById
 {
-    public class GetTagByIdQueryHandler : IRequestHandler<GetTagByIdQuery, TagVm>
+    public class GetTagByIdQueryHandler : IRequestHandler<GetTagByIdQuery, TagDto>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -25,18 +25,18 @@ namespace HobbyProject.Application.HobbyTags.Queries.GetTagById
             _log = SingletonLogger.Instance;
         }
 
-        public async Task<TagVm> Handle(GetTagByIdQuery request, CancellationToken cancellationToken)
+        public async Task<TagDto> Handle(GetTagByIdQuery request, CancellationToken cancellationToken)
         {
             try
             {
                 var tag = await _unitOfWork.TagRepository.GetByIdAsync(request.Id);
-                var result = _mapper.Map<TagVm>(tag);
+                var result = _mapper.Map<TagDto>(tag);
                 return await Task.FromResult(result);
             }
             catch (Exception e)
             {
                 _log.LogError(e.Message);
-                return await Task.FromResult<TagVm>(null);
+                return await Task.FromResult<TagDto>(null);
             }
         }
     }

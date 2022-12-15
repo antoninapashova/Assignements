@@ -3,6 +3,7 @@ using Application.Notifications;
 using Application.Repositories;
 using AutoMapper;
 using Hobby_Project;
+using HobbyProject.Application.Categories.Queries;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -29,12 +30,12 @@ namespace Application.HobbySubCategories.Commands.Create
             _mapper= mapper;
         }
 
-        public async Task<HobbySubCategory> Handle(CreateSubCategoryCommand command, CancellationToken cancellationToken)
+        public async Task<Hobby_Project.HobbySubCategory> Handle(CreateSubCategoryCommand command, CancellationToken cancellationToken)
         {
             try
             {
                 if (command == null) throw new NullReferenceException("Create sub category command is null!");
-                HobbySubCategory hobbySubCategory = _mapper.Map<HobbySubCategory>(command);
+                Hobby_Project.HobbySubCategory hobbySubCategory = _mapper.Map<Hobby_Project.HobbySubCategory>(command);
                 await _unitOfWork.SubCategoryRepository.Add(hobbySubCategory);
                 await _unitOfWork.Save();
                 //_hobbyPublisher.Publish(hobbySubCategory);
@@ -43,7 +44,7 @@ namespace Application.HobbySubCategories.Commands.Create
             catch (Exception e)
             {
                 _log.LogError(e.Message);
-                return await Task.FromResult<HobbySubCategory>(null);
+                return await Task.FromResult<Hobby_Project.HobbySubCategory>(null);
             }
         }
     }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HobbyProject.Application.HobbySubCategories.Queries.GetAllSubCategories
 {
-    internal class GetSubCategoryListQueryHandler : IRequestHandler<GetSubCategoryListQuery, IEnumerable<HobbySubCategoryVm>>
+    internal class GetSubCategoryListQueryHandler : IRequestHandler<GetSubCategoryListQuery, IEnumerable<HobbySubCategoryDto>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private IMapper _mapper;
@@ -20,10 +20,10 @@ namespace HobbyProject.Application.HobbySubCategories.Queries.GetAllSubCategorie
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<HobbySubCategoryVm>> Handle(GetSubCategoryListQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<HobbySubCategoryDto>> Handle(GetSubCategoryListQuery request, CancellationToken cancellationToken)
         {
             var result = await _unitOfWork.SubCategoryRepository.GetAllEntitiesAsync();
-            List<HobbySubCategoryVm> subCategories = _mapper.Map<List<HobbySubCategoryVm>>(result.ToList());
+            List<HobbySubCategoryDto> subCategories = _mapper.Map<List<HobbySubCategoryDto>>(result.ToList());
             return await Task.FromResult(subCategories);
         }
     }

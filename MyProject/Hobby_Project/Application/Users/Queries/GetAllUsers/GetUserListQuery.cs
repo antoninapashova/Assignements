@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HobbyProject.Application.Users.Queries.GetAllUsers
 {
-    public class GetUserListQuery : IRequest<IEnumerable<UserVm>>
+    public class GetUserListQuery : IRequest<IEnumerable<UserDto>>
     {
         public string Username { get; set; }
         public string FirstName { get; set; }

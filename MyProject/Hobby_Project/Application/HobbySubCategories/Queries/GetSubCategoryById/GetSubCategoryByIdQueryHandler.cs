@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace HobbyProject.Application.HobbySubCategories.Queries.GetSubCategoryById
 {
-    public class GetSubCategoryByIdQueryHandler : IRequestHandler<GetSubCategoryQuery, HobbySubCategoryVm>
+    public class GetSubCategoryByIdQueryHandler : IRequestHandler<GetSubCategoryQuery, HobbySubCategoryDto>
     {
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
@@ -24,17 +24,17 @@ namespace HobbyProject.Application.HobbySubCategories.Queries.GetSubCategoryById
             _logger = SingletonLogger.Instance;
         }
 
-        public async Task<HobbySubCategoryVm> Handle(GetSubCategoryQuery request, CancellationToken cancellationToken)
+        public async Task<HobbySubCategoryDto> Handle(GetSubCategoryQuery request, CancellationToken cancellationToken)
         {
             try
             {
               var subCategory = await _unitOfWork.SubCategoryRepository.GetByIdAsync(request.Id);
-              HobbySubCategoryVm hobbySubCategoryVm = _mapper.Map<HobbySubCategoryVm>(subCategory);
+              HobbySubCategoryDto hobbySubCategoryVm = _mapper.Map<HobbySubCategoryDto>(subCategory);
                return await Task.FromResult(hobbySubCategoryVm);
             }catch(Exception e)
             {
                 _logger.LogError(e.Message);
-                return await Task.FromResult<HobbySubCategoryVm>(null);
+                return await Task.FromResult<HobbySubCategoryDto>(null);
             }
             
         }

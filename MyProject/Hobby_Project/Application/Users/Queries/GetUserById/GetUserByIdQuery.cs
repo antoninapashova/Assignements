@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace HobbyProject.Application.Users.Queries.GetUserById
 {
-    public class GetUserByIdQuery : IRequest<UserVm>
+    public class GetUserByIdQuery : IRequest<UserDto>
     {
         public int Id { get; set; }
     }

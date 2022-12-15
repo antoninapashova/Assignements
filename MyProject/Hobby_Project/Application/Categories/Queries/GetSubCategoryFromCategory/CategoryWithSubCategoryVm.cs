@@ -1,5 +1,4 @@
-﻿using HobbyProject.Application.Categories.Queries.GetAllCategories;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +9,6 @@ namespace HobbyProject.Application.Categories.Queries.GetSubCategoryFromCategory
     public  class CategoryWithSubCategoryVm
     {
         public string Name { get; set; }
-        public HobbySubCategoryDTO HobbySubCategoryDTO { get; set; }
+        public HobbySubCategoryDto HobbySubCategoryDTO { get; set; }
     }
 }

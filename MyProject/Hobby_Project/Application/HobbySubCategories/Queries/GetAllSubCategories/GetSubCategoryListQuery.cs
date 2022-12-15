@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HobbyProject.Application.HobbySubCategories.Queries.GetAllSubCategories
 {
-    public class GetSubCategoryListQuery : IRequest<IEnumerable<HobbySubCategoryVm>>
+    public class GetSubCategoryListQuery : IRequest<IEnumerable<HobbySubCategoryDto>>
     {
         public string Name { get; set; }
     }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Application.HobbyTags.Queries
 {
-    public class GetTagQuery : IRequest<IEnumerable<TagVm>>
+    public class GetTagQuery : IRequest<IEnumerable<TagDto>>
     {
         public int Id { get; set; }
 

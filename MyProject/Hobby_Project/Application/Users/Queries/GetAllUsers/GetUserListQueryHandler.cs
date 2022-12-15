@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace HobbyProject.Application.Users.Queries.GetAllUsers
 {
-    public class GetUserListQueryHandler : IRequestHandler<GetUserListQuery, IEnumerable<UserVm>>
+    public class GetUserListQueryHandler : IRequestHandler<GetUserListQuery, IEnumerable<UserDto>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -20,11 +20,11 @@ namespace HobbyProject.Application.Users.Queries.GetAllUsers
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<UserVm>> Handle(GetUserListQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<UserDto>> Handle(GetUserListQuery request, CancellationToken cancellationToken)
         {
             var result = await _unitOfWork.UserRepository.GetAllEntitiesAsync();
 
-            IEnumerable<UserVm> users = _mapper.Map<IEnumerable<UserVm>>(result.ToList());
+            IEnumerable<UserDto> users = _mapper.Map<IEnumerable<UserDto>>(result.ToList());
             return await Task.FromResult(users);
         }
     }

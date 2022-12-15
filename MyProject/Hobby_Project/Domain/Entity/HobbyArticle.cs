@@ -16,11 +16,11 @@ namespace Domain.Entity
         public string Description { get; set; }
         public int UserId { get; set; }
         public int HobbySubCategoryId { get; set; }
-        public User User { get; set; }
-        public HobbySubCategory HobbySubCategory { get; set; }
-        public ICollection<HobbyPhoto> HobbyPhoto { get; set; }
-        public ICollection<HobbyComment> HobbyComments { get; }
-        public ICollection<ArticleTag> HobbyTags { get; }
+        public virtual User User { get; set; }
+        public virtual HobbySubCategory HobbySubCategory { get; set; }
+        public virtual ICollection<HobbyPhoto> HobbyPhoto { get; set; }
+        public virtual ICollection<HobbyComment> HobbyComments { get; }
+        public virtual ICollection<ArticleTag> HobbyTags { get; }
     }
 
 }

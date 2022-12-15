@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Application.HobbyTags.Queries
 {
-    public class GetTagListQueryHandler : IRequestHandler<GetTagQuery, IEnumerable<TagVm>>
+    public class GetTagListQueryHandler : IRequestHandler<GetTagQuery, IEnumerable<TagDto>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private IMapper _mapper;
@@ -21,10 +21,10 @@ namespace Application.HobbyTags.Queries
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<TagVm>> Handle(GetTagQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<TagDto>> Handle(GetTagQuery request, CancellationToken cancellationToken)
         {
             var result = await _unitOfWork.TagRepository.GetAllEntitiesAsync();
-            IEnumerable<TagVm> enumerable = _mapper.Map<IEnumerable<TagVm>>(result.ToList());
+            IEnumerable<TagDto> enumerable = _mapper.Map<IEnumerable<TagDto>>(result.ToList());
 
             return await Task.FromResult(enumerable);
         }

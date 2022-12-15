@@ -50,3 +50,45 @@ Application.Users.Commands.Create.CreateUserCommand -> Hobby_Project.User
 [Error]11:40 Category with that id does not exist
 *-------------------------------*
 [Error]11:42 Category with that id does not exist
+*-------------------------------*
+[Error]12:23 The database operation was expected to affect 1 row(s), but actually affected 0 row(s); data may have been modified or deleted since entities were loaded. See http://go.microsoft.com/fwlink/?LinkId=527962 for information on understanding and handling optimistic concurrency exceptions.
+*-------------------------------*
+[Error]12:28 The database operation was expected to affect 1 row(s), but actually affected 0 row(s); data may have been modified or deleted since entities were loaded. See http://go.microsoft.com/fwlink/?LinkId=527962 for information on understanding and handling optimistic concurrency exceptions.
+*-------------------------------*
+[Error]13:35 Error mapping types.
+
+Mapping types:
+CreateCommentCommand -> HobbyComment
+Application.Comments.Commands.Create.CreateCommentCommand -> Hobby_Project.HobbyComment
+
+Type Map configuration:
+CreateCommentCommand -> HobbyComment
+Application.Comments.Commands.Create.CreateCommentCommand -> Hobby_Project.HobbyComment
+
+Destination Member:
+User
+
+*-------------------------------*
+[Error]13:36 Error mapping types.
+
+Mapping types:
+CreateCommentCommand -> HobbyComment
+Application.Comments.Commands.Create.CreateCommentCommand -> Hobby_Project.HobbyComment
+
+Type Map configuration:
+CreateCommentCommand -> HobbyComment
+Application.Comments.Commands.Create.CreateCommentCommand -> Hobby_Project.HobbyComment
+
+Destination Member:
+User
+
+*-------------------------------*
+[Error]14:01 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]14:08 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]14:12 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]19:07 Comment with Id4does not exist!
+*-------------------------------*
+[Error]20:39 Category with that id does not exist

@@ -1,4 +1,5 @@
 ﻿using Application.Users.Queries;
+using HobbyProject.Application.Users.Queries.GetAllUsers;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,8 @@ namespace Application.Comments.Commands.Create
     {
         public string Title { get; set; }
         public string CommentContent { get; set; }
-        public UserDTO User { get; set; }
-        public ArticleCommentDTO HobbyArticleComment {get; set;}
+        public int UserId { get; set; }
+        public int HobbyArticleId { get; set;}
     }
 
 }

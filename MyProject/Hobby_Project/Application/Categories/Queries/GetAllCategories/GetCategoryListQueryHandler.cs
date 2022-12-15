@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace HobbyProject.Application.Categories.Queries.GetAllCategories
 {
-    public class GetCategoryListQueryHandler : IRequestHandler<GetCategoriesListQuery, List<CategoryVm>>
+    public class GetCategoryListQueryHandler : IRequestHandler<GetCategoriesListQuery, List<CategoryDto>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -22,10 +22,10 @@ namespace HobbyProject.Application.Categories.Queries.GetAllCategories
             
         }
 
-        public async Task<List<CategoryVm>> Handle(GetCategoriesListQuery request, CancellationToken cancellationToken)
+        public async Task<List<CategoryDto>> Handle(GetCategoriesListQuery request, CancellationToken cancellationToken)
         {
             IEnumerable<HobbyCategory> categories = await _unitOfWork.CategoryRepository.GetAllEntitiesAsync();
-            List<CategoryVm> categoryListVms = _mapper.Map<List<CategoryVm>>(categories.ToList());
+            List<CategoryDto> categoryListVms = _mapper.Map<List<CategoryDto>>(categories.ToList());
             return await Task.FromResult(categoryListVms.ToList());
         }
     }
