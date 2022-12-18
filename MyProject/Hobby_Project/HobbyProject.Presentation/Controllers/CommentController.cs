@@ -1,13 +1,10 @@
-﻿using Application.Categories.Commands.Delete;
-using Application.Categories.Commands.Edit;
+﻿
 using Application.Comments.Commands.Create;
 using Application.Comments.Commands.Delete;
 using Application.Comments.Commands.Edit;
-using HobbyProject.Application.Categories.Queries.GetSubCategoryFromCategory;
 using HobbyProject.Application.Comments.Queries.GetAllComments;
 using HobbyProject.Application.Comments.Queries.GetCommentById;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HobbyProject.Presentation.Controllers

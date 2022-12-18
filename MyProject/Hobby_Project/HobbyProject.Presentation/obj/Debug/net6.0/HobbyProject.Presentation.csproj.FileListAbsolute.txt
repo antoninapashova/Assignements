@@ -93,3 +93,5 @@ C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProje
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProject.Presentation\obj\Debug\net6.0\HobbyProject.Presentation.genruntimeconfig.cache
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProject.Presentation\obj\Debug\net6.0\ref\HobbyProject.Presentation.dll
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProject.Presentation\obj\Debug\net6.0\HobbyProject.Presentation.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProject.Presentation\bin\Debug\net6.0\Microsoft.AspNetCore.TestHost.dll
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProject.Presentation\bin\Debug\net6.0\System.IO.Pipelines.dll

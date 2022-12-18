@@ -30,8 +30,6 @@ namespace Infrastructure.Repository
             HobbyCategory hobbyCategory = await isValid(id);
             _context.Remove(hobbyCategory);
         }
-
-
         public async Task<IEnumerable<HobbyCategory>> GetAllEntitiesAsync()
         {
             return _context.HobbyCategories.Include(h => h.HobbySubCategories).AsEnumerable();

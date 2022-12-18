@@ -22,7 +22,7 @@ namespace HobbyProject.Presentation.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllCategories()
+        public async Task<ActionResult> GetAllCategories()
         {
             var result = await _mediator.Send(new GetCategoriesListQuery());
             return Ok(result);
@@ -31,7 +31,7 @@ namespace HobbyProject.Presentation.Controllers
         
         [HttpGet]
         [Route("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<ActionResult> GetById(int id)
         {
             var query = new GetCategoryByIdQuery { Id = id };
             var result = await _mediator.Send(query);
@@ -41,7 +41,7 @@ namespace HobbyProject.Presentation.Controllers
 
         [HttpGet]
         [Route("{categoryId}/subCategories/{subCategoryId}")]
-        public async Task<IActionResult> GetSubCategoryFromCategory(int categoryId, int subCategoryId)
+        public async Task<ActionResult> GetSubCategoryFromCategory(int categoryId, int subCategoryId)
         {
             var query = new GetSubCategoryFromCategory { HobbyCategotyId = categoryId, HobbySubCategotyId = subCategoryId };
             var result = await _mediator.Send(query);
@@ -50,7 +50,7 @@ namespace HobbyProject.Presentation.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddCategory([FromBody] CreateCategoryCommand command)
+        public async Task<ActionResult> AddCategory([FromBody] CreateCategoryCommand command)
         {
             var result = await _mediator.Send(command);
             return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
@@ -59,7 +59,7 @@ namespace HobbyProject.Presentation.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public async Task<IActionResult> UpdateCategory(int id, [FromBody] EditCategoryCommand editCategory)
+        public async Task<ActionResult> UpdateCategory(int id, [FromBody] EditCategoryCommand editCategory)
         {
              editCategory = new EditCategoryCommand { Id = id, Name = editCategory.Name };
              var result = await _mediator.Send(editCategory);
@@ -71,7 +71,7 @@ namespace HobbyProject.Presentation.Controllers
 
         [HttpDelete]
         [Route("{id}")]
-        public async Task<IActionResult> DeleteCategory(int id)
+        public async Task<ActionResult> DeleteCategory(int id)
         {
             var command = new DeleteCategoryCommand { Id = id };
             var result = await _mediator.Send(command);

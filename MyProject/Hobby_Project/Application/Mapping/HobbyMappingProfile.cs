@@ -17,6 +17,7 @@ using Hobby_Project;
 using HobbyProject.Application.Categories.Queries;
 using HobbyProject.Application.Categories.Queries.GetSubCategoryFromCategory;
 using HobbyProject.Application.Comments.Commands;
+using HobbyProject.Application.Hobby;
 using HobbyProject.Application.HobbyTags.Queries;
 using System;
 using System.Collections.Generic;
@@ -30,38 +31,48 @@ namespace Application.Mapping
     {
        public HobbyMappingProfile()
         {
-            //Create
-            CreateMap<CreateCategoryCommand, HobbyCategory>();
-            CreateMap<CreateCommentCommand, HobbyComment>();
+            //HobbyArticle
             CreateMap<CreateHobbyCommand, HobbyArticle>();
-            CreateMap<CreateSubCategoryCommand, HobbySubCategory>();
-            CreateMap<CreateTagCommand, Tag>();
-            CreateMap<CreateUserCommand, User>();
             CreateMap<ArticleCommentDTO, HobbyArticle>();
-            CreateMap<UserDTO, User>();
-            //Edit
-            CreateMap<EditCategoryCommand, HobbyCategory>();
-            CreateMap<EditCommentCommand, HobbyComment>();
             CreateMap<EditHobbyCommand, HobbyArticle>();
-            CreateMap<EditUserCommand, User>();
-            //Get
-            CreateMap<HobbyComment, CommentDto>()
-                .ForMember("Username", x=>x.MapFrom(y=>y.User.Username));
-
-              
             CreateMap<HobbyArticle, HobbyDto>()
                 .ForMember("Username", x=>x.MapFrom(y=>y.User.Username))
                 .ForMember("HobbySubCategory", x=>x.MapFrom(y=>y.HobbySubCategory.Name));
 
-            CreateMap<HobbyCategory, CategoryDto>();
-            CreateMap<HobbySubCategory, HobbySubCategoryDto>();
-            CreateMap<HobbyCategory, CategoryWithSubCategoryVm>();
-            CreateMap<Tag, TagDto>();
-            CreateMap<Tag, HobbyTagDto>();
-            CreateMap<User, UserDto>();
 
+            //Category
+            CreateMap<CreateCategoryCommand, HobbyCategory>();
+            CreateMap<EditCategoryCommand, HobbyCategory>();
+            CreateMap<HobbyCategory, CategoryDto>();
+            CreateMap<HobbyCategory, CategoryWithSubCategoryVm>();
+
+
+            //Subcategory
+            CreateMap<CreateSubCategoryCommand, HobbySubCategory>();
+            CreateMap<HobbySubCategory, HobbySubCategoryDto>();
+
+
+            //Comment
+            CreateMap<CreateCommentCommand, HobbyComment>();
+            CreateMap<EditCommentCommand, HobbyComment>();
+            CreateMap<HobbyComment, CommentDto>()
+                .ForMember("Username", x=>x.MapFrom(y=>y.User.Username));
             CreateMap<HobbyComment, HobbyCommentDTO>()
                 .ForMember("Username", x=>x.MapFrom(y=>y.User.Username));
+
+
+            //User
+            CreateMap<CreateUserCommand, User>();
+            CreateMap<UserDTO, User>();
+            CreateMap<User, UserDto>();
+            CreateMap<EditUserCommand, User>();
+
+
+            //Tag
+            CreateMap<CreateTagCommand, Tag>();
+            CreateMap<Tag, TagDto>();
+            CreateMap<Tag, HobbyTagDto>();
+            CreateMap<Tag, CreateHobbyTagDto>();
        }
     }
 }

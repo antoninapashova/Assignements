@@ -2,7 +2,6 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
 using Application.Repositories;
-//using Application.Cloudinary;
 using Infrastructure.Repository;
 using Infrastructure;
 using Domain.Entity;
@@ -11,6 +10,7 @@ using HobbyProject.Presentation;
 using HobbyProject.Application.Categories.Queries.GetAllCategories;
 using Microsoft.AspNetCore.Authentication;
 using Application.Photos;
+using HobbyProject.Presentation.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +30,7 @@ builder.Services.AddScoped<IHobbyArticleRepository, HobbyRepository>();
 builder.Services.AddScoped<IPhotoRepository, HobbyPhotoRepository>();
 builder.Services.AddScoped<ITagRepository, TagRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserConfiguration, UserConfiguration>();
 
 builder.Services.AddMediatR(typeof(GetCategoriesListQuery).GetTypeInfo().Assembly);
 builder.Services.AddAutoMapper(typeof(HobbyProject.Application.AssemblyMarketPresentatio));
@@ -60,5 +61,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.UseUserConfiguration();
 app.Run();

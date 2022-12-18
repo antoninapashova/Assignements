@@ -1,6 +1,8 @@
-﻿using Application.Users.Commands.Create;
+﻿using Application.Hobby.Queries;
+using Application.Users.Commands.Create;
 using Domain.Entity;
 using Hobby_Project;
+using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
@@ -20,63 +22,43 @@ namespace Infrastructure.Data
         public DbSet<Tag> Tags { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<HobbyPhoto> HobbyPhotos { get; set; }
+        public DbSet<ArticleTag> ArticleTag { get; set; }
 
-        public HobbyDbContext() { }
+        public HobbyDbContext() :base(){ }
         public HobbyDbContext(DbContextOptions<HobbyDbContext> options) : base(options) { }
+        /*
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            string conn = @"Server=DESKTOP-AI1LMFV\SQLEXPRESS;Database = HobbyDB;Trusted_Connection=SSPI;Encrypt = false;TrustServerCertificate=true";
+
+
+               if (!optionsBuilder.IsConfigured)
+                 {
+                optionsBuilder.UseSqlServer(conn);
+               }
+         }
+        */
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
+            
             modelBuilder.Entity<ArticleTag>(at =>
             {
                 at.HasKey(x => new { x.HobbyArticleId, x.TagId });
             });
+            
 
-            modelBuilder.Entity<HobbyCategory>(hc =>
-            {
-                hc.HasData(new HobbyCategory()
-                {
-                    Id = 1,
-                    Name = "Sports",
-                },
-                new HobbyCategory()
-                {
-                    Id = 2,
-                    Name = "Cooking"
-                });
-            });
+            modelBuilder.Entity<HobbyArticle>()
+                .HasMany(x => x.HobbyTags)
+                .WithMany(x => x.HobbyArticles)
+                .UsingEntity<ArticleTag>(
+                    x => x.HasOne(x => x.Tag)
+                    .WithMany().HasForeignKey(x => x.TagId),
+                    x => x.HasOne(x => x.HobbyArticle)
+                   .WithMany().HasForeignKey(x => x.HobbyArticleId));
 
-
-            modelBuilder.Entity<HobbySubCategory>(sc =>
-            {
-                sc.HasData(new HobbySubCategory()
-                {
-                    Id = 1,
-                    Name = "Voleyball",
-                    HobbyCategoryId = 1,
-                },
-                new HobbySubCategory()
-                {
-                    Id = 2,
-                    Name = "Salads",
-                    HobbyCategoryId = 2,
-                });
-            });
-
-            modelBuilder.Entity<Tag>(t =>
-            {
-                t.HasData(new Tag()
-                {
-                    Id = 1,
-                    Name = "Outside sports",
-                },
-                new Tag()
-                {
-                    Id = 2,
-                    Name = "Vegetariаn food",
-                });
-            });
 
             modelBuilder.Entity<HobbyArticle>(a =>
             {

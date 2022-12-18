@@ -43,8 +43,11 @@ namespace Infrastructure.Repository
         }
         public async Task<HobbyArticle> GetByIdAsync(int id)
         {
-            var hobbyArticle = await isValid(id);
-            return hobbyArticle;
+           var hobbyArticle = await isValid(id);
+            return await _context.HobbyArticles
+                    .Where(h => h.Id == id)
+                    .Include(x => x.HobbySubCategory)
+                    .Include(y => y.User).FirstOrDefaultAsync();
         }
 
         public async Task Update( HobbyArticle hobbyArticle)
@@ -56,7 +59,8 @@ namespace Infrastructure.Repository
         {
             if (Id <= 0) throw new ArgumentException("Id must be positive");
             var hobby = await _context.HobbyArticles.FirstOrDefaultAsync(h => h.Id == Id);
-            if (hobby == null) throw new InvalidOperationException("HobbyArticle with Id: " + Id + "does not exist");
+            
+            if (hobby == null) throw new InvalidOperationException("HobbyArticle with Id: " + Id + " does not exist");
             return hobby;
         }
     }

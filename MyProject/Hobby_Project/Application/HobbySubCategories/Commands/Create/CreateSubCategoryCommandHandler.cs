@@ -18,7 +18,7 @@ namespace Application.HobbySubCategories.Commands.Create
         private readonly IUnitOfWork _unitOfWork;
         //private readonly HobbyPublisher _hobbyPublisher;
         private ILog _log;
-        private IMapper _mapper;
+        private readonly IMapper _mapper;
 
         public CreateSubCategoryCommandHandler(IUnitOfWork unitOfWork
             //, HobbyPublisher hobbyPublisher
@@ -30,12 +30,12 @@ namespace Application.HobbySubCategories.Commands.Create
             _mapper= mapper;
         }
 
-        public async Task<Hobby_Project.HobbySubCategory> Handle(CreateSubCategoryCommand command, CancellationToken cancellationToken)
+        public async Task<HobbySubCategory> Handle(CreateSubCategoryCommand command, CancellationToken cancellationToken)
         {
             try
             {
                 if (command == null) throw new NullReferenceException("Create sub category command is null!");
-                Hobby_Project.HobbySubCategory hobbySubCategory = _mapper.Map<Hobby_Project.HobbySubCategory>(command);
+                HobbySubCategory hobbySubCategory = _mapper.Map<HobbySubCategory>(command);
                 await _unitOfWork.SubCategoryRepository.Add(hobbySubCategory);
                 await _unitOfWork.Save();
                 //_hobbyPublisher.Publish(hobbySubCategory);
@@ -44,7 +44,7 @@ namespace Application.HobbySubCategories.Commands.Create
             catch (Exception e)
             {
                 _log.LogError(e.Message);
-                return await Task.FromResult<Hobby_Project.HobbySubCategory>(null);
+                return await Task.FromResult<HobbySubCategory>(null);
             }
         }
     }

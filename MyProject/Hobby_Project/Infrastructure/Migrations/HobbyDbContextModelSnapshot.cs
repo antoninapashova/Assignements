@@ -122,20 +122,6 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("HobbyCategories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(2022, 12, 9, 12, 27, 0, 761, DateTimeKind.Local).AddTicks(1858),
-                            Name = "Sports"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedDate = new DateTime(2022, 12, 9, 12, 27, 0, 761, DateTimeKind.Local).AddTicks(1919),
-                            Name = "Cooking"
-                        });
                 });
 
             modelBuilder.Entity("Hobby_Project.HobbyComment", b =>
@@ -191,22 +177,6 @@ namespace Infrastructure.Migrations
                     b.HasIndex("HobbyCategoryId");
 
                     b.ToTable("HobbySubCategories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(2022, 12, 9, 12, 27, 0, 761, DateTimeKind.Local).AddTicks(2048),
-                            HobbyCategoryId = 1,
-                            Name = "Voleyball"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedDate = new DateTime(2022, 12, 9, 12, 27, 0, 761, DateTimeKind.Local).AddTicks(2055),
-                            HobbyCategoryId = 2,
-                            Name = "Salads"
-                        });
                 });
 
             modelBuilder.Entity("Hobby_Project.Tag", b =>
@@ -227,20 +197,6 @@ namespace Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tags");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedDate = new DateTime(2022, 12, 9, 12, 27, 0, 761, DateTimeKind.Local).AddTicks(2083),
-                            Name = "Outside sports"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedDate = new DateTime(2022, 12, 9, 12, 27, 0, 761, DateTimeKind.Local).AddTicks(2087),
-                            Name = "Vegetariаn food"
-                        });
                 });
 
             modelBuilder.Entity("Hobby_Project.User", b =>
@@ -285,13 +241,13 @@ namespace Infrastructure.Migrations
             modelBuilder.Entity("Domain.Entity.ArticleTag", b =>
                 {
                     b.HasOne("Domain.Entity.HobbyArticle", "HobbyArticle")
-                        .WithMany("HobbyTags")
+                        .WithMany()
                         .HasForeignKey("HobbyArticleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Hobby_Project.Tag", "Tag")
-                        .WithMany("HobbyArticles")
+                        .WithMany()
                         .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -364,8 +320,6 @@ namespace Infrastructure.Migrations
                     b.Navigation("HobbyComments");
 
                     b.Navigation("HobbyPhoto");
-
-                    b.Navigation("HobbyTags");
                 });
 
             modelBuilder.Entity("Hobby_Project.HobbyCategory", b =>
@@ -374,11 +328,6 @@ namespace Infrastructure.Migrations
                 });
 
             modelBuilder.Entity("Hobby_Project.HobbySubCategory", b =>
-                {
-                    b.Navigation("HobbyArticles");
-                });
-
-            modelBuilder.Entity("Hobby_Project.Tag", b =>
                 {
                     b.Navigation("HobbyArticles");
                 });

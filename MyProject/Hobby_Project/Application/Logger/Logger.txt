@@ -92,3 +92,5 @@ User
 [Error]19:07 Comment with Id4does not exist!
 *-------------------------------*
 [Error]20:39 Category with that id does not exist
+*-------------------------------*
+[Error]13:27 An error occurred while saving the entity changes. See the inner exception for details.
