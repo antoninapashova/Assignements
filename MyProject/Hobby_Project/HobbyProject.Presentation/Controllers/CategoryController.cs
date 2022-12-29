@@ -5,6 +5,7 @@ using Application.Categories.Commands.Edit;
 using HobbyProject.Application.Categories.Queries.GetAllCategories;
 using HobbyProject.Application.Categories.Queries.GetCategoryById;
 using HobbyProject.Application.Categories.Queries.GetSubCategoryFromCategory;
+using HobbyProject.Presentation.Middleware;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -15,16 +16,19 @@ namespace HobbyProject.Presentation.Controllers
     public class CategoryController : ControllerBase
     {
         public readonly IMediator _mediator;
+        
 
         public CategoryController(IMediator mediator)
         {
             _mediator = mediator;
+           
         }
 
         [HttpGet]
         public async Task<ActionResult> GetAllCategories()
         {
             var result = await _mediator.Send(new GetCategoriesListQuery());
+           
             return Ok(result);
         }
 
@@ -56,18 +60,17 @@ namespace HobbyProject.Presentation.Controllers
             return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
         }
 
-
+        
         [HttpPut]
         [Route("{id}")]
         public async Task<ActionResult> UpdateCategory(int id, [FromBody] EditCategoryCommand editCategory)
         {
              editCategory = new EditCategoryCommand { Id = id, Name = editCategory.Name };
              var result = await _mediator.Send(editCategory);
-
-            if (result == 0) return NotFound();
-
-            return NoContent();
+             if (result ==null) return NotFound();
+             return Ok(result);
         }
+        
 
         [HttpDelete]
         [Route("{id}")]
@@ -76,7 +79,7 @@ namespace HobbyProject.Presentation.Controllers
             var command = new DeleteCategoryCommand { Id = id };
             var result = await _mediator.Send(command);
             if (result == 0) return NotFound();
-            return NoContent();
+            return Ok(result);
         }
 
     }

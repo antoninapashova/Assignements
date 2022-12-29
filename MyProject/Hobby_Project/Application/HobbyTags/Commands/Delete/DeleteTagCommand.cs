@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.HobbyTags.Commands.Delete
 {
-    internal class DeleteTagCommand : IRequest<int>
+    public class DeleteTagCommand : IRequest<int>
     {
         public int Id { get; set; }
     }

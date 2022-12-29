@@ -45,9 +45,10 @@ namespace Infrastructure.Repository
             HobbyComment comment = await IsValid(id);
             return comment;
         }
-        public async Task Update(HobbyComment comment)
+        public async Task<HobbyComment> Update(HobbyComment comment)
         {
-            _context.Update(comment);
+           _context.HobbyComments.Update(comment);
+            return comment;
         }
 
         private async Task<HobbyComment> IsValid(int commentId)

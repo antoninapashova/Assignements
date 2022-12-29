@@ -22,55 +22,41 @@ namespace Infrastructure.Data
         public DbSet<Tag> Tags { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<HobbyPhoto> HobbyPhotos { get; set; }
-        public DbSet<ArticleTag> ArticleTag { get; set; }
 
-        public HobbyDbContext() :base(){ }
+        public HobbyDbContext() : base(){ }
         public HobbyDbContext(DbContextOptions<HobbyDbContext> options) : base(options) { }
-        /*
+        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string conn = @"Server=DESKTOP-AI1LMFV\SQLEXPRESS;Database = HobbyDB;Trusted_Connection=SSPI;Encrypt = false;TrustServerCertificate=true";
-
-
-               if (!optionsBuilder.IsConfigured)
-                 {
+            
+            if (!optionsBuilder.IsConfigured)
+            {
                 optionsBuilder.UseSqlServer(conn);
-               }
+            }
          }
-        */
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             
-            modelBuilder.Entity<ArticleTag>(at =>
-            {
-                at.HasKey(x => new { x.HobbyArticleId, x.TagId });
-            });
-            
-
-            modelBuilder.Entity<HobbyArticle>()
-                .HasMany(x => x.HobbyTags)
-                .WithMany(x => x.HobbyArticles)
-                .UsingEntity<ArticleTag>(
-                    x => x.HasOne(x => x.Tag)
-                    .WithMany().HasForeignKey(x => x.TagId),
-                    x => x.HasOne(x => x.HobbyArticle)
-                   .WithMany().HasForeignKey(x => x.HobbyArticleId));
-
-
             modelBuilder.Entity<HobbyArticle>(a =>
             {
-                a.HasMany(x => x.HobbyComments).WithOne(x => x.HobbyArticle).HasForeignKey(x => x.HobbyArticleId).OnDelete(DeleteBehavior.Cascade);
-                a.HasMany(x => x.HobbyPhoto).WithOne(x => x.HobbyArticle).HasForeignKey(x => x.HobbyArticleId).OnDelete(DeleteBehavior.Cascade);
-               
-            });
+                a.HasMany(x => x.HobbyComments).WithOne(x => x.HobbyArticle)
+                .HasForeignKey(x => x.HobbyArticleId).OnDelete(DeleteBehavior.Cascade);
 
+                a.HasMany(x => x.HobbyPhoto).WithOne(x => x.HobbyArticle)
+                .HasForeignKey(x => x.HobbyArticleId).OnDelete(DeleteBehavior.Cascade);
+
+                a.HasMany(t => t.Tags).WithMany(h => h.HobbyArticles);
+            });
+            
             modelBuilder.Entity<User>(u =>
             {
                 u.HasMany(x => x.Hobbies).WithOne(x => x.User).HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.Cascade);
             });
+           
         }
     }
 }

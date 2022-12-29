@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Primitives;
+using System.Reflection.PortableExecutable;
 
 namespace HobbyProject.Presentation.Middleware
 {
@@ -13,18 +14,18 @@ namespace HobbyProject.Presentation.Middleware
 
         public async Task InvokeAsync(HttpContext httpContext, IUserConfiguration userConfiguration)
         {
+            
             if (httpContext.Request.Headers.TryGetValue("Username", out StringValues username))
             {
                 userConfiguration.Username = username.SingleOrDefault();
-            }
-            else
-            {
-                //Here you can throw exception to force client to send the header
             }
 
             userConfiguration.InvokedDateTime = DateTime.UtcNow;
 
             await _next.Invoke(httpContext);
-        }
+      }
+
     }
+
+    
 }

@@ -16,7 +16,7 @@ namespace Application.Categories.Commands.Create
     {
         private readonly IUnitOfWork _unitOfWork;
         private ILog _log;
-        private IMapper _mapper;
+        private readonly IMapper _mapper;
         
         public CreateCategoryCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
@@ -38,7 +38,7 @@ namespace Application.Categories.Commands.Create
             catch (Exception e)
             {
                 _log.LogError(e.Message);
-                return await Task.FromResult<HobbyCategory>(null);
+                throw new NullReferenceException();
             }
         }
     }

@@ -40,12 +40,14 @@ namespace Infrastructure.Repository
         public async Task<Tag> GetByIdAsync(int id)
         {
             Tag tag = await IsValid(id);
+
             return tag;
         }
 
-        public async Task Update(Tag entity)
+        public async Task<Tag> Update(Tag entity)
         {
              _context.Update(entity);
+            return entity;
         }
 
         private async Task<Tag> IsValid(int Id)

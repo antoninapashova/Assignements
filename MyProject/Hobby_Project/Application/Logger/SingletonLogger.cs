@@ -51,7 +51,9 @@ namespace Application.Logger
                 }
             } catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                
+                Console.WriteLine("Exception: " + e.Message);
+                Console.WriteLine("Inner exception: " + e.InnerException);
             }
         }
 

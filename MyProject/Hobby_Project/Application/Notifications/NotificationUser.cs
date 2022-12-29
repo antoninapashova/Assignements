@@ -16,7 +16,7 @@ namespace Domain.Entity
         //This method will notify all users that a new subcategory is added
         public void Notify(HobbySubCategory hobbySubCategory)
         {
-            Console.WriteLine("A new subcategory is added");
+            
         }
     }
 }

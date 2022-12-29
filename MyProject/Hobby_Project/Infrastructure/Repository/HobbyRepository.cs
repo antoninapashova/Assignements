@@ -38,6 +38,8 @@ namespace Infrastructure.Repository
                    .ThenInclude(x=>x.User)
                 .Include(x=>x.HobbySubCategory)
                 .Include(x=>x.HobbyPhoto)
+                .Include(x=>x.Tags)
+                
                 .Include(x=>x.User)
                 .ToListAsync();
         }
@@ -47,12 +49,16 @@ namespace Infrastructure.Repository
             return await _context.HobbyArticles
                     .Where(h => h.Id == id)
                     .Include(x => x.HobbySubCategory)
-                    .Include(y => y.User).FirstOrDefaultAsync();
+                    .Include(y => y.User)
+                    .Include(z=>z.Tags)
+                    
+                    .FirstOrDefaultAsync();
         }
 
-        public async Task Update( HobbyArticle hobbyArticle)
+        public async Task<HobbyArticle> Update(HobbyArticle hobbyArticle)
         {
-            _context.Update(hobbyArticle);
+            _context.HobbyArticles.Update(hobbyArticle);
+            return hobbyArticle;
         }
 
         private async Task<HobbyArticle> isValid(int Id)

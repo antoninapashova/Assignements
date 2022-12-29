@@ -54,9 +54,10 @@ namespace Infrastructure.Repository
             return user;
         }
 
-        public async Task Update(User entity)
+        public async Task<User> Update(User entity)
         {
-            _context.Update(entity);
+            _context.Users.Update(entity);
+            return entity;
         }
 
         private async Task<User> isValid(int id)

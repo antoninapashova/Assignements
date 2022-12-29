@@ -32,6 +32,7 @@ builder.Services.AddScoped<ITagRepository, TagRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserConfiguration, UserConfiguration>();
 
+
 builder.Services.AddMediatR(typeof(GetCategoriesListQuery).GetTypeInfo().Assembly);
 builder.Services.AddAutoMapper(typeof(HobbyProject.Application.AssemblyMarketPresentatio));
 

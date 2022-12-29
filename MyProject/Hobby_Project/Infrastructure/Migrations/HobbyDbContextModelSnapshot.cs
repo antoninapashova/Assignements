@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Infrastructure.Migrations
+namespace HobbyProject.Infrastructure.Migrations
 {
     [DbContext(typeof(HobbyDbContext))]
     partial class HobbyDbContextModelSnapshot : ModelSnapshot
@@ -21,21 +21,6 @@ namespace Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("Domain.Entity.ArticleTag", b =>
-                {
-                    b.Property<int>("HobbyArticleId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TagId")
-                        .HasColumnType("int");
-
-                    b.HasKey("HobbyArticleId", "TagId");
-
-                    b.HasIndex("TagId");
-
-                    b.ToTable("ArticleTag");
-                });
 
             modelBuilder.Entity("Domain.Entity.HobbyArticle", b =>
                 {
@@ -102,6 +87,21 @@ namespace Infrastructure.Migrations
                     b.HasIndex("HobbyArticleId");
 
                     b.ToTable("HobbyPhotos");
+                });
+
+            modelBuilder.Entity("HobbyArticleTag", b =>
+                {
+                    b.Property<int>("HobbyArticlesId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("HobbyArticlesId", "TagsId");
+
+                    b.HasIndex("TagsId");
+
+                    b.ToTable("HobbyArticleTag");
                 });
 
             modelBuilder.Entity("Hobby_Project.HobbyCategory", b =>
@@ -238,25 +238,6 @@ namespace Infrastructure.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("Domain.Entity.ArticleTag", b =>
-                {
-                    b.HasOne("Domain.Entity.HobbyArticle", "HobbyArticle")
-                        .WithMany()
-                        .HasForeignKey("HobbyArticleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Hobby_Project.Tag", "Tag")
-                        .WithMany()
-                        .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("HobbyArticle");
-
-                    b.Navigation("Tag");
-                });
-
             modelBuilder.Entity("Domain.Entity.HobbyArticle", b =>
                 {
                     b.HasOne("Hobby_Project.HobbySubCategory", "HobbySubCategory")
@@ -285,6 +266,21 @@ namespace Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("HobbyArticle");
+                });
+
+            modelBuilder.Entity("HobbyArticleTag", b =>
+                {
+                    b.HasOne("Domain.Entity.HobbyArticle", null)
+                        .WithMany()
+                        .HasForeignKey("HobbyArticlesId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Hobby_Project.Tag", null)
+                        .WithMany()
+                        .HasForeignKey("TagsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Hobby_Project.HobbyComment", b =>

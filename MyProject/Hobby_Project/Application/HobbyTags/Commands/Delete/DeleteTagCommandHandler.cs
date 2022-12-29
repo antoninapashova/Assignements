@@ -12,7 +12,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Application.HobbyTags.Commands.Delete
 {
-    internal class DeleteTagCommandHandler : IRequestHandler<DeleteTagCommand, int>
+     public class DeleteTagCommandHandler : IRequestHandler<DeleteTagCommand, int>
     {
         private readonly IUnitOfWork _unitOfWork;
         private ILog _log;

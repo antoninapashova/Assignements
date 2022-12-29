@@ -45,9 +45,10 @@ namespace Infrastructure.Repository
             return result;
         }
 
-        public async Task Update(HobbyPhoto entity)
+        public async Task<HobbyPhoto> Update(HobbyPhoto entity)
         {
-            _context.Update(entity);
+            _context.HobbyPhotos.Update(entity);
+            return entity;
         }
 
         private async Task<HobbyPhoto> IsValid(int photoId)

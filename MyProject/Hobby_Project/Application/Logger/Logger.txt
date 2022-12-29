@@ -1,96 +1,90 @@
-﻿*-------------------------------*
-[Error]12:35 Value cannot be null. (Parameter 'source')
 *-------------------------------*
-[Error]12:35 Value cannot be null. (Parameter 'source')
+[Error]11:01 An error occurred while saving the entity changes. See the inner exception for details.Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert explicit value for identity column in table 'Tags' when IDENTITY_INSERT is set to OFF.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreResults(Boolean& moreResults)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryNextResult(Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.NextResultAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:29c2b46d-5b53-4028-8beb-dc8fea48af0a
+Error Number:544,State:1,Class:16
 *-------------------------------*
-[Error]12:36 Value cannot be null. (Parameter 'source')
+[Error]11:03 The instance of entity type 'Tag' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
 *-------------------------------*
-[Error]12:40 Value cannot be null. (Parameter 'source')
+[Error]11:10 An error occurred while saving the entity changes. See the inner exception for details.Microsoft.Data.SqlClient.SqlException (0x80131904): Cannot insert explicit value for identity column in table 'Tags' when IDENTITY_INSERT is set to OFF.
+   at Microsoft.Data.SqlClient.SqlConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.TryRun(RunBehavior runBehavior, SqlCommand cmdHandler, SqlDataReader dataStream, BulkCopySimpleResultSet bulkCopyHandler, TdsParserStateObject stateObj, Boolean& dataReady)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreRows(Boolean& moreRows)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryHasMoreResults(Boolean& moreResults)
+   at Microsoft.Data.SqlClient.SqlDataReader.TryNextResult(Boolean& more)
+   at Microsoft.Data.SqlClient.SqlDataReader.NextResultAsyncExecute(Task task, Object state)
+   at Microsoft.Data.SqlClient.SqlDataReader.InvokeAsyncCall[T](SqlDataReaderAsyncCallContext`1 context)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Update.AffectedCountModificationCommandBatch.ConsumeAsync(RelationalDataReader reader, CancellationToken cancellationToken)
+ClientConnectionId:ca7732df-0ff2-42fa-b2d6-abad61bac428
+Error Number:544,State:1,Class:16
 *-------------------------------*
-[Error]12:41 Value cannot be null. (Parameter 'source')
-*-------------------------------*
-[Error]15:43 Id must be positive
-*-------------------------------*
-[Error]15:47 The instance of entity type 'HobbyCategory' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
-*-------------------------------*
-[Error]15:48 The instance of entity type 'HobbyCategory' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
-*-------------------------------*
-[Error]16:12 Id must be positive
-*-------------------------------*
-[Error]16:13 Id must be positive
-*-------------------------------*
-[Error]16:15 The instance of entity type 'HobbyCategory' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
-*-------------------------------*
-[Error]16:15 The instance of entity type 'HobbyCategory' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
-*-------------------------------*
-[Error]16:20 The instance of entity type 'HobbyCategory' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
-*-------------------------------*
-[Error]17:55 Category with that id does not exist
-*-------------------------------*
-[Error]18:00 An error occurred while saving the entity changes. See the inner exception for details.
-*-------------------------------*
-[Error]18:02 An error occurred while saving the entity changes. See the inner exception for details.
-*-------------------------------*
-[Error]9:06 An error occurred while saving the entity changes. See the inner exception for details.
-*-------------------------------*
-[Error]9:36 SubCategory with Id: 1does not exist
-*-------------------------------*
-[Error]9:36 SubCategory with Id: 6does not exist
-*-------------------------------*
-[Error]9:37 SubCategory with Id: 6does not exist
-*-------------------------------*
-[Error]9:39 SubCategory with Id: 6does not exist
-*-------------------------------*
-[Error]11:19 Missing type map configuration or unsupported mapping.
+[Error]11:49 Error mapping types.
 
 Mapping types:
-CreateUserCommand -> User
-Application.Users.Commands.Create.CreateUserCommand -> Hobby_Project.User
-*-------------------------------*
-[Error]11:40 Category with that id does not exist
-*-------------------------------*
-[Error]11:42 Category with that id does not exist
-*-------------------------------*
-[Error]12:23 The database operation was expected to affect 1 row(s), but actually affected 0 row(s); data may have been modified or deleted since entities were loaded. See http://go.microsoft.com/fwlink/?LinkId=527962 for information on understanding and handling optimistic concurrency exceptions.
-*-------------------------------*
-[Error]12:28 The database operation was expected to affect 1 row(s), but actually affected 0 row(s); data may have been modified or deleted since entities were loaded. See http://go.microsoft.com/fwlink/?LinkId=527962 for information on understanding and handling optimistic concurrency exceptions.
-*-------------------------------*
-[Error]13:35 Error mapping types.
-
-Mapping types:
-CreateCommentCommand -> HobbyComment
-Application.Comments.Commands.Create.CreateCommentCommand -> Hobby_Project.HobbyComment
+CreateHobbyCommand -> HobbyArticle
+Application.Hobby.Commands.Create.CreateHobbyCommand -> Domain.Entity.HobbyArticle
 
 Type Map configuration:
-CreateCommentCommand -> HobbyComment
-Application.Comments.Commands.Create.CreateCommentCommand -> Hobby_Project.HobbyComment
+CreateHobbyCommand -> HobbyArticle
+Application.Hobby.Commands.Create.CreateHobbyCommand -> Domain.Entity.HobbyArticle
 
 Destination Member:
-User
-
-*-------------------------------*
-[Error]13:36 Error mapping types.
+Tags
+AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
 
 Mapping types:
-CreateCommentCommand -> HobbyComment
-Application.Comments.Commands.Create.CreateCommentCommand -> Hobby_Project.HobbyComment
+CreateHobbyTagDto -> Tag
+HobbyProject.Application.Hobby.CreateHobbyTagDto -> Hobby_Project.Tag
+   at lambda_method21(Closure , CreateHobbyTagDto , Tag , ResolutionContext )
+   at lambda_method20(Closure , Object , HobbyArticle , ResolutionContext )
+*-------------------------------*
+[Error]11:50 Error mapping types.
+
+Mapping types:
+CreateHobbyCommand -> HobbyArticle
+Application.Hobby.Commands.Create.CreateHobbyCommand -> Domain.Entity.HobbyArticle
 
 Type Map configuration:
-CreateCommentCommand -> HobbyComment
-Application.Comments.Commands.Create.CreateCommentCommand -> Hobby_Project.HobbyComment
+CreateHobbyCommand -> HobbyArticle
+Application.Hobby.Commands.Create.CreateHobbyCommand -> Domain.Entity.HobbyArticle
 
 Destination Member:
-User
+Tags
+AutoMapper.AutoMapperMappingException: Missing type map configuration or unsupported mapping.
 
+Mapping types:
+CreateHobbyTagDto -> Tag
+HobbyProject.Application.Hobby.CreateHobbyTagDto -> Hobby_Project.Tag
+   at lambda_method21(Closure , CreateHobbyTagDto , Tag , ResolutionContext )
+   at lambda_method20(Closure , Object , HobbyArticle , ResolutionContext )
 *-------------------------------*
-[Error]14:01 An error occurred while saving the entity changes. See the inner exception for details.
+[Error]12:17 The instance of entity type 'Tag' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
 *-------------------------------*
-[Error]14:08 An error occurred while saving the entity changes. See the inner exception for details.
+[Error]19:31 Object reference not set to an instance of an object.
 *-------------------------------*
-[Error]14:12 An error occurred while saving the entity changes. See the inner exception for details.
+[Error]20:08 Create category command is null!
 *-------------------------------*
-[Error]19:07 Comment with Id4does not exist!
+[Error]20:12 Create category command is null!
 *-------------------------------*
-[Error]20:39 Category with that id does not exist
+[Error]20:13 Create category command is null!
 *-------------------------------*
-[Error]13:27 An error occurred while saving the entity changes. See the inner exception for details.
+[Error]20:15 Create category command is null!
+*-------------------------------*
+[Error]20:21 Create category command is null!
+*-------------------------------*
+[Error]20:25 Create category command is null!
+*-------------------------------*
+[Error]23:43 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]9:51 Object reference not set to an instance of an object.

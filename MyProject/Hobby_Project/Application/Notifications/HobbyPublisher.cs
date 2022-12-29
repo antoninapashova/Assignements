@@ -19,12 +19,12 @@ namespace Application.Notifications
             subscribers.Remove(subscriber);
         }
 
-        public void AddSubscriber( ISubscriber subscriber)
+        public void AddSubscriber(ISubscriber subscriber)
         {
             subscribers.Add(subscriber);
         }
 
-        public  void Publish(HobbySubCategory hobbySubCategory)
+        public void Publish(HobbySubCategory hobbySubCategory)
         {
             subscribers.ForEach(s => s.Notify(hobbySubCategory));
         }

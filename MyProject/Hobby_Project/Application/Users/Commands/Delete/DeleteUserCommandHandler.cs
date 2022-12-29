@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Application.Users.Commands.Delete
 {
-    internal class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, int>
+    public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, int>
     {
         private readonly IUnitOfWork _unitOfWork;
 

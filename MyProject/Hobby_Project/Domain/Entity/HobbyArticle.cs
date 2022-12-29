@@ -20,7 +20,7 @@ namespace Domain.Entity
         public virtual HobbySubCategory HobbySubCategory { get; set; }
         public virtual ICollection<HobbyPhoto> HobbyPhoto { get; set; }
         public virtual ICollection<HobbyComment> HobbyComments { get; }
-        public  ICollection<Tag> HobbyTags { get; }
+        public virtual ICollection<Tag> Tags { get; set; }
     }
 
 }

@@ -13,7 +13,7 @@ using AutoMapper;
 
 namespace Application.Categories.Commands.Edit
 {
-    public class EditCategoryCommandHandler : IRequestHandler<EditCategoryCommand, int>
+    public class EditCategoryCommandHandler : IRequestHandler<EditCategoryCommand, HobbyCategory>
     {
         private readonly IUnitOfWork _unitOfWork;
         private ILog _log;
@@ -26,21 +26,21 @@ namespace Application.Categories.Commands.Edit
             _mapper = mapper;
         }
 
-        public async Task<int> Handle(EditCategoryCommand command, CancellationToken cancellationToken)
+        public async Task<HobbyCategory> Handle(EditCategoryCommand command, CancellationToken cancellationToken)
         {
             try
             {
                 if (command == null) throw new NullReferenceException("Edit category command is null");
                 HobbyCategory hobbyCategory = _mapper.Map<HobbyCategory>(command);
-                await _unitOfWork.CategoryRepository.Update(hobbyCategory);
+                HobbyCategory hobbyCategory1 = await _unitOfWork.CategoryRepository.Update(hobbyCategory);
                 await _unitOfWork.Save();
-                return await Task.FromResult(command.Id);
+                return await Task.FromResult(hobbyCategory1);
             }
             catch (Exception e)
             {
                 _log.LogError(e.Message);
-                return await Task.FromResult(0);
-            }
+                throw;
+             }
         }
     }
 }

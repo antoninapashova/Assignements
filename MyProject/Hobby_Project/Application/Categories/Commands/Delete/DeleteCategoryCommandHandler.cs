@@ -31,8 +31,8 @@ namespace Application.Categories.Commands.Delete
             }catch(Exception e)
             {
                 _log.LogError(e.Message);
-                return await Task.FromResult(0);
-;           }
+                throw;
+  ;          }
         }
     }
 }

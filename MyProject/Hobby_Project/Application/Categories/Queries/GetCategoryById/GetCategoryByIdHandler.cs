@@ -19,7 +19,7 @@ namespace HobbyProject.Application.Categories.Queries.GetCategoryById
 
         public GetCategoryByIdHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            this._unitOfWork = unitOfWork;
+            _unitOfWork = unitOfWork;
             _log = SingletonLogger.Instance;
             _mapper = mapper;
         }
@@ -30,11 +30,11 @@ namespace HobbyProject.Application.Categories.Queries.GetCategoryById
             {
                 var category = await _unitOfWork.CategoryRepository.GetByIdAsync(request.Id);
                 var result =  _mapper.Map<CategoryDto>(category);
-                 return await Task.FromResult(result);
+                return await Task.FromResult(result);
             }catch (Exception e)
             {
                 _log.LogError(e.Message);
-                return await Task.FromResult<CategoryDto>(null);
+                throw;
             }
            
         }
