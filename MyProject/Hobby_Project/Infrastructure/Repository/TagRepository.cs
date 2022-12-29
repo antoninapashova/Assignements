@@ -28,33 +28,46 @@ namespace Infrastructure.Repository
 
         public async Task DeleteAsync(int id)
         {
-            Tag tagForDeletion = await IsValid(id);
-            _context.Tags.Remove(tagForDeletion);
+             await IsValidId(id);
+             Tag tagForDeletion = await FindById(id);
+             _context.Tags.Remove(tagForDeletion);
         }
 
         public async Task<IEnumerable<Tag>> GetAllEntitiesAsync()
         {
-            return await _context.Tags.ToListAsync();
+            return  _context.Tags.AsEnumerable();
         }
 
         public async Task<Tag> GetByIdAsync(int id)
         {
-            Tag tag = await IsValid(id);
-
-            return tag;
+           await IsValidId(id);
+           Tag tag = await FindById(id);
+           return tag;
         }
 
         public async Task<Tag> Update(Tag entity)
         {
-             _context.Update(entity);
+            await IsValidId(entity.Id);
+            Tag tagForUpdating = await FindById(entity.Id);
+            _context.Update(tagForUpdating);
             return entity;
         }
 
-        private async Task<Tag> IsValid(int Id)
+        public Task<bool> IsValidId(int id)
         {
-            if (Id <= 0) throw new NullReferenceException("Id must be positive!");
-            var tag = await _context.Tags.FirstOrDefaultAsync(t => t.Id == Id);
-            if (tag == null) throw new InvalidOperationException("Tag with id: " + Id + " does not exist!!!");
+           if (id <= 0) 
+                throw new NullReferenceException("Id must be positive!");
+
+            return Task.FromResult(true);
+
+        }
+        public async Task<Tag> FindById(int id)
+        {
+            var tag = await _context.Tags.FirstOrDefaultAsync(t => t.Id == id);
+
+            if (tag == null) 
+                throw new NullReferenceException("Tag with id: " + id + " does not exist!");
+
             return tag;
         }
     }

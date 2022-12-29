@@ -28,35 +28,42 @@ namespace Infrastructure.Repository
 
         public async Task DeleteAsync(int id)
         {
-
-            HobbyPhoto hobbyPhoto = await IsValid(id);
+            await IsValidId(id);
+            var hobbyPhoto = await FindById(id);
             _context.HobbyPhotos.Remove(hobbyPhoto);
         }
 
         public async Task<IEnumerable<HobbyPhoto>> GetAllEntitiesAsync()
         {
-            return _context.HobbyPhotos;
+            return _context.HobbyPhotos.AsEnumerable();
         }
 
         public async Task<HobbyPhoto> GetByIdAsync(int id)
         {
-            HobbyPhoto result = await IsValid(id);
-
-            return result;
+            await IsValidId(id);
+            HobbyPhoto hobbyPhoto = await FindById(id);
+            return await Task.FromResult(hobbyPhoto);
         }
-
         public async Task<HobbyPhoto> Update(HobbyPhoto entity)
         {
+            await IsValidId(entity.Id);
+
             _context.HobbyPhotos.Update(entity);
             return entity;
         }
 
-        private async Task<HobbyPhoto> IsValid(int photoId)
+        public async Task<HobbyPhoto> FindById(int id)
         {
-            if (photoId <= 0) throw new NullReferenceException("Photo Id must be positive");
-            var photo = await _context.HobbyPhotos.FirstOrDefaultAsync(c => c.Id == photoId);
-            if (photo == null) throw new InvalidOperationException("Photo with Id" + photoId + "does not exist!");
+            var photo = await _context.HobbyPhotos.FirstOrDefaultAsync(c => c.Id == id);
+            if (photo == null) throw new InvalidOperationException("Photo with Id" + id + "does not exist!");
             return photo;
+        }
+
+        public Task<bool> IsValidId(int id)
+        {
+            if (id <= 0) throw new NullReferenceException("Photo Id must be positive");
+
+            return Task.FromResult(true);
         }
     }
 }

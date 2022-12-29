@@ -17,7 +17,7 @@ namespace Application.Categories.Commands.Edit
     {
         private readonly IUnitOfWork _unitOfWork;
         private ILog _log;
-        private IMapper _mapper;
+        private readonly IMapper _mapper;
 
         public EditCategoryCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
@@ -30,17 +30,21 @@ namespace Application.Categories.Commands.Edit
         {
             try
             {
-                if (command == null) throw new NullReferenceException("Edit category command is null");
+                if (command == null) 
+                    throw new NullReferenceException("Edit category command is null");
+
                 HobbyCategory hobbyCategory = _mapper.Map<HobbyCategory>(command);
-                HobbyCategory hobbyCategory1 = await _unitOfWork.CategoryRepository.Update(hobbyCategory);
+                HobbyCategory editeHobbyCategory = await _unitOfWork.CategoryRepository.Update(hobbyCategory);
                 await _unitOfWork.Save();
-                return await Task.FromResult(hobbyCategory1);
+
+                return await Task.FromResult(editeHobbyCategory);
+
             }
             catch (Exception e)
             {
                 _log.LogError(e.Message);
                 throw;
-             }
+            }
         }
     }
 }

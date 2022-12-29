@@ -27,33 +27,47 @@ namespace Infrastructure.Repository
 
         public async Task DeleteAsync(int id)
         {
-            HobbySubCategory subCategory = await isValid(id);
-            _context.HobbySubCategories.Remove(subCategory);
-
+             await IsValidId(id);
+             HobbySubCategory hobbySubCategory = await FindById(id);
+             _context.HobbySubCategories.Remove(hobbySubCategory);
         }
+
         public async Task<IEnumerable<HobbySubCategory>> GetAllEntitiesAsync()
         {
-            return  _context.HobbySubCategories;
+            return  _context.HobbySubCategories.AsEnumerable();
         }
 
         public async Task<HobbySubCategory> GetByIdAsync(int id)
         {
-            HobbySubCategory subCategory = await isValid(id);
-            return subCategory;
-        }
-        public async Task<HobbySubCategory> Update(HobbySubCategory hobbySubCategory)
-        {
-      
-            _context.Update(hobbySubCategory);
+            await IsValidId(id);
+            HobbySubCategory hobbySubCategory = await FindById(id);
             return hobbySubCategory;
         }
 
-        private async Task<HobbySubCategory> isValid(int Id)
+        public async Task<HobbySubCategory> Update(HobbySubCategory hobbySubCategory)
         {
-            if (Id <= 0) throw new NullReferenceException("Id must be positive");
-            var subCategory = await _context.HobbySubCategories.FirstOrDefaultAsync(s => s.Id == Id);
-            if (subCategory == null) throw new InvalidOperationException("SubCategory with Id: " + Id + "does not exist");
+            await IsValidId(hobbySubCategory.Id);
+            HobbySubCategory subCategoryForEditing = await FindById(hobbySubCategory.Id);
+
+            _context.Update(subCategoryForEditing);
+            return hobbySubCategory;
+        }
+        
+        public async Task<HobbySubCategory> FindById(int id)
+        {
+            var subCategory = await _context.HobbySubCategories
+                .FirstOrDefaultAsync(s => s.Id == id);
+            if (subCategory == null) 
+                throw new NullReferenceException("SubCategory with Id: " + id + " does not exist");
             return subCategory;
         }
+        public Task<bool> IsValidId(int id)
+        {
+            if (id <= 0) 
+                throw new NullReferenceException("Id must be positive!");
+
+            return Task.FromResult(true);
+        }
+
     }
 }

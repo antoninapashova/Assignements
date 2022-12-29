@@ -19,8 +19,6 @@ namespace HobbyProject.Application.Photos.Commands.Create
 {
     public class CreatePhotoCommandHandler : IRequestHandler<CreatePhotoCommand, int>
     {
-        private CloudinarySettings _settings;
-        private Cloudinary _cloudinary;
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
         private ILog _log;
@@ -29,8 +27,6 @@ namespace HobbyProject.Application.Photos.Commands.Create
         {
             _mapper = mapper;
             _unitOfWork = unitOfWork;
-            Account account = new Account(_settings.CloudName, _settings.ApiKey, _settings.ApiSecret);
-            _cloudinary = new Cloudinary(account);
             _log = SingletonLogger.Instance;
         }
 
@@ -38,7 +34,6 @@ namespace HobbyProject.Application.Photos.Commands.Create
         {
             try
             {
-                int v = UploadPhoto(command);
                 HobbyPhoto hobbyPhoto = _mapper.Map<HobbyPhoto>(command);
                 await _unitOfWork.PhotoRepository.Add(hobbyPhoto);
                 await _unitOfWork.Save();
@@ -47,38 +42,10 @@ namespace HobbyProject.Application.Photos.Commands.Create
             catch (Exception e)
             {
                 _log.LogError(e.Message);
-                return await Task.FromResult(0);
+                throw;
             }
         }
 
-        private int UploadPhoto(CreatePhotoCommand command)
-        {
-            var file = command.File;
-
-            var uploadResult = new ImageUploadResult();
-            if (file.Length > 0)
-            {
-                using (var stream = file.OpenReadStream())
-                {
-                    var uploadParams = new ImageUploadParams()
-                    {
-                        File = new FileDescription(file.Name, stream)
-                    };
-
-                    uploadResult = _cloudinary.Upload(uploadParams);
-                }
-            }
-            command.Url = uploadResult.Url.ToString();
-            command.PublicId = uploadResult.PublicId;
-
-            var photo = new HobbyPhoto
-            {
-                Url = command.Url,
-                Description = command.Description,
-                PublicId = command.PublicId,
-            };
-
-            return photo.Id;
-        }
+        
     }
 }

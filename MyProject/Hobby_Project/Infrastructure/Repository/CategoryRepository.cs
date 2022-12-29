@@ -27,33 +27,51 @@ namespace Infrastructure.Repository
         }
         public async Task DeleteAsync(int id)
         {
-            HobbyCategory hobbyCategory = await isValid(id);
+            await IsValidId(id);
+            HobbyCategory hobbyCategory = await FindById(id);
             _context.Remove(hobbyCategory);
         }
+
         public async Task<IEnumerable<HobbyCategory>> GetAllEntitiesAsync()
         {
-            return _context.HobbyCategories.Include(h => h.HobbySubCategories).AsEnumerable();
+            return _context.HobbyCategories
+                .Include(h => h.HobbySubCategories)
+                .AsEnumerable();
         }
 
         public async Task<HobbyCategory> GetByIdAsync(int id)
         {
-            var hobbyCategory = await isValid(id);
-            
+            await IsValidId(id);
+            HobbyCategory hobbyCategory = await FindById(id);
+            _context.HobbyCategories
+                .Where(c=>c.Id == id)
+                .Include(c=>c.HobbySubCategories);
             return hobbyCategory;
         }
 
         public async Task<HobbyCategory> Update(HobbyCategory hobbyCategory)
         {
+           await IsValidId(hobbyCategory.Id);
+            HobbyCategory categoryForEditing = await FindById(hobbyCategory.Id);
             _context.Update(hobbyCategory);
             return hobbyCategory;
+        } 
+        public async Task<bool> IsValidId(int id)
+        {
+            if (id <= 0) 
+                throw new NullReferenceException("Id must be positive");
+
+            return await Task.FromResult(true);
         }
 
-        private async Task<HobbyCategory> isValid(int id)
+        public async Task<HobbyCategory> FindById(int id)
         {
-            if (id <= 0) throw new ArgumentException("Id must be positive");
-            var hobbyCategories = _context.HobbyCategories.Include(x=>x.HobbySubCategories);
-            var category = await hobbyCategories.FirstOrDefaultAsync(c => c.Id == id);
-            if (category == null) throw new InvalidOperationException("Category with that id does not exist");
+            var category = await _context.HobbyCategories
+                .FirstOrDefaultAsync(c => c.Id == id);
+
+            if (category == null) 
+                throw new NullReferenceException("Category with that id does not exist");
+
             return category;
         }
 

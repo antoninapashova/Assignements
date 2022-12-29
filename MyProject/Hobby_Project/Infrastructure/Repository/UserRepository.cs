@@ -27,44 +27,48 @@ namespace Infrastructure.Repository
             return entity;
         }
 
-        public async Task<bool> Authenticate(string username, string password)
-        {
-            if (await Task.FromResult(_context.Users.
-                SingleOrDefault(x => x.Username == username && x.Password == password)) != null)
-            {
-                return true;
-            }
-            return false;
-        }
-
         public async Task DeleteAsync(int id)
         {
-            User user = await isValid(id);
-            _context.Users.Remove(user);
+            await IsValidId(id);
+            User userForDeliting = await FindById(id);
+            _context.Users.Remove(userForDeliting);
         }
 
         public async Task<IEnumerable<User>> GetAllEntitiesAsync()
         {
-            return _context.Users;
+            return _context.Users.AsEnumerable();
         }
 
         public async Task<User> GetByIdAsync(int id)
         {
-            User user = await isValid(id);
+             await IsValidId(id);
+            User user = await FindById(id);
             return user;
         }
 
         public async Task<User> Update(User entity)
         {
-            _context.Users.Update(entity);
-            return entity;
+            await IsValidId(entity.Id);
+            User userForUpdating = await FindById(entity.Id);
+
+            _context.Users.Update(userForUpdating);
+            return userForUpdating;
         }
 
-        private async Task<User> isValid(int id)
+        public Task<bool> IsValidId(int id)
         {
-            if (id <= 0) throw new NullReferenceException("Id must be positive!");
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
-            if (user == null) throw new InvalidOperationException("User with ID: " + id + "does not exist");
+            if (id <= 0) 
+                throw new NullReferenceException("Id must be positive!");
+            return Task.FromResult(true);
+        }
+
+        public async Task<User> FindById(int id)
+        {
+             var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+
+             if (user == null) 
+                throw new NullReferenceException("User with Id: " + id + " does not exist");
+
             return user;
         }
     }

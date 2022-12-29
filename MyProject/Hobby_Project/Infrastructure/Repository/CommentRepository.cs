@@ -29,33 +29,46 @@ namespace Infrastructure.Repository
 
         public async Task DeleteAsync(int id)
         {
-            HobbyComment comment = await IsValid(id);
+             await IsValidId(id);
+            var comment = await FindById(id);
             _context.HobbyComments.Remove(comment);
             
         }
 
         public async Task<IEnumerable<HobbyComment>> GetAllEntitiesAsync()
         {
-            return await _context.HobbyComments.Include(x=>x.User)
+            return await _context.HobbyComments
+                 .Include(x=>x.User)
                 .ToListAsync();
         }
 
         public async Task<HobbyComment> GetByIdAsync(int id)
         {
-            HobbyComment comment = await IsValid(id);
-            return comment;
-        }
-        public async Task<HobbyComment> Update(HobbyComment comment)
-        {
-           _context.HobbyComments.Update(comment);
-            return comment;
+            await IsValidId(id);
+            var comment =await FindById(id);
+            return await Task.FromResult(comment);
         }
 
-        private async Task<HobbyComment> IsValid(int commentId)
+    
+        public async Task<HobbyComment> Update(HobbyComment comment)
         {
-            if (commentId <= 0) throw new NullReferenceException("Comment Id musr be positive");
-            var comment = await _context.HobbyComments.FirstOrDefaultAsync(c => c.Id == commentId);
-            if (comment == null) throw new InvalidOperationException("Comment with Id" + commentId + "does not exist!");
+            await IsValidId(comment.Id);
+            _context.HobbyComments.Update(comment);
+            return comment;
+        }
+        public Task<bool> IsValidId(int id)
+        {
+            if (id <= 0) 
+                throw new NullReferenceException("Comment Id must be positive");
+
+           return Task.FromResult(true);
+        }
+
+        public async Task<HobbyComment> FindById(int id)
+        {
+            var comment = await _context.HobbyComments.FirstOrDefaultAsync(c => c.Id == id);
+
+            if (comment == null) throw new InvalidOperationException("Comment with Id" + id + "does not exist!");
             return comment;
         }
     }

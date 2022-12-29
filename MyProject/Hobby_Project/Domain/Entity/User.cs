@@ -19,6 +19,6 @@ namespace Hobby_Project
         public int Age { get; set;}
         public string Password { get; set; }
         public virtual ICollection<HobbyArticle> Hobbies { get; set; }
-        public virtual  ICollection<HobbyComment> Comments { get; set; }
+        public virtual ICollection<HobbyComment> Comments { get; set; }
     }
 }

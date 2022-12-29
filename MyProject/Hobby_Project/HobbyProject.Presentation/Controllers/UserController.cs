@@ -27,15 +27,6 @@ namespace HobbyProject.Presentation.Controllers
             _mediator = mediator;
         }
 
-        /*
-        [HttpGet]
-        [Authorize]
-        public async Task<List> Get()
-        {
-            return await _userRepository.GetUserNames();
-        }
-        */
-
         [HttpGet]
         public async Task<IActionResult> GetAllUsers()
         {

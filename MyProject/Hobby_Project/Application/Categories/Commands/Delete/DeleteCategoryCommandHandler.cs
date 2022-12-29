@@ -24,15 +24,19 @@ namespace Application.Categories.Commands.Delete
         {
             try
             {
-               if (command == null) throw new NullReferenceException("Delete category command is null");
+               if (command == null)
+                    throw new NullReferenceException("Delete category command is null");
+
                 await _unitOfWork.CategoryRepository.DeleteAsync(command.Id);
                 await _unitOfWork.Save();
+
                return await Task.FromResult(command.Id);
+
             }catch(Exception e)
             {
                 _log.LogError(e.Message);
                 throw;
-  ;          }
+  ;         }
         }
     }
 }

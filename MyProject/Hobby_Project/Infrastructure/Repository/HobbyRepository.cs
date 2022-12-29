@@ -28,45 +28,58 @@ namespace Infrastructure.Repository
 
         public async Task DeleteAsync(int id)
         {
-            var hobbyArt = await isValid(id);
-            _context.HobbyArticles.Remove(hobbyArt);
+            var hobbyArt = await IsValidId(id);
+
+            HobbyArticle articleForDeleting = await FindById(id);
+
+            _context.HobbyArticles.Remove(articleForDeleting);
         }
+
+       
+
         public async Task<IEnumerable<HobbyArticle>> GetAllEntitiesAsync()
         {
             return await _context.HobbyArticles
                 .Include(x=>x.HobbyComments)
-                   .ThenInclude(x=>x.User)
-                .Include(x=>x.HobbySubCategory)
-                .Include(x=>x.HobbyPhoto)
-                .Include(x=>x.Tags)
-                
-                .Include(x=>x.User)
+                   .ThenInclude(hc=>hc.User)
+                .Include(x => x.HobbySubCategory)
+                .Include(x => x.HobbyPhoto)
+                .Include(x => x.Tags)
+                .Include(x => x.User)
                 .ToListAsync();
         }
         public async Task<HobbyArticle> GetByIdAsync(int id)
         {
-           var hobbyArticle = await isValid(id);
+            await IsValidId(id);
+            HobbyArticle hobbyArticle = await FindById(id);
+            
             return await _context.HobbyArticles
                     .Where(h => h.Id == id)
-                    .Include(x => x.HobbySubCategory)
-                    .Include(y => y.User)
-                    .Include(z=>z.Tags)
-                    
+                    .Include(h => h.HobbySubCategory)
+                    .Include(h => h.User)
+                    .Include(h=>h.Tags)
                     .FirstOrDefaultAsync();
         }
+
+      
 
         public async Task<HobbyArticle> Update(HobbyArticle hobbyArticle)
         {
             _context.HobbyArticles.Update(hobbyArticle);
             return hobbyArticle;
         }
-
-        private async Task<HobbyArticle> isValid(int Id)
+        public Task<bool> IsValidId(int id)
         {
-            if (Id <= 0) throw new ArgumentException("Id must be positive");
-            var hobby = await _context.HobbyArticles.FirstOrDefaultAsync(h => h.Id == Id);
-            
-            if (hobby == null) throw new InvalidOperationException("HobbyArticle with Id: " + Id + " does not exist");
+            if (id <= 0) 
+                throw new NullReferenceException("Id must be positive");
+
+            return Task.FromResult(true);
+        }
+        public async Task<HobbyArticle> FindById(int id)
+        {
+            var hobby = await _context.HobbyArticles.FirstOrDefaultAsync(h => h.Id == id);
+
+            if (hobby == null) throw new InvalidOperationException("HobbyArticle with Id: " + id + " does not exist");
             return hobby;
         }
     }
