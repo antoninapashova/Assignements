@@ -17,7 +17,7 @@ namespace Application.HobbySubCategories.Commands.Create
     {
         private readonly IUnitOfWork _unitOfWork;
         //private readonly HobbyPublisher _hobbyPublisher;
-        private ILog _log;
+        private readonly ILog _log;
         private readonly IMapper _mapper;
 
         public CreateSubCategoryCommandHandler(IUnitOfWork unitOfWork,
@@ -46,7 +46,7 @@ namespace Application.HobbySubCategories.Commands.Create
             catch (Exception e)
             {
                 _log.LogError(e.Message);
-                return await Task.FromResult<HobbySubCategory>(null);
+                throw;
             }
         }
     }

@@ -14,8 +14,8 @@ namespace Application.Comments.Commands.Create
     public class CreateCommentCommandHandler : IRequestHandler<CreateCommentCommand, int>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private ILog _log;
-        private IMapper _mapper;
+        private readonly ILog _log;
+        private readonly IMapper _mapper;
 
         public CreateCommentCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
@@ -28,15 +28,18 @@ namespace Application.Comments.Commands.Create
         {
             try
             {
-                if (command == null) throw new NullReferenceException("Create comment command is null");
+                if (command == null) 
+                    throw new NullReferenceException("Create comment command is null");
+
                 HobbyComment hobbyComment = _mapper.Map<HobbyComment>(command);
                 await _unitOfWork.CommentRepository.Add(hobbyComment);
                 await _unitOfWork.Save();
                 return await Task.FromResult(hobbyComment.Id);
+
             } catch(Exception e)
             {
                 _log.LogError(e.Message);
-                return await Task.FromResult(0);
+                throw;
             }
         }
     }

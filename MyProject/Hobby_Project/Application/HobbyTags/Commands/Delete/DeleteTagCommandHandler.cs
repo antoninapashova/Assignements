@@ -15,7 +15,7 @@ namespace Application.HobbyTags.Commands.Delete
      public class DeleteTagCommandHandler : IRequestHandler<DeleteTagCommand, int>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private ILog _log;
+        private readonly ILog _log;
         public DeleteTagCommandHandler(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -26,14 +26,16 @@ namespace Application.HobbyTags.Commands.Delete
         {
             try
             {
-                if (command == null) throw new NullReferenceException("Delete Tag command is null!");
+                if (command == null)
+                    throw new NullReferenceException("Delete Tag command is null!");
+
                 await _unitOfWork.TagRepository.DeleteAsync(command.Id);
                 return await Task.FromResult(command.Id);
             }
             catch (Exception e)
             {
                 _log.LogError(e.Message);
-                return await Task.FromResult(0);
+                throw;
             }
         }
     }

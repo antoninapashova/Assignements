@@ -17,7 +17,7 @@ namespace HobbyProject.Application.HobbyTags.Queries.GetTagById
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private ILog _log;
+        private readonly ILog _log;
         public GetTagByIdQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
@@ -29,6 +29,9 @@ namespace HobbyProject.Application.HobbyTags.Queries.GetTagById
         {
             try
             {
+                if (request == null) 
+                    throw new NullReferenceException("Get tag by id query is null!");
+
                 var tag = await _unitOfWork.TagRepository.GetByIdAsync(request.Id);
                 var result = _mapper.Map<TagDto>(tag);
                 return await Task.FromResult(result);
@@ -36,7 +39,7 @@ namespace HobbyProject.Application.HobbyTags.Queries.GetTagById
             catch (Exception e)
             {
                 _log.LogError(e.Message);
-                return await Task.FromResult<TagDto>(null);
+                throw;
             }
         }
     }

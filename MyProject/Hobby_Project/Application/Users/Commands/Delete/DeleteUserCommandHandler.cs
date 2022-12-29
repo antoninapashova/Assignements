@@ -14,17 +14,30 @@ namespace Application.Users.Commands.Delete
     public class DeleteUserCommandHandler : IRequestHandler<DeleteUserCommand, int>
     {
         private readonly IUnitOfWork _unitOfWork;
-
+        private readonly ILog _log;
         public DeleteUserCommandHandler(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+            _log = SingletonLogger.Instance;
         }
 
         public async Task<int> Handle(DeleteUserCommand command, CancellationToken cancellationToken)
         {
-            await _unitOfWork.UserRepository.DeleteAsync(command.Id);
-            await _unitOfWork.Save();
-            return await Task.FromResult(command.Id);
+            try
+            {
+                if (command == null) 
+                    throw new NullReferenceException("Delete user command is null!");
+
+              await _unitOfWork.UserRepository.DeleteAsync(command.Id);
+              await _unitOfWork.Save();
+              return await Task.FromResult(command.Id);
+
+            }catch (Exception e)
+            {
+                _log.LogError(e.Message);
+                throw;
+            }
+           
         }
     }
 }

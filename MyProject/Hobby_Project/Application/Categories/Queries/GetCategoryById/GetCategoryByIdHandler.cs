@@ -15,7 +15,7 @@ namespace HobbyProject.Application.Categories.Queries.GetCategoryById
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private ILog _log;
+        private readonly ILog _log;
 
         public GetCategoryByIdHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {

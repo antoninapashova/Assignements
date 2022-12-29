@@ -13,7 +13,7 @@ namespace Application.Comments.Commands.Delete
     public  class DeleteHobbyCommandHandler : IRequestHandler<DeleteCommentCommand, int>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private ILog _log;
+        private readonly ILog _log;
         public DeleteHobbyCommandHandler(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -24,13 +24,17 @@ namespace Application.Comments.Commands.Delete
         {
             try
             {
+                if (command == null)
+                    throw new NullReferenceException("Delete comment command is null");
+
                 await _unitOfWork.CommentRepository.DeleteAsync(command.Id);
                 await _unitOfWork.Save();
                 return await Task.FromResult(command.Id);
+
             }catch (Exception e)
             {
                 _log.LogError(e.Message);
-                return await Task.FromResult(0);
+                throw;
             }
         }
     }

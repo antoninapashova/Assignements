@@ -15,7 +15,7 @@ namespace HobbyProject.Application.Categories.Queries.GetSubCategoryFromCategory
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private ILog _log;
+        private readonly ILog _log;
         public GetSubCategoryFromCategoryById(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
@@ -28,20 +28,27 @@ namespace HobbyProject.Application.Categories.Queries.GetSubCategoryFromCategory
             try
             {
                 //Category with subcategories
-                var result = await _unitOfWork.CategoryRepository.GetByIdAsync(request.HobbyCategotyId);
+                var result = 
+                    await _unitOfWork.CategoryRepository
+                    .GetByIdAsync(request.HobbyCategotyId);
 
                 //SubCategory
-                var hobbySubCategory = result.HobbySubCategories.FirstOrDefault(x => x.Id == request.HobbySubCategotyId);
-                HobbySubCategoryDto hobbySubCategoryDTO = _mapper.Map<HobbySubCategoryDto>(hobbySubCategory);
+                var hobbySubCategory = 
+                    result.HobbySubCategories
+                    .FirstOrDefault(x => x.Id == request.HobbySubCategotyId);
 
-                CategoryWithSubCategoryVm categoryWithSubCategoryVm = _mapper.Map<CategoryWithSubCategoryVm>(result);
+                HobbySubCategoryDto hobbySubCategoryDTO =
+                    _mapper.Map<HobbySubCategoryDto>(hobbySubCategory);
+
+                CategoryWithSubCategoryVm categoryWithSubCategoryVm = 
+                    _mapper.Map<CategoryWithSubCategoryVm>(result);
                 categoryWithSubCategoryVm.HobbySubCategoryDTO = hobbySubCategoryDTO;
 
                 return await Task.FromResult(categoryWithSubCategoryVm);
             }catch(Exception e)
             {
                 _log.LogError(e.Message);
-                return await Task.FromResult<CategoryWithSubCategoryVm>(null);
+                throw;
             }
         }
     }

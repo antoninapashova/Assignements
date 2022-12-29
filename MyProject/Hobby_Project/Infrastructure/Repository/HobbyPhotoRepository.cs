@@ -55,7 +55,10 @@ namespace Infrastructure.Repository
         public async Task<HobbyPhoto> FindById(int id)
         {
             var photo = await _context.HobbyPhotos.FirstOrDefaultAsync(c => c.Id == id);
-            if (photo == null) throw new InvalidOperationException("Photo with Id" + id + "does not exist!");
+
+            if (photo == null)
+                throw new InvalidOperationException("Photo with Id" + id + "does not exist!");
+
             return photo;
         }
 

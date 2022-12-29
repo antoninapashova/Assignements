@@ -51,7 +51,7 @@ namespace Application.Hobby.Commands.Create
 
             }catch(Exception e)
             {
-                _log.LogError(e.Message + e.InnerException);
+                _log.LogError(e.Message);
 
                 throw;
             }

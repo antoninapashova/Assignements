@@ -15,8 +15,8 @@ namespace Application.HobbyTags.Commands.Create
     public class CreateTagCommandHandler : IRequestHandler<CreateTagCommand, Tag>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private ILog _log;
-        private IMapper _mapper;
+        private readonly ILog _log;
+        private readonly IMapper _mapper;
         public CreateTagCommandHandler(IUnitOfWork unitOfWork , IMapper mapper)
         {
             _unitOfWork = unitOfWork;
@@ -28,7 +28,9 @@ namespace Application.HobbyTags.Commands.Create
         {
             try
             {
-                if (command == null) throw new NullReferenceException("Create tag command is null!");
+                if (command == null) 
+                    throw new NullReferenceException("Create tag command is null!");
+
                 Tag tag = _mapper.Map<Tag>(command);  
                 await _unitOfWork.TagRepository.Add(tag);
                 await _unitOfWork.Save();
@@ -36,7 +38,7 @@ namespace Application.HobbyTags.Commands.Create
             }catch(Exception e)
             {
                 _log.LogError(e.Message);
-                return await Task.FromResult<Tag>(null);
+                throw;
             }
             
         }

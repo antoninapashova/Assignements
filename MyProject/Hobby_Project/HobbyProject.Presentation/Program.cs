@@ -41,12 +41,9 @@ builder.Services.AddDbContext<HobbyDbContext>(options =>
 
 builder.Services.AddOptions();
 
-builder.Services.Configure<CloudinarySettings>
-    (builder.Configuration.GetSection("CloudinarySettings"));
 
-//builder.Services.AddAuthentication("BasicAuthentication").
-  //          AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>
-    //        ("BasicAuthentication", null);
+
+
 
 var app = builder.Build();
 

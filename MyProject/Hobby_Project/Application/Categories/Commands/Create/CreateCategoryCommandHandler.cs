@@ -41,7 +41,7 @@ namespace Application.Categories.Commands.Create
             catch (Exception e)
             {
                 _log.LogError(e.Message);
-                throw new NullReferenceException();
+                throw;
             }
         }
     }

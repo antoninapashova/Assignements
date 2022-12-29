@@ -14,7 +14,7 @@ namespace Application.Hobby.Commands.Delete
     public  class DeleteHobbyCommandHandler : IRequestHandler<DeleteHobbyCommand, int>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private ILog _log;
+        private readonly ILog _log;
 
         public DeleteHobbyCommandHandler(IUnitOfWork unitOfWork)
         {
@@ -26,14 +26,17 @@ namespace Application.Hobby.Commands.Delete
         {
             try
             {
-                if (command == null) throw new NullReferenceException("Delete hobby command is null");
+                if (command == null) 
+                    throw new NullReferenceException("Delete hobby command is null");
+
                 await _unitOfWork.HobbyArticleRepository.GetByIdAsync(command.Id);
                 await _unitOfWork.Save();
                 return await Task.FromResult(command.Id);
+
             }catch (Exception e)
             {
                 _log.LogError(e.Message);
-                return await Task.FromResult(0);
+                throw;
             }
         }
     }

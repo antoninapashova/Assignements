@@ -16,7 +16,7 @@ namespace HobbyProject.Application.Comments.Queries.GetCommentById
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private ILog _log;
+        private readonly ILog _log;
 
         public GetCommentByIdQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
@@ -29,13 +29,14 @@ namespace HobbyProject.Application.Comments.Queries.GetCommentById
         {
             try
             {
-               var result = await _unitOfWork.CommentRepository.GetByIdAsync(request.Id);
+                var result = await _unitOfWork.CommentRepository.GetByIdAsync(request.Id);
                 CommentDto comments = _mapper.Map<CommentDto>(result);
                 return await Task.FromResult(comments);
+
             }catch(Exception e)
             {
                 _log.LogError(e.Message);
-                return await Task.FromResult<CommentDto>(null);
+                throw;
             }
         }
     }

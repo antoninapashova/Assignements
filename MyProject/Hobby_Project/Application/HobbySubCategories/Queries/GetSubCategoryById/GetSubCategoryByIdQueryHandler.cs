@@ -28,13 +28,17 @@ namespace HobbyProject.Application.HobbySubCategories.Queries.GetSubCategoryById
         {
             try
             {
-              var subCategory = await _unitOfWork.SubCategoryRepository.GetByIdAsync(request.Id);
-              HobbySubCategoryDto hobbySubCategoryVm = _mapper.Map<HobbySubCategoryDto>(subCategory);
-               return await Task.FromResult(hobbySubCategoryVm);
+                if (request == null)
+                    throw new NullReferenceException("Get subCategory query is null!");
+
+                var subCategory = await _unitOfWork.SubCategoryRepository.GetByIdAsync(request.Id);
+                 HobbySubCategoryDto hobbySubCategoryVm = _mapper.Map<HobbySubCategoryDto>(subCategory);
+                return await Task.FromResult(hobbySubCategoryVm);
+
             }catch(Exception e)
             {
                 _logger.LogError(e.Message);
-                return await Task.FromResult<HobbySubCategoryDto>(null);
+                throw;
             }
             
         }

@@ -21,7 +21,7 @@ namespace HobbyProject.Application.Photos.Commands.Create
     {
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
-        private ILog _log;
+        private readonly ILog _log;
 
         public CreatePhotoCommandHandler(IMapper mapper, IUnitOfWork unitOfWork)
         {
@@ -34,10 +34,14 @@ namespace HobbyProject.Application.Photos.Commands.Create
         {
             try
             {
+                if (command == null) 
+                    throw new NullReferenceException("Create photo command is null!");
+
                 HobbyPhoto hobbyPhoto = _mapper.Map<HobbyPhoto>(command);
                 await _unitOfWork.PhotoRepository.Add(hobbyPhoto);
                 await _unitOfWork.Save();
                 return await Task.FromResult(hobbyPhoto.Id);
+
             }
             catch (Exception e)
             {
