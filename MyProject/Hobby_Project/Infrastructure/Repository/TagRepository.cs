@@ -28,38 +28,26 @@ namespace Infrastructure.Repository
 
         public async Task DeleteAsync(int id)
         {
-             await IsValidId(id);
              Tag tagForDeletion = await FindById(id);
              _context.Tags.Remove(tagForDeletion);
         }
 
         public async Task<IEnumerable<Tag>> GetAllEntitiesAsync()
         {
-            return  _context.Tags.AsEnumerable();
+            return await _context.Tags.ToListAsync();
         }
 
         public async Task<Tag> GetByIdAsync(int id)
         {
-           await IsValidId(id);
            Tag tag = await FindById(id);
            return tag;
         }
 
         public async Task<Tag> Update(Tag entity)
         {
-            await IsValidId(entity.Id);
             Tag tagForUpdating = await FindById(entity.Id);
             _context.Update(tagForUpdating);
             return entity;
-        }
-
-        public Task<bool> IsValidId(int id)
-        {
-           if (id <= 0) 
-                throw new NullReferenceException("Id must be positive!");
-
-            return Task.FromResult(true);
-
         }
         public async Task<Tag> FindById(int id)
         {

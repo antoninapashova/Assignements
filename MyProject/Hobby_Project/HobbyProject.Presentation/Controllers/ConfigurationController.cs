@@ -1,4 +1,4 @@
-﻿using HobbyProject.Presentation.Middleware;
+﻿using HobbyProject.Presentation.Middleware.UserMiddleware;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

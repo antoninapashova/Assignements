@@ -14,17 +14,17 @@ using EmptyFiles;
 namespace HobbyProjectTests.Mocks
 {
     public static class MockHobbyRepository
-    {
+    {     
         public static Mock<IHobbyArticleRepository> GetHobbyArticleRepository()
         {
             var hobbyArticles = new List<HobbyArticle>
             {
                 new HobbyArticle {Id = 1, Title="A great day for playing tennis", Description="---------",
                                   CreatedDate= DateTime.Now, UserId = 1, HobbySubCategoryId=1,
-                                   Tags = new List<Tag>(), HobbyPhoto = new List<HobbyPhoto>()},
+                                  Tags = new List<Tag>(), HobbyPhoto = new List<HobbyPhoto>()},
                 new HobbyArticle {Id = 2, Title="A great day for playing tennis", Description="---------",
                                   CreatedDate= DateTime.Now, UserId = 1, HobbySubCategoryId=1,
-                                   Tags = new List<Tag>(), HobbyPhoto = new List<HobbyPhoto>()},
+                                  Tags = new List<Tag>(), HobbyPhoto = new List<HobbyPhoto>()},
                 new HobbyArticle {Id = 3, Title="A great day for playing tennis", Description="---------",
                                   CreatedDate= DateTime.Now, UserId = 1, HobbySubCategoryId=1,
                                   Tags = new List<Tag>(), HobbyPhoto = new List<HobbyPhoto>()},
@@ -33,11 +33,13 @@ namespace HobbyProjectTests.Mocks
             var mockRepo = new Mock<IHobbyArticleRepository>();
 
             mockRepo.Setup(x => x.GetAllEntitiesAsync()).ReturnsAsync(hobbyArticles);
+
             mockRepo.Setup(x => x.GetByIdAsync(It.IsAny<int>())).ReturnsAsync((int id) =>
             {
                 HobbyArticle? hobbyArticle1 = hobbyArticles.FirstOrDefault(x => x.Id == id);
                 return hobbyArticle1;
             });
+
             mockRepo.Setup(x => x.Add(It.IsAny<HobbyArticle>())).ReturnsAsync((HobbyArticle hobbyArticle) =>
             {
                 hobbyArticles.Add(hobbyArticle);

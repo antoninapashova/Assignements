@@ -29,45 +29,34 @@ namespace Infrastructure.Repository
 
         public async Task DeleteAsync(int id)
         {
-            await IsValidId(id);
             User userForDeliting = await FindById(id);
             _context.Users.Remove(userForDeliting);
         }
 
         public async Task<IEnumerable<User>> GetAllEntitiesAsync()
         {
-            return _context.Users.AsEnumerable();
+            return await _context.Users.ToListAsync();
         }
 
         public async Task<User> GetByIdAsync(int id)
         {
-             await IsValidId(id);
             User user = await FindById(id);
             return user;
         }
 
         public async Task<User> Update(User entity)
         {
-            await IsValidId(entity.Id);
             User userForUpdating = await FindById(entity.Id);
 
             _context.Users.Update(userForUpdating);
             return userForUpdating;
         }
 
-        public Task<bool> IsValidId(int id)
-        {
-            if (id <= 0) 
-                throw new NullReferenceException("Id must be positive!");
-            return Task.FromResult(true);
-        }
-
         public async Task<User> FindById(int id)
         {
              var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
 
-             if (user == null) 
-                throw new NullReferenceException("User with Id: " + id + " does not exist");
+             if (user == null) throw new NullReferenceException("User with Id: " + id + " does not exist");
 
             return user;
         }

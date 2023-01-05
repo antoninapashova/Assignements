@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Application.Comments.Commands.Edit
 {
-    internal class EditCommentCommandHandler : IRequestHandler<EditCommentCommand, int>
+    public class EditCommentCommandHandler : IRequestHandler<EditCommentCommand, int>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ILog _log;

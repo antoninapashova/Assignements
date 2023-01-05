@@ -21,6 +21,7 @@ namespace HobbyProjectTests.Mocks
                new Tag{Id = 2,CreatedDate = DateTime.Now,Name = "Vegetarian food"}
             };
             var mockRepo = new Mock<ITagRepository>();
+
             mockRepo.Setup(x => x.GetAllEntitiesAsync()).ReturnsAsync(tags);
 
             mockRepo.Setup(x => x.Add(It.IsAny<Tag>())).ReturnsAsync((Tag tag) =>

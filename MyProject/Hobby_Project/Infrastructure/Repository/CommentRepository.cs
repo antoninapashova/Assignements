@@ -23,17 +23,14 @@ namespace Infrastructure.Repository
         public async Task<HobbyComment> Add(HobbyComment entity)
         {
             await _context.HobbyComments.AddAsync(entity);
-           
-            return entity;
+           return entity;
         }
 
         public async Task DeleteAsync(int id)
         {
             var comment = await FindById(id);
             _context.HobbyComments.Remove(comment);
-            
         }
-
         public async Task<IEnumerable<HobbyComment>> GetAllEntitiesAsync()
         {
             return await _context.HobbyComments
@@ -43,12 +40,10 @@ namespace Infrastructure.Repository
 
         public async Task<HobbyComment> GetByIdAsync(int id)
         {
-           
             var comment =await FindById(id);
             return await Task.FromResult(comment);
         }
 
-    
         public async Task<HobbyComment> Update(HobbyComment comment)
         {
              await FindById(comment.Id);
@@ -60,8 +55,8 @@ namespace Infrastructure.Repository
         {
             var comment = await _context.HobbyComments.FirstOrDefaultAsync(c => c.Id == id);
 
-            if (comment == null) 
-                throw new NullReferenceException("Comment with Id" + id + "does not exist!");
+            if (comment == null)  throw new NullReferenceException("Comment with Id" + id + "does not exist!");
+
             return comment;
         }
     }

@@ -42,7 +42,6 @@ namespace HobbyProjectTests.Mocks
             {
                 HobbyComment? hobbyComment1 = comments.FirstOrDefault(x => x.Id == commentId);
                 comments.Remove(hobbyComment1);
-
                 return Task.FromResult(hobbyComment1.Id);
             });
             return mockRepo;

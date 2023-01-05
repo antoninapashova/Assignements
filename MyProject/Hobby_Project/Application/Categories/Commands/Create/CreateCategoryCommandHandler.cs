@@ -29,8 +29,7 @@ namespace Application.Categories.Commands.Create
         {
             try
             {
-                if (command == null) 
-                    throw new NullReferenceException("Create category command is null!");
+                if (command == null) throw new NullReferenceException("Create category command is null!");
 
                 HobbyCategory hobbyCategory = _mapper.Map<HobbyCategory>(command);
                 await _unitOfWork.CategoryRepository.Add(hobbyCategory);

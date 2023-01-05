@@ -27,26 +27,23 @@ namespace Infrastructure.Repository
 
         public async Task DeleteAsync(int id)
         {
-             await IsValidId(id);
              HobbySubCategory hobbySubCategory = await FindById(id);
              _context.HobbySubCategories.Remove(hobbySubCategory);
         }
 
         public async Task<IEnumerable<HobbySubCategory>> GetAllEntitiesAsync()
         {
-            return  _context.HobbySubCategories.AsEnumerable();
+            return await _context.HobbySubCategories.ToListAsync();
         }
 
         public async Task<HobbySubCategory> GetByIdAsync(int id)
         {
-            await IsValidId(id);
             HobbySubCategory hobbySubCategory = await FindById(id);
             return hobbySubCategory;
         }
 
         public async Task<HobbySubCategory> Update(HobbySubCategory hobbySubCategory)
         {
-            await IsValidId(hobbySubCategory.Id);
             HobbySubCategory subCategoryForEditing = await FindById(hobbySubCategory.Id);
 
             _context.Update(subCategoryForEditing);
@@ -55,18 +52,11 @@ namespace Infrastructure.Repository
         
         public async Task<HobbySubCategory> FindById(int id)
         {
-            var subCategory = await _context.HobbySubCategories
-                .FirstOrDefaultAsync(s => s.Id == id);
-            if (subCategory == null) 
-                throw new NullReferenceException("SubCategory with Id: " + id + " does not exist");
-            return subCategory;
-        }
-        public Task<bool> IsValidId(int id)
-        {
-            if (id <= 0) 
-                throw new NullReferenceException("Id must be positive!");
+            var subCategory = await _context.HobbySubCategories.FirstOrDefaultAsync(s => s.Id == id);
 
-            return Task.FromResult(true);
+            if (subCategory == null) throw new NullReferenceException("SubCategory with Id: " + id + " does not exist");
+
+            return subCategory;
         }
 
     }

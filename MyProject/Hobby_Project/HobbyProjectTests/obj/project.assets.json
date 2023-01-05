@@ -3844,7 +3844,8 @@
           "Microsoft.AspNetCore.TestHost": "6.0.5",
           "Microsoft.EntityFrameworkCore": "7.0.0",
           "Moq": "4.18.2",
-          "Swashbuckle.AspNetCore": "6.2.3"
+          "Swashbuckle.AspNetCore": "6.2.3",
+          "System.ObjectModel": "4.3.0"
         },
         "compile": {
           "bin/placeholder/HobbyProject.Presentation.dll": {}

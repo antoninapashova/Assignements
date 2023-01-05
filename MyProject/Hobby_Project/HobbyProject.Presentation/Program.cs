@@ -9,7 +9,8 @@ using System.Reflection;
 using HobbyProject.Presentation;
 using HobbyProject.Application.Categories.Queries.GetAllCategories;
 using Microsoft.AspNetCore.Authentication;
-using HobbyProject.Presentation.Middleware;
+using HobbyProject.Presentation.Middleware.UserMiddleware;
+using HobbyProject.Presentation.Middleware.ExceptionMiddleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,6 +38,7 @@ builder.Services.AddAutoMapper(typeof(HobbyProject.Application.AssemblyMarketPre
 
 builder.Services.AddDbContext<HobbyDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
+
 builder.Services.AddOptions();
 
 var app = builder.Build();
@@ -47,7 +49,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
+app.UseMiddleware<ExceptionHandlingMiddleware>();
+app.UseMiddleware<UserConfigurationMiddleware>();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

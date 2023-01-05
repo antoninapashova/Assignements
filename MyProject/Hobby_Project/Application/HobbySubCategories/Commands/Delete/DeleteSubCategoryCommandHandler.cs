@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.HobbySubCategories.Commands.Delete
 {
-    internal class DeleteSubCategoryCommandHandler : IRequestHandler<DeleteSubCategoryCommand, int>
+    public class DeleteSubCategoryCommandHandler : IRequestHandler<DeleteSubCategoryCommand, int>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ILog _log;

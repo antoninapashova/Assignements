@@ -28,7 +28,6 @@ namespace Infrastructure.Repository
 
         public async Task DeleteAsync(int id)
         {
-            await IsValidId(id);
             var hobbyPhoto = await FindById(id);
             _context.HobbyPhotos.Remove(hobbyPhoto);
         }
@@ -40,14 +39,12 @@ namespace Infrastructure.Repository
 
         public async Task<HobbyPhoto> GetByIdAsync(int id)
         {
-            await IsValidId(id);
             HobbyPhoto hobbyPhoto = await FindById(id);
             return await Task.FromResult(hobbyPhoto);
         }
         public async Task<HobbyPhoto> Update(HobbyPhoto entity)
         {
-            await IsValidId(entity.Id);
-
+            await FindById(entity.Id);
             _context.HobbyPhotos.Update(entity);
             return entity;
         }
@@ -60,13 +57,6 @@ namespace Infrastructure.Repository
                 throw new InvalidOperationException("Photo with Id" + id + "does not exist!");
 
             return photo;
-        }
-
-        public Task<bool> IsValidId(int id)
-        {
-            if (id <= 0) throw new NullReferenceException("Photo Id must be positive");
-
-            return Task.FromResult(true);
         }
     }
 }

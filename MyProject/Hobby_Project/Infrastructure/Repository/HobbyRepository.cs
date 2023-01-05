@@ -28,8 +28,6 @@ namespace Infrastructure.Repository
 
         public async Task DeleteAsync(int id)
         {
-            var hobbyArt = await IsValidId(id);
-
             HobbyArticle articleForDeleting = await FindById(id);
 
             _context.HobbyArticles.Remove(articleForDeleting);
@@ -50,8 +48,7 @@ namespace Infrastructure.Repository
         }
         public async Task<HobbyArticle> GetByIdAsync(int id)
         {
-            await IsValidId(id);
-            HobbyArticle hobbyArticle = await FindById(id);
+           await FindById(id);
             
             return await _context.HobbyArticles
                     .Where(h => h.Id == id)
@@ -60,26 +57,18 @@ namespace Infrastructure.Repository
                     .Include(h=>h.Tags)
                     .FirstOrDefaultAsync();
         }
-
       
-
         public async Task<HobbyArticle> Update(HobbyArticle hobbyArticle)
         {
             _context.HobbyArticles.Update(hobbyArticle);
             return hobbyArticle;
         }
-        public Task<bool> IsValidId(int id)
-        {
-            if (id <= 0) 
-                throw new NullReferenceException("Id must be positive");
 
-            return Task.FromResult(true);
-        }
         public async Task<HobbyArticle> FindById(int id)
         {
             var hobby = await _context.HobbyArticles.FirstOrDefaultAsync(h => h.Id == id);
 
-            if (hobby == null) throw new InvalidOperationException("HobbyArticle with Id: " + id + " does not exist");
+            if (hobby == null) throw new NullReferenceException("HobbyArticle with Id: " + id + " does not exist");
             return hobby;
         }
     }

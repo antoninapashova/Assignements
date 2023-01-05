@@ -105,7 +105,6 @@ namespace HobbyProjectTests.Commands
 
             var hobbies = await _repoMock.Object.GetAllEntitiesAsync();
             hobbies.Count().Should().Be(2);
-
         }
 
         [Fact]

@@ -28,8 +28,6 @@ namespace Infrastructure.Repository
         public async Task DeleteAsync(int id)
         {
             HobbyCategory hobbyCategory = await FindById(id);
-            if (hobbyCategory == null)
-                throw new NullReferenceException("Category is null!");
 
             _context.Remove(hobbyCategory);
         }
@@ -45,8 +43,6 @@ namespace Infrastructure.Repository
         {
             HobbyCategory hobbyCategory = await FindById(id); 
 
-            if (hobbyCategory == null) throw new NullReferenceException();
-
             return  _context.HobbyCategories
                 .Include(x=>x.HobbySubCategories)
                 .FirstOrDefault(x => x.Id == id);
@@ -54,10 +50,7 @@ namespace Infrastructure.Repository
 
         public async Task<HobbyCategory> Update(HobbyCategory hobbyCategory)
         {
-            HobbyCategory result = await FindById(hobbyCategory.Id);
-
-            if (result == null) 
-                throw new NullReferenceException("Category is null!");
+             await FindById(hobbyCategory.Id);
 
             _context.Update(hobbyCategory);
             return hobbyCategory;
@@ -65,8 +58,11 @@ namespace Infrastructure.Repository
 
         public async Task<HobbyCategory> FindById(int id)
         {
-            return await _context.HobbyCategories
+           var hobbyCategory =  await _context.HobbyCategories
                 .FirstOrDefaultAsync(c => c.Id == id);
+            if (hobbyCategory == null)
+                throw new NullReferenceException("Category is null!");
+            return hobbyCategory;
         }
 
     }

@@ -1,5 +1,9 @@
 ﻿using Application.Categories.Commands.Create;
+using Application.Categories.Commands.Delete;
+using Application.Categories.Commands.Edit;
 using Application.Comments.Commands.Create;
+using Application.Comments.Commands.Delete;
+using Application.Comments.Commands.Edit;
 using Application.Mapping;
 using Application.Repositories;
 using AutoMapper;
@@ -61,11 +65,53 @@ namespace HobbyProjectTests.Commands
             await Should.ThrowAsync<NullReferenceException>(async () =>
                   await handler.Handle(null, CancellationToken.None));
 
-            var categories = await _repoMock.Object.GetAllEntitiesAsync();
+            var comments = await _repoMock.Object.GetAllEntitiesAsync();
 
-            categories.Count().Should().Be(3);
+            comments.Count().Should().Be(3);
         }
 
+        [Fact]
+        public async Task Edit_Comment_Handle_Test()
+        {
+            _unitOfWorkMock.Setup(x => x.CommentRepository).Returns(_repoMock.Object);
 
-    }
+            var command = new EditCommentCommand {Id=1,  Title = "New comment", CommentContent = "New comment is added" };
+
+            var handler = new EditCommentCommandHandler(_unitOfWorkMock.Object, _mapper);
+
+            var updatedEntity = await handler.Handle(command, CancellationToken.None);
+
+            updatedEntity.Should().ShouldNotBeNull();
+            updatedEntity.ShouldBeOfType<Int32>();
+            updatedEntity.Should().Be(1);
+
+        }
+
+        [Fact]
+        public async Task Delete_Comment_Handle_Test()
+        {
+            _unitOfWorkMock.Setup(x => x.CommentRepository).Returns(_repoMock.Object);
+
+            var handler = new DeleteCommentCommandHandler(_unitOfWorkMock.Object);
+            var result = await handler.Handle(new DeleteCommentCommand { Id = 1 }, CancellationToken.None);
+
+            var comments = await _repoMock.Object.GetAllEntitiesAsync();
+            comments.Count().Should().Be(2);
+        }
+
+        [Fact]
+        public async Task Delete_Commennt_Throw_Exception_Test()
+        {
+            _unitOfWorkMock.Setup(x => x.CommentRepository).Returns(_repoMock.Object);
+
+            var handler = new DeleteCommentCommandHandler(_unitOfWorkMock.Object);
+
+            await Should.ThrowAsync<NullReferenceException>(async () =>
+                  await handler.Handle(null, CancellationToken.None));
+
+            var comments = await _repoMock.Object.GetAllEntitiesAsync();
+            comments.Count().Should().Be(3);
+        }
+
+     }
 }

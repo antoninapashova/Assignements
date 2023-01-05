@@ -22,6 +22,7 @@ namespace HobbyProjectTests.Mocks
             };
 
             var mockRepo = new Mock<ICategoryRepository>();
+
             mockRepo.Setup(x => x.GetAllEntitiesAsync()).ReturnsAsync(categories);
 
             mockRepo.Setup(x => x.Add(It.IsAny<HobbyCategory>())).ReturnsAsync((HobbyCategory hobbyCategory) =>

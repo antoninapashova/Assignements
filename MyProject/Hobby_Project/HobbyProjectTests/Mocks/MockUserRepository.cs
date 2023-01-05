@@ -21,6 +21,7 @@ namespace HobbyProjectTests.Mocks
             };
 
             var mockRepo = new Mock<IUserRepository>();
+
             mockRepo.Setup(x => x.GetAllEntitiesAsync()).ReturnsAsync(users);
 
             mockRepo.Setup(x => x.Add(It.IsAny<User>())).ReturnsAsync((User user) =>

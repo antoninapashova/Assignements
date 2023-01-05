@@ -29,7 +29,7 @@ namespace Application.Hobby.Commands.Delete
                 if (command == null) 
                     throw new NullReferenceException("Delete hobby command is null");
 
-                await _unitOfWork.HobbyArticleRepository.GetByIdAsync(command.Id);
+                await _unitOfWork.HobbyArticleRepository.DeleteAsync(command.Id);
                 await _unitOfWork.Save();
                 return await Task.FromResult(command.Id);
             }catch (Exception e)

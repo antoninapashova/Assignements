@@ -33,17 +33,9 @@ namespace HobbyProject.Presentation.Controllers
 
         [HttpGet]
         public async Task<IActionResult> GetAllUsers()
-        {
-            try
-            {
+        { 
                 var result = await _mediator.Send(new GetUserListQuery());
                 return Ok(result);
-
-            }
-            catch (Exception e)
-            {
-                return NotFound();
-            }
             
         }
 
@@ -51,30 +43,18 @@ namespace HobbyProject.Presentation.Controllers
         [Route("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            try
-            {
+           
                var query = new GetUserByIdQuery { Id = id };
                 var result = await _mediator.Send(query);
                 return Ok(result);
-            }catch(Exception e)
-            {
-                return NotFound();
-            }
             
         }
 
         [HttpPost]
         public async Task<IActionResult> AddUser([FromBody] CreateUserCommand command)
         {
-            try
-            {
-                FluentValidation.Results.ValidationResult validationResult = await _validator.ValidateAsync(command);
-               var result = await _mediator.Send(command);
-               return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
-            }catch(Exception e)
-            {
-                return BadRequest(); 
-            }
+           var result = await _mediator.Send(command);
+           return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
             
         }
 
@@ -83,35 +63,21 @@ namespace HobbyProject.Presentation.Controllers
         [Route("{id}")]
         public async Task<IActionResult> UpdateCategory(int id, [FromBody] EditUserCommand editUser)
         {
-            try
-            {
+          
                 editUser = new EditUserCommand { Id = id, Username = editUser.Username,
                 FirstName = editUser.FirstName, LastName = editUser.LastName, 
                 Age = editUser.Age, Email = editUser.Email,Password = editUser.Password };
                 var result = await _mediator.Send(editUser);
                 return Ok();
-            }
-            catch (Exception e)
-            {
-               return NoContent();
-            }
         }
 
         [HttpDelete]
         [Route("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
-            try
-            {
                 var command = new DeleteUserCommand { Id = id };
                 var result = await _mediator.Send(command);
                 return Ok();
-            }
-            catch (Exception e)
-            {
-                ///?
-                return BadRequest(e.Message);
-            }
             
         }
 

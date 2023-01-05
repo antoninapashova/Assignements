@@ -34,25 +34,23 @@ namespace HobbyProject.Presentation.Controllers
         [Route("{id}")]
         public async Task<ActionResult> GetById(int id)
         {
-            try
-            {
+            
                var query = new GetCategoryByIdQuery { Id = id };
                var result = await _mediator.Send(query); 
                return Ok(result);
-            }catch(Exception e)
-            {
-                return NotFound();  
-            }
+           
         }
 
         [HttpGet]
         [Route("{categoryId}/subCategories/{subCategoryId}")]
         public async Task<ActionResult> GetSubCategoryFromCategory(int categoryId, int subCategoryId)
         {
-            var query = new GetSubCategoryFromCategory { HobbyCategotyId = categoryId, HobbySubCategotyId = subCategoryId };
-            var result = await _mediator.Send(query);
-            if (result == null) return NotFound();
+            
+               var query = new GetSubCategoryFromCategory { HobbyCategotyId = categoryId, HobbySubCategotyId = subCategoryId };
+               var result = await _mediator.Send(query);
+               if (result == null) return NotFound();
             return Ok(result);
+            
         }
 
         [HttpPost]

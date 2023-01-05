@@ -24,32 +24,20 @@ namespace HobbyProject.Presentation.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllTags()
         {
-            try
-            {
+            
                var result = await _mediator.Send(new GetTagQuery());
                return Ok(result);
-            }
-            catch (Exception e)
-            {
-                return StatusCode(500);
-            }
+         
         }
 
         [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            try
-            {
                var query = new GetTagByIdQuery { Id = id };
               var result = await _mediator.Send(query);
               return Ok(result);
-            }catch(Exception e)
-            {
-                return NotFound(e.Message);
-            }
-            
-        }
+         }
 
         [HttpPost]
         public async Task<IActionResult> AddTag([FromBody] CreateTagCommand command)

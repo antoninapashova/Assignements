@@ -47,6 +47,7 @@ namespace Application.Mapping
 
             //Subcategory
             CreateMap<CreateSubCategoryCommand, HobbySubCategory>();
+
             CreateMap<HobbySubCategory, HobbySubCategoryDto>();
 
             //Comment
