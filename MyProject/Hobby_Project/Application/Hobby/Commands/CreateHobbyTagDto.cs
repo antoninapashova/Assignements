@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HobbyProject.Application.Hobby
+namespace HobbyProject.Application.Hobby.Commands
 {
     public class CreateHobbyTagDto
     {

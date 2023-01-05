@@ -17,7 +17,7 @@ using Hobby_Project;
 using HobbyProject.Application.Categories.Queries;
 using HobbyProject.Application.Categories.Queries.GetSubCategoryFromCategory;
 using HobbyProject.Application.Comments.Commands;
-using HobbyProject.Application.Hobby;
+using HobbyProject.Application.Hobby.Commands;
 using HobbyProject.Application.HobbyTags.Queries;
 using System;
 using System.Collections.Generic;

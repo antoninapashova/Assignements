@@ -48,8 +48,7 @@ namespace HobbyProject.Presentation.Controllers
             
                var query = new GetSubCategoryFromCategory { HobbyCategotyId = categoryId, HobbySubCategotyId = subCategoryId };
                var result = await _mediator.Send(query);
-               if (result == null) return NotFound();
-            return Ok(result);
+               return Ok(result);
             
         }
 

@@ -2,7 +2,6 @@
 using Application.Hobby.Queries;
 using Hobby_Project;
 using HobbyProject.Application.Categories.Queries.GetAllCategories;
-using HobbyProject.Application.Hobby;
 using HobbyProject.Application.Hobby.Commands;
 using HobbyProject.Application.HobbyTags.Queries;
 using MediatR;

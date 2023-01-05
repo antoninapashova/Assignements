@@ -1,4 +1,6 @@
 ﻿using FluentValidation;
+using HobbyProject.Presentation.Middleware.ExceptionMiddleware.Exceptions;
+using System.Collections.Immutable;
 using System.Text.Json;
 
 
@@ -38,26 +40,26 @@ namespace HobbyProject.Presentation.Middleware.ExceptionMiddleware
             await httpContext.Response.WriteAsync(JsonSerializer.Serialize(response));
         }
 
-        private static int GetStatusCode(Exception exception) =>
-        exception switch
+        private static int GetStatusCode(Exception exception) =>exception switch
         {
             BadRequestException => StatusCodes.Status400BadRequest,
             NotFoundException => StatusCodes.Status404NotFound,
-            ValidationException => StatusCodes.Status422UnprocessableEnttity,
+            ValidationException => StatusCodes.Status422UnprocessableEntity,
             _ => StatusCodes.Status500InternalServerError
         };
-        private static string GetTitle(Exception exception) =>
-            exception switch
+        
+        private static string GetTitle(Exception exception) => exception switch
             {
-                ApplicationException applicationException => applicationException.Title,
-                _ => "Server Error"
+                ApplicationException applicationException => applicationException.Message,
+                _=> "Server Error"
             };
+
         private static IReadOnlyDictionary<string, string[]> GetErrors(Exception exception)
         {
             IReadOnlyDictionary<string, string[]> errors = null;
             if (exception is ValidationException validationException)
             {
-                errors = validationException.ErrorsDictionary;
+                errors = validationException.Data.Values;
             }
             return errors;
         }

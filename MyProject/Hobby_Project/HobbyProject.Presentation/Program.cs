@@ -39,6 +39,8 @@ builder.Services.AddAutoMapper(typeof(HobbyProject.Application.AssemblyMarketPre
 builder.Services.AddDbContext<HobbyDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
+builder.Services.AddTransient<ExceptionHandlingMiddleware>();
+
 builder.Services.AddOptions();
 
 var app = builder.Build();

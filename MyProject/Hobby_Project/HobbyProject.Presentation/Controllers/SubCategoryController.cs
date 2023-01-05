@@ -49,7 +49,7 @@ namespace HobbyProject.Presentation.Controllers
         public async Task<IActionResult> DeleteSubCategory(int id)
         {
             var command = new DeleteSubCategoryCommand { Id = id };
-            var result = await _mediator.Send(command);
+            await _mediator.Send(command);
             return NoContent();
         }
 

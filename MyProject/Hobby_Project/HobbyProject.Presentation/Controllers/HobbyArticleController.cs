@@ -55,7 +55,7 @@ namespace HobbyProject.Presentation.Controllers
         public async Task<IActionResult> DeleteArticle(int id)
         {
             var command = new DeleteHobbyCommand { Id = id };
-            var result = await _mediator.Send(command);
+            await _mediator.Send(command);
             return NoContent();
         }
     }

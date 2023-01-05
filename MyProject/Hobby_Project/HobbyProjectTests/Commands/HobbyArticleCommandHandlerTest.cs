@@ -11,7 +11,6 @@ using AutoMapper;
 using Domain.Entity;
 using FluentAssertions;
 using Hobby_Project;
-using HobbyProject.Application.Hobby;
 using HobbyProject.Application.Hobby.Commands;
 using HobbyProjectTests.Mocks;
 using Moq;

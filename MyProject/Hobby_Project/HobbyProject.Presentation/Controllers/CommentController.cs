@@ -50,8 +50,8 @@ namespace HobbyProject.Presentation.Controllers
         public async Task<IActionResult> UpdateComment(int id, [FromBody] EditCommentCommand editComment)
         {
             editComment = new EditCommentCommand { Id = id, CommentContent = editComment.CommentContent, Title = editComment.Title };
-            var result = await _mediator.Send(editComment);
-           return NoContent();
+             await _mediator.Send(editComment);
+            return NoContent();
         }
 
         [HttpDelete]
@@ -59,7 +59,7 @@ namespace HobbyProject.Presentation.Controllers
         public async Task<IActionResult> DeleteComment(int id)
         {
             var command = new DeleteCommentCommand { Id = id };
-            var result = await _mediator.Send(command);
+             await _mediator.Send(command);
             return NoContent();
         }
     }

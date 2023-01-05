@@ -67,7 +67,7 @@ namespace HobbyProject.Presentation.Controllers
                 editUser = new EditUserCommand { Id = id, Username = editUser.Username,
                 FirstName = editUser.FirstName, LastName = editUser.LastName, 
                 Age = editUser.Age, Email = editUser.Email,Password = editUser.Password };
-                var result = await _mediator.Send(editUser);
+                 await _mediator.Send(editUser);
                 return Ok();
         }
 
@@ -76,7 +76,7 @@ namespace HobbyProject.Presentation.Controllers
         public async Task<IActionResult> DeleteUser(int id)
         {
                 var command = new DeleteUserCommand { Id = id };
-                var result = await _mediator.Send(command);
+                 await _mediator.Send(command);
                 return Ok();
             
         }
