@@ -1,7 +1,6 @@
 ﻿
 using Application.Hobby.Commands.Create;
 using Application.Logger;
-using Application.Photos;
 using Application.Repositories;
 using AutoMapper;
 using CloudinaryDotNet;

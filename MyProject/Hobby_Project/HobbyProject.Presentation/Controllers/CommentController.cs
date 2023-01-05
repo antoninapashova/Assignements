@@ -34,7 +34,6 @@ namespace HobbyProject.Presentation.Controllers
         {
             var query = new GetCommentByIdQuery { Id = id };
             var result = await _mediator.Send(query);
-            if (result == null) return NotFound();
             return Ok(result);
         }
 
@@ -52,10 +51,7 @@ namespace HobbyProject.Presentation.Controllers
         {
             editComment = new EditCommentCommand { Id = id, CommentContent = editComment.CommentContent, Title = editComment.Title };
             var result = await _mediator.Send(editComment);
-
-            if (result == 0) return NotFound();
-
-            return NoContent();
+           return NoContent();
         }
 
         [HttpDelete]
@@ -64,7 +60,6 @@ namespace HobbyProject.Presentation.Controllers
         {
             var command = new DeleteCommentCommand { Id = id };
             var result = await _mediator.Send(command);
-            if (result == 0) return NotFound();
             return NoContent();
         }
     }

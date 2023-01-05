@@ -9,6 +9,7 @@ using FluentAssertions;
 using Hobby_Project;
 using HobbyProjectTests.Mocks;
 using Moq;
+using Shouldly;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,7 +44,6 @@ namespace HobbyProjectTests.Commands
             };
         }
 
-
         [Fact]
         public async Task Create_User_Handle_Returns_User_Test()
         {
@@ -55,14 +55,30 @@ namespace HobbyProjectTests.Commands
         }
 
         [Fact]
+        public async Task Create_User_Throws_Exception()
+        {
+            _unitOfWorkMock.Setup(x => x.UserRepository).Returns(_repoMock.Object);
+            var handler = new CreateUserCommandHandler(_unitOfWorkMock.Object, _mapper);
+
+            await Should.ThrowAsync<NullReferenceException>(async () =>
+               await handler.Handle(null, CancellationToken.None));
+
+            var users =await _repoMock.Object.GetAllEntitiesAsync();
+
+            users.Count().Should().Be(1);
+        }
+
+
+        [Fact]
         public async Task Delete_User_Handle_Test()
         {
-            _repoMock.Setup(x => x.DeleteAsync(1));
             _unitOfWorkMock.Setup(x => x.UserRepository).Returns(_repoMock.Object);
-
             var handler = new DeleteUserCommandHandler(_unitOfWorkMock.Object);
             var result = await handler.Handle(new DeleteUserCommand { Id = 1 }, CancellationToken.None);
+
+            var users =await _repoMock.Object.GetAllEntitiesAsync();
             result.Should().Be(1);
+            users.Count().Should().Be(0);
         }
     }
 }

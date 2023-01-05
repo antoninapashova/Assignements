@@ -28,9 +28,13 @@ namespace HobbyProject.Application.Categories.Queries.GetCategoryById
         {
             try
             {
+                if (request == null) 
+                    throw new NullReferenceException("Get category by Id query is null!");
+
                 var category = await _unitOfWork.CategoryRepository.GetByIdAsync(request.Id);
                 var result =  _mapper.Map<CategoryDto>(category);
                 return await Task.FromResult(result);
+
             }catch (Exception e)
             {
                 _log.LogError(e.Message);

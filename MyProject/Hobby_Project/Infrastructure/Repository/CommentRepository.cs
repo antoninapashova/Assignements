@@ -29,7 +29,6 @@ namespace Infrastructure.Repository
 
         public async Task DeleteAsync(int id)
         {
-             await IsValidId(id);
             var comment = await FindById(id);
             _context.HobbyComments.Remove(comment);
             
@@ -44,7 +43,7 @@ namespace Infrastructure.Repository
 
         public async Task<HobbyComment> GetByIdAsync(int id)
         {
-            await IsValidId(id);
+           
             var comment =await FindById(id);
             return await Task.FromResult(comment);
         }
@@ -52,23 +51,17 @@ namespace Infrastructure.Repository
     
         public async Task<HobbyComment> Update(HobbyComment comment)
         {
-            await IsValidId(comment.Id);
+             await FindById(comment.Id);
             _context.HobbyComments.Update(comment);
             return comment;
-        }
-        public Task<bool> IsValidId(int id)
-        {
-            if (id <= 0) 
-                throw new NullReferenceException("Comment Id must be positive");
-
-           return Task.FromResult(true);
         }
 
         public async Task<HobbyComment> FindById(int id)
         {
             var comment = await _context.HobbyComments.FirstOrDefaultAsync(c => c.Id == id);
 
-            if (comment == null) throw new InvalidOperationException("Comment with Id" + id + "does not exist!");
+            if (comment == null) 
+                throw new NullReferenceException("Comment with Id" + id + "does not exist!");
             return comment;
         }
     }

@@ -40,7 +40,6 @@ namespace HobbyProject.Presentation.Controllers
         {
             var query = new GetHobbyByIdQuery { Id = id };
             var result = await _mediator.Send(query);
-            if (result == null) return NotFound();
             return Ok(result);
         }
 
@@ -57,7 +56,6 @@ namespace HobbyProject.Presentation.Controllers
         {
             var command = new DeleteHobbyCommand { Id = id };
             var result = await _mediator.Send(command);
-            if (result == 0) return NotFound();
             return NoContent();
         }
     }

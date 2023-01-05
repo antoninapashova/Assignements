@@ -34,7 +34,6 @@ namespace HobbyProject.Presentation.Controllers
         {
             var query = new GetSubCategoryQuery { Id = id };
             var result = await _mediator.Send(query);
-            if (result == null) return NotFound();
             return Ok(result);
         }
 
@@ -51,7 +50,6 @@ namespace HobbyProject.Presentation.Controllers
         {
             var command = new DeleteSubCategoryCommand { Id = id };
             var result = await _mediator.Send(command);
-            if (result == 0) return NotFound();
             return NoContent();
         }
 

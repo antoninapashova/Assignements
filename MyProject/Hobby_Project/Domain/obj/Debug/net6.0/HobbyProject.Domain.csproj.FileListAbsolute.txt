@@ -1,0 +1,14 @@
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\bin\Debug\net6.0\HobbyProject.Domain.deps.json
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\bin\Debug\net6.0\HobbyProject.Domain.runtimeconfig.json
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\bin\Debug\net6.0\HobbyProject.Domain.dll
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\bin\Debug\net6.0\HobbyProject.Domain.pdb
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\obj\Debug\net6.0\HobbyProject.Domain.csproj.AssemblyReference.cache
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\obj\Debug\net6.0\HobbyProject.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\obj\Debug\net6.0\HobbyProject.Domain.AssemblyInfoInputs.cache
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\obj\Debug\net6.0\HobbyProject.Domain.AssemblyInfo.cs
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\obj\Debug\net6.0\HobbyProject.Domain.csproj.CoreCompileInputs.cache
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\obj\Debug\net6.0\HobbyProject.Domain.dll
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\obj\Debug\net6.0\refint\HobbyProject.Domain.dll
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\obj\Debug\net6.0\HobbyProject.Domain.pdb
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\obj\Debug\net6.0\HobbyProject.Domain.genruntimeconfig.cache
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\Domain\obj\Debug\net6.0\ref\HobbyProject.Domain.dll

@@ -27,8 +27,10 @@ namespace Infrastructure.Repository
         }
         public async Task DeleteAsync(int id)
         {
-            await IsValidId(id);
             HobbyCategory hobbyCategory = await FindById(id);
+            if (hobbyCategory == null)
+                throw new NullReferenceException("Category is null!");
+
             _context.Remove(hobbyCategory);
         }
 
@@ -41,38 +43,30 @@ namespace Infrastructure.Repository
 
         public async Task<HobbyCategory> GetByIdAsync(int id)
         {
-            await IsValidId(id);
-            HobbyCategory hobbyCategory = await FindById(id);
-            _context.HobbyCategories
-                .Where(c=>c.Id == id)
-                .Include(c=>c.HobbySubCategories);
-            return hobbyCategory;
+            HobbyCategory hobbyCategory = await FindById(id); 
+
+            if (hobbyCategory == null) throw new NullReferenceException();
+
+            return  _context.HobbyCategories
+                .Include(x=>x.HobbySubCategories)
+                .FirstOrDefault(x => x.Id == id);
         }
 
         public async Task<HobbyCategory> Update(HobbyCategory hobbyCategory)
         {
-           await IsValidId(hobbyCategory.Id);
-            HobbyCategory categoryForEditing = await FindById(hobbyCategory.Id);
+            HobbyCategory result = await FindById(hobbyCategory.Id);
+
+            if (result == null) 
+                throw new NullReferenceException("Category is null!");
+
             _context.Update(hobbyCategory);
             return hobbyCategory;
         } 
-        public async Task<bool> IsValidId(int id)
-        {
-            if (id <= 0) 
-                throw new NullReferenceException("Id must be positive");
-
-            return await Task.FromResult(true);
-        }
 
         public async Task<HobbyCategory> FindById(int id)
         {
-            var category = await _context.HobbyCategories
+            return await _context.HobbyCategories
                 .FirstOrDefaultAsync(c => c.Id == id);
-
-            if (category == null) 
-                throw new NullReferenceException("Category with that id does not exist");
-
-            return category;
         }
 
     }

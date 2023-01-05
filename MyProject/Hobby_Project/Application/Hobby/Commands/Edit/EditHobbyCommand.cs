@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.Hobby.Commands.Edit
 {
-    internal class EditHobbyCommand : IRequest<int>
+    public class EditHobbyCommand : IRequest<int>
     {
         public int Id { get; set; }
         public string Title { get; set; }

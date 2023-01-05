@@ -12,7 +12,7 @@ namespace Application.Categories.Commands.Delete
     public class DeleteCategoryCommandHandler : IRequestHandler<DeleteCategoryCommand, int>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private ILog _log;
+        private readonly ILog _log;
 
         public DeleteCategoryCommandHandler(IUnitOfWork unitOfWork)
         {

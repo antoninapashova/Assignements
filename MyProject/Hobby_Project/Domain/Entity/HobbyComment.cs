@@ -17,6 +17,6 @@ namespace Hobby_Project
         public int HobbyArticleId { get; set; }
         public virtual User User { get; set; }
         public HobbyArticle HobbyArticle { get; set; }
-        public string Title { get; }
+        public string Title { get; set; }
     }
 }

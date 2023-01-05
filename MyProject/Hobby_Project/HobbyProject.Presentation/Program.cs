@@ -9,7 +9,6 @@ using System.Reflection;
 using HobbyProject.Presentation;
 using HobbyProject.Application.Categories.Queries.GetAllCategories;
 using Microsoft.AspNetCore.Authentication;
-using Application.Photos;
 using HobbyProject.Presentation.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -38,12 +37,7 @@ builder.Services.AddAutoMapper(typeof(HobbyProject.Application.AssemblyMarketPre
 
 builder.Services.AddDbContext<HobbyDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
-
 builder.Services.AddOptions();
-
-
-
-
 
 var app = builder.Build();
 

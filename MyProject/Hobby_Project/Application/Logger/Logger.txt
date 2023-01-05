@@ -88,3 +88,111 @@ HobbyProject.Application.Hobby.CreateHobbyTagDto -> Hobby_Project.Tag
 [Error]23:43 Object reference not set to an instance of an object.
 *-------------------------------*
 [Error]9:51 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]14:54 Id must be positive
+*-------------------------------*
+[Error]14:59 Category with that id does not exist
+*-------------------------------*
+[Error]15:45 An exception was thrown while attempting to evaluate a LINQ query parameter expression. See the inner exception for more information. To show additional information call 'DbContextOptionsBuilder.EnableSensitiveDataLogging'.
+*-------------------------------*
+[Error]15:51 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]15:52 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]16:23 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]16:07 Create category command is null!
+*-------------------------------*
+[Error]16:38 Create category command is null!
+*-------------------------------*
+[Error]17:01 Delete category command is null
+*-------------------------------*
+[Error]17:16 Create tag command is null!
+*-------------------------------*
+[Error]17:17 Create tag command is null!
+*-------------------------------*
+[Error]12:02 Create category command is null!
+*-------------------------------*
+[Error]12:02 Create tag command is null!
+*-------------------------------*
+[Error]12:02 Delete category command is null
+*-------------------------------*
+[Error]12:09 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]12:16 Create tag command is null!
+*-------------------------------*
+[Error]12:16 Create category command is null!
+*-------------------------------*
+[Error]12:16 Delete category command is null
+*-------------------------------*
+[Error]13:25 Create tag command is null!
+*-------------------------------*
+[Error]13:41 Create user command is null!
+*-------------------------------*
+[Error]15:54 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]15:56 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]16:04 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]16:06 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]16:06 Create user command is null!
+*-------------------------------*
+[Error]16:06 Create category command is null!
+*-------------------------------*
+[Error]16:06 Create tag command is null!
+*-------------------------------*
+[Error]16:06 Delete category command is null
+*-------------------------------*
+[Error]16:06 Create hobby command is null!
+*-------------------------------*
+[Error]16:07 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]16:08 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]16:09 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]16:10 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]16:10 Create category command is null!
+*-------------------------------*
+[Error]16:10 Create tag command is null!
+*-------------------------------*
+[Error]16:10 Create user command is null!
+*-------------------------------*
+[Error]16:10 Delete category command is null
+*-------------------------------*
+[Error]16:10 Create hobby command is null!
+*-------------------------------*
+[Error]16:10 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]16:11 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]16:13 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]16:13 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]16:14 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]16:17 Create hobby command is null!
+*-------------------------------*
+[Error]16:18 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]16:23 Delete hobby command is null
+*-------------------------------*
+[Error]16:41 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]16:43 Create category command is null!
+*-------------------------------*
+[Error]16:43 Create user command is null!
+*-------------------------------*
+[Error]16:43 Create tag command is null!
+*-------------------------------*
+[Error]16:43 Delete category command is null
+*-------------------------------*
+[Error]16:43 Create hobby command is null!
+*-------------------------------*
+[Error]16:43 Delete hobby command is null
+*-------------------------------*
+[Error]17:20 Create comment command is null

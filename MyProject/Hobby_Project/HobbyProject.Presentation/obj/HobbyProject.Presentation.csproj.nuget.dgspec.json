@@ -60,6 +60,10 @@
               "target": "Package",
               "version": "[6.8.0, )"
             },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.4.0, )"
+            },
             "MediatR": {
               "target": "Package",
               "version": "[11.1.0, )"
@@ -172,6 +176,10 @@
             "FluentAssertions": {
               "target": "Package",
               "version": "[6.8.0, )"
+            },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.4.0, )"
             },
             "MediatR": {
               "target": "Package",
@@ -292,6 +300,10 @@
               "target": "Package",
               "version": "[6.8.0, )"
             },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.4.0, )"
+            },
             "MediatR": {
               "target": "Package",
               "version": "[11.1.0, )"
@@ -404,6 +416,10 @@
             "FluentAssertions": {
               "target": "Package",
               "version": "[6.8.0, )"
+            },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[11.4.0, )"
             },
             "MediatR": {
               "target": "Package",

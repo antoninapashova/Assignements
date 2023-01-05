@@ -12,7 +12,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Application.Hobby.Commands.Edit
 {
-    internal class EditHobbyCommandHandler : IRequestHandler<EditHobbyCommand, int>
+    public class EditHobbyCommandHandler : IRequestHandler<EditHobbyCommand, int>
     {
         private readonly IUnitOfWork _unitOfWork;
         private ILog _log;

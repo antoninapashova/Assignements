@@ -14,8 +14,6 @@ namespace Application.Repositories
         Task DeleteAsync(int id);
         Task<T> GetByIdAsync(int id);
         Task<IEnumerable<T>> GetAllEntitiesAsync();
-
-        Task<bool> IsValidId(int id);
         Task<T> FindById(int id);
     }
 }

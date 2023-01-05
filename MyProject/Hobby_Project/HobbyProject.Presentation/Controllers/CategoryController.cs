@@ -17,18 +17,15 @@ namespace HobbyProject.Presentation.Controllers
     {
         public readonly IMediator _mediator;
         
-
         public CategoryController(IMediator mediator)
         {
             _mediator = mediator;
-           
         }
 
         [HttpGet]
         public async Task<ActionResult> GetAllCategories()
         {
             var result = await _mediator.Send(new GetCategoriesListQuery());
-           
             return Ok(result);
         }
 
@@ -37,10 +34,15 @@ namespace HobbyProject.Presentation.Controllers
         [Route("{id}")]
         public async Task<ActionResult> GetById(int id)
         {
-            var query = new GetCategoryByIdQuery { Id = id };
-            var result = await _mediator.Send(query);
-            if (result == null) return NotFound();  
-            return Ok(result);
+            try
+            {
+               var query = new GetCategoryByIdQuery { Id = id };
+               var result = await _mediator.Send(query); 
+               return Ok(result);
+            }catch(Exception e)
+            {
+                return NotFound();  
+            }
         }
 
         [HttpGet]
@@ -67,7 +69,7 @@ namespace HobbyProject.Presentation.Controllers
         {
              editCategory = new EditCategoryCommand { Id = id, Name = editCategory.Name };
              var result = await _mediator.Send(editCategory);
-             if (result ==null) return NotFound();
+             
              return Ok(result);
         }
         
@@ -78,7 +80,6 @@ namespace HobbyProject.Presentation.Controllers
         {
             var command = new DeleteCategoryCommand { Id = id };
             var result = await _mediator.Send(command);
-            if (result == 0) return NotFound();
             return Ok(result);
         }
 
