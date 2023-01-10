@@ -59,7 +59,7 @@ namespace HobbyProject.Presentation.Controllers
         public async Task<IActionResult> DeleteComment(int id)
         {
             var command = new DeleteCommentCommand { Id = id };
-             await _mediator.Send(command);
+            await _mediator.Send(command);
             return NoContent();
         }
     }

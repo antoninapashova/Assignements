@@ -51,17 +51,17 @@ namespace Infrastructure.Repository
         public async Task<HobbyCategory> Update(HobbyCategory hobbyCategory)
         {
              await FindById(hobbyCategory.Id);
-
-            _context.Update(hobbyCategory);
-            return hobbyCategory;
+             _context.Update(hobbyCategory);
+             return hobbyCategory;
         } 
 
         public async Task<HobbyCategory> FindById(int id)
         {
            var hobbyCategory =  await _context.HobbyCategories
                 .FirstOrDefaultAsync(c => c.Id == id);
-            if (hobbyCategory == null)
-                throw new NullReferenceException("Category is null!");
+
+            if (hobbyCategory == null) throw new NullReferenceException("Category is null!");
+
             return hobbyCategory;
         }
 

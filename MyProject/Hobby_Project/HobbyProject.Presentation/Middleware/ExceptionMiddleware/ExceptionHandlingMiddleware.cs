@@ -1,8 +1,8 @@
-﻿using FluentValidation;
+﻿using FluentAssertions;
+using FluentValidation;
 using HobbyProject.Presentation.Middleware.ExceptionMiddleware.Exceptions;
 using System.Collections.Immutable;
 using System.Text.Json;
-
 
 namespace HobbyProject.Presentation.Middleware.ExceptionMiddleware
 {
@@ -49,17 +49,17 @@ namespace HobbyProject.Presentation.Middleware.ExceptionMiddleware
         };
         
         private static string GetTitle(Exception exception) => exception switch
-            {
+         {
                 ApplicationException applicationException => applicationException.Message,
                 _=> "Server Error"
-            };
+         };
 
         private static IReadOnlyDictionary<string, string[]> GetErrors(Exception exception)
         {
-            IReadOnlyDictionary<string, string[]> errors = null;
+            IDictionary<string, string[]> errors = null;
             if (exception is ValidationException validationException)
             {
-                errors = validationException.Data.Values;
+                errors = validationException.Data;
             }
             return errors;
         }

@@ -34,8 +34,8 @@ namespace HobbyProject.Presentation.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllUsers()
         { 
-                var result = await _mediator.Send(new GetUserListQuery());
-                return Ok(result);
+          var result = await _mediator.Send(new GetUserListQuery());
+          return Ok(result);
             
         }
 
@@ -43,11 +43,9 @@ namespace HobbyProject.Presentation.Controllers
         [Route("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-           
-               var query = new GetUserByIdQuery { Id = id };
-                var result = await _mediator.Send(query);
-                return Ok(result);
-            
+            var query = new GetUserByIdQuery { Id = id };
+            var result = await _mediator.Send(query);
+            return Ok(result);
         }
 
         [HttpPost]
@@ -55,7 +53,6 @@ namespace HobbyProject.Presentation.Controllers
         {
            var result = await _mediator.Send(command);
            return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
-            
         }
 
 
@@ -64,20 +61,20 @@ namespace HobbyProject.Presentation.Controllers
         public async Task<IActionResult> UpdateCategory(int id, [FromBody] EditUserCommand editUser)
         {
           
-                editUser = new EditUserCommand { Id = id, Username = editUser.Username,
+            editUser = new EditUserCommand { Id = id, Username = editUser.Username,
                 FirstName = editUser.FirstName, LastName = editUser.LastName, 
                 Age = editUser.Age, Email = editUser.Email,Password = editUser.Password };
-                 await _mediator.Send(editUser);
-                return Ok();
+             await _mediator.Send(editUser);
+            return Ok();
         }
 
         [HttpDelete]
         [Route("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
-                var command = new DeleteUserCommand { Id = id };
-                 await _mediator.Send(command);
-                return Ok();
+          var command = new DeleteUserCommand { Id = id };
+            await _mediator.Send(command);
+            return Ok();
             
         }
 

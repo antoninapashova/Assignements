@@ -278,3 +278,25 @@ Hobby_Project.HobbySubCategory -> HobbyProject.Application.HobbySubCategories.Qu
 Mapping types:
 HobbySubCategory -> HobbySubCategoryDto
 Hobby_Project.HobbySubCategory -> HobbyProject.Application.HobbySubCategories.Queries.HobbySubCategoryDto
+*-------------------------------*
+[Error]9:48 Create sub category command is null!
+*-------------------------------*
+[Error]9:48 Create hobby command is null!
+*-------------------------------*
+[Error]9:48 Create user command is null!
+*-------------------------------*
+[Error]9:48 Create comment command is null
+*-------------------------------*
+[Error]9:48 Delete sub category command is null!
+*-------------------------------*
+[Error]9:48 Delete hobby command is null
+*-------------------------------*
+[Error]9:48 Missing type map configuration or unsupported mapping.
+
+Mapping types:
+HobbySubCategory -> HobbySubCategoryDto
+Hobby_Project.HobbySubCategory -> HobbyProject.Application.HobbySubCategories.Queries.HobbySubCategoryDto
+*-------------------------------*
+[Error]9:48 Delete category command is null
+*-------------------------------*
+[Error]9:48 Delete comment command is null
