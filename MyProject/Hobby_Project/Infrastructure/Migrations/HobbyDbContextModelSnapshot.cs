@@ -67,10 +67,6 @@ namespace HobbyProject.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("HobbyArticleId")
                         .HasColumnType("int");
 
@@ -141,6 +137,10 @@ namespace HobbyProject.Infrastructure.Migrations
 
                     b.Property<int>("HobbyArticleId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("UserId")
                         .HasColumnType("int");

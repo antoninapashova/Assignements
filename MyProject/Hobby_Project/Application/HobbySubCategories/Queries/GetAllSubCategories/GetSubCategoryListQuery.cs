@@ -9,6 +9,5 @@ namespace HobbyProject.Application.HobbySubCategories.Queries.GetAllSubCategorie
 {
     public class GetSubCategoryListQuery : IRequest<IEnumerable<HobbySubCategoryDto>>
     {
-        public string Name { get; set; }
     }
 }

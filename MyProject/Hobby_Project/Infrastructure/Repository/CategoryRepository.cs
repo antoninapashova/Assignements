@@ -51,6 +51,7 @@ namespace Infrastructure.Repository
         public async Task<HobbyCategory> Update(HobbyCategory hobbyCategory)
         {
              await FindById(hobbyCategory.Id);
+             _context.ChangeTracker.Clear();
              _context.Update(hobbyCategory);
              return hobbyCategory;
         } 

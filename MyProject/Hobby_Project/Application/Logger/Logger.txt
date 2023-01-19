@@ -300,3 +300,131 @@ Hobby_Project.HobbySubCategory -> HobbyProject.Application.HobbySubCategories.Qu
 [Error]9:48 Delete category command is null
 *-------------------------------*
 [Error]9:48 Delete comment command is null
+*-------------------------------*
+[Error]15:34 Missing type map configuration or unsupported mapping.
+
+Mapping types:
+AsyncStateMachineBox`1 -> IEnumerable`1
+System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1+AsyncStateMachineBox`1[[System.Collections.Generic.IEnumerable`1[[Domain.Entity.HobbyArticle, HobbyProject.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[Infrastructure.Repository.HobbyRepository+<GetHobbyArticlesByUserId>d__4, HobbyProject.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.IEnumerable`1[[HobbyProject.Application.Users.Queries.HobbyArticleDTO, HobbyProject.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+*-------------------------------*
+[Error]15:36 Invalid column name 'Title'.
+*-------------------------------*
+[Error]15:40 Invalid column name 'Title'.
+*-------------------------------*
+[Error]16:12 Invalid column name 'Title'.
+*-------------------------------*
+[Error]16:16 The expression 'x.Title' is invalid inside an 'Include' operation, since it does not represent a property access: 't => t.MyProperty'. To target navigations declared on derived types, use casting ('t => ((Derived)t).MyProperty') or the 'as' operator ('t => (t as Derived).MyProperty'). Collection navigation access can be filtered by composing Where, OrderBy(Descending), ThenBy(Descending), Skip or Take operations. For more information on including related data, see http://go.microsoft.com/fwlink/?LinkID=746393.
+*-------------------------------*
+[Error]16:18 Invalid column name 'Title'.
+*-------------------------------*
+[Error]16:22 Invalid column name 'Title'.
+*-------------------------------*
+[Error]20:57 Tag with id: 0 does not exist!
+*-------------------------------*
+[Error]20:57 The instance of entity type 'Tag' cannot be tracked because another instance with the same key value for {'Id'} is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see the conflicting key values.
+*-------------------------------*
+[Error]21:03 The instance of entity type 'Tag' cannot be tracked because another instance with the key value '{Id: 1}' is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached.
+*-------------------------------*
+[Error]21:35 The instance of entity type 'Tag' cannot be tracked because another instance with the key value '{Id: 1}' is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached.
+*-------------------------------*
+[Error]21:46 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]21:54 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]21:59 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]23:07 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]23:17 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]23:20 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]23:26 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]9:38 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]9:49 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]10:10 The instance of entity type 'HobbyCategory' cannot be tracked because another instance with the key value '{Id: 4}' is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached.
+*-------------------------------*
+[Error]10:10 The instance of entity type 'HobbyCategory' cannot be tracked because another instance with the key value '{Id: 4}' is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached.
+*-------------------------------*
+[Error]10:14 The instance of entity type 'HobbyCategory' cannot be tracked because another instance with the key value '{Id: 4}' is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached.
+*-------------------------------*
+[Error]10:25 The instance of entity type 'HobbyComment' cannot be tracked because another instance with the key value '{Id: 1}' is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached.
+*-------------------------------*
+[Error]10:26 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]10:59 Comment with Id4does not exist!
+*-------------------------------*
+[Error]11:01 The instance of entity type 'HobbyComment' cannot be tracked because another instance with the key value '{Id: 1}' is already being tracked. When attaching existing entities, ensure that only one entity instance with a given key value is attached.
+*-------------------------------*
+[Error]11:13 Comment with Id0does not exist!
+*-------------------------------*
+[Error]11:53 HobbyArticle with Id: 1 does not exist
+*-------------------------------*
+[Error]12:02 Missing type map configuration or unsupported mapping.
+
+Mapping types:
+HobbySubCategory -> HobbySubCategoryDto
+Hobby_Project.HobbySubCategory -> HobbyProject.Application.HobbySubCategories.Queries.HobbySubCategoryDto
+*-------------------------------*
+[Error]12:11 Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[Hobby_Project.HobbySubCategory, HobbyProject.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[HobbyProject.Application.HobbySubCategories.Queries.HobbySubCategoryDto, HobbyProject.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+*-------------------------------*
+[Error]15:40 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]15:50 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]16:06 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]16:09 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]16:07 Value cannot be null. (Parameter 'key')
+*-------------------------------*
+[Error]16:09 Value cannot be null. (Parameter 'key')
+*-------------------------------*
+[Error]16:16 Value cannot be null. (Parameter 'key')
+*-------------------------------*
+[Error]10:42 Value cannot be null. (Parameter 'key')
+*-------------------------------*
+[Error]10:44 Value cannot be null. (Parameter 'key')
+*-------------------------------*
+[Error]11:16 Value cannot be null. (Parameter 'key')
+*-------------------------------*
+[Error]13:18 Value cannot be null. (Parameter 'key')
+*-------------------------------*
+[Error]14:26 Value cannot be null. (Parameter 'key')
+*-------------------------------*
+[Error]10:10 Validation failed: 
+ -- Name: Category name must be between 5 and 10 characters! Severity: Error
+*-------------------------------*
+[Error]10:17 Validation failed: 
+ -- Name: Category name must be between 5 and 10 characters! Severity: Error
+*-------------------------------*
+[Error]10:39 Validation failed: 
+ -- Name: Tag name must be between 3 and 10 characters! Severity: Error
+*-------------------------------*
+[Error]10:47 Validation failed: 
+ -- Name: Tag name must be between 3 and 10 characters! Severity: Error
+*-------------------------------*
+[Error]10:50 Error mapping types.
+
+Mapping types:
+List`1 -> List`1
+System.Collections.Generic.List`1[[Hobby_Project.HobbySubCategory, HobbyProject.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] -> System.Collections.Generic.List`1[[HobbyProject.Application.HobbySubCategories.Queries.HobbySubCategoryDto, HobbyProject.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+*-------------------------------*
+[Error]10:53 SubCategory with Id: 18 does not exist
+*-------------------------------*
+[Error]10:55 Missing type map configuration or unsupported mapping.
+
+Mapping types:
+HobbySubCategory -> HobbySubCategoryDto
+Hobby_Project.HobbySubCategory -> HobbyProject.Application.HobbySubCategories.Queries.HobbySubCategoryDto
+*-------------------------------*
+[Error]13:43 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]14:04 An error occurred while saving the entity changes. See the inner exception for details.

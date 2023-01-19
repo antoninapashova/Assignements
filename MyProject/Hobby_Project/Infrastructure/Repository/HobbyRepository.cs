@@ -22,7 +22,8 @@ namespace Infrastructure.Repository
 
         public async Task<HobbyArticle> Add(HobbyArticle entity)
         {
-            await _context.HobbyArticles.AddAsync(entity);
+             _context.HobbyArticles.Attach(entity).State =EntityState.Added;
+            
             return entity;
         }
 
@@ -33,7 +34,15 @@ namespace Infrastructure.Repository
             _context.HobbyArticles.Remove(articleForDeleting);
         }
 
-       
+        public async Task<IEnumerable<HobbyArticle>> GetHobbyArticlesByUserId(int id)
+        {
+            return await _context.HobbyArticles
+                .Include(h => h.HobbySubCategory)
+                .Include(h => h.HobbyComments)
+                .Include(h => h.Tags)
+                .Where(x => x.UserId == id)
+                .ToListAsync();
+        }
 
         public async Task<IEnumerable<HobbyArticle>> GetAllEntitiesAsync()
         {

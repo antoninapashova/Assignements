@@ -51,7 +51,7 @@ namespace Infrastructure.Repository
         }
         public async Task<Tag> FindById(int id)
         {
-            var tag = await _context.Tags.FirstOrDefaultAsync(t => t.Id == id);
+            var tag = await _context.Tags.AsNoTracking().FirstOrDefaultAsync(t => t.Id == id);
 
             if (tag == null) 
                 throw new NullReferenceException("Tag with id: " + id + " does not exist!");

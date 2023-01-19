@@ -11,12 +11,38 @@ using HobbyProject.Application.Categories.Queries.GetAllCategories;
 using Microsoft.AspNetCore.Authentication;
 using HobbyProject.Presentation.Middleware.UserMiddleware;
 using HobbyProject.Presentation.Middleware.ExceptionMiddleware;
+using FluentAssertions.Common;
+using FluentValidation.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 
-builder.Services.AddControllers();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:4200")
+                          .AllowCredentials()
+                          .AllowAnyHeader()
+                          .AllowAnyMethod(); 
+                      });
+});
+
+
+builder.Services.AddControllers()
+                .AddFluentValidation(options =>
+                {
+                    // Validate child properties and root collection elements
+                    options.ImplicitlyValidateChildProperties = true;
+                    options.ImplicitlyValidateRootCollectionElements = true;
+
+                    // Automatic registration of validators in assembly
+                    options.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+                });
+
+builder.Services.AddMvc();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -39,24 +65,23 @@ builder.Services.AddAutoMapper(typeof(HobbyProject.Application.AssemblyMarketPre
 builder.Services.AddDbContext<HobbyDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
-//builder.Services.AddTransient<ExceptionHandlingMiddleware>();
+builder.Services.AddTransient<ExceptionHandlingMiddleware>();
 
 builder.Services.AddOptions();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-//app.UseMiddleware<ExceptionHandlingMiddleware>();
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseMiddleware<UserConfigurationMiddleware>();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-
+app.UseCors(MyAllowSpecificOrigins);
 app.MapControllers();
 app.UseUserConfiguration();
 app.Run();

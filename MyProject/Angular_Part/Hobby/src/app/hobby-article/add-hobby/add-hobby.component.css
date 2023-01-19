@@ -1,0 +1,43 @@
+ngx-dropzone,
+.custom-dropzone {
+  margin: 20px;
+}
+
+.custom-dropzone {
+	height: 250px;
+	color: gray;
+	border-radius: 5px;
+	font-size: 20px;
+}
+
+.custom-dropzone.ngx-dz-hovered {
+  border: 5px solid rgb(235, 79, 79);
+}
+
+.form{
+    max-width: 50%;
+    margin: auto;
+    margin-top: 10px;
+	border-radius: 10px;
+}
+
+.add-hobby-form{
+	display: flex;
+	flex-direction: column;
+	width: 40%;
+	margin: auto;
+	border: 0.3rem solid black;
+    padding-top: 3rem;
+	padding: 2rem;
+}
+
+.add-hobby-form p{
+	text-align: center;
+    font-size: 30px;
+    margin-bottom: 2rem;
+}
+
+.add-hobby-form button{
+	margin: auto;
+	width: 40%;
+}

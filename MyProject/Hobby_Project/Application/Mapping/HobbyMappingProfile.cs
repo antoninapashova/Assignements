@@ -31,6 +31,7 @@ namespace Application.Mapping
     {
        public HobbyMappingProfile()
         {
+            
             //HobbyArticle
             CreateMap<CreateHobbyCommand, HobbyArticle>();
             CreateMap<ArticleCommentDTO, HobbyArticle>();
@@ -47,8 +48,10 @@ namespace Application.Mapping
 
             //Subcategory
             CreateMap<CreateSubCategoryCommand, HobbySubCategory>();
-
             CreateMap<HobbySubCategory, HobbySubCategoryDto>();
+
+            //Photo
+            CreateMap<PhotoDTO, HobbyPhoto>();
 
             //Comment
             CreateMap<CreateCommentCommand, HobbyComment>();

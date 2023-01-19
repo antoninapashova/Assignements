@@ -33,7 +33,7 @@ namespace Infrastructure.Repository
 
         public async Task<IEnumerable<HobbySubCategory>> GetAllEntitiesAsync()
         {
-            return await _context.HobbySubCategories.ToListAsync();
+            return  _context.HobbySubCategories.AsEnumerable();
         }
 
         public async Task<HobbySubCategory> GetByIdAsync(int id)

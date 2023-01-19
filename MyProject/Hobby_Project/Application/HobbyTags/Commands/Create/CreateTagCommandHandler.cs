@@ -2,7 +2,9 @@
 using Application.Logger;
 using Application.Repositories;
 using AutoMapper;
+using FluentValidation;
 using Hobby_Project;
+using HobbyProject.Application.Validators;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -28,13 +30,16 @@ namespace Application.HobbyTags.Commands.Create
         {
             try
             {
-                if (command == null) 
-                    throw new NullReferenceException("Create tag command is null!");
+         
+
+                var tagValidator = new TagValidator();
+                await tagValidator.ValidateAndThrowAsync(command);
 
                 Tag tag = _mapper.Map<Tag>(command);  
                 await _unitOfWork.TagRepository.Add(tag);
                 await _unitOfWork.Save();
                 return await Task.FromResult(tag);
+
             }catch(Exception e)
             {
                 _log.LogError(e.Message);

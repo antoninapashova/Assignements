@@ -49,9 +49,15 @@ namespace HobbyProject.Presentation.Controllers
         [Route("{id}")]
         public async Task<IActionResult> UpdateComment(int id, [FromBody] EditCommentCommand editComment)
         {
-            editComment = new EditCommentCommand { Id = id, CommentContent = editComment.CommentContent, Title = editComment.Title };
-             await _mediator.Send(editComment);
-            return NoContent();
+            var command = new EditCommentCommand
+            {
+                Id = id,
+                Title = editComment.Title,
+                CommentContent = editComment.CommentContent,
+            };
+           
+             await _mediator.Send(command);
+             return NoContent();
         }
 
         [HttpDelete]

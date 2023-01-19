@@ -8,6 +8,7 @@ using Application.Users.Commands.Edit;
 using FluentValidation;
 using HobbyProject.Application.Categories.Queries.GetCategoryById;
 using HobbyProject.Application.Users.Queries.GetAllUsers;
+using HobbyProject.Application.Users.Queries.GetUserArticles;
 using HobbyProject.Application.Users.Queries.GetUserById;
 using HobbyProject.Application.Validators;
 using MediatR;
@@ -24,11 +25,9 @@ namespace HobbyProject.Presentation.Controllers
     public class UserController : ControllerBase
     {
         private readonly IMediator _mediator;
-        private IValidator<CreateUserCommand> _validator;
-        public UserController(IMediator mediator, IValidator<CreateUserCommand> validator)
+        public UserController(IMediator mediator)
         {
             _mediator = mediator;
-            _validator = validator;
         }
 
         [HttpGet]
@@ -53,6 +52,15 @@ namespace HobbyProject.Presentation.Controllers
         {
            var result = await _mediator.Send(command);
            return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
+        }
+
+        [HttpGet]
+        [Route("userArticles/{id}")]
+        public async Task<IActionResult> GetUserArticles(int id)
+        {
+            var query = new GetUserArticlesListQuery { Id = id };
+            var result = await _mediator.Send(query);
+            return Ok(result);
         }
 
 

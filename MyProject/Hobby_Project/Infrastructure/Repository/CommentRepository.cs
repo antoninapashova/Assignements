@@ -40,22 +40,25 @@ namespace Infrastructure.Repository
 
         public async Task<HobbyComment> GetByIdAsync(int id)
         {
-            var comment =await FindById(id);
-            return await Task.FromResult(comment);
+           var hobbyComment =  await FindById(id);
+
+            return await Task.FromResult(hobbyComment);
         }
 
         public async Task<HobbyComment> Update(HobbyComment comment)
         {
              await FindById(comment.Id);
+            _context.ChangeTracker.Clear();
             _context.HobbyComments.Update(comment);
             return comment;
         }
 
         public async Task<HobbyComment> FindById(int id)
         {
-            var comment = await _context.HobbyComments.FirstOrDefaultAsync(c => c.Id == id);
+            var comment = await _context.HobbyComments.Include(x=>x.User)
+                                .FirstOrDefaultAsync(c => c.Id == id);
 
-            if (comment == null)  throw new NullReferenceException("Comment with Id" + id + "does not exist!");
+            if (comment == null)  throw new NullReferenceException("Comment with Id " + id + " does not exist!");
 
             return comment;
         }

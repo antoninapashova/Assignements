@@ -37,8 +37,7 @@ namespace HobbyProject.Application.Hobby.Queries.GetHobbyById
             {
                 _logger.LogError(e.Message);
                 throw;
-
-            }
+             }
             
         }
     }

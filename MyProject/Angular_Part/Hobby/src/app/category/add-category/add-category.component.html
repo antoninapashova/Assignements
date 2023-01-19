@@ -1,0 +1,22 @@
+<p>Add category form</p>
+
+<div class="form">
+    <form (ngSubmit)="onSubmit(categoryForm)" #categoryForm="ngForm" class="form-group">
+
+        <mat-form-field appearance="fill">
+            <mat-label for="name">Name</mat-label>
+            <input matInput
+                   class="form-control"
+                   type="text"
+                   ngModel
+                   name="name"
+                   #name="ngModel" 
+                   required
+                   minlength="4">
+            <mat-error *ngIf="!name.valid">Name is invalid</mat-error>
+        </mat-form-field>
+
+         <button [disabled]="!categoryForm.valid" type="submit" mat-raised-button color="primary">Submit</button>
+
+    </form>
+</div>

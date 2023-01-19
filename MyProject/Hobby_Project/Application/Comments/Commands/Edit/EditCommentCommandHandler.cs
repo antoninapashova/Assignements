@@ -28,8 +28,7 @@ namespace Application.Comments.Commands.Edit
         {
             try
             {
-                if (command == null) 
-                    throw new NullReferenceException("Edit comment command is null");
+                if (command == null)  throw new NullReferenceException("Edit comment command is null");
 
                 HobbyComment hobbyComment = _mapper.Map<HobbyComment>(command);
                 await _unitOfWork.CommentRepository.Update(hobbyComment);

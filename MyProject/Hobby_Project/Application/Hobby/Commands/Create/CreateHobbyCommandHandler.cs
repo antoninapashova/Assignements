@@ -32,20 +32,22 @@ namespace Application.Hobby.Commands.Create
 
         public async Task<int> Handle(CreateHobbyCommand command, CancellationToken cancellationToken)
         {
+
             try
             {
-                if (command == null) 
-                    throw new NullReferenceException("Create hobby command is null!");
+                if (command == null) throw new NullReferenceException("Create hobby command is null!");
 
-                 var hobby = _mapper.Map<HobbyArticle>(command);
-                 foreach(var t in command.Tags)
-                 {
-                    var result =  await _unitOfWork.TagRepository.GetByIdAsync(t.Id);
-                    if(!hobby.Tags.Any(x=>x.Id.Equals(x.Id)))
-                        hobby.Tags.Add(_mapper.Map<Tag>(t));
-                 } 
-                
+                var hobby = _mapper.Map<HobbyArticle>(command);
                 await _unitOfWork.HobbyArticleRepository.Add(hobby);
+
+                foreach(var p in command.Photos)
+                {
+                    var photo = _mapper.Map<HobbyPhoto>(p);
+                    photo.HobbyArticleId = hobby.Id;
+                    await _unitOfWork.PhotoRepository.Add(photo);
+                }
+
+                
                 await _unitOfWork.Save();
                 return await Task.FromResult(hobby.Id);
 

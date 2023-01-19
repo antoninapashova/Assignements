@@ -2,6 +2,7 @@
 using FluentValidation;
 using HobbyProject.Presentation.Middleware.ExceptionMiddleware.Exceptions;
 using System.Collections.Immutable;
+using System.Collections.ObjectModel;
 using System.Text.Json;
 
 namespace HobbyProject.Presentation.Middleware.ExceptionMiddleware
@@ -54,14 +55,24 @@ namespace HobbyProject.Presentation.Middleware.ExceptionMiddleware
                 _=> "Server Error"
          };
 
-        private static IReadOnlyDictionary<string, string[]> GetErrors(Exception exception)
+        private static Dictionary<string, string> GetErrors(Exception exception)
         {
-            IDictionary<string, string[]> errors = null;
+            //Dictionary<string, string> errors = null;
             if (exception is ValidationException validationException)
             {
-                errors = validationException.Data;
+                if (validationException.Errors.Any())
+                {
+                  var errors = new Dictionary<string, string>();
+
+                    foreach(var e in validationException.Errors)
+                    {
+                        errors.Add(e.PropertyName, e.ErrorMessage);
+                    }
+                    return errors;
+                 }
+
             }
-            return errors;
+            return null;
         }
     }
 }

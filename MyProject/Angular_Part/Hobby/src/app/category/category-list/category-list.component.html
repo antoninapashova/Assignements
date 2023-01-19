@@ -1,0 +1,5 @@
+<button (click)="getAllCategories()" >Get All Categories</button>
+
+<ul *ngFor="let c of categories">
+    <li>{{c.name}}</li>
+</ul>

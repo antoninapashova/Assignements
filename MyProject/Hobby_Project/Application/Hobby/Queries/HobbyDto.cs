@@ -16,6 +16,6 @@ namespace Application.Hobby.Queries
         public string Username { get; set; }
         public string HobbySubCategory { get; set; }
         public List<HobbyCommentDTO> HobbyComments { get; set; }
-        public List<HobbyTagDto> HobbyTags { get; set; }
+        public List<HobbyTagDto> Tags { get; set; }
     }
 }

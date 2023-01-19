@@ -5,9 +5,11 @@ using Application.Categories.Commands.Edit;
 using HobbyProject.Application.Categories.Queries.GetAllCategories;
 using HobbyProject.Application.Categories.Queries.GetCategoryById;
 using HobbyProject.Application.Categories.Queries.GetSubCategoryFromCategory;
+using HobbyProject.Application.Validators;
 using HobbyProject.Presentation.Middleware;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
 
 namespace HobbyProject.Presentation.Controllers
 {
@@ -55,7 +57,12 @@ namespace HobbyProject.Presentation.Controllers
         [HttpPost]
         public async Task<ActionResult> AddCategory([FromBody] CreateCategoryCommand command)
         {
+            var validator = new CategoryValidator(); 
+            
+         validator.Validate(command);
             var result = await _mediator.Send(command);
+            //throw new NullReferenceException();
+            //return Ok(result);
             return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
         }
 

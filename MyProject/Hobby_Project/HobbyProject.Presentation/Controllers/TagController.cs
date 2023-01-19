@@ -41,6 +41,7 @@ namespace HobbyProject.Presentation.Controllers
         public async Task<IActionResult> AddTag([FromBody] CreateTagCommand command)
         {
             var result = await _mediator.Send(command);
+            
             return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
         }
     }

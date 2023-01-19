@@ -1,1 +1,31 @@
-<p>header works!</p>
+
+<mat-toolbar color="primary">
+   
+    <div fxHide.gt-xs>
+        <button mat-icon-button (click)="onToggleSidenav()">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div>
+    <div>
+        <p>Hobby World</p>
+    </div>
+  
+<mat-nav-list class="list-horizontal">
+       <a routerLink="/user/login">
+            <mat-icon>login</mat-icon> <span class="nav-caption">Login</span>   
+        </a>
+        <a  routerLink="/user/register">
+            <mat-icon>app_registration</mat-icon><span class="nav-caption">Register</span>
+        </a>
+        <a  routerLink="/tag/add">
+            <mat-icon>app_registration</mat-icon><span class="nav-caption">Create tag</span>
+        </a>
+        <a  routerLink="/subcategory/add">
+            <mat-icon>app_registration</mat-icon><span class="nav-caption">Create subcategory</span>
+        </a>
+        <a  routerLink="/user/add-article">
+            <mat-icon>app_registration</mat-icon><span class="nav-caption">Create hobby article</span>
+        </a>
+ </mat-nav-list>
+</mat-toolbar>
+<router-outlet></router-outlet>

@@ -9,5 +9,6 @@ namespace Application.Repositories
 {
     public interface IHobbyArticleRepository : IRepository<HobbyArticle>
     {
+        Task<IEnumerable<HobbyArticle>> GetHobbyArticlesByUserId(int id);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Application.Logger;
 using Application.Repositories;
 using AutoMapper;
+using Hobby_Project;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -31,7 +32,7 @@ namespace HobbyProject.Application.HobbySubCategories.Queries.GetSubCategoryById
                 if (request == null)
                     throw new NullReferenceException("Get subCategory query is null!");
 
-                var subCategory = await _unitOfWork.SubCategoryRepository.GetByIdAsync(request.Id);
+                HobbySubCategory subCategory = await _unitOfWork.SubCategoryRepository.GetByIdAsync(request.Id);
                  HobbySubCategoryDto hobbySubCategoryVm = _mapper.Map<HobbySubCategoryDto>(subCategory);
                 return await Task.FromResult(hobbySubCategoryVm);
 

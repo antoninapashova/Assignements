@@ -1,0 +1,20 @@
+<div class="form">
+    <form (ngSubmit)="onSubmit(tagForm)" #tagForm="ngForm" class="form-group tag" appearance="outline">
+        <p>Create tag</p>
+        <mat-form-field appearance="fill" class="tag-field">
+            <mat-label for="name" >Name</mat-label>
+            <input matInput
+                   class="form-control"
+                   type="text"
+                   ngModel
+                   name="name"
+                   #name="ngModel" 
+                   required
+                   minlength="3">
+            <mat-error *ngIf="!name.valid">Name is invalid</mat-error>
+        </mat-form-field>
+
+         <button [disabled]="!tagForm.valid" type="submit" mat-raised-button color="primary">Submit</button>
+
+    </form>
+</div>
