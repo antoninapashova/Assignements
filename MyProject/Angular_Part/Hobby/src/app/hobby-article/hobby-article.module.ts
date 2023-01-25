@@ -1,5 +1,6 @@
+import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
-import { NgModule} from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AddHobbyComponent } from './add-hobby/add-hobby.component';
 
@@ -16,11 +17,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { CommentComponent } from './comment/comment.component';
+import { HobbyCardComponent } from './hobby-card/hobby-card.component';
 
 @NgModule({
   declarations: [
-    AddHobbyComponent
+    AddHobbyComponent,
+    CommentComponent,
+    HobbyCardComponent,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+
   imports: [
     CommonModule,
     NgxDropzoneModule,
@@ -37,8 +44,9 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     MatIconModule,
     MatSelectModule,
     MatRadioModule,
-    MatButtonModule
+    MatButtonModule,
+    MatListModule
   ],
-  exports:[AddHobbyComponent]
+  exports:[AddHobbyComponent, HobbyCardComponent]
 })
 export class HobbyArticleModule { }

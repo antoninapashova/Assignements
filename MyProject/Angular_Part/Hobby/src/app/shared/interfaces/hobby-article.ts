@@ -1,3 +1,4 @@
+import { IComment } from './comment';
 import { IPhoto } from './photo';
 import { ITag } from "./tag";
 
@@ -6,7 +7,8 @@ export interface IHobby{
     title: string;
     description: string;
     hobbySubcategoryId: number,
-    userId: number,
-    photos: IPhoto[],
-    tags: ITag[]
+    username: string,
+    hobbyPhoto: IPhoto[],
+    tags: ITag[],
+    hobbyComments: IComment[]
 }

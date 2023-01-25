@@ -42,7 +42,7 @@ namespace Application.Hobby.Commands.Create
     
                 await _unitOfWork.Save();
 
-                foreach(var p in command.Photos)
+                foreach(var p in command.HobbyPhoto)
                 {
                     var photo = _mapper.Map<HobbyPhoto>(p);
                     photo.HobbyArticleId = hobby.Id;

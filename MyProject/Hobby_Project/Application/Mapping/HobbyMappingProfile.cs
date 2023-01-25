@@ -37,7 +37,7 @@ namespace Application.Mapping
             CreateMap<ArticleCommentDTO, HobbyArticle>();
             CreateMap<EditHobbyCommand, HobbyArticle>();
             CreateMap<HobbyArticle, HobbyDto>()
-                .ForMember("Username", x=>x.MapFrom(y=>y.User.Username))
+                .ForMember("Username", x=>x.MapFrom(y=>y.Username))
                 .ForMember("HobbySubCategory", x=>x.MapFrom(y=>y.HobbySubCategory.Name));
 
             //Category
@@ -58,15 +58,11 @@ namespace Application.Mapping
             CreateMap<CreateCommentCommand, HobbyComment>();
             CreateMap<EditCommentCommand, HobbyComment>();
             CreateMap<HobbyComment, CommentDto>()
-                .ForMember("Username", x=>x.MapFrom(y=>y.User.Username));
+                .ForMember("Username", x=>x.MapFrom(y=>y.Username));
             CreateMap<HobbyComment, HobbyCommentDTO>()
-                .ForMember("Username", x=>x.MapFrom(y=>y.User.Username));
+                .ForMember("Username", x=>x.MapFrom(y=>y.Username));
 
-            //User
-            CreateMap<CreateUserCommand, User>();
-            CreateMap<UserDTO, User>();
-            CreateMap<User, UserDto>();
-            CreateMap<EditUserCommand, User>();
+       
 
             //Tag
             CreateMap<CreateTagCommand, Tag>();

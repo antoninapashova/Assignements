@@ -39,13 +39,15 @@ export class HeaderComponent implements OnInit, OnDestroy{
        takeUntil(this.unsubscribe)
       )
      .subscribe(()=>{
-       this.isAuthenticated = this.authService.instance.getAllAccounts().length>0;
-       this.azureAdService.isUserLogedIn.next(!!this.isAuthenticated);
+        this.isAuthenticated = this.authService.instance.getAllAccounts().length>0;
+        this.azureAdService.isUserLogedIn.next(!!this.isAuthenticated);
         let activAccount = this.authService.instance.getActiveAccount();    
-       if(!activAccount && this.authService.instance.getAllAccounts().length>0)
-       {
+      
+        if(!activAccount && this.authService.instance.getAllAccounts().length>0)
+        {
          activAccount=this.authService.instance.getAllAccounts()[0];       
          this.authService.instance.setActiveAccount(activAccount);    
+         console.log(activAccount);
         }
 
         if(activAccount?.idTokenClaims?.roles?.includes('Admin')){
@@ -53,21 +55,6 @@ export class HeaderComponent implements OnInit, OnDestroy{
         }
         
        });
-
-       
-
-     /*
-     this.broadCastService.msalSubject$
-     .pipe(
-      filter((message: EventMessage)=>message.eventType===EventType.LOGIN_SUCCESS ||message.eventType ===EventType.ACQUIRE_TOKEN_SUCCESS),
-      takeUntil(this.unsubscribe)
-     )
-     .subscribe(res=>{
-        const authResult = message.payload as AuthenticationResult;
-        this.authService.instance.setActiveAccount(authResult.account);
-        console.log(authResult);
-     });
-     */
      
   }
  
@@ -77,10 +64,8 @@ export class HeaderComponent implements OnInit, OnDestroy{
     }else {
        this.authService.loginRedirect();
     }
+}
 
-    
-    
-  }
   logout(): void{
      this.authService.logoutRedirect({postLogoutRedirectUri: 'http://localhost:4200'});
   }

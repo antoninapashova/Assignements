@@ -8,7 +8,6 @@ namespace Application.Repositories
 {
     public interface IUnitOfWork : IDisposable
     {
-       public IUserRepository UserRepository { get; }
        public IHobbyArticleRepository HobbyArticleRepository { get; }
        public ICommentRepository  CommentRepository { get; }
        public ITagRepository TagRepository { get; }

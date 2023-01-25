@@ -1,3 +1,4 @@
+import { HobbyArticleModule } from './../hobby-article/hobby-article.module';
 import { RouterModule } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,7 +23,7 @@ import { IndexComponent } from './index/index.component';
 import { UserCardComponent } from './user-card/user-card.component';
 import { HomeComponent } from './home/home.component';
 import {MatCardModule} from '@angular/material/card';
-import { HobbyCardComponent } from './hobby-card/hobby-card.component';
+import { HobbyCardComponent } from '../hobby-article/hobby-card/hobby-card.component';
 
 
 @NgModule({
@@ -33,7 +34,6 @@ import { HobbyCardComponent } from './hobby-card/hobby-card.component';
     IndexComponent,
     UserCardComponent,
     HomeComponent,
-    HobbyCardComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
@@ -54,6 +54,7 @@ import { HobbyCardComponent } from './hobby-card/hobby-card.component';
     MatListModule,
     RouterModule,
     MatCardModule,
+    HobbyArticleModule
   ],
   exports: [
     HeaderComponent,

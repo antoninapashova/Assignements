@@ -12,13 +12,12 @@ namespace Infrastructure
     {
         private readonly HobbyDbContext _hobbyDbContext;
 
-        public UnitOfWork(HobbyDbContext hobbyDbContext, IUserRepository userRepository, 
+        public UnitOfWork(HobbyDbContext hobbyDbContext, 
             IHobbyArticleRepository hobbyArticleRepository, ICommentRepository commentRepository, 
             ITagRepository tagRepository, ISubCategoryRepository subCategoryRepository, 
             ICategoryRepository categoryRepository, IPhotoRepository photoRepository)
         {
             _hobbyDbContext = hobbyDbContext;
-            UserRepository = userRepository;
             HobbyArticleRepository = hobbyArticleRepository;
             CommentRepository = commentRepository;
             TagRepository = tagRepository;
@@ -26,8 +25,6 @@ namespace Infrastructure
             CategoryRepository = categoryRepository;
             PhotoRepository = photoRepository;
         }
-
-        public IUserRepository UserRepository { get; private set; }
         public IHobbyArticleRepository HobbyArticleRepository { get; private set; }
         public ICommentRepository CommentRepository { get; private set; }
         public ITagRepository TagRepository { get; private set; }

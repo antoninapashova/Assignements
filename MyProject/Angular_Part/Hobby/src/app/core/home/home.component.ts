@@ -1,4 +1,3 @@
-import { AzureAdService } from './../../auth/azure-ad.service';
 import { IHobby } from './../../shared/interfaces/hobby-article';
 import { HobbyService } from './../../hobby-article/hobby-aticle.service';
 import { Component, OnInit } from '@angular/core';
@@ -9,16 +8,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit{
-  isUserLoggedIn: boolean = false;
   hobbies: IHobby[] = [];
   
-  constructor(private azureAdService: AzureAdService, private hobbyService: HobbyService){ }
+  constructor(private hobbyService: HobbyService){ }
 
   ngOnInit(): void {
-     this.hobbyService.getAll().subscribe(res=>{
+      this.hobbyService.getAll().subscribe(res=>{
       console.log(res);
       this.hobbies=res;
-      
+      console.log(this.hobbies);
     });
   }
     

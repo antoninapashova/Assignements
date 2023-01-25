@@ -21,7 +21,7 @@
         <a  routerLink="/subcategory/add" *ngIf="isAdmin">
             <mat-icon>app_registration</mat-icon><span class="nav-caption">Create subcategory</span>
         </a>
-        <a  routerLink="/user/add-article" *ngIf="!isAdmin">
+        <a  routerLink="/user/add-article" *ngIf="isAdmin">
             <mat-icon>app_registration</mat-icon><span class="nav-caption">Create hobby article</span>
         </a>
 

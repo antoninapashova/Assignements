@@ -1,0 +1,21 @@
+    <mat-card class="card" *ngFor="let h of hobbies">
+         <div *ngFor="let p of h.hobbyPhoto">
+              <img [src] = "p.url" />  
+           </div>
+        <mat-card-content>
+        <p> <strong>{{h.title}}</strong> </p>
+        
+         <p>{{h.description}}</p>
+      </mat-card-content>
+        <mat-card-actions>
+          <a >Add comment</a>
+          <a>show comments</a>
+        </mat-card-actions>
+       <div>
+         <mat-list *ngFor="let c of h.hobbyComments">
+            <mat-list-item class="comment">
+                <app-comment [comment]="c"></app-comment>
+            </mat-list-item>
+         </mat-list>
+       </div>
+     </mat-card>

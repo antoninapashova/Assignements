@@ -10,6 +10,7 @@ using HobbyProject.Application.Hobby.Queries.GetHobbyById;
 using HobbyProject.Application.HobbySubCategories.Queries.GetAllSubCategories;
 using HobbyProject.Application.Users.Queries.GetAllUsers;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -43,6 +44,7 @@ namespace HobbyProject.Presentation.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> AddHobbyArticle([FromBody] CreateHobbyCommand command)
         {

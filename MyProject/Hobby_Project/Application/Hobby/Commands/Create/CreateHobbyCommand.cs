@@ -17,10 +17,10 @@ namespace Application.Hobby.Commands.Create
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public int UserId { get; set; }
+        public string Username { get; set; }
         public int HobbySubCategoryId { get; set; }
         public List<CreateHobbyTagDto> Tags{ get; set; }
-        public List<PhotoDTO> Photos { get; set; }
+        public List<PhotoDTO> HobbyPhoto { get; set; }
 
     }
 }

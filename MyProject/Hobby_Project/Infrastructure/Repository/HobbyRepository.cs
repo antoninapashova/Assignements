@@ -34,6 +34,7 @@ namespace Infrastructure.Repository
             _context.HobbyArticles.Remove(articleForDeleting);
         }
 
+        
         public async Task<IEnumerable<HobbyArticle>> GetHobbyArticlesByUserId(int id)
         {
             return await _context.HobbyArticles
@@ -41,9 +42,10 @@ namespace Infrastructure.Repository
                 .Include(h => h.HobbyComments)
                 .Include(h => h.Tags)
                 .Include(h=>h.HobbyPhoto)
-                   .Where(x => x.UserId == id)
+                   
                 .ToListAsync();
         }
+        
 
         public async Task<IEnumerable<HobbyArticle>> GetAllEntitiesAsync()
         {
@@ -53,7 +55,7 @@ namespace Infrastructure.Repository
                 .Include(x => x.HobbySubCategory)
                 .Include(x => x.HobbyPhoto)
                 .Include(x => x.Tags)
-                .Include(x => x.User)
+                .Include(x => x.Username)
                  .Include(h => h.HobbyPhoto)
 
                 .ToListAsync();
@@ -65,7 +67,7 @@ namespace Infrastructure.Repository
             return await _context.HobbyArticles
                     .Where(h => h.Id == id)
                     .Include(h => h.HobbySubCategory)
-                    .Include(h => h.User)
+                    .Include(h => h.Username)
                     .Include(h=>h.Tags)
                     .Include(h => h.HobbyPhoto)
                        .FirstOrDefaultAsync();

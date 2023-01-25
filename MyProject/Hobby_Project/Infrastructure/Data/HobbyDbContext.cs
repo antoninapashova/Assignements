@@ -51,11 +51,7 @@ namespace Infrastructure.Data
 
                 a.HasMany(t => t.Tags).WithMany(h => h.HobbyArticles);
             });
-            
-            modelBuilder.Entity<User>(u =>
-            {
-                u.HasMany(x => x.Hobbies).WithOne(x => x.User).HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.Cascade);
-            });
+           
            
         }
     }

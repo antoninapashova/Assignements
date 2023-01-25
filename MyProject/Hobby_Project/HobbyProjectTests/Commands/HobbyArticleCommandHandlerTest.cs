@@ -41,8 +41,9 @@ namespace HobbyProjectTests.Commands
             _unitOfWorkMock = new();
             _repoMock = MockHobbyRepository.GetHobbyArticleRepository();
             _command = new CreateHobbyCommand 
-            { Title="New hobby", Description="-------", HobbySubCategoryId=1, UserId=1, 
-                Tags = new List<CreateHobbyTagDto>(), Photos=new List<PhotoDTO>() };
+            { Title="New hobby", Description="-------", HobbySubCategoryId=1,  
+                Tags = new List<CreateHobbyTagDto>(),
+                HobbyPhoto = new List<PhotoDTO>() };
         }
 
 

@@ -20,13 +20,13 @@ namespace HobbyProjectTests.Mocks
             var hobbyArticles = new List<HobbyArticle>
             {
                 new HobbyArticle {Id = 1, Title="A great day for playing tennis", Description="---------",
-                                  CreatedDate= DateTime.Now, UserId = 1, HobbySubCategoryId=1,
+                                  CreatedDate= DateTime.Now, Username = "Ivan", HobbySubCategoryId=1,
                                   Tags = new List<Tag>(), HobbyPhoto = new List<HobbyPhoto>()},
                 new HobbyArticle {Id = 2, Title="A great day for playing tennis", Description="---------",
-                                  CreatedDate= DateTime.Now, UserId = 1, HobbySubCategoryId=1,
+                                  CreatedDate= DateTime.Now, Username="Ivan", HobbySubCategoryId=1,
                                   Tags = new List<Tag>(), HobbyPhoto = new List<HobbyPhoto>()},
                 new HobbyArticle {Id = 3, Title="A great day for playing tennis", Description="---------",
-                                  CreatedDate= DateTime.Now, UserId = 1, HobbySubCategoryId=1,
+                                  CreatedDate= DateTime.Now, Username = "Ivan", HobbySubCategoryId=1,
                                   Tags = new List<Tag>(), HobbyPhoto = new List<HobbyPhoto>()},
             };
 
