@@ -8,9 +8,7 @@ using Application.Hobby.Commands.Edit;
 using Application.Hobby.Queries;
 using Application.HobbySubCategories.Commands.Create;
 using Application.HobbyTags.Commands.Create;
-using Application.Users.Commands.Create;
-using Application.Users.Commands.Edit;
-using Application.Users.Queries;
+
 using AutoMapper;
 using Domain.Entity;
 using Hobby_Project;

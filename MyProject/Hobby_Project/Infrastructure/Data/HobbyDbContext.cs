@@ -1,6 +1,4 @@
-﻿using Application.Hobby.Queries;
-using Application.Users.Commands.Create;
-using Domain.Entity;
+﻿using Domain.Entity;
 using Hobby_Project;
 using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.EntityFrameworkCore;
@@ -20,7 +18,6 @@ namespace Infrastructure.Data
         public DbSet<HobbyComment> HobbyComments { get; set; }
         public DbSet<HobbySubCategory> HobbySubCategories { get; set; }
         public DbSet<Tag> Tags { get; set; }
-        public DbSet<User> Users { get; set; }
         public DbSet<HobbyPhoto> HobbyPhotos { get; set; }
 
         public HobbyDbContext() : base(){ }

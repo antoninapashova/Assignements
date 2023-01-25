@@ -1,5 +1,4 @@
-﻿using Application.Users.Queries;
-using HobbyProject.Application.Users.Queries.GetAllUsers;
+﻿
 using MediatR;
 using System;
 using System.Collections.Generic;

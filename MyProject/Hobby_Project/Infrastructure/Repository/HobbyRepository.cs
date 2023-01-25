@@ -51,7 +51,7 @@ namespace Infrastructure.Repository
         {
             return await _context.HobbyArticles
                 .Include(x=>x.HobbyComments)
-                   .ThenInclude(hc=>hc.User)
+                   .ThenInclude(hc=>hc.Username)
                 .Include(x => x.HobbySubCategory)
                 .Include(x => x.HobbyPhoto)
                 .Include(x => x.Tags)
@@ -67,9 +67,9 @@ namespace Infrastructure.Repository
             return await _context.HobbyArticles
                     .Where(h => h.Id == id)
                     .Include(h => h.HobbySubCategory)
-                    .Include(h => h.Username)
                     .Include(h=>h.Tags)
                     .Include(h => h.HobbyPhoto)
+                    
                        .FirstOrDefaultAsync();
         }
       
