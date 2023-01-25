@@ -1,5 +1,8 @@
-<button (click)="getAllCategories()" >Get All Categories</button>
-
-<ul *ngFor="let c of categories">
-    <li>{{c.name}}</li>
-</ul>
+<mat-list *ngFor="let c of categories">
+    <button (click)="toggle(c.id)">{{c.name}}</button>
+    <mat-list *ngFor="let s of subCategories">
+        <mat-list-item>
+             {{s.name}}
+        </mat-list-item>
+    </mat-list>
+</mat-list>

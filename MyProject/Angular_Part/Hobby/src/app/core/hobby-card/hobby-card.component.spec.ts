@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProfileComponent } from './profile.component';
+import { HobbyCardComponent } from './hobby-card.component';
 
-describe('ProfileComponent', () => {
-  let component: ProfileComponent;
-  let fixture: ComponentFixture<ProfileComponent>;
+describe('HobbyCardComponent', () => {
+  let component: HobbyCardComponent;
+  let fixture: ComponentFixture<HobbyCardComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProfileComponent ]
+      declarations: [ HobbyCardComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ProfileComponent);
+    fixture = TestBed.createComponent(HobbyCardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

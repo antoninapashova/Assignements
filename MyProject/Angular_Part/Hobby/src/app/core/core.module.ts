@@ -20,6 +20,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import { NavigationListComponent } from './navigation-list/navigation-list.component';
 import { IndexComponent } from './index/index.component';
 import { UserCardComponent } from './user-card/user-card.component';
+import { HomeComponent } from './home/home.component';
+import {MatCardModule} from '@angular/material/card';
+import { HobbyCardComponent } from './hobby-card/hobby-card.component';
 
 
 @NgModule({
@@ -28,13 +31,15 @@ import { UserCardComponent } from './user-card/user-card.component';
     FooterComponent,
     NavigationListComponent,
     IndexComponent,
-    UserCardComponent
+    UserCardComponent,
+    HomeComponent,
+    HobbyCardComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     CommonModule,
     BrowserAnimationsModule,
-    
+    RouterModule,
     MatTableModule,
     MatSortModule,
     MatFormFieldModule,
@@ -47,7 +52,8 @@ import { UserCardComponent } from './user-card/user-card.component';
     MatButtonModule,
     MatToolbarModule,
     MatListModule,
-    RouterModule
+    RouterModule,
+    MatCardModule,
   ],
   exports: [
     HeaderComponent,
@@ -56,6 +62,8 @@ import { UserCardComponent } from './user-card/user-card.component';
     IndexComponent,
     MatToolbarModule,
     MatListModule,
+    HomeComponent,
+    UserCardComponent
 ]
 })
 export class CoreModule { }

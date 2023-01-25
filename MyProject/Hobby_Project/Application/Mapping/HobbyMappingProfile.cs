@@ -51,6 +51,7 @@ namespace Application.Mapping
             CreateMap<HobbySubCategory, HobbySubCategoryDto>();
 
             //Photo
+            CreateMap<HobbyPhoto, PhotoDTO>();
             CreateMap<PhotoDTO, HobbyPhoto>();
 
             //Comment

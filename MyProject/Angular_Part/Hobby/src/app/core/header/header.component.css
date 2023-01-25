@@ -14,8 +14,19 @@ mat-nav-list.list-horizontal {
     margin-right: 1.5rem;
 }
    
+.list-horizontal a{
+  color: white;
+}
+
+.username{
+  font-size: 20px;
+  margin-left: 1rem;
+}
+
 @media(max-width: 959px){
   mat-toolbar{
       border-radius: 0px;
   }
 }
+
+

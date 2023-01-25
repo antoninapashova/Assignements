@@ -1,4 +1,5 @@
 ﻿using Hobby_Project;
+using HobbyProject.Application.Hobby.Commands;
 using HobbyProject.Application.Hobby.Queries;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace Application.Hobby.Queries
         public string Description { get; set; }
         public string Username { get; set; }
         public string HobbySubCategory { get; set; }
+        public List<PhotoDTO> HobbyPhoto { get; set; }
         public List<HobbyCommentDTO> HobbyComments { get; set; }
         public List<HobbyTagDto> Tags { get; set; }
     }

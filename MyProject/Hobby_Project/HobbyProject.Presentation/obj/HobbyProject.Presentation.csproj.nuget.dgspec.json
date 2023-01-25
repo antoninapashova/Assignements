@@ -324,6 +324,14 @@
               "target": "Package",
               "version": "[11.0.0, )"
             },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
+            "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
+              "target": "Package",
+              "version": "[6.0.5, )"
+            },
             "Microsoft.AspNetCore.TestHost": {
               "target": "Package",
               "version": "[6.0.5, )"
@@ -337,6 +345,14 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.0, )"
+            },
+            "Microsoft.Identity.Web": {
+              "target": "Package",
+              "version": "[1.24.1, )"
+            },
+            "Microsoft.Identity.Web.UI": {
+              "target": "Package",
+              "version": "[1.16.0, )"
             },
             "Moq": {
               "target": "Package",

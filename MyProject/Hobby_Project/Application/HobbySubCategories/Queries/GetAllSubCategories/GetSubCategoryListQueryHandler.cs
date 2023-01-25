@@ -29,10 +29,18 @@ namespace HobbyProject.Application.HobbySubCategories.Queries.GetAllSubCategorie
             try
             {
                IEnumerable<HobbySubCategory> result = await _unitOfWork.SubCategoryRepository.GetAllEntitiesAsync();
-                  
-                
+                List<HobbySubCategoryDto> subCategories = new List<HobbySubCategoryDto>();
 
-                 List<HobbySubCategoryDto> subCategories = _mapper.Map<List<HobbySubCategoryDto>>(result.ToList());
+                foreach (var c in result)
+                {
+                    var subCategoryDto = new HobbySubCategoryDto
+                    {
+                        Id = c.Id,
+                        Name = c.Name
+                    };
+                    subCategories.Add(subCategoryDto);
+                }
+
                 return await Task.FromResult(subCategories.ToList());
 
             }catch (Exception e)

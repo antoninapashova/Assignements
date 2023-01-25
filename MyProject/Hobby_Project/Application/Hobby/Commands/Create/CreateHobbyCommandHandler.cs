@@ -39,16 +39,17 @@ namespace Application.Hobby.Commands.Create
 
                 var hobby = _mapper.Map<HobbyArticle>(command);
                 await _unitOfWork.HobbyArticleRepository.Add(hobby);
+    
+                await _unitOfWork.Save();
 
                 foreach(var p in command.Photos)
                 {
                     var photo = _mapper.Map<HobbyPhoto>(p);
                     photo.HobbyArticleId = hobby.Id;
                     await _unitOfWork.PhotoRepository.Add(photo);
+                    await _unitOfWork.Save();
                 }
 
-                
-                await _unitOfWork.Save();
                 return await Task.FromResult(hobby.Id);
 
             }catch(Exception e)

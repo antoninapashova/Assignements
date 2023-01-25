@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AuthService } from './auth.service';
+import { AzureAdService } from './azure-ad.service';
 
-describe('AuthService', () => {
-  let service: AuthService;
+describe('AzureAdService', () => {
+  let service: AzureAdService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(AuthService);
+    service = TestBed.inject(AzureAdService);
   });
 
   it('should be created', () => {

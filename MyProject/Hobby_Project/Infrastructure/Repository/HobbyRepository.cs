@@ -40,7 +40,8 @@ namespace Infrastructure.Repository
                 .Include(h => h.HobbySubCategory)
                 .Include(h => h.HobbyComments)
                 .Include(h => h.Tags)
-                .Where(x => x.UserId == id)
+                .Include(h=>h.HobbyPhoto)
+                   .Where(x => x.UserId == id)
                 .ToListAsync();
         }
 
@@ -53,6 +54,8 @@ namespace Infrastructure.Repository
                 .Include(x => x.HobbyPhoto)
                 .Include(x => x.Tags)
                 .Include(x => x.User)
+                 .Include(h => h.HobbyPhoto)
+
                 .ToListAsync();
         }
         public async Task<HobbyArticle> GetByIdAsync(int id)
@@ -64,7 +67,8 @@ namespace Infrastructure.Repository
                     .Include(h => h.HobbySubCategory)
                     .Include(h => h.User)
                     .Include(h=>h.Tags)
-                    .FirstOrDefaultAsync();
+                    .Include(h => h.HobbyPhoto)
+                       .FirstOrDefaultAsync();
         }
       
         public async Task<HobbyArticle> Update(HobbyArticle hobbyArticle)

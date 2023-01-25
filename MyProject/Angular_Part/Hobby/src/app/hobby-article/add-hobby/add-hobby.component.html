@@ -25,8 +25,7 @@
     <mat-select class="form-control" 
     formControlName="subcategory" 
     #subcategory>
-      <mat-option value="sport">Sport</mat-option>
-      <mat-option value="cooking">Cooking</mat-option>
+      <mat-option *ngFor="let s of subcategories" [value]="s.id">{{s.name}}</mat-option>
    </mat-select>
      <mat-error *ngIf="createArticleForm.controls['subcategory'].errors?.['required']">You must choose subcategory</mat-error>
 

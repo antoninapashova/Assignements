@@ -15,6 +15,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
 import { CategoryListComponent } from './category-list/category-list.component';
+import { MatListModule } from '@angular/material/list';
 
 
 
@@ -36,7 +37,8 @@ import { CategoryListComponent } from './category-list/category-list.component';
     MatIconModule,
     MatSelectModule,
     MatRadioModule,
-    MatButtonModule
+    MatButtonModule,
+    MatListModule,
   ],
    providers: [AddCategoryComponent, CategoryListComponent],
    exports: [CategoryListComponent, AddCategoryComponent]

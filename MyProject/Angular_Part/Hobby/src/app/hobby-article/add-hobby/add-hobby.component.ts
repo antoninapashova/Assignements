@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { IPhoto } from 'src/app/shared/interfaces/photo';
 import { IHobby } from 'src/app/shared/interfaces/hobby-article';
 import { concatMap } from 'rxjs';
+import { MsalService } from '@azure/msal-angular';
 
 @Component({
   selector: 'app-add-hobby',
@@ -30,7 +31,8 @@ export class AddHobbyComponent implements OnInit {
               private subCategoryService: SubCategoryService,
               private tagService: TagService,
               private uploadService: UploadService,
-              private _http: HttpClient)
+              private _http: HttpClient,
+              private msalService: MsalService)
               {}
 
 
@@ -44,7 +46,7 @@ export class AddHobbyComponent implements OnInit {
     });
 
     this.tagService.getAll().subscribe(res=>this.tags=res);
-    //this.subCategoryService.getSubCategories().subscribe(res=>this.subcategories=res);
+    this.subCategoryService.getSubCategories().subscribe(res=>this.subcategories=res);
   }
 
 	onSelect(event: any) {
@@ -55,6 +57,15 @@ export class AddHobbyComponent implements OnInit {
     this.photos.splice(this.photos.indexOf(event), 1);
 	}
 
+  setAuthenticationStatus():void{
+    let activAccount = this.msalService.instance.getActiveAccount();
+ 
+    if(!activAccount && this.msalService.instance.getAllAccounts().length>0){
+        activAccount=this.msalService.instance.getAllAccounts()[0];
+        this.msalService.instance.setActiveAccount(activAccount);
+    }
+  }
+
   onSubmit(form: FormGroup){ 
     const data = new FormData();
         
@@ -64,7 +75,6 @@ export class AddHobbyComponent implements OnInit {
 
   this.uploadService.uploadImage(data).subscribe(res=>{
 
-     console.log(res);
      let photoMapped: IPhoto = {
         publicId: res.public_id,
         url: res.url, 
@@ -77,12 +87,8 @@ export class AddHobbyComponent implements OnInit {
      this.hobby.hobbySubcategoryId=6;
      this.hobby.tags = this.tags;
      this.hobby.photos=this.photosData;
-     console.log(this.hobby);
      this.hobbyService.addHobby(this.hobby).subscribe((response)=>console.log(response));
-     
-    });
-  }
-
-  
+    }); 
+ }
 }
 

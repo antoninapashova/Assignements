@@ -16,8 +16,8 @@ export class CategoryService {
     
     baseUrl = environment.baseUrl;
 
-    getCategories(): Observable<GetCategoryDto[]>{
-       return this.httpClient.get<GetCategoryDto[]>(`${this.baseUrl}${ApiPaths.Category}`);
+    getCategories(): Observable<any>{
+       return this.httpClient.get<any>(`${this.baseUrl}${ApiPaths.Category}`);
     }
  
     getCategoryById(id: string) : Observable<GetCategoryDto>{
@@ -31,7 +31,7 @@ export class CategoryService {
        });
 
        const body = JSON.stringify(category);
-      console.log(category);
+       console.log(category);
        console.log(body);
 
         return this.httpClient.post<any>(`${this.baseUrl}${ApiPaths.Category}`,  category, {headers: headers} );

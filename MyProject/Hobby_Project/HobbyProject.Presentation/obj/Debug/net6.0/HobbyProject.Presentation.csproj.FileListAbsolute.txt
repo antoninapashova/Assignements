@@ -101,3 +101,14 @@ C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProje
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProject.Presentation\obj\Debug\net6.0\HobbyProject.Presentation.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProject.Presentation\bin\Debug\net6.0\FluentValidation.AspNetCore.dll
 C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProject.Presentation\bin\Debug\net6.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProject.Presentation\bin\Debug\net6.0\Azure.Security.KeyVault.Certificates.dll
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProject.Presentation\bin\Debug\net6.0\Azure.Security.KeyVault.Secrets.dll
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProject.Presentation\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProject.Presentation\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProject.Presentation\bin\Debug\net6.0\Microsoft.Identity.Web.dll
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProject.Presentation\bin\Debug\net6.0\Microsoft.Identity.Web.Certificate.dll
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProject.Presentation\bin\Debug\net6.0\Microsoft.Identity.Web.Certificateless.dll
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProject.Presentation\bin\Debug\net6.0\Microsoft.Identity.Web.TokenCache.dll
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProject.Presentation\bin\Debug\net6.0\Microsoft.Identity.Web.UI.Views.dll
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProject.Presentation\bin\Debug\net6.0\Microsoft.Identity.Web.UI.dll
+C:\Users\PC\Desktop\Assignements\Assignements\MyProject\Hobby_Project\HobbyProject.Presentation\bin\Debug\net6.0\Microsoft.IdentityModel.Validators.dll

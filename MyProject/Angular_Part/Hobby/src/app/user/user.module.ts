@@ -1,10 +1,7 @@
 import { AppRoutingModule } from './../app-routing.module';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 import { ArticlesComponent } from './articles/articles.component';
-import { ProfileComponent } from './profile/profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatNativeDateModule } from '@angular/material/core';
@@ -23,11 +20,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 
 @NgModule({
   declarations: [
-    LoginComponent,
-    RegisterComponent,
-    ArticlesComponent,
-    ProfileComponent,
-    
+    ArticlesComponent,    
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
@@ -49,8 +42,6 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     MatButtonModule,
   ],
   exports: [
-    LoginComponent,
-    RegisterComponent,
     ArticlesComponent,
   ]
  

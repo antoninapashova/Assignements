@@ -13,6 +13,8 @@ using HobbyProject.Presentation.Middleware.UserMiddleware;
 using HobbyProject.Presentation.Middleware.ExceptionMiddleware;
 using FluentAssertions.Common;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Identity.Web;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,15 +32,16 @@ builder.Services.AddCors(options =>
                       });
 });
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
+
 
 builder.Services.AddControllers()
                 .AddFluentValidation(options =>
                 {
-                    // Validate child properties and root collection elements
+                    
                     options.ImplicitlyValidateChildProperties = true;
                     options.ImplicitlyValidateRootCollectionElements = true;
-
-                    // Automatic registration of validators in assembly
                     options.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
                 });
 
@@ -79,6 +82,8 @@ if (app.Environment.IsDevelopment())
 app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.UseMiddleware<UserConfigurationMiddleware>();
 app.UseHttpsRedirection();
+
+app.UseAuthentication();
 
 app.UseAuthorization();
 app.UseCors(MyAllowSpecificOrigins);

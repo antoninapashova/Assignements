@@ -9,23 +9,27 @@
     <div>
         <p>Hobby World</p>
     </div>
-  
-<mat-nav-list class="list-horizontal">
-       <a routerLink="/user/login">
-            <mat-icon>login</mat-icon> <span class="nav-caption">Login</span>   
+    <a *ngIf="isAuthenticated" class="username">Welcome {{activeUser}}</a>
+  <mat-nav-list class="list-horizontal">
+    
+         <a  routerLink="/category/add" *ngIf="isAdmin">
+            <mat-icon>app_registration</mat-icon><span class="nav-caption">Create category</span>
         </a>
-        <a  routerLink="/user/register">
-            <mat-icon>app_registration</mat-icon><span class="nav-caption">Register</span>
+        <a  routerLink="/tag/add" *ngIf="isAdmin">
+            <mat-icon>app_registration</mat-icon><span  *ngIf="isAdmin" class="nav-caption">Create tag</span>
         </a>
-        <a  routerLink="/tag/add">
-            <mat-icon>app_registration</mat-icon><span class="nav-caption">Create tag</span>
-        </a>
-        <a  routerLink="/subcategory/add">
+        <a  routerLink="/subcategory/add" *ngIf="isAdmin">
             <mat-icon>app_registration</mat-icon><span class="nav-caption">Create subcategory</span>
         </a>
-        <a  routerLink="/user/add-article">
+        <a  routerLink="/user/add-article" *ngIf="!isAdmin">
             <mat-icon>app_registration</mat-icon><span class="nav-caption">Create hobby article</span>
         </a>
- </mat-nav-list>
+
+        <a>
+            <button class="nav-caption"  (click)="login()" *ngIf="!isAuthenticated">Login</button>   
+          </a>
+           <a>
+            <button class="nav-caption" (click)="logout()" *ngIf="isAuthenticated">Logout</button>   
+           </a>
+    </mat-nav-list>
 </mat-toolbar>
-<router-outlet></router-outlet>

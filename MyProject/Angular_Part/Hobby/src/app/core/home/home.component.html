@@ -1,0 +1,19 @@
+
+
+<div class="container" *ngFor="let h of hobbies">
+    <mat-card>
+      <div *ngFor="let p of h.photos">
+        <img [src]="p.url" />
+      </div>
+        <mat-card-content>
+        <p>
+          <strong>{{h.title}}</strong>
+        </p>
+        <p>{{h.description}}</p>
+      </mat-card-content>
+        <mat-card-actions>
+          <button mat-button="">Add comment</button>
+          <button mat-button="">Show comments</button>
+       </mat-card-actions>
+     </mat-card>
+</div>
