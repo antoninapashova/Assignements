@@ -25,8 +25,8 @@ export class TagService {
         return this.httpClient.get<ITag>(`${this.baseUrl}${ApiPaths.Tag}/${id}`);
     }
 
-    addTag(tag: ITag) : Observable<ITag> {
-        return this.httpClient.post<ITag>(`${this.baseUrl}${ApiPaths.Tag}`, tag);
+    addTag(tag: any) : Observable<any> {
+        return this.httpClient.post<any>(`${this.baseUrl}${ApiPaths.Tag}`, tag);
     }
 
     delete(id: string) : Observable<ITag> {

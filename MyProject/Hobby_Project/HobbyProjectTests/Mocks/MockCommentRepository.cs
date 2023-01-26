@@ -15,9 +15,9 @@ namespace HobbyProjectTests.Mocks
         {
             var comments = new List<HobbyComment>
             {
-                new HobbyComment{Id=1, CommentContent=".......", Title="-------", HobbyArticleId=1, UserId=1},
-                new HobbyComment{Id=2, CommentContent=".......", Title="-------", HobbyArticleId=1, UserId=1},
-                new HobbyComment{Id=3, CommentContent=".......", Title="-------", HobbyArticleId=1, UserId=1},
+                new HobbyComment{Id=1, CommentContent=".......", Title="-------", HobbyArticleId=1},
+                new HobbyComment{Id=2, CommentContent=".......", Title="-------", HobbyArticleId=1},
+                new HobbyComment{Id=3, CommentContent=".......", Title="-------", HobbyArticleId=1},
             };
             var mockRepo = new Mock<ICommentRepository>();
 

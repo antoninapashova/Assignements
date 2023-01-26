@@ -24,6 +24,7 @@ import { UserCardComponent } from './user-card/user-card.component';
 import { HomeComponent } from './home/home.component';
 import {MatCardModule} from '@angular/material/card';
 import { HobbyCardComponent } from '../hobby-article/hobby-card/hobby-card.component';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { HobbyCardComponent } from '../hobby-article/hobby-card/hobby-card.compo
     IndexComponent,
     UserCardComponent,
     HomeComponent,
+    AboutComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [

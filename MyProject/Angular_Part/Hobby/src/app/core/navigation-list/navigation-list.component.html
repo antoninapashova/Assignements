@@ -7,7 +7,14 @@
     <a mat-list-item routerLink="/home" (click)="onSidenavClose()">
         <mat-icon>home</mat-icon> <span class="nav-caption">Home</span>
     </a>
-    <a mat-list-item routerLink="/category/get-all" (click)="onSidenavClose()">
+    <a mat-list-item routerLink="/category/get-all" *ngIf="isAdmin" (click)="onSidenavClose()">
         <mat-icon>category</mat-icon> <a class="nav-caption">Categories</a>   
     </a>
+    <a mat-list-item routerLink="/tag/get-all" *ngIf="isAdmin" (click)="onSidenavClose()">
+        <mat-icon>category</mat-icon> <a class="nav-caption">Tags</a>   
+    </a>
+    <a mat-list-item routerLink="/about"  (click)="onSidenavClose()">
+        <mat-icon>category</mat-icon> <a class="nav-caption">About</a>   
+    </a>
+    
 </mat-nav-list>

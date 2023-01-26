@@ -1,10 +1,13 @@
-﻿using Application.HobbySubCategories.Commands.Create;
+﻿using Application.Categories.Commands.Delete;
+using Application.HobbySubCategories.Commands.Create;
 using Application.HobbyTags.Commands.Create;
+using Application.HobbyTags.Commands.Delete;
 using Application.HobbyTags.Queries;
 using HobbyProject.Application.HobbySubCategories.Queries.GetAllSubCategories;
 using HobbyProject.Application.HobbySubCategories.Queries.GetSubCategoryById;
 using HobbyProject.Application.HobbyTags.Queries.GetTagById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -43,6 +46,16 @@ namespace HobbyProject.Presentation.Controllers
             var result = await _mediator.Send(command);
             
             return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<ActionResult> DeleteTag(int id)
+        {
+            var command = new DeleteTagCommand { Id = id };
+            var result = await _mediator.Send(command);
+            return Ok(result);
         }
     }
 }

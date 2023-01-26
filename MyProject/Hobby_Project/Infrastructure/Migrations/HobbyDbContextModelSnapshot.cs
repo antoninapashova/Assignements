@@ -44,9 +44,6 @@ namespace HobbyProject.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -54,8 +51,6 @@ namespace HobbyProject.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("HobbySubCategoryId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("HobbyArticles");
                 });
@@ -146,14 +141,13 @@ namespace HobbyProject.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("UserId")
-                        .HasColumnType("int");
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("HobbyArticleId");
-
-                    b.HasIndex("UserId");
 
                     b.ToTable("HobbyComments");
                 });
@@ -203,45 +197,6 @@ namespace HobbyProject.Infrastructure.Migrations
                     b.ToTable("Tags");
                 });
 
-            modelBuilder.Entity("Hobby_Project.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("Age")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Username")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Users");
-                });
-
             modelBuilder.Entity("Domain.Entity.HobbyArticle", b =>
                 {
                     b.HasOne("Hobby_Project.HobbySubCategory", "HobbySubCategory")
@@ -249,10 +204,6 @@ namespace HobbyProject.Infrastructure.Migrations
                         .HasForeignKey("HobbySubCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("Hobby_Project.User", null)
-                        .WithMany("Hobbies")
-                        .HasForeignKey("UserId");
 
                     b.Navigation("HobbySubCategory");
                 });
@@ -291,13 +242,7 @@ namespace HobbyProject.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Hobby_Project.User", "User")
-                        .WithMany("Comments")
-                        .HasForeignKey("UserId");
-
                     b.Navigation("HobbyArticle");
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Hobby_Project.HobbySubCategory", b =>
@@ -326,13 +271,6 @@ namespace HobbyProject.Infrastructure.Migrations
             modelBuilder.Entity("Hobby_Project.HobbySubCategory", b =>
                 {
                     b.Navigation("HobbyArticles");
-                });
-
-            modelBuilder.Entity("Hobby_Project.User", b =>
-                {
-                    b.Navigation("Comments");
-
-                    b.Navigation("Hobbies");
                 });
 #pragma warning restore 612, 618
         }

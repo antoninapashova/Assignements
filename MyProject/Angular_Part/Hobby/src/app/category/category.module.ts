@@ -16,7 +16,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { MatListModule } from '@angular/material/list';
-
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 @NgModule({
@@ -39,6 +39,7 @@ import { MatListModule } from '@angular/material/list';
     MatRadioModule,
     MatButtonModule,
     MatListModule,
+    MatDialogModule
   ],
    providers: [AddCategoryComponent, CategoryListComponent],
    exports: [CategoryListComponent, AddCategoryComponent]

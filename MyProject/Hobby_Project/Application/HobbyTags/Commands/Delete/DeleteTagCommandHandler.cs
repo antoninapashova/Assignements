@@ -30,6 +30,7 @@ namespace Application.HobbyTags.Commands.Delete
                     throw new NullReferenceException("Delete Tag command is null!");
 
                 await _unitOfWork.TagRepository.DeleteAsync(command.Id);
+                await _unitOfWork.Save();
                 return await Task.FromResult(command.Id);
             }
             catch (Exception e)

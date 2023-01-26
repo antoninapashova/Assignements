@@ -1,3 +1,5 @@
+import { AboutComponent } from './core/about/about.component';
+import { TagListComponent } from './tag/tag-list/tag-list.component';
 import { IndexComponent } from './core/index/index.component';
 import { HomeComponent } from './core/home/home.component';
 import { AddHobbyComponent } from './hobby-article/add-hobby/add-hobby.component';
@@ -58,7 +60,7 @@ const routes: Routes = [
         {
           path: 'get-all',
           component: CategoryListComponent,
-
+           
         }
       ]
      },
@@ -86,6 +88,14 @@ const routes: Routes = [
             data: {
               roles: [ 'Admin' ]
             },
+          },
+          {
+            path: 'get-all',
+            component: TagListComponent,
+            data:{
+              roles: [ 'Admin' ]
+
+            }
           }
          ]
       },
@@ -100,6 +110,10 @@ const routes: Routes = [
         data: {
           roles: [ 'User', 'Admin' ]
         },
+      },
+      {
+        path: 'about',
+        component: AboutComponent
       }
 
 ];

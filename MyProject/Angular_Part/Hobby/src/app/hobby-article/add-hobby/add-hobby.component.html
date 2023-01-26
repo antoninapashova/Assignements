@@ -14,7 +14,7 @@
 
  <mat-form-field appearance="fill">
        <mat-label for="tags">Tags</mat-label>
-       <mat-select class="form-control" formControlName="tags" multiple>
+       <mat-select class="form-control" formControlName="tags" multiple >
             <mat-option  *ngFor="let tag of tags" [value]="tag.id">{{ tag.name }}</mat-option>
         </mat-select>
     <mat-error *ngIf="createArticleForm.controls['tags'].errors?.['required']">You must choose atleast one tag</mat-error>
@@ -59,7 +59,7 @@
 	</ngx-dropzone-image-preview>
 </div>
 
-<button type="submit" mat-raised-button color="primary"  #submitButton>Submit</button>
-
+   <button type="submit" mat-raised-button color="primary"  #submitButton>Submit</button>
+  <span *ngIf="isSuccessfull">Article is added successfull!</span>
 </form>
 </div>

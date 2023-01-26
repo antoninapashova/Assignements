@@ -42,7 +42,6 @@ namespace Infrastructure.Repository
                 .Include(h => h.HobbyComments)
                 .Include(h => h.Tags)
                 .Include(h=>h.HobbyPhoto)
-                   
                 .ToListAsync();
         }
         
@@ -51,13 +50,9 @@ namespace Infrastructure.Repository
         {
             return await _context.HobbyArticles
                 .Include(x=>x.HobbyComments)
-                   .ThenInclude(hc=>hc.Username)
                 .Include(x => x.HobbySubCategory)
                 .Include(x => x.HobbyPhoto)
                 .Include(x => x.Tags)
-                .Include(x => x.Username)
-                 .Include(h => h.HobbyPhoto)
-
                 .ToListAsync();
         }
         public async Task<HobbyArticle> GetByIdAsync(int id)

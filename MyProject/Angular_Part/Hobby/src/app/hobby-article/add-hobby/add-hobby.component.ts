@@ -4,7 +4,7 @@ import { SubCategoryService } from './../../subcategory/sub-category.service';
 import { ITag } from './../../shared/interfaces/tag';
 import { ISubCategory } from './../../shared/interfaces/subcategory';
 import { HobbyService } from './../hobby-aticle.service';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { IPhoto } from 'src/app/shared/interfaces/photo';
 import { IHobby } from 'src/app/shared/interfaces/hobby-article';
@@ -23,13 +23,16 @@ export class AddHobbyComponent implements OnInit {
   tags: ITag[]=[];
   photosData: IPhoto[] = [];
   hobby!: IHobby;
+  isSuccessfull: boolean = false;
+  activeAccount?: string;
 
   constructor(private formBuilder: FormBuilder, 
               private hobbyService: HobbyService, 
               private subCategoryService: SubCategoryService,
               private tagService: TagService,
               private uploadService: UploadService,
-              private msalService: MsalService)
+              private msalService: MsalService,
+              )
               {}
 
 
@@ -57,7 +60,7 @@ export class AddHobbyComponent implements OnInit {
   onSubmit(form: FormGroup){ 
     const data = new FormData();
         
-    this.photos.forEach(f=>data.append('file', f, f.name));
+    this.photos.forEach(f=>data.append('file', f));
     data.append('upload_preset', 'hobby_angular');
     data.append('cloud_name', 'dpqbf79wg');
 
@@ -68,16 +71,27 @@ export class AddHobbyComponent implements OnInit {
         url: res.url, 
      };
 
+     this.activeAccount = this.msalService.instance.getActiveAccount()?.name;
+
      this.photosData.push(photoMapped);
-     console.log(this.photosData)
-     this.hobby=form.value;
-     this.hobby.username=this.msalService.instance.getActiveAccount.name;
-     this.hobby.hobbySubcategoryId=6;
-     this.hobby.tags = this.tags;
-     this.hobby.hobbyPhoto=this.photosData;
+     this.hobby=form.value; 
+       this.hobby.tags = this.tags;
+       this.hobby.hobbySubcategoryId = form.value['subcategory'];
+     this.hobby.username=this.activeAccount;
+    // this.hobby.hobbyPhoto=this.photosData;
      console.log(this.hobby);
-     this.hobbyService.addHobby(this.hobby).subscribe((response)=>console.log(response));
+
+     this.hobbyService.addHobby(this.hobby).subscribe((response)=>{
+         if(response){
+            console.log(response.id);
+            this.isSuccessfull = true;
+            console.log(this.isSuccessfull)
+         }
+         console.log(response);
+         form.reset();
+        });
     }); 
- }
+  }
+
 }
 

@@ -1,7 +1,8 @@
 import { TagService } from './../tag.service';
-import { Component } from '@angular/core';
+import { Component, Inject, Optional } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ITag } from 'src/app/shared/interfaces/tag';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-tag',
@@ -9,16 +10,20 @@ import { ITag } from 'src/app/shared/interfaces/tag';
   styleUrls: ['./add-tag.component.css']
 })
 export class AddTagComponent {
-
-  tag!: ITag;
-
-  constructor(private tagSrvice: TagService){}
+  action:string;
+  local_data:any;
   
-  onSubmit(form: NgForm) {
-     this.tag = form.value;
-     this.tagSrvice.addTag(this.tag).subscribe();
-     console.log(this.tag);
-     console.log(form);
+   constructor(public dialogRef: MatDialogRef<AddTagComponent>,
+              @Optional() @Inject(MAT_DIALOG_DATA) public tag: ITag ){
+                this.local_data = {...tag};
+    this.action = this.local_data.action;
+  }
 
+  doAction(){
+    this.dialogRef.close({event:this.action,data:this.local_data});
+  }
+
+  closeDialog(){
+    this.dialogRef.close({event:'Cancel'});
   }
 }

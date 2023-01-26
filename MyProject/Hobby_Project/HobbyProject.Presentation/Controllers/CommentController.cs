@@ -5,6 +5,7 @@ using Application.Comments.Commands.Edit;
 using HobbyProject.Application.Comments.Queries.GetAllComments;
 using HobbyProject.Application.Comments.Queries.GetCommentById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HobbyProject.Presentation.Controllers
@@ -37,6 +38,7 @@ namespace HobbyProject.Presentation.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles = "Admin, User")]
         [HttpPost]
         public async Task<IActionResult> AddComment([FromBody] CreateCommentCommand command)
         {
@@ -44,7 +46,7 @@ namespace HobbyProject.Presentation.Controllers
             return CreatedAtAction(nameof(GetById), new { id = result }, result);
         }
 
-
+        [Authorize(Roles = "Admin, User")]
         [HttpPut]
         [Route("{id}")]
         public async Task<IActionResult> UpdateComment(int id, [FromBody] EditCommentCommand editComment)
@@ -59,7 +61,7 @@ namespace HobbyProject.Presentation.Controllers
              await _mediator.Send(command);
              return NoContent();
         }
-
+        [Authorize(Roles = "Admin, User")]
         [HttpDelete]
         [Route("{id}")]
         public async Task<IActionResult> DeleteComment(int id)

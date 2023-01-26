@@ -428,3 +428,15 @@ Hobby_Project.HobbySubCategory -> HobbyProject.Application.HobbySubCategories.Qu
 [Error]13:43 An error occurred while saving the entity changes. See the inner exception for details.
 *-------------------------------*
 [Error]14:04 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]22:48 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]22:50 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]22:53 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]23:21 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]0:55 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]1:00 An error occurred while saving the entity changes. See the inner exception for details.

@@ -26,6 +26,7 @@ namespace HobbyProject.Presentation.Controllers
             _mediator = mediator;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> GetAllHobbyArticles()
         {
@@ -33,6 +34,7 @@ namespace HobbyProject.Presentation.Controllers
             return Ok(result);
         }
 
+        [Authorize(Roles = "Admin, User")]
         [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> GetById(int id)
@@ -47,9 +49,10 @@ namespace HobbyProject.Presentation.Controllers
         public async Task<IActionResult> AddHobbyArticle([FromBody] CreateHobbyCommand command)
         {
             var result = await _mediator.Send(command);
-            return CreatedAtAction(nameof(GetById), new { id = result }, result);
+            return Ok(result);
         }
 
+        [Authorize(Roles = "Admin, User")]
         [HttpDelete]
         [Route("{id}")]
         public async Task<IActionResult> DeleteArticle(int id)

@@ -8,6 +8,7 @@ using HobbyProject.Application.Categories.Queries.GetSubCategoryFromCategory;
 using HobbyProject.Application.Validators;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Web.Resource;
 using System.ComponentModel.DataAnnotations;
@@ -27,7 +28,7 @@ namespace HobbyProject.Presentation.Controllers
             _mediator = mediator;
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, User")]
         [HttpGet]
         public async Task<ActionResult> GetAllCategories()
         {

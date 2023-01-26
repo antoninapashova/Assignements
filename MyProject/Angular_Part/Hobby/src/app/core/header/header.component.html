@@ -1,5 +1,5 @@
 
-<mat-toolbar color="primary">
+<mat-toolbar class="header">
    
     <div fxHide.gt-xs>
         <button mat-icon-button (click)="onToggleSidenav()">
@@ -11,21 +11,13 @@
     </div>
     <a *ngIf="isAuthenticated" class="username">Welcome {{activeUser}}</a>
   <mat-nav-list class="list-horizontal">
-    
-         <a  routerLink="/category/add" *ngIf="isAdmin">
-            <mat-icon>app_registration</mat-icon><span class="nav-caption">Create category</span>
-        </a>
-        <a  routerLink="/tag/add" *ngIf="isAdmin">
-            <mat-icon>app_registration</mat-icon><span  *ngIf="isAdmin" class="nav-caption">Create tag</span>
-        </a>
         <a  routerLink="/subcategory/add" *ngIf="isAdmin">
             <mat-icon>app_registration</mat-icon><span class="nav-caption">Create subcategory</span>
         </a>
         <a  routerLink="/user/add-article" *ngIf="isAdmin">
             <mat-icon>app_registration</mat-icon><span class="nav-caption">Create hobby article</span>
         </a>
-
-        <a>
+          <a>
             <button class="nav-caption"  (click)="login()" *ngIf="!isAuthenticated">Login</button>   
           </a>
            <a>

@@ -1,10 +1,9 @@
 import { ApiPaths } from './../shared/urls/api-paths';
-import { HttpClient, HttpResponse } from "@angular/common/http";
+import { HttpClient} from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import {Observable} from 'rxjs';
 import { IHobby } from "../shared/interfaces/hobby-article";
 import { environment } from "../shared/urls/base-url";
-import { Cloudinary } from '@cloudinary/angular-5.x';
 
 @Injectable({
     providedIn: 'root',

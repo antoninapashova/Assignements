@@ -1,6 +1,6 @@
 import { AzureAdService } from './../../auth/azure-ad.service';
 import { takeUntil } from 'rxjs/operators';
-import { EventMessage, EventType, InteractionStatus, RedirectRequest } from '@azure/msal-browser';
+import {  InteractionStatus, RedirectRequest } from '@azure/msal-browser';
 import { MsalService, MsalBroadcastService, MSAL_GUARD_CONFIG, MsalGuardConfiguration } from '@azure/msal-angular';
 import { Component, EventEmitter, Output, OnInit, OnDestroy, Inject } from '@angular/core';
 import { filter, Subject } from 'rxjs';
@@ -13,7 +13,6 @@ import { filter, Subject } from 'rxjs';
 })
 export class HeaderComponent implements OnInit, OnDestroy{
    
-  @Output() public sidenavToggle = new EventEmitter();
   isAuthenticated=false;
   activeUser!: string;
   name!: string 
@@ -21,7 +20,8 @@ export class HeaderComponent implements OnInit, OnDestroy{
   isAdmin: boolean = false;
 
  private readonly unsubscribe = new Subject<void>();
- 
+  @Output() public sidenavToggle = new EventEmitter();
+
  constructor(@Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
              private authService: MsalService, 
              private broadCastService: MsalBroadcastService, 
@@ -47,14 +47,13 @@ export class HeaderComponent implements OnInit, OnDestroy{
         {
          activAccount=this.authService.instance.getAllAccounts()[0];       
          this.authService.instance.setActiveAccount(activAccount);    
-         console.log(activAccount);
+          console.log(activAccount);
         }
 
         if(activAccount?.idTokenClaims?.roles?.includes('Admin')){
            this.isAdmin=true;
         }
-        
-       });
+      });
      
   }
  

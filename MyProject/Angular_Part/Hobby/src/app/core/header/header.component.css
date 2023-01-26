@@ -1,7 +1,5 @@
-.primary{
-  border-radius: 3px;
-  align-items: center;
-  justify-content: center;
+.header {
+  background-color: hsl(168deg 30% 38%);;
 }
 
 mat-nav-list.list-horizontal {
@@ -12,6 +10,7 @@ mat-nav-list.list-horizontal {
     justify-content: center;
     margin-left: auto;
     margin-right: 1.5rem;
+    background-color:  hsl(168deg 30% 38%);
 }
    
 .list-horizontal a{
