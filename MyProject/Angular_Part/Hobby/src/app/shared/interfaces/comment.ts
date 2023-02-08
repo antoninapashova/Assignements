@@ -1,5 +1,6 @@
 export interface IComment{
-    id: number,
+    id?: number,
     commentContent: string,
-    username:string
+    username:string | undefined
+    hobbyArticleId: number | undefined
 }

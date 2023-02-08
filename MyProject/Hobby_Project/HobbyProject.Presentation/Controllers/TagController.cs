@@ -24,6 +24,7 @@ namespace HobbyProject.Presentation.Controllers
             _mediator = mediator;
         }
 
+        [Authorize(Roles = "Admin, User")]
         [HttpGet]
         public async Task<IActionResult> GetAllTags()
         {

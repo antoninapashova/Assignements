@@ -1,3 +1,4 @@
+import { HobbyArticleModule } from './../hobby-article/hobby-article.module';
 import { AppRoutingModule } from './../app-routing.module';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -16,6 +17,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxDropzoneModule } from 'ngx-dropzone';
+import { MatListModule } from '@angular/material/list';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 
 @NgModule({
@@ -26,6 +29,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
   imports: [
     NgxDropzoneModule,
     CommonModule,
+    HobbyArticleModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
@@ -40,9 +44,22 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
     MatSelectModule,
     MatRadioModule,
     MatButtonModule,
+    MatTableModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatIconModule,
+    MatSelectModule,
+    MatRadioModule,
+    MatButtonModule,
+    MatListModule,
+    MatExpansionModule,
   ],
   exports: [
     ArticlesComponent,
+    
   ]
  
 })

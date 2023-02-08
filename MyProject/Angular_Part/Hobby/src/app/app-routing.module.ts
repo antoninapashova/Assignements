@@ -30,7 +30,7 @@ const routes: Routes = [
           component: ArticlesComponent,
           canActivate:[MsalGuard],
           data: {
-            roles: [ 'User' ]
+            roles: [ 'Admin', 'User' ]
           },
           
        },
@@ -40,7 +40,7 @@ const routes: Routes = [
         component: AddHobbyComponent,
         canActivate:[MsalGuard],
         data: {
-          roles: [ 'User' ]
+          roles: [ 'User', 'Admin' ]
         },
        },
       ],
@@ -93,7 +93,7 @@ const routes: Routes = [
             path: 'get-all',
             component: TagListComponent,
             data:{
-              roles: [ 'Admin' ]
+              roles: [ 'Admin', 'User' ]
 
             }
           }

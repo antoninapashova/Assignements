@@ -12,10 +12,8 @@ namespace HobbyProject.Application.Validators
     {
         public TagValidator()
         {
-            RuleFor(x => x).NotNull().WithMessage("Category...");
-
-            RuleFor(x=>x.Name).NotNull().NotEmpty().Length(3, 10)
-                .WithMessage("Tag name must be between 3 and 10 characters!");
+            RuleFor(x=>x.Name).NotNull().NotEmpty().Length(3, 20)
+                .WithMessage("Tag name must be between 3 and 20 characters!");
             
         }
     }

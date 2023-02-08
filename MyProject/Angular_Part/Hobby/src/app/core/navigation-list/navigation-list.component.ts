@@ -15,7 +15,7 @@ export class NavigationListComponent implements OnInit {
   username:string | undefined;
   name: string | undefined;
    isAdmin: boolean = false;
-
+   isUser: boolean = false;
   subCategories: ISubCategory[] | undefined;
   category!: ICategory | undefined;
   
@@ -33,7 +33,9 @@ export class NavigationListComponent implements OnInit {
     let activAccount = this.msalService.instance.getActiveAccount();   
     if(activAccount?.idTokenClaims?.roles?.includes('Admin')){
       this.isAdmin=true;
-   }
+    }else if(activAccount?.idTokenClaims?.roles?.includes('User')) {
+      this.isUser = true;
+    }
   }
   public onSidenavClose = () => {
     this.sidenavClose.emit();

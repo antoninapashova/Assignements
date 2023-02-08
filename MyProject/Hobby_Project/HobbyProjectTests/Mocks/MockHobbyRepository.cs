@@ -21,13 +21,13 @@ namespace HobbyProjectTests.Mocks
             {
                 new HobbyArticle {Id = 1, Title="A great day for playing tennis", Description="---------",
                                   CreatedDate= DateTime.Now, Username = "Ivan", HobbySubCategoryId=1,
-                                  Tags = new List<Tag>(), HobbyPhoto = new List<HobbyPhoto>()},
+                                  Tags = new List<Tag>()},
                 new HobbyArticle {Id = 2, Title="A great day for playing tennis", Description="---------",
                                   CreatedDate= DateTime.Now, Username="Ivan", HobbySubCategoryId=1,
-                                  Tags = new List<Tag>(), HobbyPhoto = new List<HobbyPhoto>()},
+                                  Tags = new List<Tag>()},
                 new HobbyArticle {Id = 3, Title="A great day for playing tennis", Description="---------",
                                   CreatedDate= DateTime.Now, Username = "Ivan", HobbySubCategoryId=1,
-                                  Tags = new List<Tag>(), HobbyPhoto = new List<HobbyPhoto>()},
+                                  Tags = new List<Tag>()},
             };
 
             var mockRepo = new Mock<IHobbyArticleRepository>();

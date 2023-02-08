@@ -16,7 +16,7 @@ namespace Domain.Entity
         public int HobbySubCategoryId { get; set; }
         public string Username { get; set; }
         public virtual HobbySubCategory HobbySubCategory { get; set; }
-        public virtual ICollection<HobbyPhoto> HobbyPhoto { get; set; }
+        public virtual List<HobbyPhoto> HobbyPhoto { get; set; }
         public virtual ICollection<HobbyComment> HobbyComments { get; }
         public virtual ICollection<Tag> Tags { get; set; }
     }

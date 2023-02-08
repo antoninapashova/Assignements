@@ -5,6 +5,7 @@ using Application.Hobby.Commands.Delete;
 using Application.Hobby.Queries;
 using HobbyProject.Application.Categories.Queries.GetCategoryById;
 using HobbyProject.Application.Hobby.Queries.GetAllUsers;
+using HobbyProject.Application.Hobby.Queries.GetHobbiesByUsername;
 using HobbyProject.Application.Hobby.Queries.GetHobbyById;
 using HobbyProject.Application.HobbySubCategories.Queries.GetAllSubCategories;
 using MediatR;
@@ -26,7 +27,7 @@ namespace HobbyProject.Presentation.Controllers
             _mediator = mediator;
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, User")]
         [HttpGet]
         public async Task<IActionResult> GetAllHobbyArticles()
         {
@@ -44,7 +45,17 @@ namespace HobbyProject.Presentation.Controllers
             return Ok(result);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, User")]
+        [HttpGet]
+        [Route("{username}")]
+        public async Task<IActionResult> GetByUsername(string username)
+        {
+            var query = new GetHobbiesByUsernameQuery { Username = username };
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+
+        [Authorize(Roles = "Admin, User")]
         [HttpPost]
         public async Task<IActionResult> AddHobbyArticle([FromBody] CreateHobbyCommand command)
         {

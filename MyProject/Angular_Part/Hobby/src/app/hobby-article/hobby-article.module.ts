@@ -19,12 +19,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { CommentComponent } from './comment/comment.component';
 import { HobbyCardComponent } from './hobby-card/hobby-card.component';
+import { CommentsListComponent } from './comments-list/comments-list.component';
+import { CommentFormComponent } from './comment-form/comment-form.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+
 
 @NgModule({
   declarations: [
     AddHobbyComponent,
     CommentComponent,
     HobbyCardComponent,
+    CommentsListComponent,
+    CommentFormComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
@@ -45,8 +51,15 @@ import { HobbyCardComponent } from './hobby-card/hobby-card.component';
     MatSelectModule,
     MatRadioModule,
     MatButtonModule,
-    MatListModule
+    MatListModule,
+    MatExpansionModule,
   ],
-  exports:[AddHobbyComponent, HobbyCardComponent]
+  exports:[
+    CommentFormComponent,
+    AddHobbyComponent, 
+     CommentComponent,
+    HobbyCardComponent,
+    CommentsListComponent,
+    ReactiveFormsModule]
 })
 export class HobbyArticleModule { }

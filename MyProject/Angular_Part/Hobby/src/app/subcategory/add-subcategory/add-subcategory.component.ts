@@ -14,7 +14,7 @@ export class AddSubcategoryComponent implements OnInit {
    
   subCategory!: ISubCategory;
   categories!: ICategory[];
-
+  isSuccessfull!: boolean;
   constructor(private subCategoryService: SubCategoryService, private categoryService: CategoryService){}
 
   ngOnInit(): void {
@@ -25,7 +25,13 @@ export class AddSubcategoryComponent implements OnInit {
     console.log(form.value);
 
     this.subCategory = form.value;
-    this.subCategoryService.addSubCategory(this.subCategory).subscribe();
+    this.subCategoryService.addSubCategory(this.subCategory).subscribe(response=>{
+      if(response){
+        this.isSuccessfull = true;
+     }
+     console.log(this.subCategory);
+     form.reset();
+    });
 
     console.log(this.subCategory);
   }

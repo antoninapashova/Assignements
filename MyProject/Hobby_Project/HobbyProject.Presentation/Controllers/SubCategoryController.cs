@@ -23,7 +23,7 @@ namespace HobbyProject.Presentation.Controllers
         }
 
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin, User")]
         [HttpGet]
         public async Task<IActionResult> GetAllSubCategories()
         {
@@ -40,6 +40,8 @@ namespace HobbyProject.Presentation.Controllers
             return Ok(result);
         }
 
+
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> AddSubCategory([FromBody] CreateSubCategoryCommand command)
         {
@@ -47,6 +49,7 @@ namespace HobbyProject.Presentation.Controllers
             return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete]
         [Route("{id}")]
         public async Task<IActionResult> DeleteSubCategory(int id)

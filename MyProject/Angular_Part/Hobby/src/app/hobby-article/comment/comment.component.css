@@ -1,10 +1,4 @@
-
-
-.comment h4{
-    margin-bottom: 0px;
-    font-weight: 900
-}
-
-.comment p{
-    margin-bottom: 0px;
+.comment-author {
+    font-weight: 400;
+    font-size: 15px;
 }

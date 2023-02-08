@@ -116,6 +116,7 @@ const isIE = window.navigator.userAgent.indexOf('MSIE') > -1 || window.navigator
     TagModule,
     FormsModule,
     HobbyArticleModule,
+    CoreModule,
     SubcategoryModule,
     BrowserAnimationsModule,
     MatTableModule,

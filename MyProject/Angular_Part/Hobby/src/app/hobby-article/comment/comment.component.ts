@@ -1,5 +1,5 @@
 import { IComment } from './../../shared/interfaces/comment';
-import { Component, Input } from '@angular/core';
+import { Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-comment',
@@ -9,4 +9,5 @@ import { Component, Input } from '@angular/core';
 export class CommentComponent {
 
   @Input() comment!: IComment | undefined;
+  constructor() { }
 }

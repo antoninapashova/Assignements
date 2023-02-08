@@ -7,7 +7,8 @@
                class="form-control"
                type="text"
                formControlName="title"
-               #title />
+               #title 
+               [value]="title"/>
          <mat-error *ngIf="createArticleForm.controls['title'].errors?.['required']">Title is required</mat-error>
          <mat-error *ngIf="createArticleForm.controls['title'].errors?.['minlenght']">Title must be more than 3 characters</mat-error>
    </mat-form-field>

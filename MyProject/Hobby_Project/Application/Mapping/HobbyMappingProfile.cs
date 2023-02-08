@@ -59,8 +59,6 @@ namespace Application.Mapping
             CreateMap<HobbyComment, HobbyCommentDTO>()
                 .ForMember("Username", x=>x.MapFrom(y=>y.Username));
 
-       
-
             //Tag
             CreateMap<CreateTagCommand, Tag>();
             CreateMap<Tag, TagDto>();

@@ -21,5 +21,7 @@
             </mat-select>
         </mat-form-field>
     <button [disabled]="!form.valid" type="submit" mat-raised-button color="primary">Submit</button>
+
+    <span *ngIf="isSuccessfull">Subcategory is added successfull!</span>
     </form>
 </div>

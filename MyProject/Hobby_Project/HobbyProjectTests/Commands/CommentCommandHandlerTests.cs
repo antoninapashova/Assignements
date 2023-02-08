@@ -36,7 +36,7 @@ namespace HobbyProjectTests.Commands
             _mapper = mapperConfig.CreateMapper();
             _unitOfWorkMock = new();
             _repoMock = MockCommentRepository.GetAllComments();
-            _command = new CreateCommentCommand { Title="New comment", CommentContent="New comment is added", HobbyArticleId=1, UserId=1 };
+            _command = new CreateCommentCommand {  CommentContent="New comment is added", HobbyArticleId=1, Username="Ivan" };
         }
 
         [Fact]

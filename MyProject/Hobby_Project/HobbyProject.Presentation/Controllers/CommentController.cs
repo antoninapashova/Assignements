@@ -38,7 +38,7 @@ namespace HobbyProject.Presentation.Controllers
             return Ok(result);
         }
 
-        [Authorize(Roles = "Admin, User")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> AddComment([FromBody] CreateCommentCommand command)
         {
@@ -61,7 +61,7 @@ namespace HobbyProject.Presentation.Controllers
              await _mediator.Send(command);
              return NoContent();
         }
-        [Authorize(Roles = "Admin, User")]
+        [Authorize(Roles = "Admin")]
         [HttpDelete]
         [Route("{id}")]
         public async Task<IActionResult> DeleteComment(int id)

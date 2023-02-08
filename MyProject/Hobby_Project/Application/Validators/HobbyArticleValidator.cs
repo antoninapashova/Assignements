@@ -12,8 +12,6 @@ namespace HobbyProject.Application.Validators
     {
         public HobbyArticleValidator()
         {
-            RuleFor(hobby => hobby.Title).NotNull().Length(5,15)
-                .WithMessage("Title must be between 5 and 15 characters");
 
             RuleFor(hobby => hobby.Tags).NotNull()
                 .WithMessage("Tag list must contain at least one tag");

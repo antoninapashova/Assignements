@@ -15,9 +15,9 @@ namespace HobbyProjectTests.Mocks
         {
             var comments = new List<HobbyComment>
             {
-                new HobbyComment{Id=1, CommentContent=".......", Title="-------", HobbyArticleId=1},
-                new HobbyComment{Id=2, CommentContent=".......", Title="-------", HobbyArticleId=1},
-                new HobbyComment{Id=3, CommentContent=".......", Title="-------", HobbyArticleId=1},
+                new HobbyComment{Id=1, CommentContent=".......",  HobbyArticleId=1},
+                new HobbyComment{Id=2, CommentContent=".......",  HobbyArticleId=1},
+                new HobbyComment{Id=3, CommentContent=".......",  HobbyArticleId=1},
             };
             var mockRepo = new Mock<ICommentRepository>();
 
@@ -32,7 +32,6 @@ namespace HobbyProjectTests.Mocks
             mockRepo.Setup(x => x.Update(It.IsAny<HobbyComment>())).ReturnsAsync((HobbyComment comment) =>
             {
                 HobbyComment? hobbyComment1 = comments.FirstOrDefault(x => x.Id == comment.Id);
-                hobbyComment1.Title = comment.Title;
                 hobbyComment1.CommentContent = comment.CommentContent;
                 hobbyComment1.CreatedDate = DateTime.Now;
                 return hobbyComment1;

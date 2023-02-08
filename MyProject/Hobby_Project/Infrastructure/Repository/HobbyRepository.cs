@@ -22,7 +22,7 @@ namespace Infrastructure.Repository
 
         public async Task<HobbyArticle> Add(HobbyArticle entity)
         {
-             _context.HobbyArticles.Attach(entity).State =EntityState.Added;
+             _context.HobbyArticles.Attach(entity).State = EntityState.Added;
             
             return entity;
         }
@@ -64,14 +64,23 @@ namespace Infrastructure.Repository
                     .Include(h => h.HobbySubCategory)
                     .Include(h=>h.Tags)
                     .Include(h => h.HobbyPhoto)
-                    
-                       .FirstOrDefaultAsync();
+                    .FirstOrDefaultAsync();
         }
       
         public async Task<HobbyArticle> Update(HobbyArticle hobbyArticle)
         {
             _context.HobbyArticles.Update(hobbyArticle);
             return hobbyArticle;
+        }
+        
+        public async Task<IEnumerable<HobbyArticle>> GetHobbyArticlesByUsername(string username)
+        {
+            return await _context.HobbyArticles
+                     .Where(h => h.Username.Equals(username))
+                     .Include(h => h.HobbySubCategory)
+                     .Include(h => h.Tags)
+                     .Include(h => h.HobbyPhoto)
+                     .ToListAsync();
         }
 
         public async Task<HobbyArticle> FindById(int id)
@@ -81,5 +90,7 @@ namespace Infrastructure.Repository
             if (hobby == null) throw new NullReferenceException("HobbyArticle with Id: " + id + " does not exist");
             return hobby;
         }
+
+        
     }
 }

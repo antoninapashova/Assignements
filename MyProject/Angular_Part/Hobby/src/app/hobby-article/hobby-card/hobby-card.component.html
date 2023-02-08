@@ -1,21 +1,35 @@
-    <mat-card class="card" *ngFor="let h of hobbies">
-         <div *ngFor="let p of h.hobbyPhoto">
+   <mat-card class="card" *ngFor="let h of hobbies" >
+        <div *ngFor="let p of h.hobbyPhoto" class="photos">
               <img [src] = "p.url" />  
-           </div>
-        <mat-card-content>
-        <p> <strong>{{h.title}}</strong> </p>
-        <p>{{h.username}}</p>
-         <p>{{h.description}}</p>
-      </mat-card-content>
-        <mat-card-actions>
-          <a >Add comment</a>
-          <a>show comments</a>
-        </mat-card-actions>
-       <div>
-         <mat-list *ngFor="let c of h.hobbyComments">
-            <mat-list-item class="comment">
-                <app-comment [comment]="c"></app-comment>
-            </mat-list-item>
-         </mat-list>
+        </div>
+  <mat-card-content class="content">
+          <p><strong>{{h.username}}</strong></p>
+           <p> <strong>{{h.title}}</strong> </p>
+            <p><strong>Subcategory </strong> {{h.hobbySubCategory}}</p>
+            <p>{{h.description}}</p>
+      
+      <button mat-button (click)="deleteArticle(h.id, h.username)">Delete</button>
+      <div class="example-action-buttons">
+         <button mat-button (click)="accordion.openAll()">Show</button>
+         <button mat-button (click)="accordion.closeAll()">Hide</button>
        </div>
-     </mat-card>
+      <mat-devider></mat-devider>
+       
+    <mat-accordion class="example-headers-align" multi>
+   <!-- #enddocregion multi -->
+   <mat-expansion-panel>
+     <mat-expansion-panel-header>
+       <div class="my-panel">
+         <h3>Comments</h3>
+       </div>
+     </mat-expansion-panel-header>
+ 
+     <div>
+        <app-comments-list [currentUsername]="currentUsername" [comments] = "h.hobbyComments"  
+      [hobbyArticleId] = "h.id">
+     </app-comments-list></div>
+   </mat-expansion-panel>
+ </mat-accordion>
+</mat-card-content>
+ </mat-card>
+

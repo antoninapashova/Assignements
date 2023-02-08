@@ -18,7 +18,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
   name!: string 
   username!: string;
   isAdmin: boolean = false;
-
+  isUser: boolean= false;
  private readonly unsubscribe = new Subject<void>();
   @Output() public sidenavToggle = new EventEmitter();
 
@@ -41,17 +41,19 @@ export class HeaderComponent implements OnInit, OnDestroy{
      .subscribe(()=>{
         this.isAuthenticated = this.authService.instance.getAllAccounts().length>0;
         this.azureAdService.isUserLogedIn.next(!!this.isAuthenticated);
-        let activAccount = this.authService.instance.getActiveAccount();    
+        let activAccount = this.authService.instance.getActiveAccount();
       
         if(!activAccount && this.authService.instance.getAllAccounts().length>0)
         {
-         activAccount=this.authService.instance.getAllAccounts()[0];       
-         this.authService.instance.setActiveAccount(activAccount);    
+         activAccount=this.authService.instance.getAllAccounts()[0];
+         this.authService.instance.setActiveAccount(activAccount); 
           console.log(activAccount);
         }
 
         if(activAccount?.idTokenClaims?.roles?.includes('Admin')){
            this.isAdmin=true;
+        }else if(activAccount?.idTokenClaims?.roles?.includes('User')) {
+          this.isUser = true;
         }
       });
      

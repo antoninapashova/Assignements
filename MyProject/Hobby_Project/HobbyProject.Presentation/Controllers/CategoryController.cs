@@ -28,7 +28,7 @@ namespace HobbyProject.Presentation.Controllers
             _mediator = mediator;
         }
 
-        [Authorize(Roles = "Admin, User")]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<ActionResult> GetAllCategories()
         {

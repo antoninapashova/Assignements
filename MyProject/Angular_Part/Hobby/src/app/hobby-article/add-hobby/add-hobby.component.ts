@@ -60,7 +60,7 @@ export class AddHobbyComponent implements OnInit {
   onSubmit(form: FormGroup){ 
     const data = new FormData();
         
-    this.photos.forEach(f=>data.append('file', f));
+    data.append('file', this.photos[0]);
     data.append('upload_preset', 'hobby_angular');
     data.append('cloud_name', 'dpqbf79wg');
 
@@ -70,26 +70,28 @@ export class AddHobbyComponent implements OnInit {
         publicId: res.public_id,
         url: res.url, 
      };
+     
+      this.photosData.push(photoMapped);
 
      this.activeAccount = this.msalService.instance.getActiveAccount()?.name;
 
-     this.photosData.push(photoMapped);
-     this.hobby=form.value; 
-       this.hobby.tags = this.tags;
-       this.hobby.hobbySubcategoryId = form.value['subcategory'];
+     console.log(form.value); 
+     
+     this.hobby = form.value;
+     this.hobby.hobbySubcategoryId = form.value['subcategory'];
      this.hobby.username=this.activeAccount;
-    // this.hobby.hobbyPhoto=this.photosData;
+     this.hobby.tags = this.tags;
+      
+     this.hobby.hobbyPhoto = this.photosData;
      console.log(this.hobby);
 
      this.hobbyService.addHobby(this.hobby).subscribe((response)=>{
          if(response){
-            console.log(response.id);
             this.isSuccessfull = true;
-            console.log(this.isSuccessfull)
          }
-         console.log(response);
+         console.log(this.hobby);
          form.reset();
-        });
+       });
     }); 
   }
 

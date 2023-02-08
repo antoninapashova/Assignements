@@ -137,10 +137,6 @@ namespace HobbyProject.Infrastructure.Migrations
                     b.Property<int>("HobbyArticleId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Username")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

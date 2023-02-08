@@ -44,7 +44,7 @@ namespace Infrastructure.Data
                 .HasForeignKey(x => x.HobbyArticleId).OnDelete(DeleteBehavior.Cascade);
 
                 a.HasMany(x => x.HobbyPhoto).WithOne(x => x.HobbyArticle)
-                .HasForeignKey(x => x.HobbyArticleId).OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey(c => c.HobbyArticleId).OnDelete(DeleteBehavior.Cascade);
 
                 a.HasMany(t => t.Tags).WithMany(h => h.HobbyArticles);
             });

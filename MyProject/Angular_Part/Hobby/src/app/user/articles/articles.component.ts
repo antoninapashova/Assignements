@@ -1,5 +1,9 @@
+import { MsalService } from '@azure/msal-angular';
+import { HobbyService } from './../../hobby-article/hobby-aticle.service';
 import { UserService } from './../user.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IHobby } from 'src/app/shared/interfaces/hobby-article';
+import { MatAccordion } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-articles',
@@ -7,10 +11,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./articles.component.css'],
   providers: [UserService]
 })
-export class ArticlesComponent {
+export class ArticlesComponent implements OnInit {
 
-  constructor(private userService: UserService){}
+  activeAccount: string | undefined;
+  hobbies: IHobby[] = [];
+  userHobbies: IHobby[] = [];
+  constructor(private hobbyService: HobbyService, private authService: MsalService){}
 
-  getUserArticles(): void{
-  }
+  @ViewChild(MatAccordion) accordion!: MatAccordion;
+
+  ngOnInit(): void {
+        this.activeAccount = this.authService.instance.getActiveAccount()?.name; 
+        console.log(this.activeAccount);
+        this.hobbyService.getAll().subscribe(res=> {
+            this.hobbies = res;
+           this.userHobbies =this.hobbies.filter(x=>x.username==this.activeAccount);
+        });
+   }     
+
+
+  deleteArticle(id: any, username: any){
+    if(this.activeAccount==username || this.authService.instance.getActiveAccount()?.idTokenClaims?.roles){
+      this.hobbyService.deleteHobby(id).subscribe(res=>console.log(res));
+    }
+ }
 }

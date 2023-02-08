@@ -440,3 +440,24 @@ Hobby_Project.HobbySubCategory -> HobbyProject.Application.HobbySubCategories.Qu
 [Error]0:55 An error occurred while saving the entity changes. See the inner exception for details.
 *-------------------------------*
 [Error]1:00 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]12:29 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]12:30 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]16:58 Validation failed: 
+ -- Name: Tag name must be between 3 and 10 characters! Severity: Error
+*-------------------------------*
+[Error]16:58 Validation failed: 
+ -- Name: Tag name must be between 3 and 10 characters! Severity: Error
+*-------------------------------*
+[Error]16:59 Validation failed: 
+ -- Name: Tag name must be between 3 and 10 characters! Severity: Error
+*-------------------------------*
+[Error]17:36 HobbyArticle with Id: 1 does not exist
+*-------------------------------*
+[Error]8:55 Missing type map configuration or unsupported mapping.
+
+Mapping types:
+HobbySubCategory -> HobbySubCategoryDto
+Hobby_Project.HobbySubCategory -> HobbyProject.Application.HobbySubCategories.Queries.HobbySubCategoryDto
