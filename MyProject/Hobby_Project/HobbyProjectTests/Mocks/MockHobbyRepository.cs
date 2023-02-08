@@ -17,15 +17,15 @@ namespace HobbyProjectTests.Mocks
     {     
         public static Mock<IHobbyArticleRepository> GetHobbyArticleRepository()
         {
-            var hobbyArticles = new List<HobbyArticle>
+            var hobbyArticles = new List<Hobby>
             {
-                new HobbyArticle {Id = 1, Title="A great day for playing tennis", Description="---------",
+                new Hobby {Id = 1, Title="A great day for playing tennis", Description="---------",
                                   CreatedDate= DateTime.Now, Username = "Ivan", HobbySubCategoryId=1,
                                   Tags = new List<Tag>()},
-                new HobbyArticle {Id = 2, Title="A great day for playing tennis", Description="---------",
+                new Hobby {Id = 2, Title="A great day for playing tennis", Description="---------",
                                   CreatedDate= DateTime.Now, Username="Ivan", HobbySubCategoryId=1,
                                   Tags = new List<Tag>()},
-                new HobbyArticle {Id = 3, Title="A great day for playing tennis", Description="---------",
+                new Hobby {Id = 3, Title="A great day for playing tennis", Description="---------",
                                   CreatedDate= DateTime.Now, Username = "Ivan", HobbySubCategoryId=1,
                                   Tags = new List<Tag>()},
             };
@@ -36,19 +36,19 @@ namespace HobbyProjectTests.Mocks
 
             mockRepo.Setup(x => x.GetByIdAsync(It.IsAny<int>())).ReturnsAsync((int id) =>
             {
-                HobbyArticle? hobbyArticle1 = hobbyArticles.FirstOrDefault(x => x.Id == id);
+                Hobby? hobbyArticle1 = hobbyArticles.FirstOrDefault(x => x.Id == id);
                 return hobbyArticle1;
             });
 
-            mockRepo.Setup(x => x.Add(It.IsAny<HobbyArticle>())).ReturnsAsync((HobbyArticle hobbyArticle) =>
+            mockRepo.Setup(x => x.Add(It.IsAny<Hobby>())).ReturnsAsync((Hobby hobbyArticle) =>
             {
                 hobbyArticles.Add(hobbyArticle);
                 return hobbyArticle;
             });
 
-            mockRepo.Setup(x => x.Update(It.IsAny<HobbyArticle>())).ReturnsAsync((HobbyArticle hobbyArticle) =>
+            mockRepo.Setup(x => x.Update(It.IsAny<Hobby>())).ReturnsAsync((Hobby hobbyArticle) =>
             {
-                HobbyArticle? hobbyArticle1 = hobbyArticles.FirstOrDefault(x => x.Id == hobbyArticle.Id);
+                Hobby? hobbyArticle1 = hobbyArticles.FirstOrDefault(x => x.Id == hobbyArticle.Id);
                 hobbyArticle1.Title = hobbyArticle.Title;
                 hobbyArticle1.Description = hobbyArticle.Description;
                 hobbyArticle1.CreatedDate = DateTime.Now;
@@ -58,7 +58,7 @@ namespace HobbyProjectTests.Mocks
 
             mockRepo.Setup(x => x.DeleteAsync(It.IsAny<Int32>())).Returns((int articleId) =>
             {
-                HobbyArticle? article= hobbyArticles.FirstOrDefault(x => x.Id == articleId);
+                Hobby? article= hobbyArticles.FirstOrDefault(x => x.Id == articleId);
                 hobbyArticles.Remove(article);
                 return Task.FromResult(article.Id);
             });

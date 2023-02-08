@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace Hobby_Project
 {
-    public class HobbyComment : BaseEntity
+    public class Comment : BaseEntity
     {
         public string CommentContent { get; set; }
         public int HobbyArticleId { get; set; }
         public string Username { get; set; }
-        public HobbyArticle HobbyArticle { get; set; }
+        public Hobby HobbyArticle { get; set; }
        
     }
 }

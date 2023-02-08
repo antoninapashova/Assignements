@@ -20,35 +20,35 @@ namespace Infrastructure.Repository
             _context = context;
         }
 
-        public async Task<HobbyCategory> Add(HobbyCategory entity)
+        public async Task<Category> Add(Category entity)
         {
             await _context.HobbyCategories.AddAsync(entity);
             return entity;
         }
         public async Task DeleteAsync(int id)
         {
-            HobbyCategory hobbyCategory = await FindById(id);
+            Category hobbyCategory = await FindById(id);
 
             _context.Remove(hobbyCategory);
         }
 
-        public async Task<IEnumerable<HobbyCategory>> GetAllEntitiesAsync()
+        public async Task<IEnumerable<Category>> GetAllEntitiesAsync()
         {
             return _context.HobbyCategories
                 .Include(h => h.HobbySubCategories)
                 .AsEnumerable();
         }
 
-        public async Task<HobbyCategory> GetByIdAsync(int id)
+        public async Task<Category> GetByIdAsync(int id)
         {
-            HobbyCategory hobbyCategory = await FindById(id); 
+            Category hobbyCategory = await FindById(id); 
 
             return  _context.HobbyCategories
                 .Include(x=>x.HobbySubCategories)
                 .FirstOrDefault(x => x.Id == id);
         }
 
-        public async Task<HobbyCategory> Update(HobbyCategory hobbyCategory)
+        public async Task<Category> Update(Category hobbyCategory)
         {
              await FindById(hobbyCategory.Id);
              _context.ChangeTracker.Clear();
@@ -56,7 +56,7 @@ namespace Infrastructure.Repository
              return hobbyCategory;
         } 
 
-        public async Task<HobbyCategory> FindById(int id)
+        public async Task<Category> FindById(int id)
         {
            var hobbyCategory =  await _context.HobbyCategories
                 .FirstOrDefaultAsync(c => c.Id == id);

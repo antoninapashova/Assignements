@@ -19,7 +19,7 @@ namespace Infrastructure.Repository
             _context = context;
         }
 
-        public async Task<HobbySubCategory> Add(HobbySubCategory entity)
+        public async Task<SubCategory> Add(SubCategory entity)
         {
             await _context.HobbySubCategories.AddAsync(entity);
             return entity;
@@ -27,30 +27,30 @@ namespace Infrastructure.Repository
 
         public async Task DeleteAsync(int id)
         {
-             HobbySubCategory hobbySubCategory = await FindById(id);
+             SubCategory hobbySubCategory = await FindById(id);
              _context.HobbySubCategories.Remove(hobbySubCategory);
         }
 
-        public async Task<IEnumerable<HobbySubCategory>> GetAllEntitiesAsync()
+        public async Task<IEnumerable<SubCategory>> GetAllEntitiesAsync()
         {
             return  _context.HobbySubCategories.AsEnumerable();
         }
 
-        public async Task<HobbySubCategory> GetByIdAsync(int id)
+        public async Task<SubCategory> GetByIdAsync(int id)
         {
-            HobbySubCategory hobbySubCategory = await FindById(id);
+            SubCategory hobbySubCategory = await FindById(id);
             return hobbySubCategory;
         }
 
-        public async Task<HobbySubCategory> Update(HobbySubCategory hobbySubCategory)
+        public async Task<SubCategory> Update(SubCategory hobbySubCategory)
         {
-            HobbySubCategory subCategoryForEditing = await FindById(hobbySubCategory.Id);
+            SubCategory subCategoryForEditing = await FindById(hobbySubCategory.Id);
 
             _context.Update(subCategoryForEditing);
             return hobbySubCategory;
         }
         
-        public async Task<HobbySubCategory> FindById(int id)
+        public async Task<SubCategory> FindById(int id)
         {
             var subCategory = await _context.HobbySubCategories.FirstOrDefaultAsync(s => s.Id == id);
 

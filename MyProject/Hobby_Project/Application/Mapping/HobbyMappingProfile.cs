@@ -30,33 +30,33 @@ namespace Application.Mapping
         {
             
             //HobbyArticle
-            CreateMap<CreateHobbyCommand, HobbyArticle>();
-            CreateMap<ArticleCommentDTO, HobbyArticle>();
-            CreateMap<EditHobbyCommand, HobbyArticle>();
-            CreateMap<HobbyArticle, HobbyDto>()
+            CreateMap<CreateHobbyCommand, Hobby>();
+            CreateMap<ArticleCommentDTO, Domain.Entity.Hobby>();
+            CreateMap<EditHobbyCommand, Hobby>();
+            CreateMap<Hobby, HobbyDto>()
                 .ForMember("Username", x=>x.MapFrom(y=>y.Username))
                 .ForMember("HobbySubCategory", x=>x.MapFrom(y=>y.HobbySubCategory.Name));
 
             //Category
-            CreateMap<CreateCategoryCommand, HobbyCategory>();
-            CreateMap<EditCategoryCommand, HobbyCategory>();
-            CreateMap<HobbyCategory, CategoryDto>();
-            CreateMap<HobbyCategory, CategoryWithSubCategoryVm>();
+            CreateMap<CreateCategoryCommand, Category>();
+            CreateMap<EditCategoryCommand, Category>();
+            CreateMap<Category, CategoryDto>();
+            CreateMap<Category, CategoryWithSubCategoryVm>();
 
             //Subcategory
-            CreateMap<CreateSubCategoryCommand, HobbySubCategory>();
-            CreateMap<HobbySubCategory, HobbySubCategoryDto>();
+            CreateMap<CreateSubCategoryCommand, SubCategory>();
+            CreateMap<SubCategory, HobbySubCategoryDto>();
 
             //Photo
-            CreateMap<HobbyPhoto, PhotoDTO>();
-            CreateMap<PhotoDTO, HobbyPhoto>();
+            CreateMap<Photo, PhotoDTO>();
+            CreateMap<PhotoDTO, Photo>();
 
             //Comment
-            CreateMap<CreateCommentCommand, HobbyComment>();
-            CreateMap<EditCommentCommand, HobbyComment>();
-            CreateMap<HobbyComment, CommentDto>()
+            CreateMap<CreateCommentCommand, Comment>();
+            CreateMap<EditCommentCommand, Comment>();
+            CreateMap<Comment, CommentDto>()
                 .ForMember("Username", x=>x.MapFrom(y=>y.Username));
-            CreateMap<HobbyComment, HobbyCommentDTO>()
+            CreateMap<Comment, HobbyCommentDTO>()
                 .ForMember("Username", x=>x.MapFrom(y=>y.Username));
 
             //Tag

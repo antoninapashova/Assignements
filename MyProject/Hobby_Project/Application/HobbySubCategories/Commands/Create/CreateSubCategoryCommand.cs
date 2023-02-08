@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Application.HobbySubCategories.Commands.Create
 {
-    public class CreateSubCategoryCommand : IRequest<HobbySubCategory>
+    public class CreateSubCategoryCommand : IRequest<SubCategory>
     { 
         public int HobbyCategoryId { get; set; }
         public string Name { get; set; }

@@ -13,12 +13,12 @@ namespace Infrastructure.Data
 {
     public class HobbyDbContext : DbContext
     {
-        public DbSet<HobbyArticle> HobbyArticles { get; set; }
-        public DbSet<HobbyCategory> HobbyCategories { get; set; }
-        public DbSet<HobbyComment> HobbyComments { get; set; }
-        public DbSet<HobbySubCategory> HobbySubCategories { get; set; }
+        public DbSet<Hobby> HobbyArticles { get; set; }
+        public DbSet<Category> HobbyCategories { get; set; }
+        public DbSet<Comment> HobbyComments { get; set; }
+        public DbSet<SubCategory> HobbySubCategories { get; set; }
         public DbSet<Tag> Tags { get; set; }
-        public DbSet<HobbyPhoto> HobbyPhotos { get; set; }
+        public DbSet<Photo> HobbyPhotos { get; set; }
 
         public HobbyDbContext() : base(){ }
         public HobbyDbContext(DbContextOptions<HobbyDbContext> options) : base(options) { }
@@ -38,7 +38,7 @@ namespace Infrastructure.Data
             base.OnModelCreating(modelBuilder);
 
             
-            modelBuilder.Entity<HobbyArticle>(a =>
+            modelBuilder.Entity<Hobby>(a =>
             {
                 a.HasMany(x => x.HobbyComments).WithOne(x => x.HobbyArticle)
                 .HasForeignKey(x => x.HobbyArticleId).OnDelete(DeleteBehavior.Cascade);

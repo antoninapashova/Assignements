@@ -50,7 +50,7 @@ namespace HobbyProjectTests.Commands
             var subCategories = await _repoMock.Object.GetAllEntitiesAsync();
 
             result.Should().NotBeNull();
-            result.Should().BeOfType<HobbySubCategory>();
+            result.Should().BeOfType<SubCategory>();
             subCategories.Count().Should().Be(3);
         }
 

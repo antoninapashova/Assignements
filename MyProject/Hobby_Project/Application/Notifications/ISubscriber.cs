@@ -12,6 +12,6 @@ namespace Domain.Interfaces
     public interface ISubscriber
     {
         public int Id { get; set; }
-        void Notify(HobbySubCategory hobbySubCategory);
+        void Notify(SubCategory hobbySubCategory);
     }
 }

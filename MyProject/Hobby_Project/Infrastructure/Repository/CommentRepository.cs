@@ -20,7 +20,7 @@ namespace Infrastructure.Repository
             _context = context;
         }
 
-        public async Task<HobbyComment> Add(HobbyComment entity)
+        public async Task<Comment> Add(Comment entity)
         {
             await _context.HobbyComments.AddAsync(entity);
            return entity;
@@ -31,21 +31,21 @@ namespace Infrastructure.Repository
             var comment = await FindById(id);
             _context.HobbyComments.Remove(comment);
         }
-        public async Task<IEnumerable<HobbyComment>> GetAllEntitiesAsync()
+        public async Task<IEnumerable<Comment>> GetAllEntitiesAsync()
         {
             return await _context.HobbyComments
                  .Include(x=>x.Username)
                 .ToListAsync();
         }
 
-        public async Task<HobbyComment> GetByIdAsync(int id)
+        public async Task<Comment> GetByIdAsync(int id)
         {
            var hobbyComment =  await FindById(id);
 
             return await Task.FromResult(hobbyComment);
         }
 
-        public async Task<HobbyComment> Update(HobbyComment comment)
+        public async Task<Comment> Update(Comment comment)
         {
              await FindById(comment.Id);
             _context.ChangeTracker.Clear();
@@ -53,7 +53,7 @@ namespace Infrastructure.Repository
             return comment;
         }
 
-        public async Task<HobbyComment> FindById(int id)
+        public async Task<Comment> FindById(int id)
         {
             var comment = await _context.HobbyComments.Include(x=>x.Username)
                                 .FirstOrDefaultAsync(c => c.Id == id);

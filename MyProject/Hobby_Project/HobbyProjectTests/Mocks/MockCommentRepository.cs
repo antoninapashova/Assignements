@@ -13,25 +13,25 @@ namespace HobbyProjectTests.Mocks
     {
         public static Mock<ICommentRepository> GetAllComments()
         {
-            var comments = new List<HobbyComment>
+            var comments = new List<Comment>
             {
-                new HobbyComment{Id=1, CommentContent=".......",  HobbyArticleId=1},
-                new HobbyComment{Id=2, CommentContent=".......",  HobbyArticleId=1},
-                new HobbyComment{Id=3, CommentContent=".......",  HobbyArticleId=1},
+                new Comment{Id=1, CommentContent=".......",  HobbyArticleId=1},
+                new Comment{Id=2, CommentContent=".......",  HobbyArticleId=1},
+                new Comment{Id=3, CommentContent=".......",  HobbyArticleId=1},
             };
             var mockRepo = new Mock<ICommentRepository>();
 
             mockRepo.Setup(x => x.GetAllEntitiesAsync()).ReturnsAsync(comments);
 
-            mockRepo.Setup(x => x.Add(It.IsAny<HobbyComment>())).ReturnsAsync((HobbyComment comment) =>
+            mockRepo.Setup(x => x.Add(It.IsAny<Comment>())).ReturnsAsync((Comment comment) =>
             {
                 comments.Add(comment);
                 return comment;
             });
 
-            mockRepo.Setup(x => x.Update(It.IsAny<HobbyComment>())).ReturnsAsync((HobbyComment comment) =>
+            mockRepo.Setup(x => x.Update(It.IsAny<Comment>())).ReturnsAsync((Comment comment) =>
             {
-                HobbyComment? hobbyComment1 = comments.FirstOrDefault(x => x.Id == comment.Id);
+                Comment? hobbyComment1 = comments.FirstOrDefault(x => x.Id == comment.Id);
                 hobbyComment1.CommentContent = comment.CommentContent;
                 hobbyComment1.CreatedDate = DateTime.Now;
                 return hobbyComment1;
@@ -39,7 +39,7 @@ namespace HobbyProjectTests.Mocks
 
             mockRepo.Setup(x => x.DeleteAsync(It.IsAny<Int32>())).Returns((int commentId) =>
             {
-                HobbyComment? hobbyComment1 = comments.FirstOrDefault(x => x.Id == commentId);
+                Comment? hobbyComment1 = comments.FirstOrDefault(x => x.Id == commentId);
                 comments.Remove(hobbyComment1);
                 return Task.FromResult(hobbyComment1.Id);
             });

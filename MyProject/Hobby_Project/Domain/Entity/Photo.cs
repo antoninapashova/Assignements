@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace Domain.Entity
 {
-    public class HobbyPhoto : BaseEntity
+    public class Photo : BaseEntity
     {
         public string Url { get; set; }
         public string PublicId { get; set; } 
         public int HobbyArticleId { get; set; }
-        public HobbyArticle HobbyArticle { get; set; }
+        public Hobby HobbyArticle { get; set; }
     }
 }

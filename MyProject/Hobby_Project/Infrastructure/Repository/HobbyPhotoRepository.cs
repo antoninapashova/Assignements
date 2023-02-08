@@ -20,7 +20,7 @@ namespace Infrastructure.Repository
             _context = context;
         }
 
-        public async Task<HobbyPhoto> Add(HobbyPhoto entity)
+        public async Task<Photo> Add(Photo entity)
         {
            await _context.HobbyPhotos.AddAsync(entity);
             return entity;
@@ -32,24 +32,24 @@ namespace Infrastructure.Repository
             _context.HobbyPhotos.Remove(hobbyPhoto);
         }
 
-        public async Task<IEnumerable<HobbyPhoto>> GetAllEntitiesAsync()
+        public async Task<IEnumerable<Photo>> GetAllEntitiesAsync()
         {
             return _context.HobbyPhotos.AsEnumerable();
         }
 
-        public async Task<HobbyPhoto> GetByIdAsync(int id)
+        public async Task<Photo> GetByIdAsync(int id)
         {
-            HobbyPhoto hobbyPhoto = await FindById(id);
+            Photo hobbyPhoto = await FindById(id);
             return await Task.FromResult(hobbyPhoto);
         }
-        public async Task<HobbyPhoto> Update(HobbyPhoto entity)
+        public async Task<Photo> Update(Photo entity)
         {
             await FindById(entity.Id);
             _context.HobbyPhotos.Update(entity);
             return entity;
         }
 
-        public async Task<HobbyPhoto> FindById(int id)
+        public async Task<Photo> FindById(int id)
         {
             var photo = await _context.HobbyPhotos.FirstOrDefaultAsync(c => c.Id == id);
 

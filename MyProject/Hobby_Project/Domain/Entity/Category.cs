@@ -10,9 +10,9 @@ using Domain.Entity;
 
 namespace Hobby_Project
 {
-    public class HobbyCategory : HobbyBaseCategory
+    public class Category : BaseCategory
      {
-        public ICollection<HobbySubCategory> HobbySubCategories { get; set;}
+        public ICollection<SubCategory> HobbySubCategories { get; set;}
   
     }
 }

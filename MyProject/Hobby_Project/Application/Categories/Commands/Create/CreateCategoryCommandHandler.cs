@@ -12,7 +12,7 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Application.Categories.Commands.Create
 {
-    public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, HobbyCategory>
+    public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, Category>
     {
         private readonly IUnitOfWork _unitOfWork;
         private ILog _log;
@@ -25,13 +25,13 @@ namespace Application.Categories.Commands.Create
             _mapper = mapper;
         }
 
-        public async Task<HobbyCategory> Handle(CreateCategoryCommand command, CancellationToken cancellationToken)
+        public async Task<Category> Handle(CreateCategoryCommand command, CancellationToken cancellationToken)
         {
             try
             {
                 if (command == null) throw new NullReferenceException("Create category command is null!");
 
-                HobbyCategory hobbyCategory = _mapper.Map<HobbyCategory>(command);
+                Category hobbyCategory = _mapper.Map<Category>(command);
                 await _unitOfWork.CategoryRepository.Add(hobbyCategory);
                 await _unitOfWork.Save();
 

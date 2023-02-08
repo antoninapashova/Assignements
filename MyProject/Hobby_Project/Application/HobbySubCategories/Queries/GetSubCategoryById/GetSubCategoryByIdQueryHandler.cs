@@ -32,7 +32,7 @@ namespace HobbyProject.Application.HobbySubCategories.Queries.GetSubCategoryById
                 if (request == null)
                     throw new NullReferenceException("Get subCategory query is null!");
 
-                HobbySubCategory subCategory = await _unitOfWork.SubCategoryRepository.GetByIdAsync(request.Id);
+                SubCategory subCategory = await _unitOfWork.SubCategoryRepository.GetByIdAsync(request.Id);
                  HobbySubCategoryDto hobbySubCategoryVm = _mapper.Map<HobbySubCategoryDto>(subCategory);
                 return await Task.FromResult(hobbySubCategoryVm);
 

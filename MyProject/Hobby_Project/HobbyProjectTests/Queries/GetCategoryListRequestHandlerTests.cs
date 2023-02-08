@@ -48,12 +48,12 @@ namespace HobbyProjectTests.Queries
         {
             _unitOfWorkMock.Setup(x => x.CategoryRepository).Returns(_repoMock.Object);
 
-            var category = new HobbyCategory
+            var category = new Category
             {
                 Id = 1,
                 Name = "Sports",
                 CreatedDate = DateTime.Now,
-                HobbySubCategories = new List<HobbySubCategory>()
+                HobbySubCategories = new List<SubCategory>()
             };
            _repoMock.Setup(x => x.GetByIdAsync(1)).ReturnsAsync(category);
             var handler = new GetCategoryByIdHandler(_unitOfWorkMock.Object, _mapper);

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Application.Categories.Commands.Create
 {
-    public class CreateCategoryCommand : IRequest<HobbyCategory>
+    public class CreateCategoryCommand : IRequest<Category>
     {
         [NotNull]
         public string Name { get; set; }

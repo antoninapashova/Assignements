@@ -30,7 +30,7 @@ namespace Application.Comments.Commands.Edit
             {
                 if (command == null)  throw new NullReferenceException("Edit comment command is null");
 
-                HobbyComment hobbyComment = _mapper.Map<HobbyComment>(command);
+                Comment hobbyComment = _mapper.Map<Comment>(command);
                 await _unitOfWork.CommentRepository.Update(hobbyComment);
                 await _unitOfWork.Save();
                 return await Task.FromResult(command.Id);

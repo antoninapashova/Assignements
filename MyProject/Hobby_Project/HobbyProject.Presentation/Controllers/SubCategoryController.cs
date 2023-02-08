@@ -1,8 +1,5 @@
-﻿using Application.Categories.Commands.Create;
-using Application.Categories.Commands.Delete;
-using Application.HobbySubCategories.Commands.Create;
+﻿using Application.HobbySubCategories.Commands.Create;
 using Application.HobbySubCategories.Commands.Delete;
-using HobbyProject.Application.Categories.Queries.GetCategoryById;
 using HobbyProject.Application.HobbySubCategories.Queries.GetAllSubCategories;
 using HobbyProject.Application.HobbySubCategories.Queries.GetSubCategoryById;
 using MediatR;

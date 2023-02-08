@@ -14,7 +14,7 @@ namespace Domain.Entity
         public string? Username { get; }
 
         //This method will notify all users that a new subcategory is added
-        public void Notify(HobbySubCategory hobbySubCategory)
+        public void Notify(SubCategory hobbySubCategory)
         {
             
         }

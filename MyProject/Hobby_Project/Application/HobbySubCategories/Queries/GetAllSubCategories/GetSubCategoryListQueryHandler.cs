@@ -28,7 +28,7 @@ namespace HobbyProject.Application.HobbySubCategories.Queries.GetAllSubCategorie
         {
             try
             {
-               IEnumerable<HobbySubCategory> result = await _unitOfWork.SubCategoryRepository.GetAllEntitiesAsync();
+               IEnumerable<SubCategory> result = await _unitOfWork.SubCategoryRepository.GetAllEntitiesAsync();
                 List<HobbySubCategoryDto> subCategories = new List<HobbySubCategoryDto>();
 
                 foreach (var c in result)

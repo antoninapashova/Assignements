@@ -20,7 +20,7 @@ namespace Infrastructure.Repository
             _context = context;
         }
 
-        public async Task<HobbyArticle> Add(HobbyArticle entity)
+        public async Task<Hobby> Add(Hobby entity)
         {
              _context.HobbyArticles.Attach(entity).State = EntityState.Added;
             
@@ -29,13 +29,13 @@ namespace Infrastructure.Repository
 
         public async Task DeleteAsync(int id)
         {
-            HobbyArticle articleForDeleting = await FindById(id);
+            Hobby articleForDeleting = await FindById(id);
 
             _context.HobbyArticles.Remove(articleForDeleting);
         }
 
         
-        public async Task<IEnumerable<HobbyArticle>> GetHobbyArticlesByUserId(int id)
+        public async Task<IEnumerable<Hobby>> GetHobbyArticlesByUserId(int id)
         {
             return await _context.HobbyArticles
                 .Include(h => h.HobbySubCategory)
@@ -46,7 +46,7 @@ namespace Infrastructure.Repository
         }
         
 
-        public async Task<IEnumerable<HobbyArticle>> GetAllEntitiesAsync()
+        public async Task<IEnumerable<Hobby>> GetAllEntitiesAsync()
         {
             return await _context.HobbyArticles
                 .Include(x=>x.HobbyComments)
@@ -55,7 +55,7 @@ namespace Infrastructure.Repository
                 .Include(x => x.Tags)
                 .ToListAsync();
         }
-        public async Task<HobbyArticle> GetByIdAsync(int id)
+        public async Task<Hobby> GetByIdAsync(int id)
         {
            await FindById(id);
             
@@ -67,13 +67,13 @@ namespace Infrastructure.Repository
                     .FirstOrDefaultAsync();
         }
       
-        public async Task<HobbyArticle> Update(HobbyArticle hobbyArticle)
+        public async Task<Hobby> Update(Hobby hobbyArticle)
         {
             _context.HobbyArticles.Update(hobbyArticle);
             return hobbyArticle;
         }
         
-        public async Task<IEnumerable<HobbyArticle>> GetHobbyArticlesByUsername(string username)
+        public async Task<IEnumerable<Hobby>> GetHobbyArticlesByUsername(string username)
         {
             return await _context.HobbyArticles
                      .Where(h => h.Username.Equals(username))
@@ -83,7 +83,7 @@ namespace Infrastructure.Repository
                      .ToListAsync();
         }
 
-        public async Task<HobbyArticle> FindById(int id)
+        public async Task<Hobby> FindById(int id)
         {
             var hobby = await _context.HobbyArticles.FirstOrDefaultAsync(h => h.Id == id);
 

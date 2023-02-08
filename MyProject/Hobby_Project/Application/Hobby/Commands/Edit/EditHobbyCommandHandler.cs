@@ -30,7 +30,7 @@ namespace Application.Hobby.Commands.Edit
             try
             {
                 if (command == null) throw new NullReferenceException("Edit hobby command is null");
-                HobbyArticle hobbyArticle = _mapper.Map<HobbyArticle>(command);
+                Domain.Entity.Hobby hobbyArticle = _mapper.Map<Domain.Entity.Hobby>(command);
                 await _unitOfWork.HobbyArticleRepository.Update(hobbyArticle);
                 await _unitOfWork.Save();
                 return await Task.FromResult(command.Id);

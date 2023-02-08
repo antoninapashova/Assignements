@@ -27,7 +27,7 @@ namespace HobbyProject.Application.Categories.Queries.GetAllCategories
         {
             try
             {
-               IEnumerable<HobbyCategory> categories =
+               IEnumerable<Category> categories =
                     await _unitOfWork.CategoryRepository.GetAllEntitiesAsync();
 
                List<CategoryDto> categoryListVms = 

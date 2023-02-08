@@ -10,11 +10,11 @@ using System.Transactions;
 
 namespace Hobby_Project
 {
-    public class HobbySubCategory : HobbyBaseCategory
+    public class SubCategory : BaseCategory
     {
         public int HobbyCategoryId { get; set; }
-        public HobbyCategory HobbyCategory { get; set; }
-        public ICollection<HobbyArticle> HobbyArticles { get; set; }
+        public Category HobbyCategory { get; set; }
+        public ICollection<Hobby> HobbyArticles { get; set; }
 
     }
 }

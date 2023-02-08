@@ -15,10 +15,10 @@ namespace HobbyProjectTests.Mocks
     {
         public static Mock<ISubCategoryRepository> GetAllSubCategories()
         {
-            var subCategories = new List<HobbySubCategory>
+            var subCategories = new List<SubCategory>
             {
-                new HobbySubCategory{Id = 1, Name = "Football", CreatedDate = DateTime.Now},
-                new HobbySubCategory{Id = 2, Name = "Tennis", CreatedDate = DateTime.Now},
+                new SubCategory{Id = 1, Name = "Football", CreatedDate = DateTime.Now},
+                new SubCategory{Id = 2, Name = "Tennis", CreatedDate = DateTime.Now},
             };
 
             var mockRepo = new Mock<ISubCategoryRepository>();
@@ -27,11 +27,11 @@ namespace HobbyProjectTests.Mocks
 
             mockRepo.Setup(x => x.GetByIdAsync(It.IsAny<int>())).ReturnsAsync((int id) =>
             {
-                HobbySubCategory? hobbySubCategory = subCategories.FirstOrDefault(x => x.Id == id);
+                SubCategory? hobbySubCategory = subCategories.FirstOrDefault(x => x.Id == id);
                 return hobbySubCategory;
             });
 
-            mockRepo.Setup(x => x.Add(It.IsAny<HobbySubCategory>())).ReturnsAsync((HobbySubCategory subCategory) =>
+            mockRepo.Setup(x => x.Add(It.IsAny<SubCategory>())).ReturnsAsync((SubCategory subCategory) =>
             {
                 subCategories.Add(subCategory);
                 return subCategory;
@@ -39,7 +39,7 @@ namespace HobbyProjectTests.Mocks
 
             mockRepo.Setup(x => x.DeleteAsync(It.IsAny<Int32>())).Returns((int subCategoryId) =>
             {
-                HobbySubCategory? hobbySubCategory1 = subCategories.FirstOrDefault(x => x.Id == subCategoryId);
+                SubCategory? hobbySubCategory1 = subCategories.FirstOrDefault(x => x.Id == subCategoryId);
                 subCategories.Remove(hobbySubCategory1);
                 return Task.FromResult(hobbySubCategory1.Id);
             });

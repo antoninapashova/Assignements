@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Application.Repositories
 {
-    public interface IHobbyArticleRepository : IRepository<HobbyArticle>
+    public interface IHobbyArticleRepository : IRepository<Domain.Entity.Hobby>
     {
-        Task<IEnumerable<HobbyArticle>> GetHobbyArticlesByUserId(int id);
-        Task<IEnumerable<HobbyArticle>> GetHobbyArticlesByUsername(string username);
+        Task<IEnumerable<Domain.Entity.Hobby>> GetHobbyArticlesByUserId(int id);
+        Task<IEnumerable<Domain.Entity.Hobby>> GetHobbyArticlesByUsername(string username);
     }
 }

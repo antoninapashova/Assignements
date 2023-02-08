@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entity
 {
-    public abstract class HobbyBaseCategory : BaseEntity
+    public abstract class BaseCategory : BaseEntity
     {
         public string Name { get; set; }
         

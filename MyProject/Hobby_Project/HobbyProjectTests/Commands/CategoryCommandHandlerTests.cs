@@ -50,7 +50,7 @@ namespace HobbyProjectTests.Commands
 
             var categories = await _repoMock.Object.GetAllEntitiesAsync();
 
-            result.Should().BeOfType<HobbyCategory>();
+            result.Should().BeOfType<Category>();
             
             result.Should().NotBeNull();
 
@@ -84,7 +84,7 @@ namespace HobbyProjectTests.Commands
             var updatedEntity = await handler.Handle(command, CancellationToken.None);
 
             updatedEntity.Should().NotBeNull();
-            updatedEntity.Should().BeOfType<HobbyCategory>();
+            updatedEntity.Should().BeOfType<Category>();
             
         }
 

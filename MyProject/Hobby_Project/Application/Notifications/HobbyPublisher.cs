@@ -24,7 +24,7 @@ namespace Application.Notifications
             subscribers.Add(subscriber);
         }
 
-        public void Publish(HobbySubCategory hobbySubCategory)
+        public void Publish(SubCategory hobbySubCategory)
         {
             subscribers.ForEach(s => s.Notify(hobbySubCategory));
         }

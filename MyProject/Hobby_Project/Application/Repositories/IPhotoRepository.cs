@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Repositories
 {
-    public interface IPhotoRepository : IRepository<HobbyPhoto>
+    public interface IPhotoRepository : IRepository<Photo>
     {
     }
 }

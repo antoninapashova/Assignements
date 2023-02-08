@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Repositories
 {
-    public interface ICommentRepository : IRepository<HobbyComment>
+    public interface ICommentRepository : IRepository<Comment>
     {
     }
 }
