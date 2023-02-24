@@ -2,7 +2,6 @@ import { RegisterComponent } from './user/register/register.component';
 import { LoginComponent } from './user/login/login.component';
 import { AboutComponent } from './core/about/about.component';
 import { TagListComponent } from './tag/tag-list/tag-list.component';
-import { IndexComponent } from './core/index/index.component';
 import { HomeComponent } from './core/home/home.component';
 import { AddHobbyComponent } from './hobby-article/add-hobby/add-hobby.component';
 import { AddTagComponent } from './tag/add-tag/add-tag.component';
@@ -102,10 +101,6 @@ const routes: Routes = [
             }
           }
          ]
-      },
-      {
-        path: '',
-        component: IndexComponent
       },
       {
         path: 'home',

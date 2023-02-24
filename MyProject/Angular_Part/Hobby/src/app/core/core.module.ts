@@ -19,7 +19,6 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { NavigationListComponent } from './navigation-list/navigation-list.component';
-import { IndexComponent } from './index/index.component';
 import { UserCardComponent } from './user-card/user-card.component';
 import { HomeComponent } from './home/home.component';
 import {MatCardModule} from '@angular/material/card';
@@ -31,7 +30,6 @@ import { AboutComponent } from './about/about.component';
     HeaderComponent,
     FooterComponent,
     NavigationListComponent,
-    IndexComponent,
     UserCardComponent,
     HomeComponent,
     AboutComponent,
@@ -61,7 +59,6 @@ import { AboutComponent } from './about/about.component';
     HeaderComponent,
     FooterComponent,
     NavigationListComponent,
-    IndexComponent,
     MatToolbarModule,
     MatListModule,
     HomeComponent,

@@ -4,6 +4,7 @@ body {
   min-height: 100vh;
   background: #e2e2e2;
 }
+
 .app-header {
   justify-content: space-between;
   position: fixed;
@@ -13,17 +14,20 @@ body {
   z-index: 2;
   box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
 }
+
 .login-wrapper {
   height: 100%;
 }
+
 .positronx {
   text-decoration: none;
   color: #ffffff;
 }
+
 .box {
   position: relative;
-  top: 81px;
-  left: 32rem;
+  top: 200px;
+  left: 50%;
   opacity: 1;
   float: left;
   padding: 60px 50px 40px 50px;
@@ -36,6 +40,7 @@ body {
   z-index: 5;
   max-width: 330px;
 }
+
 .box.back {
   transform: scale(.95);
   -webkit-transform: scale(.95);
@@ -44,6 +49,7 @@ body {
   opacity: .8;
   z-index: -1;
 }
+
 .box:before {
   content: "";
   width: 100%;
@@ -70,15 +76,18 @@ body {
 .login-wrapper .btn-block {
   width: 100%;
 }
+
 .login-wrapper mat-card-header {
   text-align: center;
   width: 100%;
   display: block;
   font-weight: 700;
 }
+
 .login-wrapper mat-card-header mat-card-title {
   font-size: 30px;
 }
+
 .login-wrapper .mat-card {
   padding: 40px 70px 50px;
 }

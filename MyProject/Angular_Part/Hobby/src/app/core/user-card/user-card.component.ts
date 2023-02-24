@@ -1,5 +1,5 @@
 
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IUser } from 'src/app/shared/interfaces/user';
 
 @Component({

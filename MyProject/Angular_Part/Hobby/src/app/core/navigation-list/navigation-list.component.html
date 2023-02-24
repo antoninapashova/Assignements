@@ -1,9 +1,10 @@
-<div *ngIf="isUserLogedIn">
+<div class="sidenav">
+  <div *ngIf="isUserLogedIn">
     <app-user-card [username]="username" [name] = "name"></app-user-card>
-</div>
+  </div>
 
-<mat-divider ></mat-divider>
-<mat-nav-list>
+  <mat-divider ></mat-divider>
+  <mat-nav-list>
     <a mat-list-item routerLink="/home" *ngIf="isAdmin || isUser" (click)="onSidenavClose()">
         <mat-icon>home</mat-icon> <span class="nav-caption">Home</span>
     </a>
@@ -18,4 +19,5 @@
         <mat-icon>info</mat-icon> <a class="nav-caption">About</a>   
     </a>
     
-</mat-nav-list>
+   </mat-nav-list>
+</div>

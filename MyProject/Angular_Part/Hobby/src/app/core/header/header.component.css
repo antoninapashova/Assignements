@@ -1,5 +1,6 @@
 .header {
-  background-color: hsl(168deg 30% 38%);;
+  position: fixed;
+  background-color: transparent;
 }
 
 mat-nav-list.list-horizontal {
@@ -10,11 +11,13 @@ mat-nav-list.list-horizontal {
     justify-content: center;
     margin-left: auto;
     margin-right: 1.5rem;
-    background-color:  hsl(168deg 30% 38%);
+   
 }
    
 .nav-caption{
   margin-left: 0.5rem;
+  color: white;
+  font-weight: 500;
 }
 
 .list-horizontal a{
@@ -24,6 +27,10 @@ mat-nav-list.list-horizontal {
 .username{
   font-size: 20px;
   margin-left: 1rem;
+}
+
+mat-icon{
+  color: white;
 }
 
 @media(max-width: 959px){
