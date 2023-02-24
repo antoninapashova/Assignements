@@ -12,7 +12,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -30,12 +30,11 @@ import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
 import { CommonModule } from '@angular/common';
 import { NgxDropzoneModule } from 'ngx-dropzone';
-import { MsalModule, MsalRedirectComponent, MsalService, MsalBroadcastService, MsalInterceptor, MsalGuard } from '@azure/msal-angular';
-import { PublicClientApplication, InteractionType } from '@azure/msal-browser';
-import { AzureAdService } from './auth/azure-ad.service';
+import { JwtModule } from "@auth0/angular-jwt";
 
-const isIE = window.navigator.userAgent.indexOf('MSIE') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
-
+export function tokenGetter() {
+  return localStorage.getItem("access_token");
+}
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,10 +44,17 @@ const isIE = window.navigator.userAgent.indexOf('MSIE') > -1 || window.navigator
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    CoreModule,
     UserModule,
+    CoreModule,
     CategoryModule,
     TagModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["example.com"],
+        disallowedRoutes: ["http://example.com/examplebadroute/"],
+      }
+    }),
     FormsModule,
     HobbyArticleModule,
     SubcategoryModule,
@@ -69,54 +75,13 @@ const isIE = window.navigator.userAgent.indexOf('MSIE') > -1 || window.navigator
     MatTabsModule,
     CommonModule,
     NgxDropzoneModule,
-    MsalModule.forRoot(new PublicClientApplication
-      (
-        {
-        auth: {
-          clientId: '4378f475-831c-43d9-b411-90c0e7d04f06', 
-          authority: 'https://login.microsoftonline.com/544f8ac3-ce4c-47d1-9b72-284ac54b8d1c',
-          redirectUri: 'http://localhost:4200/home',
-         },
-         cache:{
-          cacheLocation: 'localStorage',
-          storeAuthStateInCookie: isIE,
-         }
-      }
-    ),
-      {
-        interactionType: InteractionType.Redirect,
-        authRequest: {
-          scopes: ['user.read']
-        }
-      },
-      {
-        interactionType: InteractionType.Redirect,
-        protectedResourceMap: new Map(
-          [
-            ['https://graph.microsoft.com/v1.0/me', ['user.Read']],
-            ['localhost', ['api://f5918e9f-90bf-44e3-b844-6e887463e400/api.scope']]
-          ]
-        )
-      }
-    )
 ],
   providers: [
-  MsalService,
-  {
-    provide: HTTP_INTERCEPTORS,
-    useClass: MsalInterceptor,
-    multi: true,
-  },
-  MsalGuard,
-  MsalService,
-  MsalBroadcastService,
-  AzureAdService
   ],
   exports:[
     TagModule,
     FormsModule,
     HobbyArticleModule,
-    CoreModule,
     SubcategoryModule,
     BrowserAnimationsModule,
     MatTableModule,
@@ -134,6 +99,6 @@ const isIE = window.navigator.userAgent.indexOf('MSIE') > -1 || window.navigator
     MatListModule,
     MatTabsModule,
     MatListModule],
-  bootstrap: [AppComponent, MsalRedirectComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

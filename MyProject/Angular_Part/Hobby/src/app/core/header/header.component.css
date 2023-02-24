@@ -13,6 +13,10 @@ mat-nav-list.list-horizontal {
     background-color:  hsl(168deg 30% 38%);
 }
    
+.nav-caption{
+  margin-left: 0.5rem;
+}
+
 .list-horizontal a{
   color: white;
 }

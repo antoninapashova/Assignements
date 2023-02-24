@@ -74,8 +74,6 @@ export class AddHobbyComponent implements OnInit {
       this.photosData.push(photoMapped);
 
      this.activeAccount = this.msalService.instance.getActiveAccount()?.name;
-
-     console.log(form.value); 
      
      this.hobby = form.value;
      this.hobby.hobbySubcategoryId = form.value['subcategory'];
@@ -83,7 +81,6 @@ export class AddHobbyComponent implements OnInit {
      this.hobby.tags = this.tags;
       
      this.hobby.hobbyPhoto = this.photosData;
-     console.log(this.hobby);
 
      this.hobbyService.addHobby(this.hobby).subscribe((response)=>{
          if(response){
@@ -93,6 +90,10 @@ export class AddHobbyComponent implements OnInit {
          form.reset();
        });
     }); 
+  }
+
+  clear(hobby: IHobby){
+    this.createArticleForm.reset();
   }
 
 }

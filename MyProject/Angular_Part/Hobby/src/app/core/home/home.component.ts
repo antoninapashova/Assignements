@@ -14,9 +14,8 @@ export class HomeComponent implements OnInit{
 
   ngOnInit(): void {
       this.hobbyService.getAll().subscribe(res=>{
-      console.log(res);
       this.hobbies=res;
-      console.log(this.hobbies);
+
     });
   }
     

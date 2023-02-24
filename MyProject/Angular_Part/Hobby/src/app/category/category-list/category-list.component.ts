@@ -28,7 +28,7 @@ export class CategoryListComponent implements OnInit {
         console.log(res);
         this.categories = res;
      });
-}
+   }
    
 openDialog(action: any, obj: any ) {
   obj.action = action;

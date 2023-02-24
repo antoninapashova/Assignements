@@ -35,4 +35,8 @@ export class UserService{
         return this.httpClient.get<IHobby[]>(`${this.baseUrl}${ApiPaths.User}/${id}`)
     }
 
+    login(obj: Object): Observable<IUser>{
+        return this.httpClient.post<IUser>(`${this.baseUrl}${ApiPaths.User}/login`,obj);
+    }
+
 }

@@ -37,7 +37,7 @@ namespace Application.Hobby.Commands.Create
             {
                 if (command == null) throw new NullReferenceException("Create hobby command is null!");
 
-                var hobby = _mapper.Map<Domain.Entity.Hobby>(command);
+                var hobby = _mapper.Map<Domain.Entity.HobbyEntity>(command);
                 await _unitOfWork.HobbyArticleRepository.Add(hobby);
                 hobby.HobbyPhoto.Clear();
                 await _unitOfWork.Save();

@@ -60,7 +60,7 @@
 	</ngx-dropzone-image-preview>
 </div>
 
-   <button type="submit" mat-raised-button color="primary"  #submitButton>Submit</button>
+   <button type="submit" mat-raised-button color="primary" (click)="clear(createArticleForm.value)"  #submitButton>Submit</button>
   <span *ngIf="isSuccessfull">Article is added successfull!</span>
 </form>
 </div>

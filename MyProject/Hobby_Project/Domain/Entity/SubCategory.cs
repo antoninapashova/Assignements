@@ -14,7 +14,7 @@ namespace Hobby_Project
     {
         public int HobbyCategoryId { get; set; }
         public Category HobbyCategory { get; set; }
-        public ICollection<Hobby> HobbyArticles { get; set; }
+        public ICollection<HobbyEntity> HobbyArticles { get; set; }
 
     }
 }

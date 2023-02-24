@@ -19,11 +19,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 
 @NgModule({
   declarations: [
-    ArticlesComponent,    
+    ArticlesComponent,
+    LoginComponent,
+    RegisterComponent,    
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [

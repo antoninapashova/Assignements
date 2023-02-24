@@ -22,8 +22,7 @@ export class CommentsListComponent  {
         username : this.currentUsername,
         hobbyArticleId: this.hobbyArticleId
       }
-      
-      console.log(comment);
+
     this.hobbyService.createComment(comment).subscribe(res=>console.log(res));
     }
 

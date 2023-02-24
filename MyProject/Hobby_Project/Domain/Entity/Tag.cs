@@ -11,7 +11,7 @@ namespace Hobby_Project
     public class Tag : BaseEntity
     {
         public string Name{ get; set; }
-        public virtual ICollection<Hobby> HobbyArticles { get; set; }
+        public virtual ICollection<HobbyEntity> HobbyArticles { get; set; }
 
     }
 }

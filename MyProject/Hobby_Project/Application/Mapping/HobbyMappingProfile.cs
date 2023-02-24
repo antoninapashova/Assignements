@@ -30,10 +30,10 @@ namespace Application.Mapping
         {
             
             //HobbyArticle
-            CreateMap<CreateHobbyCommand, Hobby>();
-            CreateMap<ArticleCommentDTO, Domain.Entity.Hobby>();
-            CreateMap<EditHobbyCommand, Hobby>();
-            CreateMap<Hobby, HobbyDto>()
+            CreateMap<CreateHobbyCommand, HobbyEntity>();
+            CreateMap<ArticleCommentDTO, HobbyEntity>();
+            CreateMap<EditHobbyCommand, HobbyEntity>();
+            CreateMap<HobbyEntity, HobbyDto>()
                 .ForMember("Username", x=>x.MapFrom(y=>y.Username))
                 .ForMember("HobbySubCategory", x=>x.MapFrom(y=>y.HobbySubCategory.Name));
 

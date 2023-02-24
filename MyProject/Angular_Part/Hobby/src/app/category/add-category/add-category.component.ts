@@ -1,5 +1,4 @@
 import { ICategory } from './../../shared/interfaces/category';
-import { CategoryService } from './../category.service';
 import { Component, Inject, Optional } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 

@@ -13,7 +13,7 @@ namespace Infrastructure.Data
 {
     public class HobbyDbContext : DbContext
     {
-        public DbSet<Hobby> HobbyArticles { get; set; }
+        public DbSet<HobbyEntity> HobbyArticles { get; set; }
         public DbSet<Category> HobbyCategories { get; set; }
         public DbSet<Comment> HobbyComments { get; set; }
         public DbSet<SubCategory> HobbySubCategories { get; set; }
@@ -38,7 +38,7 @@ namespace Infrastructure.Data
             base.OnModelCreating(modelBuilder);
 
             
-            modelBuilder.Entity<Hobby>(a =>
+            modelBuilder.Entity<HobbyEntity>(a =>
             {
                 a.HasMany(x => x.HobbyComments).WithOne(x => x.HobbyArticle)
                 .HasForeignKey(x => x.HobbyArticleId).OnDelete(DeleteBehavior.Cascade);

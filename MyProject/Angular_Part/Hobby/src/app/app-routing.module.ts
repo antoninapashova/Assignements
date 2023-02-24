@@ -1,3 +1,5 @@
+import { RegisterComponent } from './user/register/register.component';
+import { LoginComponent } from './user/login/login.component';
 import { AboutComponent } from './core/about/about.component';
 import { TagListComponent } from './tag/tag-list/tag-list.component';
 import { IndexComponent } from './core/index/index.component';
@@ -10,9 +12,16 @@ import { ArticlesComponent } from './user/articles/articles.component';
 import { AddCategoryComponent } from './category/add-category/add-category.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MsalGuard } from '@azure/msal-angular';
 
 const routes: Routes = [
+    {
+    path: 'login',
+     component: LoginComponent
+    },
+    {
+     path: 'register',
+     component: RegisterComponent
+    },
    {
     path: 'add-category',
     component: AddCategoryComponent,
@@ -28,7 +37,6 @@ const routes: Routes = [
        {
           path: 'articles',
           component: ArticlesComponent,
-          canActivate:[MsalGuard],
           data: {
             roles: [ 'Admin', 'User' ]
           },
@@ -38,7 +46,6 @@ const routes: Routes = [
        {
         path: 'add-article',
         component: AddHobbyComponent,
-        canActivate:[MsalGuard],
         data: {
           roles: [ 'User', 'Admin' ]
         },
@@ -52,7 +59,6 @@ const routes: Routes = [
         {
           path: 'add',
           component: AddCategoryComponent,
-          canActivate:[MsalGuard],
           data: {
             roles: [ 'Admin' ]
           },
@@ -70,7 +76,6 @@ const routes: Routes = [
         {
          path: 'add',
          component: AddSubcategoryComponent,
-         canActivate:[MsalGuard],
          data: {
           roles: [ 'Admin' ]
         },
@@ -84,7 +89,6 @@ const routes: Routes = [
           {
             path: 'add',
             component: AddTagComponent,
-            canActivate:[MsalGuard],
             data: {
               roles: [ 'Admin' ]
             },
@@ -106,7 +110,6 @@ const routes: Routes = [
       {
         path: 'home',
         component: HomeComponent,
-        canActivate:[MsalGuard],
         data: {
           roles: [ 'User', 'Admin' ]
         },

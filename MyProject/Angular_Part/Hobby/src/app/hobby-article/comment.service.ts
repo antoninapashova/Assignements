@@ -5,6 +5,4 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CommentService {
-
-  constructor(private _httpClient: HttpClient) { }
 }

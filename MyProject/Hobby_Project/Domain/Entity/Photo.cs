@@ -13,6 +13,6 @@ namespace Domain.Entity
         public string Url { get; set; }
         public string PublicId { get; set; } 
         public int HobbyArticleId { get; set; }
-        public Hobby HobbyArticle { get; set; }
+        public HobbyEntity HobbyArticle { get; set; }
     }
 }

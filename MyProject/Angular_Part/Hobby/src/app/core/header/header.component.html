@@ -8,16 +8,19 @@
     </div>
   <mat-nav-list class="list-horizontal">
         <a  routerLink="/subcategory/add" *ngIf="isAdmin">
-            <mat-icon>app_registration</mat-icon><span class="nav-caption">Create subcategory</span>
+            <mat-icon>app_registration</mat-icon> <span class="nav-caption">Create subcategory</span>
         </a>
         <a  routerLink="/user/add-article" *ngIf="isAdmin || isUser">
-            <mat-icon>app_registration</mat-icon><span class="nav-caption">Create hobby article</span>
+            <mat-icon>app_registration</mat-icon> <span class="nav-caption">Create hobby article</span>
         </a>
-          <a>
-            <button class="nav-caption"  (click)="login()" *ngIf="!isAuthenticated">Login</button>   
+        <a routerLink="/register" *ngIf="!isAuthenticated">
+            <mat-icon>app_registration</mat-icon> <span class="nav-caption" *ngIf="!isAuthenticated">Register</span>   
+          </a>
+          <a routerLink="/login" *ngIf="!isAuthenticated">
+            <mat-icon aria-hidden="false">login</mat-icon> <span class="nav-caption">Login</span>   
           </a>
            <a>
-            <button class="nav-caption" (click)="logout()" *ngIf="isAuthenticated">Logout</button>   
+            <button class="nav-caption" (click)="logOut()" *ngIf="isAuthenticated">Logout</button>   
            </a>
     </mat-nav-list>
 </mat-toolbar>
