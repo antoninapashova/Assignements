@@ -48,7 +48,7 @@ namespace Infrastructure.Data
 
                 a.HasMany(t => t.Tags).WithMany(h => h.HobbyArticles);
             });
-           
+
            
         }
     }

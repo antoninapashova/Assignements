@@ -6,7 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Hobby_Project.Domain.Entity;
 using Hobby_Project.Domain;
-using HobbyProject.Domain.Entity;
 
 namespace Domain.Entity
 {
@@ -15,7 +14,8 @@ namespace Domain.Entity
         public string Title { get; set; }
         public string Description { get; set; }
         public int HobbySubCategoryId { get; set; }
-        public UserEntity user { get; set; }
+      //  public int UserId { get; set; }
+       // public virtual UserEntity User { get; set; }
         public virtual SubCategory HobbySubCategory { get; set; }
         public virtual ICollection<Photo> HobbyPhoto { get; set; }
         public virtual ICollection<Comment> HobbyComments { get; }
