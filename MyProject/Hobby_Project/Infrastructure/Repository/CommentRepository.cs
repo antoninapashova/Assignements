@@ -22,18 +22,18 @@ namespace Infrastructure.Repository
 
         public async Task<Comment> Add(Comment entity)
         {
-            await _context.HobbyComments.AddAsync(entity);
+            await _context.Comments.AddAsync(entity);
            return entity;
         }
 
         public async Task DeleteAsync(int id)
         {
             var comment = await FindById(id);
-            _context.HobbyComments.Remove(comment);
+            _context.Comments.Remove(comment);
         }
         public async Task<IEnumerable<Comment>> GetAllEntitiesAsync()
         {
-            return await _context.HobbyComments
+            return await _context.Comments
                  //.Include(x=>x.Username)
                 .ToListAsync();
         }
@@ -49,13 +49,13 @@ namespace Infrastructure.Repository
         {
              await FindById(comment.Id);
             _context.ChangeTracker.Clear();
-            _context.HobbyComments.Update(comment);
+            _context.Comments.Update(comment);
             return comment;
         }
 
         public async Task<Comment> FindById(int id)
         {
-            var comment = await _context.HobbyComments
+            var comment = await _context.Comments
                 //.Include(x=>x.Username)
                                 .FirstOrDefaultAsync(c => c.Id == id);
 

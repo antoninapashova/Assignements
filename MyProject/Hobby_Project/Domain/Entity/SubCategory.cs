@@ -13,8 +13,8 @@ namespace Hobby_Project
     public class SubCategory : BaseCategory
     {
         public int HobbyCategoryId { get; set; }
-        public Category HobbyCategory { get; set; }
-        public ICollection<HobbyEntity> HobbyArticles { get; set; }
+        public virtual Category HobbyCategory { get; set; }
+        public virtual ICollection<HobbyEntity> HobbyArticles { get; set; }
 
     }
 }

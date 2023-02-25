@@ -44,11 +44,16 @@ namespace HobbyProject.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("HobbySubCategoryId");
 
-                    b.ToTable("HobbyArticles");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("HobbyEntities");
                 });
 
             modelBuilder.Entity("Domain.Entity.Photo", b =>
@@ -77,7 +82,7 @@ namespace HobbyProject.Infrastructure.Migrations
 
                     b.HasIndex("HobbyArticleId");
 
-                    b.ToTable("HobbyPhotos");
+                    b.ToTable("Photos");
                 });
 
             modelBuilder.Entity("HobbyEntityTag", b =>
@@ -93,6 +98,62 @@ namespace HobbyProject.Infrastructure.Migrations
                     b.HasIndex("TagsId");
 
                     b.ToTable("HobbyEntityTag");
+                });
+
+            modelBuilder.Entity("HobbyProject.Domain.Entity.Tag", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tags");
+                });
+
+            modelBuilder.Entity("HobbyProject.Domain.Entity.UserEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Hobby_Project.Category", b =>
@@ -112,7 +173,7 @@ namespace HobbyProject.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("HobbyCategories");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("Hobby_Project.Comment", b =>
@@ -133,11 +194,16 @@ namespace HobbyProject.Infrastructure.Migrations
                     b.Property<int>("HobbyArticleId")
                         .HasColumnType("int");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("HobbyArticleId");
 
-                    b.ToTable("HobbyComments");
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Comments");
                 });
 
             modelBuilder.Entity("Hobby_Project.SubCategory", b =>
@@ -162,27 +228,7 @@ namespace HobbyProject.Infrastructure.Migrations
 
                     b.HasIndex("HobbyCategoryId");
 
-                    b.ToTable("HobbySubCategories");
-                });
-
-            modelBuilder.Entity("Hobby_Project.Tag", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Tags");
+                    b.ToTable("SubCategories");
                 });
 
             modelBuilder.Entity("Domain.Entity.HobbyEntity", b =>
@@ -193,7 +239,15 @@ namespace HobbyProject.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("HobbyProject.Domain.Entity.UserEntity", "User")
+                        .WithMany("Hobbies")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("HobbySubCategory");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Domain.Entity.Photo", b =>
@@ -215,7 +269,7 @@ namespace HobbyProject.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Hobby_Project.Tag", null)
+                    b.HasOne("HobbyProject.Domain.Entity.Tag", null)
                         .WithMany()
                         .HasForeignKey("TagsId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -230,7 +284,15 @@ namespace HobbyProject.Infrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("HobbyProject.Domain.Entity.UserEntity", "User")
+                        .WithMany("Comments")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.Navigation("HobbyArticle");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Hobby_Project.SubCategory", b =>
@@ -249,6 +311,13 @@ namespace HobbyProject.Infrastructure.Migrations
                     b.Navigation("HobbyComments");
 
                     b.Navigation("HobbyPhoto");
+                });
+
+            modelBuilder.Entity("HobbyProject.Domain.Entity.UserEntity", b =>
+                {
+                    b.Navigation("Comments");
+
+                    b.Navigation("Hobbies");
                 });
 
             modelBuilder.Entity("Hobby_Project.Category", b =>

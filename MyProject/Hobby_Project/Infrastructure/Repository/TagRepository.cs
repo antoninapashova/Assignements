@@ -1,5 +1,6 @@
 ﻿using Application.Repositories;
 using Hobby_Project;
+using HobbyProject.Domain.Entity;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;

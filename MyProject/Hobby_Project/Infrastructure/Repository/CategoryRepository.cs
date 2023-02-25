@@ -22,7 +22,7 @@ namespace Infrastructure.Repository
 
         public async Task<Category> Add(Category entity)
         {
-            await _context.HobbyCategories.AddAsync(entity);
+            await _context.Categories.AddAsync(entity);
             return entity;
         }
         public async Task DeleteAsync(int id)
@@ -34,7 +34,7 @@ namespace Infrastructure.Repository
 
         public async Task<IEnumerable<Category>> GetAllEntitiesAsync()
         {
-            return _context.HobbyCategories
+            return _context.Categories
                 .Include(h => h.HobbySubCategories)
                 .AsEnumerable();
         }
@@ -43,7 +43,7 @@ namespace Infrastructure.Repository
         {
             Category hobbyCategory = await FindById(id); 
 
-            return  _context.HobbyCategories
+            return  _context.Categories
                 .Include(x=>x.HobbySubCategories)
                 .FirstOrDefault(x => x.Id == id);
         }
@@ -58,7 +58,7 @@ namespace Infrastructure.Repository
 
         public async Task<Category> FindById(int id)
         {
-           var hobbyCategory =  await _context.HobbyCategories
+           var hobbyCategory =  await _context.Categories
                 .FirstOrDefaultAsync(c => c.Id == id);
 
             if (hobbyCategory == null) throw new NullReferenceException("Category is null!");

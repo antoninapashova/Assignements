@@ -21,19 +21,19 @@ namespace Infrastructure.Repository
 
         public async Task<SubCategory> Add(SubCategory entity)
         {
-            await _context.HobbySubCategories.AddAsync(entity);
+            await _context.SubCategories.AddAsync(entity);
             return entity;
         }
 
         public async Task DeleteAsync(int id)
         {
              SubCategory hobbySubCategory = await FindById(id);
-             _context.HobbySubCategories.Remove(hobbySubCategory);
+             _context.SubCategories.Remove(hobbySubCategory);
         }
 
         public async Task<IEnumerable<SubCategory>> GetAllEntitiesAsync()
         {
-            return  _context.HobbySubCategories.AsEnumerable();
+            return  _context.SubCategories.AsEnumerable();
         }
 
         public async Task<SubCategory> GetByIdAsync(int id)
@@ -52,7 +52,7 @@ namespace Infrastructure.Repository
         
         public async Task<SubCategory> FindById(int id)
         {
-            var subCategory = await _context.HobbySubCategories.FirstOrDefaultAsync(s => s.Id == id);
+            var subCategory = await _context.SubCategories.FirstOrDefaultAsync(s => s.Id == id);
 
             if (subCategory == null) throw new NullReferenceException("SubCategory with Id: " + id + " does not exist");
 

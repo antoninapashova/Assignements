@@ -6,23 +6,23 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace HobbyProject.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class initDb : Migration
+    public partial class InitBatabase : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "HobbyCategories",
+                name: "Categories",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HobbyCategories", x => x.Id);
+                    table.PrimaryKey("PK_Categories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -49,7 +49,6 @@ namespace HobbyProject.Infrastructure.Migrations
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Age = table.Column<int>(type: "int", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -59,49 +58,49 @@ namespace HobbyProject.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "HobbySubCategories",
+                name: "SubCategories",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     HobbyCategoryId = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HobbySubCategories", x => x.Id);
+                    table.PrimaryKey("PK_SubCategories", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_HobbySubCategories_HobbyCategories_HobbyCategoryId",
+                        name: "FK_SubCategories_Categories_HobbyCategoryId",
                         column: x => x.HobbyCategoryId,
-                        principalTable: "HobbyCategories",
+                        principalTable: "Categories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "HobbyArticles",
+                name: "HobbyEntities",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
                     HobbySubCategoryId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HobbyArticles", x => x.Id);
+                    table.PrimaryKey("PK_HobbyEntities", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_HobbyArticles_HobbySubCategories_HobbySubCategoryId",
+                        name: "FK_HobbyEntities_SubCategories_HobbySubCategoryId",
                         column: x => x.HobbySubCategoryId,
-                        principalTable: "HobbySubCategories",
+                        principalTable: "SubCategories",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_HobbyArticles_Users_UserId",
+                        name: "FK_HobbyEntities_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
@@ -109,7 +108,34 @@ namespace HobbyProject.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "HobbyArticleTag",
+                name: "Comments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CommentContent = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    HobbyArticleId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Comments_HobbyEntities_HobbyArticleId",
+                        column: x => x.HobbyArticleId,
+                        principalTable: "HobbyEntities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Comments_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "HobbyEntityTag",
                 columns: table => new
                 {
                     HobbyArticlesId = table.Column<int>(type: "int", nullable: false),
@@ -117,15 +143,15 @@ namespace HobbyProject.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HobbyArticleTag", x => new { x.HobbyArticlesId, x.TagsId });
+                    table.PrimaryKey("PK_HobbyEntityTag", x => new { x.HobbyArticlesId, x.TagsId });
                     table.ForeignKey(
-                        name: "FK_HobbyArticleTag_HobbyArticles_HobbyArticlesId",
+                        name: "FK_HobbyEntityTag_HobbyEntities_HobbyArticlesId",
                         column: x => x.HobbyArticlesId,
-                        principalTable: "HobbyArticles",
+                        principalTable: "HobbyEntities",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_HobbyArticleTag_Tags_TagsId",
+                        name: "FK_HobbyEntityTag_Tags_TagsId",
                         column: x => x.TagsId,
                         principalTable: "Tags",
                         principalColumn: "Id",
@@ -133,88 +159,60 @@ namespace HobbyProject.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "HobbyComments",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CommentContent = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: true),
-                    HobbyArticleId = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_HobbyComments", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_HobbyComments_HobbyArticles_HobbyArticleId",
-                        column: x => x.HobbyArticleId,
-                        principalTable: "HobbyArticles",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_HobbyComments_Users_UserId",
-                        column: x => x.UserId,
-                        principalTable: "Users",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "HobbyPhotos",
+                name: "Photos",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Url = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PublicId = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     HobbyArticleId = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_HobbyPhotos", x => x.Id);
+                    table.PrimaryKey("PK_Photos", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_HobbyPhotos_HobbyArticles_HobbyArticleId",
+                        name: "FK_Photos_HobbyEntities_HobbyArticleId",
                         column: x => x.HobbyArticleId,
-                        principalTable: "HobbyArticles",
+                        principalTable: "HobbyEntities",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_HobbyArticles_HobbySubCategoryId",
-                table: "HobbyArticles",
+                name: "IX_Comments_HobbyArticleId",
+                table: "Comments",
+                column: "HobbyArticleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_UserId",
+                table: "Comments",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_HobbyEntities_HobbySubCategoryId",
+                table: "HobbyEntities",
                 column: "HobbySubCategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_HobbyArticles_UserId",
-                table: "HobbyArticles",
+                name: "IX_HobbyEntities_UserId",
+                table: "HobbyEntities",
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_HobbyArticleTag_TagsId",
-                table: "HobbyArticleTag",
+                name: "IX_HobbyEntityTag_TagsId",
+                table: "HobbyEntityTag",
                 column: "TagsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_HobbyComments_HobbyArticleId",
-                table: "HobbyComments",
+                name: "IX_Photos_HobbyArticleId",
+                table: "Photos",
                 column: "HobbyArticleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_HobbyComments_UserId",
-                table: "HobbyComments",
-                column: "UserId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_HobbyPhotos_HobbyArticleId",
-                table: "HobbyPhotos",
-                column: "HobbyArticleId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_HobbySubCategories_HobbyCategoryId",
-                table: "HobbySubCategories",
+                name: "IX_SubCategories_HobbyCategoryId",
+                table: "SubCategories",
                 column: "HobbyCategoryId");
         }
 
@@ -222,28 +220,28 @@ namespace HobbyProject.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "HobbyArticleTag");
+                name: "Comments");
 
             migrationBuilder.DropTable(
-                name: "HobbyComments");
+                name: "HobbyEntityTag");
 
             migrationBuilder.DropTable(
-                name: "HobbyPhotos");
+                name: "Photos");
 
             migrationBuilder.DropTable(
                 name: "Tags");
 
             migrationBuilder.DropTable(
-                name: "HobbyArticles");
+                name: "HobbyEntities");
 
             migrationBuilder.DropTable(
-                name: "HobbySubCategories");
+                name: "SubCategories");
 
             migrationBuilder.DropTable(
                 name: "Users");
 
             migrationBuilder.DropTable(
-                name: "HobbyCategories");
+                name: "Categories");
         }
     }
 }

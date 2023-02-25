@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using EmptyFiles;
+using HobbyProject.Domain.Entity;
 
 namespace HobbyProjectTests.Mocks
 {

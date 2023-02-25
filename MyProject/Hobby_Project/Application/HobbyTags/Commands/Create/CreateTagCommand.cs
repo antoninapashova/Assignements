@@ -1,4 +1,5 @@
 ﻿using Hobby_Project;
+using HobbyProject.Domain.Entity;
 using MediatR;
 using System;
 using System.Collections.Generic;

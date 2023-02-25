@@ -11,8 +11,8 @@ namespace Hobby_Project.Domain.Entity
     public abstract class BaseEntity
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+       [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+       public int Id { get; set; }
         public DateTime CreatedDate { get; set; }
 
         protected BaseEntity()

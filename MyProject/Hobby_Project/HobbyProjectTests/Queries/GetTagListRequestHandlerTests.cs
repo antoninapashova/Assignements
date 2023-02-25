@@ -16,6 +16,7 @@ using FluentAssertions;
 using Hobby_Project;
 using HobbyProject.Application.Categories.Queries.GetCategoryById;
 using HobbyProject.Application.HobbyTags.Queries.GetTagById;
+using HobbyProject.Domain.Entity;
 
 namespace HobbyProjectTests.Queries
 {

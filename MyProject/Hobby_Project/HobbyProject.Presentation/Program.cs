@@ -11,7 +11,6 @@ using HobbyProject.Presentation.Middleware.ExceptionMiddleware;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Identity.Web;
-using HobbyProject.Domain.Entity;
 
 var builder = WebApplication.CreateBuilder(args);
 

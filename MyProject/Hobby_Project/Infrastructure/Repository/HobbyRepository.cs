@@ -22,7 +22,7 @@ namespace Infrastructure.Repository
 
         public async Task<HobbyEntity> Add(HobbyEntity entity)
         {
-             _context.HobbyArticles.Attach(entity).State = EntityState.Added;
+             _context.HobbyEntities.Attach(entity).State = EntityState.Added;
             
             return entity;
         }
@@ -31,13 +31,13 @@ namespace Infrastructure.Repository
         {
             HobbyEntity articleForDeleting = await FindById(id);
 
-            _context.HobbyArticles.Remove(articleForDeleting);
+            _context.HobbyEntities.Remove(articleForDeleting);
         }
 
         
         public async Task<IEnumerable<HobbyEntity>> GetHobbyArticlesByUserId(int id)
         {
-            return await _context.HobbyArticles
+            return await _context.HobbyEntities
                 .Include(h => h.HobbySubCategory)
                 .Include(h => h.HobbyComments)
                 .Include(h => h.Tags)
@@ -48,7 +48,7 @@ namespace Infrastructure.Repository
 
         public async Task<IEnumerable<HobbyEntity>> GetAllEntitiesAsync()
         {
-            return await _context.HobbyArticles
+            return await _context.HobbyEntities
                 .Include(x=>x.HobbyComments)
                 .Include(x => x.HobbySubCategory)
                 .Include(x => x.HobbyPhoto)
@@ -59,7 +59,7 @@ namespace Infrastructure.Repository
         {
            await FindById(id);
             
-            return await _context.HobbyArticles
+            return await _context.HobbyEntities
                     .Where(h => h.Id == id)
                     .Include(h => h.HobbySubCategory)
                     .Include(h=>h.Tags)
@@ -69,13 +69,13 @@ namespace Infrastructure.Repository
       
         public async Task<HobbyEntity> Update(HobbyEntity hobbyArticle)
         {
-            _context.HobbyArticles.Update(hobbyArticle);
+            _context.HobbyEntities.Update(hobbyArticle);
             return hobbyArticle;
         }
         
         public async Task<IEnumerable<HobbyEntity>> GetHobbyArticlesByUsername(string username)
         {
-            return await _context.HobbyArticles
+            return await _context.HobbyEntities
                      //.Where(h => h.Username.Equals(username))
                      .Include(h => h.HobbySubCategory)
                      .Include(h => h.Tags)
@@ -85,7 +85,7 @@ namespace Infrastructure.Repository
 
         public async Task<HobbyEntity> FindById(int id)
         {
-            var hobby = await _context.HobbyArticles.FirstOrDefaultAsync(h => h.Id == id);
+            var hobby = await _context.HobbyEntities.FirstOrDefaultAsync(h => h.Id == id);
 
             if (hobby == null) throw new NullReferenceException("HobbyArticle with Id: " + id + " does not exist");
             return hobby;

@@ -8,6 +8,7 @@ using Application.Repositories;
 using AutoMapper;
 using FluentAssertions;
 using Hobby_Project;
+using HobbyProject.Domain.Entity;
 using HobbyProjectTests.Mocks;
 using Moq;
 using Shouldly;

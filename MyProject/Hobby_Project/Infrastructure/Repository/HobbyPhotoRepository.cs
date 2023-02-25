@@ -22,19 +22,19 @@ namespace Infrastructure.Repository
 
         public async Task<Photo> Add(Photo entity)
         {
-           await _context.HobbyPhotos.AddAsync(entity);
+           await _context.Photos.AddAsync(entity);
             return entity;
         }
 
         public async Task DeleteAsync(int id)
         {
             var hobbyPhoto = await FindById(id);
-            _context.HobbyPhotos.Remove(hobbyPhoto);
+            _context.Photos.Remove(hobbyPhoto);
         }
 
         public async Task<IEnumerable<Photo>> GetAllEntitiesAsync()
         {
-            return _context.HobbyPhotos.AsEnumerable();
+            return _context.Photos.AsEnumerable();
         }
 
         public async Task<Photo> GetByIdAsync(int id)
@@ -45,13 +45,13 @@ namespace Infrastructure.Repository
         public async Task<Photo> Update(Photo entity)
         {
             await FindById(entity.Id);
-            _context.HobbyPhotos.Update(entity);
+            _context.Photos.Update(entity);
             return entity;
         }
 
         public async Task<Photo> FindById(int id)
         {
-            var photo = await _context.HobbyPhotos.FirstOrDefaultAsync(c => c.Id == id);
+            var photo = await _context.Photos.FirstOrDefaultAsync(c => c.Id == id);
 
             if (photo == null)
                 throw new InvalidOperationException("Photo with Id" + id + "does not exist!");

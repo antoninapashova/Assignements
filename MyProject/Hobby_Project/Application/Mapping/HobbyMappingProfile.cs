@@ -16,6 +16,7 @@ using HobbyProject.Application.Categories.Queries.GetSubCategoryFromCategory;
 using HobbyProject.Application.Comments.Commands;
 using HobbyProject.Application.Hobby.Commands;
 using HobbyProject.Application.HobbyTags.Queries;
+using HobbyProject.Domain.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;

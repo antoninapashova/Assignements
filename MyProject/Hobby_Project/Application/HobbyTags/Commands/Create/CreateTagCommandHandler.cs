@@ -5,6 +5,7 @@ using AutoMapper;
 using FluentValidation;
 using Hobby_Project;
 using HobbyProject.Application.Validators;
+using HobbyProject.Domain.Entity;
 using MediatR;
 using System;
 using System.Collections.Generic;
