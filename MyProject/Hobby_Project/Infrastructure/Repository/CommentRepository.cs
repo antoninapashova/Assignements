@@ -34,7 +34,7 @@ namespace Infrastructure.Repository
         public async Task<IEnumerable<Comment>> GetAllEntitiesAsync()
         {
             return await _context.HobbyComments
-                 .Include(x=>x.Username)
+                 //.Include(x=>x.Username)
                 .ToListAsync();
         }
 
@@ -55,7 +55,8 @@ namespace Infrastructure.Repository
 
         public async Task<Comment> FindById(int id)
         {
-            var comment = await _context.HobbyComments.Include(x=>x.Username)
+            var comment = await _context.HobbyComments
+                //.Include(x=>x.Username)
                                 .FirstOrDefaultAsync(c => c.Id == id);
 
             if (comment == null)  throw new NullReferenceException("Comment with Id " + id + " does not exist!");

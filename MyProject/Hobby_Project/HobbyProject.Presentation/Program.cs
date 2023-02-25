@@ -11,6 +11,7 @@ using HobbyProject.Presentation.Middleware.ExceptionMiddleware;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Identity.Web;
+using HobbyProject.Domain.Entity;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,10 +30,6 @@ builder.Services.AddCors(options =>
                       });
 });
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddMicrosoftIdentityWebApi(builder.Configuration.GetSection("AzureAd"));
-
-
 builder.Services.AddControllers()
                 .AddFluentValidation(options =>
                 {
@@ -46,7 +43,6 @@ builder.Services.AddMvc();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();

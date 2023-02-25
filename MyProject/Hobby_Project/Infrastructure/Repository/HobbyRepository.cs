@@ -76,7 +76,7 @@ namespace Infrastructure.Repository
         public async Task<IEnumerable<HobbyEntity>> GetHobbyArticlesByUsername(string username)
         {
             return await _context.HobbyArticles
-                     .Where(h => h.Username.Equals(username))
+                     //.Where(h => h.Username.Equals(username))
                      .Include(h => h.HobbySubCategory)
                      .Include(h => h.Tags)
                      .Include(h => h.HobbyPhoto)

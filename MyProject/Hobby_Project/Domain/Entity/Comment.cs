@@ -1,6 +1,7 @@
 ﻿
 using Domain.Entity;
 using Hobby_Project.Domain.Entity;
+using HobbyProject.Domain.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace Hobby_Project
     {
         public string CommentContent { get; set; }
         public int HobbyArticleId { get; set; }
-        public string Username { get; set; }
+        public UserEntity User { get; set; }
         public HobbyEntity HobbyArticle { get; set; }
        
     }

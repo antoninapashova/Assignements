@@ -1,8 +1,7 @@
 ﻿using Application.Repositories;
 using Domain.Entity;
 using Hobby_Project;
-using HobbyProject.Application.Hobby.Commands;
-using HobbyProject.Application.Hobby;
+
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -20,13 +19,19 @@ namespace HobbyProjectTests.Mocks
             var hobbyArticles = new List<HobbyEntity>
             {
                 new HobbyEntity {Id = 1, Title="A great day for playing tennis", Description="---------",
-                                  CreatedDate= DateTime.Now, Username = "Ivan", HobbySubCategoryId=1,
+                                  CreatedDate= DateTime.Now, 
+                    //Username = "Ivan", 
+                    HobbySubCategoryId=1,
                                   Tags = new List<Tag>()},
                 new HobbyEntity {Id = 2, Title="A great day for playing tennis", Description="---------",
-                                  CreatedDate= DateTime.Now, Username="Ivan", HobbySubCategoryId=1,
+                                  CreatedDate= DateTime.Now, 
+                    //Username="Ivan", 
+                    HobbySubCategoryId=1,
                                   Tags = new List<Tag>()},
                 new HobbyEntity {Id = 3, Title="A great day for playing tennis", Description="---------",
-                                  CreatedDate= DateTime.Now, Username = "Ivan", HobbySubCategoryId=1,
+                                  CreatedDate= DateTime.Now, 
+                    //Username = "Ivan", 
+                    HobbySubCategoryId=1,
                                   Tags = new List<Tag>()},
             };
 

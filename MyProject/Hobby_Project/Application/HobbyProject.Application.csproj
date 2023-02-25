@@ -36,6 +36,7 @@
 
   <ItemGroup>
     <Folder Include="Photos\Queries\" />
+    <Folder Include="User\Query\" />
   </ItemGroup>
 
 </Project>
