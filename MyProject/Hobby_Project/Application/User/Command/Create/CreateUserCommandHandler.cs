@@ -2,6 +2,7 @@
 using Application.Repositories;
 using AutoMapper;
 using Hobby_Project;
+using HobbyProject.Application.Helpers;
 using HobbyProject.Domain.Entity;
 using MediatR;
 using System;
@@ -32,7 +33,14 @@ namespace HobbyProject.Application.User.Command.Create
             {
                 if (command == null) throw new NullReferenceException("Create user command is null!");
 
+                IsUsernameExists(command.Username);
+
+                IsEmailExists(command.Email);
+
                 UserEntity userEntity = _mapper.Map<UserEntity>(command);
+                userEntity.Password = PasswordHasher.HashPassword(command.Password);
+                userEntity.Role = "User";
+                userEntity.Token = "";
                 await _unitOfWork.UserRepository.Add(userEntity);
                 await _unitOfWork.Save();
 
@@ -43,6 +51,20 @@ namespace HobbyProject.Application.User.Command.Create
                 _log.LogError(e.Message);
                 throw;
             }
+         }
+
+        private async Task<bool> IsUsernameExists(string username)
+        {
+            bool isUsernameExists = await _unitOfWork.UserRepository.CheckUsernameExists(username);
+            if (!isUsernameExists) throw new NullReferenceException("User with that username already exists!");
+            return true; 
+        }
+
+        private async Task<bool> IsEmailExists(string email)
+        {
+            bool isEmailExists = await _unitOfWork.UserRepository.CheckEmailExists(email);
+            if (isEmailExists) throw new NullReferenceException("User with yhat email already exists");
+            return true;
         }
     }
 }

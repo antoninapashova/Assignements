@@ -56,6 +56,15 @@ namespace HobbyProject.Infrastructure.Repository
         {
             return await _context.Users.FirstOrDefaultAsync(x => x.Username == username && x.Password==password);
         }
+
+        public async Task<bool> CheckUsernameExists(string username)
+        {
+            return await _context.Users.AnyAsync(x => x.Username == username);
+        }
+        public async Task<bool> CheckEmailExists(string email)
+        {
+            return await _context.Users.AnyAsync(x => x.Email == email);
+        }
         public async Task<UserEntity> FindById(int id)
         {
             var user = await _context.Users

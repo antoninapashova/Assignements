@@ -1,6 +1,7 @@
 ﻿using Application.Categories.Commands.Create;
 using HobbyProject.Application.Categories.Queries.GetCategoryById;
 using HobbyProject.Application.User.Command.Create;
+using HobbyProject.Application.User.Command.Login;
 using HobbyProject.Application.User.Query.GetById;
 using HobbyProject.Application.Validators;
 using HobbyProject.Domain.Entity;
@@ -45,14 +46,16 @@ namespace HobbyProject.Presentation.Controllers
             return CreatedAtAction(nameof(GetById), new { id = result }, result);
         }
 
-        [HttpPost]
-        public async Task<ActionResult> Authenticate([FromBody] UserEntity obj)
+        [HttpPost("authenticate")]
+        public async Task<ActionResult> Authenticate([FromBody] LoginUserCommand obj)
         {
-            if (obj == null)
-            {
-                return BadRequest();
-            }
+            if (obj == null) return BadRequest();
+            
 
+            var result = await _mediator.Send(obj);
+
+            if (result == null) return NotFound(new { Message = "User not found" });
+            
             return Ok(new
             {
                 Token = "",
