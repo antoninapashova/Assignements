@@ -1,6 +1,5 @@
-﻿using Domain.Entity;
-using Hobby_Project;
-using Hobby_Project.Domain.Entity;
+﻿using HobbyProject.Domain.Entity;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -8,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HobbyProject.Domain.Entity
+namespace HobbyProject.Application.User.Command.Login
 {
-    public class UserEntity : BaseEntity
+    public class LoginUserCommand : IRequest<UserEntity>
     {
         public string Username { get; set; }
         public string FirstName { get; set; }
@@ -19,7 +18,5 @@ namespace HobbyProject.Domain.Entity
         public string Token { get; set; }
         public string Role { get; set; }
         public string Password { get; set; }
-        public virtual ICollection<HobbyEntity> Hobbies { get; set; }
-        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

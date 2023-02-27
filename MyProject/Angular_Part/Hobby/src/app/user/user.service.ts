@@ -36,7 +36,7 @@ export class UserService{
     }
 
     login(obj: Object): Observable<IUser>{
-        return this.httpClient.post<IUser>(`${this.baseUrl}${ApiPaths.User}/login`,obj);
+        return this.httpClient.post<IUser>(`${this.baseUrl}${ApiPaths.User}/authenticate`, obj);
     }
 
 }

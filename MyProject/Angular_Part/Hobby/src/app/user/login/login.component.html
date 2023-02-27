@@ -5,22 +5,24 @@
       </mat-card-header>
       <form class="example-form" [formGroup]="loginUserForm"  (ngSubmit)="onSubmit(loginUserForm)">
         <mat-card-content>
-          <mat-form-field class="example-full-width">
-            <input matInput 
+          <mat-form-field class="example-full-width" appearance="outline">
+           <input  matInput 
             #username 
             [value]="username"
-            formControlName="username"
-            placeholder="Username">
+            formControlName="username">
+            <mat-label><mat-icon>account_circle</mat-icon> <b> Username</b></mat-label>
             <mat-error *ngIf="loginUserForm.controls['username'].errors?.['required']">Username is required</mat-error>
             <mat-error *ngIf="loginUserForm.controls['username'].errors?.['minlenght']">Username must be more than 3 characters</mat-error>
           </mat-form-field>
-          <mat-form-field class="example-full-width">
+
+          <mat-form-field class="example-full-width" appearance="outline">
             <input matInput
             formControlName="password"
             #password 
-            type="password"
-            [value]="password"
-            placeholder="Password">
+            [type]="hide ? 'password' : 'text'" 
+            [value]="password">
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-label><mat-icon>lock</mat-icon> <b>Password</b></mat-label>
             <mat-error *ngIf="loginUserForm.controls['password'].errors?.['required']">Password is required</mat-error>
             <mat-error *ngIf="loginUserForm.controls['password'].errors?.['minlenght']">Password must be more al least 5 characters</mat-error>
           </mat-form-field>

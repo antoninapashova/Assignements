@@ -12,6 +12,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class LoginComponent implements OnInit {
    
   invalidLogin?: boolean;
+  hide : boolean = true;
   loginUserForm: FormGroup = new FormGroup({});
   url = '/api/authentication/';
 
@@ -44,5 +45,9 @@ export class LoginComponent implements OnInit {
     else {
       return false;
     }
+  }
+
+  hideShowPass(){
+    
   }
 }

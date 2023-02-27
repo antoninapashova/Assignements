@@ -11,5 +11,6 @@ namespace HobbyProject.Application.Repositories
 {
     public interface IUserRepository : IRepository<UserEntity>
     {
+        public Task<UserEntity> FindByUsernameAndPassword(string username, string password);
     }
 }

@@ -1,80 +1,79 @@
 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
     <mat-card class="box">
       <mat-card-header>
-        <mat-card-title>Register</mat-card-title>
+        <mat-card-title>Sign up</mat-card-title>
       </mat-card-header>
 
       <form class="example-form" [formGroup]="registerUserForm"  (ngSubmit)="onSubmit(registerUserForm)">
 
         <mat-card-content class="content">
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="example-full-width" appearance="outline">
             <input matInput 
             formControlName="username"
             #username 
-            [value]="username"
-            placeholder="Username">
+            [value]="username">
+            <mat-label> <b> Username</b></mat-label>
             <mat-error *ngIf="registerUserForm.controls['username'].errors?.['required']">Username is required</mat-error>
             <mat-error *ngIf="registerUserForm.controls['username'].errors?.['minlenght']">Username must be more than 3 characters</mat-error>
           </mat-form-field>
 
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="example-full-width" appearance="outline">
             <input matInput
             formControlName="email"
             #email 
-            [value]="email"
-            placeholder="Email">
-          </mat-form-field>
-          <mat-error *ngIf="registerUserForm.controls['email'].errors?.['required']">Email is required</mat-error>
+            [value]="email"> 
+            <mat-label><b> Email</b></mat-label>
+            <mat-error *ngIf="registerUserForm.controls['email'].errors?.['required']">Email is required</mat-error>
           <mat-error *ngIf="registerUserForm.controls['email'].errors?.['minlenght']">Email must be more than 5 characters</mat-error>
           <mat-error *ngIf="registerUserForm.controls['email'].errors?.['email']">Email is not correct</mat-error>
+          </mat-form-field>
+         
 
           </mat-card-content>
 
           <mat-card-content class="content">
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="example-full-width" appearance="outline">
               <input matInput
               formControlName="firstName"
               #firstName 
-              [value]="firstName"
-                placeholder="First name">
+              [value]="firstName">
+              <mat-label> <b> First name</b></mat-label>
                 <mat-error *ngIf="registerUserForm.controls['firstName'].errors?.['required']">First name is required</mat-error>
                 <mat-error *ngIf="registerUserForm.controls['firstName'].errors?.['minlenght']">First name must be more than 3 characters</mat-error>
           </mat-form-field>
         
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="example-full-width" appearance="outline">
                 <input matInput
                 formControlName="lastName"
                 #lastName 
-                [value]="lastName"
-                 placeholder="Last name">
+                [value]="lastName">
+                <mat-label><b> Last name</b></mat-label>
                  <mat-error *ngIf="registerUserForm.controls['lastName'].errors?.['required']">Last name is required</mat-error>
                  <mat-error *ngIf="registerUserForm.controls['lastName'].errors?.['minlenght']">Last name must be more than 3 characters</mat-error>
           </mat-form-field>
-          
-
-          </mat-card-content>
+         </mat-card-content>
 
           <mat-card-content class="content">
           
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="example-full-width" appearance="outline">
             <input matInput
             formControlName="password"
             #password 
             type="password"
-            [value]="password"
-            placeholder="Password">
+            [value]="password">
+            <mat-label> <b> Last name</b></mat-label>
             <mat-error *ngIf="registerUserForm.controls['password'].errors?.['required']">Password is required</mat-error>
             <mat-error *ngIf="registerUserForm.controls['password'].errors?.['minlenght']">Password must be more al least 5 characters</mat-error>
             
           </mat-form-field>
 
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="example-full-width" appearance="outline">
             <input matInput
             formControlName="confirmPassword"
             #confirmPassword 
             type="password"
-            [value]="confirmPassword"
-            placeholder="Verify password">
+            [value]="confirmPassword">
+            <mat-label> <b> Confirm password</b></mat-label>
           	<mat-error *ngIf="registerUserForm.controls['confirmPassword'].errors?.['required']">Verify password is required</mat-error>
             <mat-error *ngIf="registerUserForm.controls['confirmPassword'].errors?.['minlenght']">Verify password must be more al least 5 characters</mat-error>
             <mat-error *ngIf="registerUserForm.controls['confirmPassword'].errors?.['matching']">
@@ -84,7 +83,7 @@
         
         </mat-card-content>
         <span  *ngIf="isSuccessfull">Registration is successfull!</span>
-        <button mat-stroked-button color="accent" class="btn-block" >Register</button>
+        <button mat-stroked-button color="accent" class="btn-block" >Sign up</button>
         <span>Already have an account? Sign in </span> <a routerLink="/login">here</a>
       </form>
     </mat-card>

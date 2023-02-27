@@ -5,6 +5,7 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,7 +52,10 @@ namespace HobbyProject.Infrastructure.Repository
             _context.Update(entity);
             return entity;
         }
-
+        public async Task<UserEntity> FindByUsernameAndPassword(string username, string password)
+        {
+            return await _context.Users.FirstOrDefaultAsync(x => x.Username == username && x.Password==password);
+        }
         public async Task<UserEntity> FindById(int id)
         {
             var user = await _context.Users
@@ -61,5 +65,7 @@ namespace HobbyProject.Infrastructure.Repository
 
             return user;
         }
+
+      
     }
 }

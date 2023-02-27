@@ -3,10 +3,14 @@ using HobbyProject.Application.Categories.Queries.GetCategoryById;
 using HobbyProject.Application.User.Command.Create;
 using HobbyProject.Application.User.Query.GetById;
 using HobbyProject.Application.Validators;
+using HobbyProject.Domain.Entity;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace HobbyProject.Presentation.Controllers
 {
@@ -40,6 +44,32 @@ namespace HobbyProject.Presentation.Controllers
             var result = await _mediator.Send(command);
             return CreatedAtAction(nameof(GetById), new { id = result }, result);
         }
+
+        [HttpPost]
+        public async Task<ActionResult> Authenticate([FromBody] UserEntity obj)
+        {
+            if (obj == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok(new
+            {
+                Token = "",
+                Message = "Login success"
+            });
+        }
+        /*
+        private string CreateJwtToken(UserEntity user) {
+
+            var jwtTokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes("veryverysecret.......");
+            var identity = new ClaimsIdentity(new Claim[]
+            {
+                new Claim(ClaimTypes.Role, user.Role)
+            })
+        }
+        */
         
     }
 }
