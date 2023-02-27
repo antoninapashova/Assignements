@@ -1,3 +1,4 @@
+import { ModalType } from './../../core/dialog/dialog-template/dialog-template.component';
 import { MatDialog } from '@angular/material/dialog';
 import { UserService } from './../user.service';
 import { Component, OnInit } from '@angular/core';
@@ -36,13 +37,15 @@ export class LoginComponent implements OnInit {
        this.userService.login(form.value).subscribe({
         next:(res)=>{
           console.log(res);
-          let obj ={title: 'Login', modalMessage: 'Login is successful', modalType: 'info'}
+          let obj ={title: 'Login', message: 'Login is successful', type: ModalType.INFO}
           this.matDialog.open( DialogTemplateComponent, {data: obj})
           this.router.navigate(['home']);
         },
         error:(err)=>{
           console.log(err);
-          let obj ={title: 'Login', modalMessage: err, modalType: 'warn'}
+
+          let obj ={title: 'Login', message: err.message, type: ModalType.WARN}
+          console.log(obj);
           this.matDialog.open( DialogTemplateComponent, {data: obj})
         }
        })
