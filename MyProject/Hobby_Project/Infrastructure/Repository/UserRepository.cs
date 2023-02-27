@@ -1,5 +1,8 @@
-﻿using HobbyProject.Application.Repositories;
+﻿using Hobby_Project;
+using HobbyProject.Application.Repositories;
 using HobbyProject.Domain.Entity;
+using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,36 +11,55 @@ using System.Threading.Tasks;
 
 namespace HobbyProject.Infrastructure.Repository
 {
-    internal class UserRepository : IUserRepository
+    public class UserRepository : IUserRepository
     {
-        public Task<UserEntity> Add(UserEntity entity)
+        private readonly HobbyDbContext _context;
+
+        public UserRepository(HobbyDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
         }
 
-        public Task DeleteAsync(int id)
+        public async Task<UserEntity> Add(UserEntity entity)
         {
-            throw new NotImplementedException();
+           await _context.Users.AddAsync(entity);
+            return entity;
         }
 
-        public Task<UserEntity> FindById(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            UserEntity user = await FindById(id);
+
+            _context.Remove(user);
         }
 
-        public Task<IEnumerable<UserEntity>> GetAllEntitiesAsync()
+        public async Task<IEnumerable<UserEntity>> GetAllEntitiesAsync()
         {
-            throw new NotImplementedException();
+            return _context.Users.AsEnumerable();
         }
 
-        public Task<UserEntity> GetByIdAsync(int id)
+        public async Task<UserEntity> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            await FindById(id);
+            return await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public Task<UserEntity> Update(UserEntity entity)
+        public async Task<UserEntity> Update(UserEntity entity)
         {
-            throw new NotImplementedException();
+            await FindById(entity.Id);
+            _context.ChangeTracker.Clear();
+            _context.Update(entity);
+            return entity;
+        }
+
+        public async Task<UserEntity> FindById(int id)
+        {
+            var user = await _context.Users
+                 .FirstOrDefaultAsync(c => c.Id == id);
+
+            if (user == null) throw new NullReferenceException("User is null!");
+
+            return user;
         }
     }
 }

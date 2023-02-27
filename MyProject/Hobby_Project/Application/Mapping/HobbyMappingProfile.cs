@@ -16,6 +16,8 @@ using HobbyProject.Application.Categories.Queries.GetSubCategoryFromCategory;
 using HobbyProject.Application.Comments.Commands;
 using HobbyProject.Application.Hobby.Commands;
 using HobbyProject.Application.HobbyTags.Queries;
+using HobbyProject.Application.User;
+using HobbyProject.Application.User.Command.Create;
 using HobbyProject.Domain.Entity;
 using System;
 using System.Collections.Generic;
@@ -29,6 +31,9 @@ namespace Application.Mapping
     {
        public HobbyMappingProfile()
         {
+            //User
+            CreateMap<CreateUserCommand, UserEntity>();
+            CreateMap<UserEntity, UserDto>();
             
             //HobbyArticle
             CreateMap<CreateHobbyCommand, HobbyEntity>();

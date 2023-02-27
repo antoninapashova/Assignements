@@ -1,4 +1,7 @@
 ﻿using Application.Categories.Commands.Create;
+using HobbyProject.Application.Categories.Queries.GetCategoryById;
+using HobbyProject.Application.User.Command.Create;
+using HobbyProject.Application.User.Query.GetById;
 using HobbyProject.Application.Validators;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
@@ -17,16 +20,26 @@ namespace HobbyProject.Presentation.Controllers
         {
             _mediator = mediator;
         }
-        /*
-        [HttpPost]
-        public async Task<ActionResult> AddUser([FromBody] CreateCategoryCommand command)
-        {
-            var validator = new CategoryValidator();
 
-            validator.Validate(command);
-            var result = await _mediator.Send(command);
-            //return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<ActionResult> GetById(int id)
+        {
+            var query = new GetUserByIdQuery { Id = id };
+            var result = await _mediator.Send(query);
+            return Ok(result);
         }
-        */
+
+
+        [HttpPost]
+        public async Task<ActionResult> AddUser([FromBody] CreateUserCommand command)
+        {
+            //var validator = new CategoryValidator();
+
+            //validator.Validate(command);
+            var result = await _mediator.Send(command);
+            return CreatedAtAction(nameof(GetById), new { id = result }, result);
+        }
+        
     }
 }

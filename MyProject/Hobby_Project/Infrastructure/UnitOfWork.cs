@@ -1,4 +1,5 @@
 ﻿using Application.Repositories;
+using HobbyProject.Application.Repositories;
 using Infrastructure.Data;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace Infrastructure
         public UnitOfWork(HobbyDbContext hobbyDbContext, 
             IHobbyArticleRepository hobbyArticleRepository, ICommentRepository commentRepository, 
             ITagRepository tagRepository, ISubCategoryRepository subCategoryRepository, 
-            ICategoryRepository categoryRepository, IPhotoRepository photoRepository)
+            ICategoryRepository categoryRepository, IPhotoRepository photoRepository, IUserRepository userRepository)
         {
             _hobbyDbContext = hobbyDbContext;
             HobbyArticleRepository = hobbyArticleRepository;
@@ -24,6 +25,7 @@ namespace Infrastructure
             SubCategoryRepository = subCategoryRepository;
             CategoryRepository = categoryRepository;
             PhotoRepository = photoRepository;
+            UserRepository = userRepository;
         }
         public IHobbyArticleRepository HobbyArticleRepository { get; private set; }
         public ICommentRepository CommentRepository { get; private set; }
@@ -31,6 +33,7 @@ namespace Infrastructure
         public ISubCategoryRepository SubCategoryRepository { get; private set; }
         public ICategoryRepository CategoryRepository { get; private set; }
         public IPhotoRepository PhotoRepository { get; private set; }
+        public IUserRepository UserRepository { get; private set; }
         public void Dispose()
         {
             _hobbyDbContext.Dispose();

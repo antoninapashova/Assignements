@@ -9,8 +9,8 @@ using HobbyProject.Application.Categories.Queries.GetAllCategories;
 using HobbyProject.Presentation.Middleware.UserMiddleware;
 using HobbyProject.Presentation.Middleware.ExceptionMiddleware;
 using FluentValidation.AspNetCore;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.Identity.Web;
+using HobbyProject.Application.Repositories;
+using HobbyProject.Infrastructure.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,6 +50,7 @@ builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 builder.Services.AddScoped<IHobbyArticleRepository, HobbyRepository>();
 builder.Services.AddScoped<IPhotoRepository, HobbyPhotoRepository>();
 builder.Services.AddScoped<ITagRepository, TagRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserConfiguration, UserConfiguration>();
 
 

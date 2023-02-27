@@ -1,18 +1,31 @@
 <div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
     <mat-card class="box">
       <mat-card-header>
-        <mat-card-title>Log in</mat-card-title>
+        <mat-card-title>Sign in</mat-card-title>
       </mat-card-header>
-      <form class="example-form">
+      <form class="example-form" [formGroup]="loginUserForm"  (ngSubmit)="onSubmit(loginUserForm)">
         <mat-card-content>
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Username">
+            <input matInput 
+            #username 
+            [value]="username"
+            formControlName="username"
+            placeholder="Username">
+            <mat-error *ngIf="loginUserForm.controls['username'].errors?.['required']">Username is required</mat-error>
+            <mat-error *ngIf="loginUserForm.controls['username'].errors?.['minlenght']">Username must be more than 3 characters</mat-error>
           </mat-form-field>
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Password">
+            <input matInput
+            formControlName="password"
+            #password 
+            type="password"
+            [value]="password"
+            placeholder="Password">
+            <mat-error *ngIf="loginUserForm.controls['password'].errors?.['required']">Password is required</mat-error>
+            <mat-error *ngIf="loginUserForm.controls['password'].errors?.['minlenght']">Password must be more al least 5 characters</mat-error>
           </mat-form-field>
         </mat-card-content>
-        <button mat-stroked-button color="accent" class="btn-block">Log in</button>
+        <button mat-stroked-button color="accent" class="btn-block">Sign in</button>
         <span>Don't have an account? Create one for free </span> <a routerLink="/register">Sign Up</a>
       </form>
     </mat-card>

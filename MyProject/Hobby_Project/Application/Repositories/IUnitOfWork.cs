@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HobbyProject.Application.Repositories;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,7 @@ namespace Application.Repositories
        public ISubCategoryRepository SubCategoryRepository { get; }
        public ICategoryRepository CategoryRepository { get; }
        public IPhotoRepository PhotoRepository { get; }
+       public IUserRepository  UserRepository { get; }
        
        Task Save();
 

@@ -32,6 +32,7 @@ import { RegisterComponent } from './register/register.component';
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     NgxDropzoneModule,
+    CommonModule,
     HobbyArticleModule,
     HttpClientModule,
     AppRoutingModule,
