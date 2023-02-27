@@ -1,8 +1,10 @@
+import { MatDialog } from '@angular/material/dialog';
 import { UserService } from './../user.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup,  Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { DialogTemplateComponent } from 'src/app/core/dialog/dialog-template/dialog-template.component';
 
 @Component({
   selector: 'app-login',
@@ -14,9 +16,11 @@ export class LoginComponent implements OnInit {
   invalidLogin?: boolean;
   hide : boolean = true;
   loginUserForm: FormGroup = new FormGroup({});
-  url = '/api/authentication/';
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private userService: UserService,private jwtHelper : JwtHelperService) { }
+  constructor(private formBuilder: FormBuilder, private router: Router, 
+              private userService: UserService,private jwtHelper : JwtHelperService,
+              private matDialog: MatDialog
+           ) { }
 
   ngOnInit(): void {
        this.loginUserForm = this.formBuilder.group({
@@ -25,15 +29,24 @@ export class LoginComponent implements OnInit {
        });
      }
   
-  public onSubmit (form: FormGroup) {
-    const credentials = JSON.stringify(form.value);
-
-    this.userService.login(credentials).subscribe((response) => {
-      const token = (<any>response).token;
-      localStorage.setItem("jwt", token);
-      this.invalidLogin = false;
-      this.router.navigate(["/home"]);
-    });
+  onSubmit (form: FormGroup) {
+     if(this.loginUserForm.valid){
+       console.log(this.loginUserForm.value);
+         
+       this.userService.login(form.value).subscribe({
+        next:(res)=>{
+          console.log(res);
+          let obj ={title: 'Login', modalMessage: 'Login is successful', modalType: 'info'}
+          this.matDialog.open( DialogTemplateComponent, {data: obj})
+          this.router.navigate(['home']);
+        },
+        error:(err)=>{
+          console.log(err);
+          let obj ={title: 'Login', modalMessage: err, modalType: 'warn'}
+          this.matDialog.open( DialogTemplateComponent, {data: obj})
+        }
+       })
+     }
      
   }
 
@@ -47,7 +60,4 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  hideShowPass(){
-    
-  }
 }

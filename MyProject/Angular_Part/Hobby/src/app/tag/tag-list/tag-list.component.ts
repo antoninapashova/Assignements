@@ -23,10 +23,7 @@ export class TagListComponent {
     public dialog: MatDialog){}
   
 ngOnInit(): void {
-    this.tagService.getAll().subscribe(res=>{
-      console.log(res);
-      this.tags = res;
-   });
+    this.tagService.getAll().subscribe(res=> this.tags = res);
 }
  
 openDialog(action: any, obj: any ) {

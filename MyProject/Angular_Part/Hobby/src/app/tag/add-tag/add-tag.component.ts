@@ -1,6 +1,4 @@
-import { TagService } from './../tag.service';
 import { Component, Inject, Optional } from '@angular/core';
-import { NgForm } from '@angular/forms';
 import { ITag } from 'src/app/shared/interfaces/tag';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -14,7 +12,7 @@ export class AddTagComponent {
   local_data:any;
   
    constructor(public dialogRef: MatDialogRef<AddTagComponent>,
-              @Optional() @Inject(MAT_DIALOG_DATA) public tag: ITag ){
+                @Optional() @Inject(MAT_DIALOG_DATA) public tag: ITag ){
                 this.local_data = {...tag};
     this.action = this.local_data.action;
   }

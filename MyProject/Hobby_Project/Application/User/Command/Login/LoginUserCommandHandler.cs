@@ -1,6 +1,7 @@
 ﻿using Application.Logger;
 using Application.Repositories;
 using AutoMapper;
+using HobbyProject.Application.Helpers;
 using HobbyProject.Domain.Entity;
 using MediatR;
 using System;
@@ -31,6 +32,8 @@ namespace HobbyProject.Application.User.Command.Login
               if (command == null) throw new NullReferenceException("Login user command is null");
 
                 var user = await _unitOfWork.UserRepository.FindByUsernameAndPassword(command.Username, command.Password);
+
+                if(!PasswordHasher.VerifyPassword(command.Password, user.Password)) throw new NullReferenceException("Password is incorect!");
 
                 return await Task.FromResult(user);
             }catch(Exception e)

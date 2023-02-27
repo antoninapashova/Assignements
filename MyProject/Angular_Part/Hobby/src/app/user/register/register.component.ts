@@ -2,6 +2,7 @@ import { UserService } from './../user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { matchValidator } from 'src/app/core/validators/confirm-password.validator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,7 +13,7 @@ export class RegisterComponent implements OnInit{
 
   registerUserForm: FormGroup = new FormGroup({});
   isSuccessfull: boolean = false;
-  constructor(private formBuilder: FormBuilder, private userService: UserService) { }
+  constructor(private formBuilder: FormBuilder,private router: Router, private userService: UserService) { }
 
   ngOnInit(): void {
    this.registerUserForm = this.formBuilder.group({
@@ -26,12 +27,15 @@ export class RegisterComponent implements OnInit{
   }
 
   onSubmit(form: FormGroup){ 
-      this.userService.addUser(form.value).subscribe((response)=>{
-        if(response){
-           this.isSuccessfull = true;
-        }
-        console.log(response);
-        form.reset();
+      this.userService.addUser(form.value).subscribe({
+          next: (res)=>{
+            alert(res);
+            form.reset();
+            this.router.navigate(['login']);
+          },
+          error:(err)=>{
+            alert(err.error.meesage);
+         }
       });
   }
 }

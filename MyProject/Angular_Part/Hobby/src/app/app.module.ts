@@ -1,4 +1,3 @@
-
 import { FormsModule } from '@angular/forms';
 import { TagModule } from './tag/tag.module';
 import { SubcategoryModule } from './subcategory/subcategory.module';
@@ -8,12 +7,10 @@ import { UserModule } from './user/user.module';
 import { CoreModule } from './core/core.module';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
-
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -31,6 +28,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { CommonModule } from '@angular/common';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { JwtModule } from "@auth0/angular-jwt";
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogTemplateComponent } from './core/dialog/dialog-template/dialog-template.component';
 
 export function tokenGetter() {
   return localStorage.getItem("access_token");
@@ -38,6 +37,7 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
+
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
@@ -75,9 +75,9 @@ export function tokenGetter() {
     MatTabsModule,
     CommonModule,
     NgxDropzoneModule,
-],
-  providers: [
+    MatDialogModule
   ],
+  providers: [ ],
   exports:[
     TagModule,
     FormsModule,
@@ -98,7 +98,8 @@ export function tokenGetter() {
     MatSidenavModule,
     MatListModule,
     MatTabsModule,
-    MatListModule],
-  bootstrap: [AppComponent]
+    MatListModule
+  ],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

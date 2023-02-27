@@ -1,3 +1,4 @@
+import { MatDialogModule } from '@angular/material/dialog';
 import { HobbyArticleModule } from './../hobby-article/hobby-article.module';
 import { RouterModule } from '@angular/router';
 import { MatListModule } from '@angular/material/list';
@@ -23,6 +24,8 @@ import { UserCardComponent } from './user-card/user-card.component';
 import { HomeComponent } from './home/home.component';
 import {MatCardModule} from '@angular/material/card';
 import { AboutComponent } from './about/about.component';
+import { DialogTemplateComponent } from './dialog/dialog-template/dialog-template.component';
+import { DialogService } from './dialog/dialog.service';
 
 
 @NgModule({
@@ -33,6 +36,7 @@ import { AboutComponent } from './about/about.component';
     UserCardComponent,
     HomeComponent,
     AboutComponent,
+    DialogTemplateComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
@@ -53,7 +57,8 @@ import { AboutComponent } from './about/about.component';
     MatListModule,
     RouterModule,
     MatCardModule,
-    HobbyArticleModule
+    HobbyArticleModule,
+    MatDialogModule
   ],
   exports: [
     HeaderComponent,
@@ -62,7 +67,9 @@ import { AboutComponent } from './about/about.component';
     MatToolbarModule,
     MatListModule,
     HomeComponent,
-    UserCardComponent
-]
+    UserCardComponent,
+],
+providers: [ DialogService ],
+entryComponents: [ DialogTemplateComponent ],
 })
 export class CoreModule { }

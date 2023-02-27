@@ -1,10 +1,10 @@
+import { MatDialogModule } from '@angular/material/dialog';
 import { HobbyArticleModule } from './../hobby-article/hobby-article.module';
 import { AppRoutingModule } from './../app-routing.module';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ArticlesComponent } from './articles/articles.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -21,7 +21,6 @@ import { MatListModule } from '@angular/material/list';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-
 
 @NgModule({
   declarations: [
@@ -60,11 +59,10 @@ import { RegisterComponent } from './register/register.component';
     MatButtonModule,
     MatListModule,
     MatExpansionModule,
+    MatDialogModule
   ],
   exports: [
     ArticlesComponent,
-    
-  ]
- 
+  ], 
 })
 export class UserModule { }
