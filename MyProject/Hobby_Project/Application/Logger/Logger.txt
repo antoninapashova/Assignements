@@ -461,3 +461,31 @@ Hobby_Project.HobbySubCategory -> HobbyProject.Application.HobbySubCategories.Qu
 Mapping types:
 HobbySubCategory -> HobbySubCategoryDto
 Hobby_Project.HobbySubCategory -> HobbyProject.Application.HobbySubCategories.Queries.HobbySubCategoryDto
+*-------------------------------*
+[Error]0:41 A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+*-------------------------------*
+[Error]0:46 A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+*-------------------------------*
+[Error]16:22 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]16:51 A second operation was started on this context instance before a previous operation completed. This is usually caused by different threads concurrently using the same instance of DbContext. For more information on how to avoid threading issues with DbContext, see https://go.microsoft.com/fwlink/?linkid=2097913.
+*-------------------------------*
+[Error]18:37 User with that username already exists!
+*-------------------------------*
+[Error]19:19 User with that username already exists!
+*-------------------------------*
+[Error]19:21 User with that username already exists!
+*-------------------------------*
+[Error]19:23 User with that username already exists!
+*-------------------------------*
+[Error]19:24 User with that username already exists!
+*-------------------------------*
+[Error]19:25 User with that username already exists!
+*-------------------------------*
+[Error]19:27 User with that username already exists!
+*-------------------------------*
+[Error]19:28 User with that email already exists
+*-------------------------------*
+[Error]19:29 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]19:30 Object reference not set to an instance of an object.

@@ -33,9 +33,9 @@ namespace HobbyProject.Application.User.Command.Create
             {
                 if (command == null) throw new NullReferenceException("Create user command is null!");
 
-                IsUsernameExists(command.Username);
+                await IsUsernameExists(command.Username);
 
-                IsEmailExists(command.Email);
+                await IsEmailExists(command.Email);
 
                 UserEntity userEntity = _mapper.Map<UserEntity>(command);
                 userEntity.Password = PasswordHasher.HashPassword(command.Password);
@@ -53,18 +53,17 @@ namespace HobbyProject.Application.User.Command.Create
             }
          }
 
-        private async Task<bool> IsUsernameExists(string username)
+        private async Task IsUsernameExists(string username)
         {
             bool isUsernameExists = await _unitOfWork.UserRepository.CheckUsernameExists(username);
-            if (!isUsernameExists) throw new NullReferenceException("User with that username already exists!");
-            return true; 
+            if (isUsernameExists) throw new NullReferenceException("User with that username already exists!");
+
         }
 
-        private async Task<bool> IsEmailExists(string email)
+        private async Task IsEmailExists(string email)
         {
             bool isEmailExists = await _unitOfWork.UserRepository.CheckEmailExists(email);
-            if (isEmailExists) throw new NullReferenceException("User with yhat email already exists");
-            return true;
+            if (isEmailExists) throw new NullReferenceException("User with that email already exists");
         }
     }
 }

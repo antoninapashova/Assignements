@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
      }
   
   onSubmit (form: FormGroup) {
-     if(this.loginUserForm.valid){
+     if(form.valid){
        console.log(this.loginUserForm.value);
          
        this.userService.login(form.value).subscribe({
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
         error:(err)=>{
           console.log(err);
 
-          let obj ={title: 'Login', message: err.message, type: ModalType.WARN}
+          let obj ={title: 'Login', message: err.error.detail, type: ModalType.WARN}
           console.log(obj);
           this.matDialog.open( DialogTemplateComponent, {data: obj})
         }

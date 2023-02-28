@@ -61,7 +61,7 @@
             #password 
             type="password"
             [value]="password">
-            <mat-label> <b> Last name</b></mat-label>
+            <mat-label> <b> Password</b></mat-label>
             <mat-error *ngIf="registerUserForm.controls['password'].errors?.['required']">Password is required</mat-error>
             <mat-error *ngIf="registerUserForm.controls['password'].errors?.['minlenght']">Password must be more al least 5 characters</mat-error>
             

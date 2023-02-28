@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { matchValidator } from 'src/app/core/validators/confirm-password.validator';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogTemplateComponent, ModalType } from 'src/app/core/dialog/dialog-template/dialog-template.component';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +15,7 @@ export class RegisterComponent implements OnInit{
 
   registerUserForm: FormGroup = new FormGroup({});
   isSuccessfull: boolean = false;
-  constructor(private formBuilder: FormBuilder,private router: Router, private userService: UserService) { }
+  constructor(private formBuilder: FormBuilder,private router: Router, private userService: UserService, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
    this.registerUserForm = this.formBuilder.group({
@@ -27,15 +29,21 @@ export class RegisterComponent implements OnInit{
   }
 
   onSubmit(form: FormGroup){ 
+    if(form.valid){
       this.userService.addUser(form.value).subscribe({
           next: (res)=>{
-            alert(res);
+            let obj ={title: 'Sign up', message: 'Register is successful', type: ModalType.INFO}
+            this.matDialog.open( DialogTemplateComponent, {data: obj})
             form.reset();
             this.router.navigate(['login']);
           },
           error:(err)=>{
-            alert(err.error.meesage);
+            let obj ={title: 'Sign up', message: err.error.detail, type: ModalType.WARN}
+            form.reset();
+            this.matDialog.open( DialogTemplateComponent, {data: obj})
          }
       });
+    }
+      
   }
 }
