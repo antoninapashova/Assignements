@@ -38,11 +38,11 @@ namespace HobbyProject.Application.Helpers
             Array.Copy(hashBytes, 0, salt,0, SaltSize);
             var key = new Rfc2898DeriveBytes(password, salt, Iterations);
 
+            byte[] hash = key.GetBytes(HashSize);
+
             for(var i=0; i<HashSize; i++)
             {
-                if (hashBytes[i+SaltSize] != hashBytes[i]) return false;
-                
-                
+                if (hashBytes[i+SaltSize] != hash[i]) return false;
             }
             return true;
         }

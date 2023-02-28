@@ -35,8 +35,9 @@ namespace HobbyProject.Application.User.Command.Login
             {
               if (command == null) throw new NullReferenceException("Login user command is null");
 
-                var user = await _unitOfWork.UserRepository.FindByUsernameAndPassword(command.Username, command.Password);
-
+                var user = await _unitOfWork.UserRepository
+                    .FindByUsername(command.Username);
+                
                 if(!PasswordHasher.VerifyPassword(command.Password, user.Password)) throw new NullReferenceException("Password is incorect!");
 
                 user.Token = CreateJwtToken(user);

@@ -49,8 +49,6 @@ namespace HobbyProject.Presentation.Controllers
         public async Task<ActionResult> Authenticate([FromBody] LoginUserCommand obj)
         {
             if (obj == null) return BadRequest();
-            
-
             var result = await _mediator.Send(obj);
 
             if (result == null) return NotFound(new { Message = "User not found" });
@@ -61,9 +59,5 @@ namespace HobbyProject.Presentation.Controllers
                 Message = "Login success"
             });
         }
-        
-        
-        
-        
     }
 }

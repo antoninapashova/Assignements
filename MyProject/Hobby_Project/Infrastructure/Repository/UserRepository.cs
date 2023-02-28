@@ -52,9 +52,9 @@ namespace HobbyProject.Infrastructure.Repository
             _context.Update(entity);
             return entity;
         }
-        public async Task<UserEntity> FindByUsernameAndPassword(string username, string password)
+        public async Task<UserEntity> FindByUsername(string username)
         {
-            return await _context.Users.FirstOrDefaultAsync(x => x.Username == username && x.Password == password);
+            return await _context.Users.FirstOrDefaultAsync(x => x.Username == username);
         }
 
         public async Task<bool> CheckUsernameExists(string username)

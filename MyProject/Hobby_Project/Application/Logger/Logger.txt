@@ -489,3 +489,19 @@ Hobby_Project.HobbySubCategory -> HobbyProject.Application.HobbySubCategories.Qu
 [Error]19:29 Object reference not set to an instance of an object.
 *-------------------------------*
 [Error]19:30 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]19:39 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]19:41 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]19:42 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]19:44 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]19:56 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]19:56 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]19:59 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]20:00 Object reference not set to an instance of an object.

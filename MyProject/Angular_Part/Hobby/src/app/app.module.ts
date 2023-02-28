@@ -29,7 +29,6 @@ import { CommonModule } from '@angular/common';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { JwtModule } from "@auth0/angular-jwt";
 import { MatDialogModule } from '@angular/material/dialog';
-import { DialogTemplateComponent } from './core/dialog/dialog-template/dialog-template.component';
 
 export function tokenGetter() {
   return localStorage.getItem("access_token");
