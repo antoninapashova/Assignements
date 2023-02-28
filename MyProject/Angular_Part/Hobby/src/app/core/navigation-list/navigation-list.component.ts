@@ -1,4 +1,3 @@
-import { MsalService } from '@azure/msal-angular';
 import { ISubCategory } from './../../shared/interfaces/subcategory';
 import { ICategory } from './../../shared/interfaces/category';
 import { Component, EventEmitter, Output, OnInit } from '@angular/core';

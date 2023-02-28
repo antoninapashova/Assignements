@@ -1,13 +1,7 @@
-﻿using Application.Categories.Commands.Create;
-using HobbyProject.Application.Categories.Queries.GetCategoryById;
-using HobbyProject.Application.User.Command.Create;
+﻿using HobbyProject.Application.User.Command.Create;
 using HobbyProject.Application.User.Command.Login;
 using HobbyProject.Application.User.Query.GetById;
-using HobbyProject.Application.Validators;
-using HobbyProject.Domain.Entity;
 using MediatR;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;

@@ -36,7 +36,6 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [

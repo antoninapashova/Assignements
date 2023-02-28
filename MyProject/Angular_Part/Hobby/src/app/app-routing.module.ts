@@ -109,9 +109,9 @@ const routes: Routes = [
         path: 'home',
         component: HomeComponent,
         canActivate: [AuthGuard],
-        data: {
-          roles: [ 'User', 'Admin' ]
-        },
+        //data: {
+          //roles: [ 'User', 'Admin' ]
+        //},
       },
       {
         path: 'about',

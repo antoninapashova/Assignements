@@ -1,4 +1,3 @@
-import { MsalService } from '@azure/msal-angular';
 import { HobbyService } from './../../hobby-article/hobby-aticle.service';
 import { UserService } from './../user.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -16,13 +15,13 @@ export class ArticlesComponent implements OnInit {
   activeAccount: string | undefined;
   hobbies: IHobby[] = [];
   userHobbies: IHobby[] = [];
-  constructor(private hobbyService: HobbyService, private authService: MsalService){}
+  constructor(private hobbyService: HobbyService){}
 
   @ViewChild(MatAccordion) accordion!: MatAccordion;
 
   ngOnInit(): void {
-        this.activeAccount = this.authService.instance.getActiveAccount()?.name; 
-        console.log(this.activeAccount);
+       // this.activeAccount = this.authService.instance.getActiveAccount()?.name; 
+        //console.log(this.activeAccount);
         this.hobbyService.getAll().subscribe(res=> {
             this.hobbies = res;
            this.userHobbies =this.hobbies.filter(x=>x.username==this.activeAccount);
@@ -31,8 +30,10 @@ export class ArticlesComponent implements OnInit {
 
 
   deleteArticle(id: any, username: any){
+    /*
     if(this.activeAccount==username || this.authService.instance.getActiveAccount()?.idTokenClaims?.roles){
       this.hobbyService.deleteHobby(id).subscribe(res=>console.log(res));
     }
+    */
  }
 }

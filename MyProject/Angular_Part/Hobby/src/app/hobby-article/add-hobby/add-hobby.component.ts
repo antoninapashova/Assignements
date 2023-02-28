@@ -5,10 +5,9 @@ import { ITag } from './../../shared/interfaces/tag';
 import { ISubCategory } from './../../shared/interfaces/subcategory';
 import { HobbyService } from './../hobby-aticle.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IPhoto } from 'src/app/shared/interfaces/photo';
 import { IHobby } from 'src/app/shared/interfaces/hobby-article';
-import { MsalService } from '@azure/msal-angular';
 
 @Component({
   selector: 'app-add-hobby',
@@ -31,7 +30,6 @@ export class AddHobbyComponent implements OnInit {
               private subCategoryService: SubCategoryService,
               private tagService: TagService,
               private uploadService: UploadService,
-              private msalService: MsalService,
               )
               {}
 
@@ -73,7 +71,6 @@ export class AddHobbyComponent implements OnInit {
      
       this.photosData.push(photoMapped);
 
-     this.activeAccount = this.msalService.instance.getActiveAccount()?.name;
      
      this.hobby = form.value;
      this.hobby.hobbySubcategoryId = form.value['subcategory'];

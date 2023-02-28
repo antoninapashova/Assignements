@@ -26,8 +26,8 @@ namespace HobbyProject.Presentation.Controllers
         {
             _mediator = mediator;
         }
-
-        [Authorize(Roles = "Admin, User")]
+        //(Roles = "Admin, User")
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAllHobbyArticles()
         {
