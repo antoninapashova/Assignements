@@ -1,3 +1,4 @@
+import { UserService } from './../../user/user.service';
 import { Component, EventEmitter, Output, OnInit, OnDestroy } from '@angular/core';
 import {  Subject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -20,7 +21,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
   private readonly unsubscribe = new Subject<void>();
   @Output() public sidenavToggle = new EventEmitter();
 
- constructor(private jwtHelper: JwtHelperService, 
+ constructor(private userService: UserService, 
              private router: Router) {}
  
   ngOnDestroy(): void {
@@ -31,17 +32,9 @@ export class HeaderComponent implements OnInit, OnDestroy{
   ngOnInit(): void {}
  
 
-
-
-isUserAuthenticated() {
-  const token = localStorage.getItem("jwt");
-  if (token && !this.jwtHelper.isTokenExpired(token)) {
-     this.isAuthenticated=true;
-   }
- }
-
   logOut = () => {
-     localStorage.removeItem("jwt");
+     this.userService.signOut();
+     this.router.navigate(['login']);
   }
 
    onToggleSidenav = () => {

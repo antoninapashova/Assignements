@@ -39,4 +39,20 @@ export class UserService{
         return this.httpClient.post<IUser>(`${this.baseUrl}${ApiPaths.User}/authenticate`, obj);
     }
 
+    signOut(){
+       localStorage.clear();
+    }
+
+    storeToken(tokenValue: string){
+        localStorage.setItem('token', tokenValue);
+    }
+
+    getToken(){
+        return localStorage.getItem('token');
+    }
+
+    isLoggedIn(): boolean{
+        return !!localStorage.getItem('token');
+    }
+
 }

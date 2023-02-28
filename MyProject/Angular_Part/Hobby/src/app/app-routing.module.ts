@@ -1,3 +1,4 @@
+import { AuthGuard } from './auth/auth-guard.guard';
 import { RegisterComponent } from './user/register/register.component';
 import { LoginComponent } from './user/login/login.component';
 import { AboutComponent } from './core/about/about.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
    {
     path: 'add-category',
     component: AddCategoryComponent,
+    canActivate: [AuthGuard],
     data: {
       roles: [ 'Admin' ]
     },
@@ -32,32 +34,31 @@ const routes: Routes = [
    {
     path: 'user',
     children:[
-
-       {
+      {
           path: 'articles',
           component: ArticlesComponent,
+          canActivate: [AuthGuard],
           data: {
             roles: [ 'Admin', 'User' ]
           },
-          
        },
-
        {
         path: 'add-article',
         component: AddHobbyComponent,
+        canActivate: [AuthGuard],
         data: {
           roles: [ 'User', 'Admin' ]
         },
        },
       ],
-       
-    },
+     },
      {
       path: 'category',
       children:[
         {
           path: 'add',
           component: AddCategoryComponent,
+          canActivate: [AuthGuard],
           data: {
             roles: [ 'Admin' ]
           },
@@ -65,7 +66,7 @@ const routes: Routes = [
         {
           path: 'get-all',
           component: CategoryListComponent,
-           
+          canActivate: [AuthGuard],
         }
       ]
      },
@@ -75,11 +76,11 @@ const routes: Routes = [
         {
          path: 'add',
          component: AddSubcategoryComponent,
+         canActivate: [AuthGuard],
          data: {
           roles: [ 'Admin' ]
         },
         },
-      
       ],
      },
      {
@@ -88,6 +89,7 @@ const routes: Routes = [
           {
             path: 'add',
             component: AddTagComponent,
+            canActivate: [AuthGuard],
             data: {
               roles: [ 'Admin' ]
             },
@@ -95,6 +97,7 @@ const routes: Routes = [
           {
             path: 'get-all',
             component: TagListComponent,
+            canActivate: [AuthGuard],
             data:{
               roles: [ 'Admin', 'User' ]
 
@@ -105,6 +108,7 @@ const routes: Routes = [
       {
         path: 'home',
         component: HomeComponent,
+        canActivate: [AuthGuard],
         data: {
           roles: [ 'User', 'Admin' ]
         },
@@ -113,7 +117,6 @@ const routes: Routes = [
         path: 'about',
         component: AboutComponent
       }
-
 ];
 
 @NgModule({

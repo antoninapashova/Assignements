@@ -38,12 +38,11 @@ export class LoginComponent implements OnInit {
         next:(res)=>{
           console.log(res);
           let obj ={title: 'Login', message: 'Login is successful', type: ModalType.INFO}
-          this.matDialog.open( DialogTemplateComponent, {data: obj})
+          this.matDialog.open( DialogTemplateComponent, {data: obj});
+          this.userService.storeToken(res.token);
           this.router.navigate(['home']);
         },
         error:(err)=>{
-          console.log(err);
-
           let obj ={title: 'Login', message: err.error.detail, type: ModalType.WARN}
           console.log(obj);
           this.matDialog.open( DialogTemplateComponent, {data: obj})
