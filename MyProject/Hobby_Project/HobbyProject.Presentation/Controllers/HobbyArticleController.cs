@@ -10,6 +10,7 @@ using HobbyProject.Application.Hobby.Queries.GetHobbyById;
 using HobbyProject.Application.HobbySubCategories.Queries.GetAllSubCategories;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -27,6 +28,7 @@ namespace HobbyProject.Presentation.Controllers
             _mediator = mediator;
         }
         //(Roles = "Admin, User")
+        
         [Authorize]
         [HttpGet]
         public async Task<IActionResult> GetAllHobbyArticles()

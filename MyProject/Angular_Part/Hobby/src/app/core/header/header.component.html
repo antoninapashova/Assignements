@@ -7,11 +7,13 @@
         </button>
     </div>
     <span class="nav-caption">Hobby Blog</span>
+    <span class="nav-caption">Hello, {{fullName}}</span>
+
   <mat-nav-list class="list-horizontal">
-        <a  routerLink="/subcategory/add" *ngIf="isAdmin">
+        <a  routerLink="/subcategory/add" *ngIf="role==='Admin'">
             <mat-icon>app_registration</mat-icon> <span class="nav-caption">Create subcategory</span>
         </a>
-        <a  routerLink="/user/add-article" *ngIf="isAdmin || isUser">
+        <a  routerLink="/user/add-article" *ngIf="role==='Admin' || role==='User'">
             <mat-icon>app_registration</mat-icon> <span class="nav-caption">Create hobby article</span>
         </a>
         <a routerLink="/register" *ngIf="!isAuthenticated">

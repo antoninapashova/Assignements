@@ -1,3 +1,4 @@
+import { UserStoreService } from './../user-store.service';
 import { ModalType } from './../../core/dialog/dialog-template/dialog-template.component';
 import { MatDialog } from '@angular/material/dialog';
 import { UserService } from './../user.service';
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private router: Router, 
               private userService: UserService,private jwtHelper : JwtHelperService,
-              private matDialog: MatDialog
+              private matDialog: MatDialog, private userStoreService: UserStoreService
            ) { }
 
   ngOnInit(): void {
@@ -36,10 +37,12 @@ export class LoginComponent implements OnInit {
          
        this.userService.login(form.value).subscribe({
         next:(res)=>{
-          console.log(res);
           let obj ={title: 'Login', message: 'Login is successful', type: ModalType.INFO}
           this.matDialog.open( DialogTemplateComponent, {data: obj});
           this.userService.storeToken(res.token);
+          const tokenPayload = this.userService.decodeToken();
+          this.userStoreService.setFullName(tokenPayload.unique_name);
+          this.userStoreService.setRoleForStore(tokenPayload.role);
           this.router.navigate(['home']);
         },
         error:(err)=>{

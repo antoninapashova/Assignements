@@ -33,10 +33,8 @@ builder.Services.AddCors(options =>
                       });
 });
 
-builder.Services.AddControllers()
-                .AddFluentValidation(options =>
+builder.Services.AddControllers().AddFluentValidation(options =>
                 {
-                    
                     options.ImplicitlyValidateChildProperties = true;
                     options.ImplicitlyValidateRootCollectionElements = true;
                     options.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly());
@@ -64,6 +62,7 @@ builder.Services.AddDbContext<HobbyDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
 
 builder.Services.AddTransient<ExceptionHandlingMiddleware>();
+
 builder.Services.AddAuthentication(x =>
 {
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

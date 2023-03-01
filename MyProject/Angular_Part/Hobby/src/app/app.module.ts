@@ -10,7 +10,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -29,6 +29,7 @@ import { CommonModule } from '@angular/common';
 import { NgxDropzoneModule } from 'ngx-dropzone';
 import { JwtModule } from "@auth0/angular-jwt";
 import { MatDialogModule } from '@angular/material/dialog';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 export function tokenGetter() {
   return localStorage.getItem("access_token");
@@ -75,7 +76,6 @@ export function tokenGetter() {
     NgxDropzoneModule,
     MatDialogModule
   ],
-  providers: [ ],
   exports:[
     TagModule,
     FormsModule,
@@ -98,6 +98,11 @@ export function tokenGetter() {
     MatTabsModule,
     MatListModule
   ],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi:true
+  } ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -1,3 +1,4 @@
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { ApiPaths } from './../shared/urls/api-paths';
 import { environment } from './../shared/urls/base-url';
 import { Observable } from 'rxjs';
@@ -11,7 +12,10 @@ import { IHobby } from '../shared/interfaces/hobby-article';
 })
 export class UserService{
 
-    constructor(private httpClient: HttpClient){}
+    private userPayload:any;
+    constructor(private httpClient: HttpClient){
+        this.userPayload = this.decodeToken();
+    }
     
     baseUrl = environment.baseUrl;
     
@@ -53,6 +57,24 @@ export class UserService{
 
     isLoggedIn(): boolean{
         return !!localStorage.getItem('token');
+    }
+
+    decodeToken(){
+        const jwtHelper = new JwtHelperService();
+        const token = this.getToken()!;
+        return jwtHelper.decodeToken(token);
+    }
+
+    getFullNameFromToken(){
+        if(this.userPayload){
+            return this.userPayload.unique_name;
+        }
+    }
+
+    getRoleFromToken(){
+        if(this.userPayload){
+            return this.userPayload.role;
+        }
     }
 
 }
