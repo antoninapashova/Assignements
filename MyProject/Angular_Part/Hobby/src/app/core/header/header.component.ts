@@ -39,13 +39,11 @@ export class HeaderComponent implements OnInit, OnDestroy{
     this.userStore.getRoleFromStore().subscribe((val:any)=>{
       const roleFromToken = this.userService.getRoleFromToken();
       this.role = val || roleFromToken;
-    })
+    });
+    
+    this.isAuthenticated= this.userService.isLoggedIn();
   }
  
-  isUserLogedIn(){
-   this.isAuthenticated= this.userService.isLoggedIn();
-  }
-
 
   logOut = () => {
      this.userService.signOut();

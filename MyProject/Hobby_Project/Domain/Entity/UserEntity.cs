@@ -19,6 +19,9 @@ namespace HobbyProject.Domain.Entity
         public string Token { get; set; }
         public string Role { get; set; }
         public string Password { get; set; }
+        public string RefreshToken { get; set; }
+        public DateTime RefreshTokenExpiredTime { get; set; }
+
         public virtual ICollection<HobbyEntity> Hobbies { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
     }

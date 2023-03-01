@@ -1,10 +1,5 @@
-﻿using Application.Logger;
-using Application.Repositories;
-using AutoMapper;
-using FluentAssertions;
-using HobbyProject.Application.Helpers;
+﻿using Application.Repositories;
 using HobbyProject.Domain.Entity;
-using MediatR;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -15,52 +10,19 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HobbyProject.Application.User.Command.Login
+namespace HobbyProject.Application.Helpers
 {
-
-    public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand,UserEntity >
+    public class TokenManager : ITokenManager
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ILog _log;
-        private readonly IMapper _mapper;
 
-        public LoginUserCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public TokenManager(IUnitOfWork unitOfWork)
         {
-            _unitOfWork = unitOfWork;
-            _mapper = mapper;
-            _log = SingletonLogger.Instance;
+            this._unitOfWork = unitOfWork;
         }
 
-        public async Task<UserEntity> Handle(LoginUserCommand command, CancellationToken cancellationToken)
+        public string CreateJwtToken(UserEntity user)
         {
-            try
-            {
-              if (command == null) throw new NullReferenceException("Login user command is null");
-
-                var user = await _unitOfWork.UserRepository
-                    .FindByUsername(command.Username);
-                
-                if(!PasswordHasher.VerifyPassword(command.Password, user.Password)) throw new NullReferenceException("Password is incorect!");
-
-                user.Token = CreateJwtToken(user);
-                var newAccessToken = user.Token;
-                var newRefreshToken = CreateRefreshToken();
-                user.RefreshToken = newRefreshToken;
-
-                await _unitOfWork.Save();
-
-                return await Task.FromResult(user);
-            }catch(Exception e)
-            {
-                _log.LogError(e.Message);
-                throw;
-            }
-            
-        } 
-  
-        private string CreateJwtToken(UserEntity user)
-        {
-
             var jwtTokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes("veryverysecret.......");
             var identity = new ClaimsIdentity(new Claim[]
@@ -82,12 +44,12 @@ namespace HobbyProject.Application.User.Command.Login
             return jwtTokenHandler.WriteToken(token);
         }
 
-       public string CreateRefreshToken()
+        public string CreateRefreshToken()
         {
             var tokenBytes = RandomNumberGenerator.GetBytes(64);
             var refreshToken = Convert.ToBase64String(tokenBytes);
 
-            var tokenInUser = _unitOfWork.UserRepository.GetAllEntitiesAsync().Result.Any(a=>a.RefreshToken==refreshToken);
+            var tokenInUser = _unitOfWork.UserRepository.GetAllEntitiesAsync().Result.Any(a => a.RefreshToken == refreshToken);
 
             if (tokenInUser)
             {
@@ -96,7 +58,7 @@ namespace HobbyProject.Application.User.Command.Login
             return refreshToken;
         }
 
-        private ClaimsPrincipal GetPrincipleFromExpiredToken(string token)
+        public ClaimsPrincipal GetPrincipleFromExpiredToken(string token)
         {
             var key = Encoding.ASCII.GetBytes("veryverysecret.......");
             var tokenValidationParameters = new TokenValidationParameters
@@ -111,9 +73,9 @@ namespace HobbyProject.Application.User.Command.Login
             SecurityToken securityToken;
 
             var principal = tokenHandler.ValidateToken(token, tokenValidationParameters, out securityToken);
-            var jwtSecurityToken = securityToken as JwtSecurityToken;   
+            var jwtSecurityToken = securityToken as JwtSecurityToken;
 
-            if(jwtSecurityToken == null || !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
+            if (jwtSecurityToken == null || !jwtSecurityToken.Header.Alg.Equals(SecurityAlgorithms.HmacSha256, StringComparison.InvariantCultureIgnoreCase))
             {
                 throw new SecurityTokenException("This is Invalid Token");
             }
