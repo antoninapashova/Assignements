@@ -505,3 +505,11 @@ Hobby_Project.HobbySubCategory -> HobbyProject.Application.HobbySubCategories.Qu
 [Error]19:59 Object reference not set to an instance of an object.
 *-------------------------------*
 [Error]20:00 Object reference not set to an instance of an object.
+*-------------------------------*
+[Error]1:15 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]1:15 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]1:18 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]1:22 An error occurred while saving the entity changes. See the inner exception for details.

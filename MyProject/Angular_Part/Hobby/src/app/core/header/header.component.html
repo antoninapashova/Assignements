@@ -10,7 +10,7 @@
     <span class="nav-caption">Hello, {{fullName}}</span>
 
   <mat-nav-list class="list-horizontal">
-        <a  routerLink="/subcategory/add"   *ngIf="isAuthenticated && role==='Admin'">
+        <a  routerLink="/subcategory/add" *ngIf="isAuthenticated && role==='Admin'">
             <mat-icon>app_registration</mat-icon> <span class="nav-caption">Create subcategory</span>
         </a>
         <a  routerLink="/user/add-article"  *ngIf="isAuthenticated && (role==='Admin' || role==='User')">

@@ -39,8 +39,9 @@ namespace HobbyProject.Application.User.Command.Create
 
                 UserEntity userEntity = _mapper.Map<UserEntity>(command);
                 userEntity.Password = PasswordHasher.HashPassword(command.Password);
-                userEntity.Role = "User";
+                userEntity.Role = "Admin";
                 userEntity.Token = "";
+                userEntity.RefreshToken = "";
                 await _unitOfWork.UserRepository.Add(userEntity);
                 await _unitOfWork.Save();
 
@@ -57,7 +58,6 @@ namespace HobbyProject.Application.User.Command.Create
         {
             bool isUsernameExists = await _unitOfWork.UserRepository.CheckUsernameExists(username);
             if (isUsernameExists) throw new NullReferenceException("User with that username already exists!");
-
         }
 
         private async Task IsEmailExists(string email)
