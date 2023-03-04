@@ -1,3 +1,4 @@
+import { HeaderComponent } from './core/header/header.component';
 import { AuthGuard } from './auth/auth-guard.guard';
 import { RegisterComponent } from './user/register/register.component';
 import { LoginComponent } from './user/login/login.component';
@@ -123,7 +124,8 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes,
     {
       initialNavigation: 'enabledBlocking',
-    })],
+    })
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -26,6 +26,7 @@ import {MatCardModule} from '@angular/material/card';
 import { AboutComponent } from './about/about.component';
 import { DialogTemplateComponent } from './dialog/dialog-template/dialog-template.component';
 import { DialogService } from './dialog/dialog.service';
+import { DataSharingService } from './data-sharing.service';
 
 
 @NgModule({
@@ -69,7 +70,7 @@ import { DialogService } from './dialog/dialog.service';
     HomeComponent,
     UserCardComponent,
 ],
-providers: [ DialogService ],
+providers: [ DialogService, DataSharingService ],
 entryComponents: [ DialogTemplateComponent ],
 })
 export class CoreModule { }

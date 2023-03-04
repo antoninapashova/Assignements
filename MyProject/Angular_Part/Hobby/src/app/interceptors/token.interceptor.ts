@@ -60,7 +60,7 @@ export class TokenInterceptor implements HttpInterceptor {
     ),
     catchError((err)=>{
       return throwError(()=>{
-        let obj ={title: 'Warning', message: 'Token is expired, Please Login again', type: ModalType.INFO}
+       let obj ={title: 'Warning', message: 'Token is expired, Please Login again', type: ModalType.INFO}
        this.matDialog.open( DialogTemplateComponent, {data: obj});  
        this.router.navigate(['login']) 
       })

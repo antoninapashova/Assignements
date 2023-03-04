@@ -1,8 +1,9 @@
 import { UserStoreService } from './../../user/user-store.service';
 import { UserService } from './../../user/user.service';
 import { Component, EventEmitter, Output, OnInit, OnDestroy } from '@angular/core';
-import {  Subject } from 'rxjs';
-import { Router } from '@angular/router';
+import { Subject } from 'rxjs';
+import { NavigationEnd, Router } from '@angular/router';
+import { DataSharingService } from '../data-sharing.service';
 
 
 @Component({
@@ -12,22 +13,23 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit, OnDestroy{
    
-  isAuthenticated=false;
+  isAuthenticated!: boolean;
   activeUser!: string;
   fullName: string = ""; 
   username!: string;
   role!: string;
+  mySubscription: any;
   private readonly unsubscribe = new Subject<void>();
   @Output() public sidenavToggle = new EventEmitter();
 
- constructor(private userService: UserService, 
-             private router: Router,
-             private userStore:UserStoreService) {}
- 
-  ngOnDestroy(): void {
-    this.unsubscribe.next(undefined);
-    this.unsubscribe.complete();
-  }
+ constructor(private userService: UserService,  private router: Router,
+             private userStore:UserStoreService, private dataSharingService: DataSharingService) {
+      
+              this.dataSharingService.isUserLoggedIn.subscribe( value => {
+                this.isAuthenticated = value;
+            });
+ }
+
  
   ngOnInit(): void {
     this.userStore.getFullNameFromStore().subscribe((val:any)=>{      
@@ -41,16 +43,23 @@ export class HeaderComponent implements OnInit, OnDestroy{
       this.role = val || roleFromToken;
     });
     
-    this.isAuthenticated= this.userService.isLoggedIn();
+    //this.isAuthenticated= this.userService.isLoggedIn();
   }
  
-
   logOut = () => {
      this.userService.signOut();
-     this.router.navigate(['login']);
-  }
+     window.location.reload();
+   }
 
    onToggleSidenav = () => {
     this.sidenavToggle.emit();
+  }
+
+  ngOnDestroy(): void {
+    if (this.mySubscription) {
+        this.mySubscription.unsubscribe();
+    }
+    this.unsubscribe.next(undefined);
+    this.unsubscribe.complete();
   }
 }
