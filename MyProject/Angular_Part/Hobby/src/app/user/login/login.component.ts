@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
           let obj ={title: 'Login', message: 'Login is successful', type: ModalType.INFO}
           this.matDialog.open( DialogTemplateComponent, {data: obj});
           this.userService.storeToken(res.accessToken);
+          this.userService.storeRefreshToken(res.refreshToken);
           const tokenPayload = this.userService.decodeToken();
           this.userStoreService.setFullName(tokenPayload.unique_name);
           this.userStoreService.setRoleForStore(tokenPayload.role);

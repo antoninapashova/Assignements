@@ -6,6 +6,7 @@ import { IUser } from './../shared/interfaces/user';
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { IHobby } from '../shared/interfaces/hobby-article';
+import { TokenApiModel } from '../shared/interfaces/token-api';
 
 @Injectable({
     providedIn: 'root',
@@ -39,7 +40,7 @@ export class UserService{
         return this.httpClient.get<IHobby[]>(`${this.baseUrl}${ApiPaths.User}/${id}`)
     }
 
-    login(obj: Object): Observable<IUser>{
+    login(obj: Object): Observable<any>{
         return this.httpClient.post<IUser>(`${this.baseUrl}${ApiPaths.User}/authenticate`, obj);
     }
 
@@ -51,8 +52,16 @@ export class UserService{
         localStorage.setItem('token', tokenValue);
     }
 
+    storeRefreshToken(tokenValue: string){
+        localStorage.setItem('refreshToken', tokenValue);
+    }
+
     getToken(){
         return localStorage.getItem('token');
+    }
+
+    getRefreshToken(){
+        return localStorage.getItem('refreshToken');
     }
 
     isLoggedIn(): boolean{
@@ -76,5 +85,10 @@ export class UserService{
             return this.userPayload.role;
         }
     }
+
+    
+   renewToken(tokenApi: TokenApiModel){
+    return this.httpClient.post<any>(`${this.baseUrl}${ApiPaths.User}/refresh`, tokenApi)
+   }
 
 }

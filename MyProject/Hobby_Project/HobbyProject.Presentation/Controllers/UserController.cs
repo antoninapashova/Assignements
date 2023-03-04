@@ -1,5 +1,7 @@
-﻿using HobbyProject.Application.User.Command.Create;
+﻿using HobbyProject.Application.User;
+using HobbyProject.Application.User.Command.Create;
 using HobbyProject.Application.User.Command.Login;
+using HobbyProject.Application.User.Command.RefreshToken;
 using HobbyProject.Application.User.Query.GetById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -30,11 +32,9 @@ namespace HobbyProject.Presentation.Controllers
             return Ok(result);
         }
 
-
         [HttpPost]
         public async Task<ActionResult> AddUser([FromBody] CreateUserCommand command)
         {
-            
             var result = await _mediator.Send(command);
             return CreatedAtAction(nameof(GetById), new { id = result }, result);
         }
@@ -47,11 +47,25 @@ namespace HobbyProject.Presentation.Controllers
 
             if (result == null) return NotFound(new { Message = "User not found" });
             
-            return Ok(new
+            return Ok(new TokenApiDto
             {
-                Token = result.Token,
-                Message = "Login success"
+                AccessToken = result.Token,
+                RefreshToken = result.RefreshToken
             });
+        }
+
+        [HttpPost("refresh")]
+        public async Task<IActionResult> Refresh(RefreshTokenCommand tokenCommand)
+        {
+            if (tokenCommand is null) return BadRequest("Invalid Client Request");
+            var result = await _mediator.Send(tokenCommand);
+
+            return Ok(new TokenApiDto()
+            {
+                AccessToken = result.AccessToken,
+                RefreshToken = result.RefreshToken,
+            });
+
         }
     }
 }
