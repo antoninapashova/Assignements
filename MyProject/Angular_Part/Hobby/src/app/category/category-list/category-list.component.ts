@@ -1,3 +1,4 @@
+import { DataSharingService } from './../../core/data-sharing.service';
 import { AddCategoryComponent } from './../add-category/add-category.component';
 import { ISubCategory } from './../../shared/interfaces/subcategory';
 import { CategoryService } from './../category.service';
@@ -5,6 +6,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ICategory } from 'src/app/shared/interfaces/category';
 import { MatTable } from '@angular/material/table';
 import { MatDialog } from '@angular/material/dialog';
+import { DialogTemplateComponent, ModalType } from 'src/app/core/dialog/dialog-template/dialog-template.component';
 
 @Component({
   selector: 'app-category-list',
@@ -12,21 +14,27 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./category-list.component.css']
 })
 export class CategoryListComponent implements OnInit {
-  displayedColumns: string[] = ['id', 'name', 'action'];
+   displayedColumns: string[] = ['id', 'name','created-date', 'action'];
 
     categories: ICategory[] = [];
     subCategories: ISubCategory[] | undefined;
     category! : ICategory | undefined;  
-
+    isAdded!: boolean;
     @ViewChild(MatTable, {static:true}) table!: MatTable<any>;
 
-    constructor(private categoryService: CategoryService, 
-      public dialog: MatDialog){}
-    
+    constructor(private categoryService: CategoryService, private dataSharingService: DataSharingService,
+      public dialog: MatDialog){
+        
+        this.dataSharingService.isCategoryAdded.subscribe( value => {
+          this.isAdded= value;
+       });
+      }
+
   ngOnInit(): void {
       this.categoryService.getCategories().subscribe(res=>{
-        console.log(res);
         this.categories = res;
+        this.categories.forEach(x=>x.createdDate=x.createdDate.substring(0, 10)); 
+        console.log(res);
      });
    }
    
@@ -47,18 +55,28 @@ openDialog(action: any, obj: any ) {
 }
 
 addRowData(obj: any){
-    this.categoryService.addCategory({name: obj.name}).subscribe();
-    this.table.renderRows();
-}
+    this.categoryService.addCategory({name: obj.name}).subscribe(
+    {
+      next:(res)=>{
+        console.log(res);
+        let obj ={title: 'Add category', message: 'New category is added successful', type: ModalType.INFO}
+             this.dialog.open( DialogTemplateComponent, {data: obj})
+            this.dataSharingService.isCategoryAdded.next(true);
+            
+            this.table.renderRows();
+        },
+        error:(err)=>{
+          console.log(err);
+          let obj ={title: 'Add category', message: err.error.detail, type: ModalType.WARN}
+          this.dialog.open( DialogTemplateComponent, {data: obj})
+        }
+    });
+    
+   }
 
-deleteRowData(obj: any){
-  console.log(obj.id);
- this.categoryService.delete(obj.id).subscribe();
-}
+  deleteRowData(obj: any){
+    this.categoryService.delete(obj.id).subscribe();
+  }
 
-toggle(id: any): void{
-   this.category =  this.categories.find(x=>x.id==id);
-   this.subCategories = this.category?.hobbySubCategories;
-}
 
 }

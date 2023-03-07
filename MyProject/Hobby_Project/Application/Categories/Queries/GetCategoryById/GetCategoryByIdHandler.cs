@@ -32,7 +32,9 @@ namespace HobbyProject.Application.Categories.Queries.GetCategoryById
                     throw new NullReferenceException("Get category by Id query is null!");
 
                 var category = await _unitOfWork.CategoryRepository.GetByIdAsync(request.Id);
+                category.CreatedDate.ToString("MM/dd/yyyy");
                 var result =  _mapper.Map<CategoryDto>(category);
+                
                 return await Task.FromResult(result);
 
             }catch (Exception e)

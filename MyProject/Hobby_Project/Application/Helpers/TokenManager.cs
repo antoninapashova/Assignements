@@ -28,7 +28,7 @@ namespace HobbyProject.Application.Helpers
             var identity = new ClaimsIdentity(new Claim[]
             {
                 new Claim(ClaimTypes.Role, user.Role),
-                new Claim(ClaimTypes.Name, $"{user.Username}" )
+                new Claim(ClaimTypes.Name, $"{user.Username}")
             });
 
             var credentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256);
@@ -36,7 +36,7 @@ namespace HobbyProject.Application.Helpers
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = identity,
-                Expires = DateTime.Now.AddSeconds(10),
+                Expires = DateTime.Now.AddSeconds(5),
                 SigningCredentials = credentials
             };
 
@@ -66,7 +66,8 @@ namespace HobbyProject.Application.Helpers
                 ValidateAudience = false,
                 ValidateIssuer = false,
                 ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(key)
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateLifetime = false
             };
 
             var tokenHandler = new JwtSecurityTokenHandler();

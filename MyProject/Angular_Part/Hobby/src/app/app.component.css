@@ -1,14 +1,15 @@
 mat-sidenav-container, mat-sidenav-content, mat-sidenav {
     height: 100%;
+   
 }
 
 mat-sidenav-container{
-     background-image: url("https://res.cloudinary.com/dpqbf79wg/image/upload/v1674676618/Hobby%20Blog/eyyiaowrt3vzdkqffvid.jpg");
-     background-repeat: no-repeat;
+     background-image: url("https://res.cloudinary.com/dpqbf79wg/image/upload/v1674676618/Hobby%20Blog/eyyiaowrt3vzdkqffvid.jpg"); 
+     background-repeat: no-repeat;  
 }
 
 mat-sidenav {
-    width: 250px;
+    width: 250px; 
 }
 
 .welcome {

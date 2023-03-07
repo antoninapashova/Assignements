@@ -28,7 +28,7 @@ namespace HobbyProject.Presentation.Controllers
             _mediator = mediator;
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<ActionResult> GetAllCategories()
         {
@@ -55,7 +55,7 @@ namespace HobbyProject.Presentation.Controllers
             return Ok(result);
         }
 
-        [Authorize(Roles ="Admin")]
+        //[Authorize(Roles ="Admin")]
         [HttpPost]
         public async Task<ActionResult> AddCategory([FromBody] CreateCategoryCommand command)
         {
@@ -76,7 +76,7 @@ namespace HobbyProject.Presentation.Controllers
              return Ok(result);
         }
 
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         [HttpDelete]
         [Route("{id}")]
         public async Task<ActionResult> DeleteCategory(int id)

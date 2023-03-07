@@ -41,7 +41,7 @@ export class UserService{
     }
 
     login(obj: Object): Observable<any>{
-        return this.httpClient.post<IUser>(`${this.baseUrl}${ApiPaths.User}/authenticate`, obj);
+        return this.httpClient.post<any>(`${this.baseUrl}${ApiPaths.User}/authenticate`, obj);
     }
 
     signOut(){
@@ -85,10 +85,9 @@ export class UserService{
             return this.userPayload.role;
         }
     }
-
     
    renewToken(tokenApi: TokenApiModel){
-    return this.httpClient.post<any>(`${this.baseUrl}${ApiPaths.User}/refresh`, tokenApi)
+      return this.httpClient.post<any>(`${this.baseUrl}${ApiPaths.User}/refresh`, tokenApi)
    }
 
 }

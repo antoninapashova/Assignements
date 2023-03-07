@@ -32,8 +32,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 
 export function tokenGetter() {
-  return localStorage.getItem("access_token");
+  return localStorage.getItem("token");
 }
+
 @NgModule({
   declarations: [
     AppComponent,

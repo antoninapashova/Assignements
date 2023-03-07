@@ -3,8 +3,10 @@ using Application.Repositories;
 using AutoMapper;
 using Hobby_Project;
 using MediatR;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,10 +32,15 @@ namespace HobbyProject.Application.Categories.Queries.GetAllCategories
                IEnumerable<Category> categories =
                     await _unitOfWork.CategoryRepository.GetAllEntitiesAsync();
 
-               List<CategoryDto> categoryListVms = 
-                    _mapper.Map<List<CategoryDto>>(categories.ToList());
+                foreach(var el in categories)
+                {
+                     el.CreatedDate.ToString("MM/dd/yyyy");
+                }
 
-               return await Task.FromResult(categoryListVms.ToList());
+                List<CategoryDto> categoryListVms = 
+                    _mapper.Map<List<CategoryDto>>(categories.ToList());
+               
+                return await Task.FromResult(categoryListVms);
             }catch (Exception e)
             {
                 _log.LogError(e.Message);

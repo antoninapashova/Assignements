@@ -1,5 +1,4 @@
 .header {
-  position: fixed;
   background-color: transparent;
 }
 
@@ -38,5 +37,4 @@ mat-icon{
       border-radius: 0px;
   }
 }
-
 

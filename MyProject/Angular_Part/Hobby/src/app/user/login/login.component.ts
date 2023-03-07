@@ -36,10 +36,9 @@ export class LoginComponent implements OnInit {
      if(form.valid){         
        this.userService.login(form.value).subscribe({
         next:(res)=>{
+          console.log(res);
           let obj ={title: 'Login', message: 'Login is successful', type: ModalType.INFO}
           this.matDialog.open( DialogTemplateComponent, {data: obj});
-          console.log(res.accessToken);
-          console.log(res.refreshToken);
           this.userService.storeToken(res.accessToken);
           this.userService.storeRefreshToken(res.refreshToken);
           const tokenPayload = this.userService.decodeToken();
@@ -50,10 +49,9 @@ export class LoginComponent implements OnInit {
          },
         error:(err)=>{
           let obj ={title: 'Login', message: err.error.detail, type: ModalType.WARN}
-          console.log(obj);
           this.matDialog.open( DialogTemplateComponent, {data: obj})
         }
-       })
+       });
      }
    }
 

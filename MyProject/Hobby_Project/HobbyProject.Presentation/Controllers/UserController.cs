@@ -58,6 +58,7 @@ namespace HobbyProject.Presentation.Controllers
         public async Task<IActionResult> Refresh(RefreshTokenCommand tokenCommand)
         {
             if (tokenCommand is null) return BadRequest("Invalid Client Request");
+
             var result = await _mediator.Send(tokenCommand);
 
             return Ok(new TokenApiDto()

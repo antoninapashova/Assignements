@@ -13,12 +13,12 @@ export class AddCategoryComponent {
   
    constructor(public dialogRef: MatDialogRef<AddCategoryComponent>,
               @Optional() @Inject(MAT_DIALOG_DATA) public category: ICategory ){
-                this.local_data = {...category};
+              this.local_data = {...category};
     this.action = this.local_data.action;
   }
 
   doAction(){
-    this.dialogRef.close({event:this.action,data:this.local_data});
+    this.dialogRef.close({event:this.action, data:this.local_data});
   }
 
   closeDialog(){

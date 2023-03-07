@@ -31,8 +31,6 @@ export class CategoryService {
        });
 
        const body = JSON.stringify(category);
-       console.log(category);
-       console.log(body);
 
         return this.httpClient.post<any>(`${this.baseUrl}${ApiPaths.Category}`,  category, {headers: headers} );
          

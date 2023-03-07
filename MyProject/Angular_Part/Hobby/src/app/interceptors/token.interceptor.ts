@@ -1,25 +1,18 @@
 import { TokenApiModel } from './../shared/interfaces/token-api';
 import { UserService } from './../user/user.service';
 import { Injectable } from '@angular/core';
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor,
-  HttpErrorResponse
-} from '@angular/common/http';
+import {HttpRequest,HttpHandler,HttpEvent,HttpInterceptor,HttpErrorResponse} from '@angular/common/http';
 import { catchError, Observable, switchMap, throwError } from 'rxjs';
 import { DialogTemplateComponent, ModalType } from '../core/dialog/dialog-template/dialog-template.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { DialogService } from '../core/dialog/dialog.service';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
   constructor(private userService: UserService, 
               private matDialog: MatDialog,
-              private router: Router, private dialogService: DialogService  ) {}
+              private router: Router) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const token = this.userService.getToken();
@@ -31,7 +24,7 @@ export class TokenInterceptor implements HttpInterceptor {
     }
     
     return next.handle(request).pipe(
-      catchError((err)=>{
+      catchError((err:any)=>{
         if(err instanceof HttpErrorResponse){
            if(err.status === 401){
             return this.handleUnauthorizedError(request, next);       
@@ -50,6 +43,7 @@ export class TokenInterceptor implements HttpInterceptor {
     return this.userService.renewToken(tokenApiModel)
     .pipe(
       switchMap((data:TokenApiModel)=>{
+        console.log(tokenApiModel);
         this.userService.storeRefreshToken(data.refreshToken);
         this.userService.storeToken(data.accessToken);
         req = req.clone({
@@ -60,6 +54,7 @@ export class TokenInterceptor implements HttpInterceptor {
     ),
     catchError((err)=>{
       return throwError(()=>{
+        console.log(err);
        let obj ={title: 'Warning', message: 'Token is expired, Please Login again', type: ModalType.INFO}
        this.matDialog.open( DialogTemplateComponent, {data: obj});  
        this.router.navigate(['login']) 

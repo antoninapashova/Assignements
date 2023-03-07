@@ -513,3 +513,7 @@ Hobby_Project.HobbySubCategory -> HobbyProject.Application.HobbySubCategories.Qu
 [Error]1:18 An error occurred while saving the entity changes. See the inner exception for details.
 *-------------------------------*
 [Error]1:22 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]20:23 Category is null!
+*-------------------------------*
+[Error]22:19 IDX12741: JWT: '[PII of type 'System.String' is hidden. For more details, see https://aka.ms/IdentityModel/PII.]' must have three segments (JWS) or five segments (JWE).

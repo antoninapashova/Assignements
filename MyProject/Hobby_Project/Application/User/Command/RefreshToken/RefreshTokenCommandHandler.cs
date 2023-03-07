@@ -28,7 +28,7 @@ namespace HobbyProject.Application.User.Command.RefreshToken
         {
             try
             {
-              var principal = _tokenManager.GetPrincipleFromExpiredToken(command.AccessToken);
+               var principal = _tokenManager.GetPrincipleFromExpiredToken(command.AccessToken);
                var username = principal.Identity.Name;
                var user = _unitOfWork.UserRepository.GetAllEntitiesAsync().Result.FirstOrDefault(u => u.Username == username);
 
