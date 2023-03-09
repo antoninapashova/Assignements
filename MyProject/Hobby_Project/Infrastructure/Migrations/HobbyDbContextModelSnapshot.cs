@@ -154,6 +154,13 @@ namespace HobbyProject.Infrastructure.Migrations
                     b.Property<DateTime>("RefreshTokenExpiredTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("ResetPasswordExpiry")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ResetPasswordToken")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Role")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

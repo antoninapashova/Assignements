@@ -81,6 +81,9 @@ builder.Services.AddAuthentication(x =>
         ValidateIssuer = false
     };
 });
+
+//builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
+
 builder.Services.AddOptions();
 
 var app = builder.Build();

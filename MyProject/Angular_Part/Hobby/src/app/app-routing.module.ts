@@ -1,3 +1,4 @@
+import { ForgetPasswordComponent } from './user/forget-password/forget-password.component';
 import { AuthGuard } from './auth/auth-guard.guard';
 import { RegisterComponent } from './user/register/register.component';
 import { LoginComponent } from './user/login/login.component';
@@ -22,6 +23,10 @@ const routes: Routes = [
      path: 'register',
      component: RegisterComponent
     },
+     {
+     path: 'forgot-password',
+     component: ForgetPasswordComponent
+     },
    {
     path: 'add-category',
     component: AddCategoryComponent,

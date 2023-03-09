@@ -26,6 +26,7 @@
             <mat-error *ngIf="loginUserForm.controls['password'].errors?.['required']">Password is required</mat-error>
             <mat-error *ngIf="loginUserForm.controls['password'].errors?.['minlenght']">Password must be more al least 5 characters</mat-error>
           </mat-form-field>
+          <a (click)="openDialog()">Forgot password?</a>  
         </mat-card-content>
         <button mat-stroked-button color="accent" class="btn-block">Sign in</button>
         <span>Don't have an account? Create one for free </span> <a routerLink="/register">Sign Up</a>

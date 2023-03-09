@@ -28,7 +28,7 @@ namespace HobbyProject.Presentation.Controllers
             _mediator = mediator;
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult> GetAllCategories()
         {
@@ -36,7 +36,7 @@ namespace HobbyProject.Presentation.Controllers
             return Ok(result);
         }
 
-        
+        [Authorize]
         [HttpGet]
         [Route("{id}")]
         public async Task<ActionResult> GetById(int id)
@@ -46,6 +46,7 @@ namespace HobbyProject.Presentation.Controllers
             return Ok(result);
         }
 
+        [Authorize]
         [HttpGet]
         [Route("{categoryId}/subCategories/{subCategoryId}")]
         public async Task<ActionResult> GetSubCategoryFromCategory(int categoryId, int subCategoryId)
@@ -55,7 +56,7 @@ namespace HobbyProject.Presentation.Controllers
             return Ok(result);
         }
 
-        //[Authorize(Roles ="Admin")]
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult> AddCategory([FromBody] CreateCategoryCommand command)
         {
@@ -66,7 +67,7 @@ namespace HobbyProject.Presentation.Controllers
             return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         [HttpPut]
         [Route("{id}")]
         public async Task<ActionResult> UpdateCategory(int id, [FromBody] EditCategoryCommand editCategory)
@@ -76,7 +77,7 @@ namespace HobbyProject.Presentation.Controllers
              return Ok(result);
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize]
         [HttpDelete]
         [Route("{id}")]
         public async Task<ActionResult> DeleteCategory(int id)

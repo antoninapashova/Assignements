@@ -14,7 +14,7 @@ import { DialogTemplateComponent, ModalType } from 'src/app/core/dialog/dialog-t
   styleUrls: ['./category-list.component.css']
 })
 export class CategoryListComponent implements OnInit {
-   displayedColumns: string[] = ['id', 'name','created-date', 'action'];
+    displayedColumns: string[] = ['id', 'name','created-date', 'action'];
 
     categories: ICategory[] = [];
     subCategories: ISubCategory[] | undefined;
@@ -61,8 +61,7 @@ addRowData(obj: any){
         console.log(res);
         let obj ={title: 'Add category', message: 'New category is added successful', type: ModalType.INFO}
              this.dialog.open( DialogTemplateComponent, {data: obj})
-            this.dataSharingService.isCategoryAdded.next(true);
-            
+             this.dataSharingService.isCategoryAdded.next(true);
             this.table.renderRows();
         },
         error:(err)=>{
@@ -71,8 +70,7 @@ addRowData(obj: any){
           this.dialog.open( DialogTemplateComponent, {data: obj})
         }
     });
-    
-   }
+}
 
   deleteRowData(obj: any){
     this.categoryService.delete(obj.id).subscribe();

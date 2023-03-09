@@ -1,7 +1,8 @@
+import { ForgetPasswordComponent } from './../forget-password/forget-password.component';
 import { DataSharingService } from './../../core/data-sharing.service';
 import { UserStoreService } from './../user-store.service';
 import { ModalType } from './../../core/dialog/dialog-template/dialog-template.component';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { UserService } from './../user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,  Validators } from '@angular/forms';
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
   hide : boolean = true;
   loginUserForm: FormGroup = new FormGroup({});
 
-  constructor(private formBuilder: FormBuilder, private router: Router, 
+  constructor(private formBuilder: FormBuilder, private router: Router,
               private userService: UserService,private jwtHelper : JwtHelperService,
               private matDialog: MatDialog, private userStoreService: UserStoreService, private dataSharingService: DataSharingService
            ) { }
@@ -63,4 +64,7 @@ export class LoginComponent implements OnInit {
     else {return false;}
   }
 
+  openDialog(){
+      this.matDialog.open(ForgetPasswordComponent)
+  }
 }
