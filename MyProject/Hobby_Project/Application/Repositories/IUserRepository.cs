@@ -12,6 +12,7 @@ namespace HobbyProject.Application.Repositories
     public interface IUserRepository : IRepository<UserEntity>
     {
         public Task<UserEntity> FindByUsername(string username);
+        public Task<UserEntity> FindByEmail(string email);
         public Task<bool> CheckUsernameExists(string username);
         public Task<bool> CheckEmailExists(string email);
     }

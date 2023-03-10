@@ -1,11 +1,15 @@
 ﻿using HobbyProject.Application.User;
 using HobbyProject.Application.User.Command.Create;
+using HobbyProject.Application.User.Command.ForgetPassword;
 using HobbyProject.Application.User.Command.Login;
 using HobbyProject.Application.User.Command.RefreshToken;
+using HobbyProject.Application.User.Command.ResetPassword;
 using HobbyProject.Application.User.Query.GetById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.IdentityModel.Tokens;
+using System.Drawing;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -66,7 +70,22 @@ namespace HobbyProject.Presentation.Controllers
                 AccessToken = result.AccessToken,
                 RefreshToken = result.RefreshToken,
             });
-
         }
+
+        
+        [HttpPost("send-reset-email/{email}")]
+        public async Task<IActionResult> SendEmail(ForgetPasswordCommand command)
+        {
+            var result = _mediator.Send(command);
+            return Ok(result);
+        }
+
+        [HttpPost("reset-password")]
+        public async Task<IActionResult> ResetPassword(ResetPasswordCommand command)
+        {
+            var result = _mediator.Send(command);
+            return Ok(result);
+        }
+
     }
 }
