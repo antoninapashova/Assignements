@@ -13,7 +13,6 @@ using HobbyProject.Application.Repositories;
 using HobbyProject.Infrastructure.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.Extensions.DependencyInjection;
 using System.Text;
 using HobbyProject.Application.Helpers;
 
@@ -56,7 +55,6 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserConfiguration, UserConfiguration>();
 builder.Services.AddScoped<ITokenManager, TokenManager>();
 builder.Services.AddScoped<IEmailService, EmailService>();
-
 
 builder.Services.AddMediatR(typeof(GetCategoriesListQuery).GetTypeInfo().Assembly);
 builder.Services.AddAutoMapper(typeof(HobbyProject.Application.AssemblyMarketPresentatio));

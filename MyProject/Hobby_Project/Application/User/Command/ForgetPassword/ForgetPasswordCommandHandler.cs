@@ -37,8 +37,7 @@ namespace HobbyProject.Application.User.Command.ForgetPassword
             {
               var user = await _unitOfWork.UserRepository.FindByEmail(command.Email);
 
-              if (user == null) 
-                    throw new NullReferenceException("User with that email does not exists!");
+              if (user == null) throw new NullReferenceException("User with that email does not exists!");
 
               var tokenBytes = RandomNumberGenerator.GetBytes(64);
               var emailToken = Convert.ToBase64String(tokenBytes);
@@ -47,9 +46,9 @@ namespace HobbyProject.Application.User.Command.ForgetPassword
               string from = _emailSettings.From;
               var emailModel = new EmailModel(command.Email, "Reset password!", EmailBody.EmailStringBody(command.Email, emailToken));
               _emailService.SendEmail(emailModel);
-                await _unitOfWork.UserRepository.Update(user);
+              await _unitOfWork.UserRepository.Update(user);
               await _unitOfWork.Save();
-              return user.Email;
+              return await Task.FromResult(user.Email);
             }catch(Exception e)
             {
                 _log.LogError(e.Message);

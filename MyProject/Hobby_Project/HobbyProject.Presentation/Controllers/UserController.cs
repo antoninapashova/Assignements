@@ -72,18 +72,22 @@ namespace HobbyProject.Presentation.Controllers
             });
         }
 
-        
-        [HttpPost("send-reset-email/{email}")]
-        public async Task<IActionResult> SendEmail(ForgetPasswordCommand command)
+
+        [HttpGet("send-reset-email/{email}")]
+        public async Task<IActionResult> SendEmail(string email)
         {
-            var result = _mediator.Send(command);
+            var command = new ForgetPasswordCommand
+            {
+                Email = email
+             };
+            var result = await _mediator.Send(command);
             return Ok(result);
         }
 
         [HttpPost("reset-password")]
         public async Task<IActionResult> ResetPassword(ResetPasswordCommand command)
         {
-            var result = _mediator.Send(command);
+            var result = await _mediator.Send(command);
             return Ok(result);
         }
 

@@ -1,7 +1,8 @@
-import { UserService } from 'src/app/user/user.service';
+import { ResetPasswordService } from './../reset-password.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { DialogTemplateComponent, ModalType } from 'src/app/core/dialog/dialog-template/dialog-template.component';
 
 @Component({
   selector: 'app-forget-password',
@@ -12,17 +13,29 @@ export class ForgetPasswordComponent implements OnInit{
 
   resetPasswordForm: FormGroup = new FormGroup({});
 
-  constructor(private formBuilder: FormBuilder, public dialogRef: MatDialogRef<ForgetPasswordComponent>, private userService: UserService){}
+  constructor(private formBuilder: FormBuilder, public dialogRef: MatDialogRef<ForgetPasswordComponent>, private matDialog: MatDialog,
+     private resetPasswordService: ResetPasswordService){}
 
   ngOnInit(): void {
     this.resetPasswordForm = this.formBuilder.group({
       email: [null, [Validators.required, Validators.minLength(5), Validators.email]],
     });
   }
+
   onSubmit (form: FormGroup) {
     if(form.valid){
-      console.log(form.value);
-      //this.userService.resetPassword
+      console.log(form.value.email);
+      this.resetPasswordService.sendResetPassworLink(form.value.email).subscribe({
+        next: (res)=>{
+           let obj ={title: 'Send email', message: 'Email is send successfull', type: ModalType.INFO}
+           this.matDialog.open( DialogTemplateComponent, {data: obj});
+        },
+        error: (err)=>{
+          console.log(err);
+          let obj ={title: 'Send email', message: 'Something went wrong', type: ModalType.WARN}
+          this.matDialog.open( DialogTemplateComponent, {data: obj});
+        }
+      });
     }
   }
 

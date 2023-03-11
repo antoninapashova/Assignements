@@ -52,24 +52,27 @@ namespace HobbyProject.Infrastructure.Repository
             _context.Update(entity);
             return entity;
         }
+
         public async Task<UserEntity> FindByUsername(string username)
         {
             return await _context.Users.FirstOrDefaultAsync(x => x.Username == username);
         }
+
         public async Task<UserEntity> FindByEmail(string email)
         {
             return await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
         }
+
         public async Task<bool> CheckUsernameExists(string username)
         {
             return await _context.Users.AnyAsync(x => x.Username == username);
-            
         }
+
         public async Task<bool> CheckEmailExists(string email)
         {
             return await _context.Users.AnyAsync(x => x.Email == email);
-           
         }
+
         public async Task<UserEntity> FindById(int id)
         {
             var user = await _context.Users
@@ -79,7 +82,5 @@ namespace HobbyProject.Infrastructure.Repository
 
             return user;
         }
-
-       
     }
 }

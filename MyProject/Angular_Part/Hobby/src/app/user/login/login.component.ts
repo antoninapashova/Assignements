@@ -2,7 +2,7 @@ import { ForgetPasswordComponent } from './../forget-password/forget-password.co
 import { DataSharingService } from './../../core/data-sharing.service';
 import { UserStoreService } from './../user-store.service';
 import { ModalType } from './../../core/dialog/dialog-template/dialog-template.component';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { UserService } from './../user.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,  Validators } from '@angular/forms';
@@ -23,7 +23,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder, private router: Router,
               private userService: UserService,private jwtHelper : JwtHelperService,
-              private matDialog: MatDialog, private userStoreService: UserStoreService, private dataSharingService: DataSharingService
+              private matDialog: MatDialog, private userStoreService: UserStoreService, 
+              private dataSharingService: DataSharingService
            ) { }
 
   ngOnInit(): void {
@@ -34,10 +35,9 @@ export class LoginComponent implements OnInit {
   }
   
   onSubmit (form: FormGroup) {
-     if(form.valid){         
+     if(form.valid){        
        this.userService.login(form.value).subscribe({
         next:(res)=>{
-          console.log(res);
           let obj ={title: 'Login', message: 'Login is successful', type: ModalType.INFO}
           this.matDialog.open( DialogTemplateComponent, {data: obj});
           this.userService.storeToken(res.accessToken);
@@ -65,6 +65,6 @@ export class LoginComponent implements OnInit {
   }
 
   openDialog(){
-      this.matDialog.open(ForgetPasswordComponent)
+    this.matDialog.open(ForgetPasswordComponent)
   }
 }

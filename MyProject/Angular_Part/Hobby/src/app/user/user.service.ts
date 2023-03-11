@@ -14,12 +14,12 @@ import { TokenApiModel } from '../shared/interfaces/token-api';
 export class UserService{
 
     private userPayload:any;
+    baseUrl = environment.baseUrl;
+
     constructor(private httpClient: HttpClient){
         this.userPayload = this.decodeToken();
     }
-    
-    baseUrl = environment.baseUrl;
-    
+     
     getById(id: string) : Observable<IUser>{
         return this.httpClient.get<IUser>(`${this.baseUrl}${ApiPaths.User}/${id}`);
     }
