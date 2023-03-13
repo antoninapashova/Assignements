@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit{
           },
           error:(err)=>{
             console.log(err);
-            let obj ={title: 'Sign up', message: err.error.detail, type: ModalType.WARN}
+            let obj ={title: 'Sign up', message: err, type: ModalType.WARN}
             form.reset();
             this.matDialog.open( DialogTemplateComponent, {data: obj})
          }

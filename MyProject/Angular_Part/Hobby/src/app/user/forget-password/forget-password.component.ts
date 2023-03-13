@@ -33,7 +33,7 @@ export class ForgetPasswordComponent implements OnInit{
         },
         error: (err)=>{
           console.log(err);
-          let obj ={title: 'Send email', message: err.detail, type: ModalType.WARN}
+          let obj ={title: 'Send email', message: err, type: ModalType.WARN}
           this.matDialog.open( DialogTemplateComponent, {data: obj});
           this.closeDialog();
         }

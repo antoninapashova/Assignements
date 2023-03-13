@@ -30,7 +30,7 @@ export class TokenInterceptor implements HttpInterceptor {
             return this.handleUnauthorizedError(request, next);       
            }
         }
-        return throwError(()=>new Error("Some other error occured"));
+        return throwError(()=>new Error(err.error.detail));
       })
     );
   }

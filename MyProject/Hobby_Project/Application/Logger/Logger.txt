@@ -4,3 +4,17 @@
 [Error]22:34 User with that email does not exists!
 *-------------------------------*
 [Error]22:37 User with that email does not exists!
+*-------------------------------*
+[Error]17:50 User with that email does not exists!
+*-------------------------------*
+[Error]20:16 User with that email does not exists!
+*-------------------------------*
+[Error]20:17 Token is expired
+*-------------------------------*
+[Error]20:19 Token is expired
+*-------------------------------*
+[Error]21:45 User with that email does not exists!
+*-------------------------------*
+[Error]21:47 User with that email does not exists!
+*-------------------------------*
+[Error]21:49 User with that email does not exists!

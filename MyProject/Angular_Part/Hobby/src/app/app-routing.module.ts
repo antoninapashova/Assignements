@@ -1,3 +1,4 @@
+import { ResetPasswordComponent } from './user/reset-password/reset-password.component';
 import { ForgetPasswordComponent } from './user/forget-password/forget-password.component';
 import { AuthGuard } from './auth/auth-guard.guard';
 import { RegisterComponent } from './user/register/register.component';
@@ -27,7 +28,11 @@ const routes: Routes = [
      path: 'forgot-password',
      component: ForgetPasswordComponent
      },
-   {
+     {
+        path: 'reset',
+        component: ResetPasswordComponent
+     },
+     {
     path: 'add-category',
     component: AddCategoryComponent,
     canActivate: [AuthGuard],

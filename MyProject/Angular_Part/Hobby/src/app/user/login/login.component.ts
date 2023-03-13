@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
           this.dataSharingService.isUserLoggedIn.next(true);
          },
         error:(err)=>{
-          let obj ={title: 'Login', message: err.error.detail, type: ModalType.WARN}
+          let obj ={title: 'Login', message: err, type: ModalType.WARN}
           this.matDialog.open( DialogTemplateComponent, {data: obj})
         }
        });
