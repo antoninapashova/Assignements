@@ -62,8 +62,8 @@ export class LoginComponent implements OnInit {
       return true;
     }
     else {return false;}
-  }
-
+  } 
+  
   openDialog(){
     this.matDialog.open(ForgetPasswordComponent)
   }

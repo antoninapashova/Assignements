@@ -15,7 +15,7 @@ namespace HobbyProject.Application.Helpers
                       <body>
                           <div>  
                               <h1>Reset password</h1>
-                               <p>Please tap the link below to choose a new password.</p> 
+                               <p>Please follow the link below to choose a new password.</p> 
                                <a href=""http://localhost:4200/reset?email={email}&code={emailToken}"">Reset password</a>
                                 <p>Kind regards, Hobby blog app</p>
                           </div>

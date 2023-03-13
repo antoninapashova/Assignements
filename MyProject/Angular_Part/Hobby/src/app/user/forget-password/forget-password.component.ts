@@ -27,13 +27,15 @@ export class ForgetPasswordComponent implements OnInit{
       console.log(form.value.email);
       this.resetPasswordService.sendResetPassworLink(form.value.email).subscribe({
         next: (res)=>{
-           let obj ={title: 'Send email', message: 'Email is send successfull', type: ModalType.INFO}
+           let obj ={title: 'Send email', message: 'Email is send successfull!', type: ModalType.INFO}
            this.matDialog.open( DialogTemplateComponent, {data: obj});
+           this.closeDialog();
         },
         error: (err)=>{
           console.log(err);
-          let obj ={title: 'Send email', message: 'Something went wrong', type: ModalType.WARN}
+          let obj ={title: 'Send email', message: err.detail, type: ModalType.WARN}
           this.matDialog.open( DialogTemplateComponent, {data: obj});
+          this.closeDialog();
         }
       });
     }

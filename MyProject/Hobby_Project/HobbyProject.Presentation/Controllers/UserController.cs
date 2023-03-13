@@ -81,7 +81,7 @@ namespace HobbyProject.Presentation.Controllers
                 Email = email
              };
             var result = await _mediator.Send(command);
-            return Ok(result);
+            return Ok();
         }
 
         [HttpPost("reset-password")]
