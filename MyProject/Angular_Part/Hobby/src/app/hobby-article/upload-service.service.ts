@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpBackend, HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
     providedIn: 'root',
 })
 export class UploadService{
 
-    constructor(private _http: HttpClient){}
+    private httpClient: HttpClient;
+
+    constructor(handler: HttpBackend){this.httpClient = new HttpClient(handler);}
 
     uploadImage(vals: any): Observable<any>{
         let data = vals;
-        return this._http.post<any>('https://api.cloudinary.com/v1_1/dpqbf79wg/image/upload',  data)
+        return this.httpClient.post<any>('https://api.cloudinary.com/v1_1/dpqbf79wg/image/upload',  data)
     }
-
-    
 }

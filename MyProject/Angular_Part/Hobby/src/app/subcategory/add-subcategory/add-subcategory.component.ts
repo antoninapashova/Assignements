@@ -22,17 +22,12 @@ export class AddSubcategoryComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log(form.value);
-
     this.subCategory = form.value;
     this.subCategoryService.addSubCategory(this.subCategory).subscribe(response=>{
       if(response){
         this.isSuccessfull = true;
      }
-     console.log(this.subCategory);
      form.reset();
     });
-
-    console.log(this.subCategory);
-  }
+    }
 }

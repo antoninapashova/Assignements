@@ -27,7 +27,6 @@ namespace HobbyProject.Presentation.Controllers
         {
             _mediator = mediator;
         }
-        //(Roles = "Admin, User")
         
         [Authorize]
         [HttpGet]
@@ -37,7 +36,7 @@ namespace HobbyProject.Presentation.Controllers
             return Ok(result);
         }
 
-        [Authorize(Roles = "Admin, User")]
+        [Authorize]
         [HttpGet]
         [Route("{id}")]
         public async Task<IActionResult> GetById(int id)
@@ -47,7 +46,7 @@ namespace HobbyProject.Presentation.Controllers
             return Ok(result);
         }
 
-        [Authorize(Roles = "Admin, User")]
+        [Authorize]
         [HttpGet]
         [Route("{username}")]
         public async Task<IActionResult> GetByUsername(string username)
@@ -57,7 +56,7 @@ namespace HobbyProject.Presentation.Controllers
             return Ok(result);
         }
 
-        [Authorize(Roles = "Admin, User")]
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> AddHobbyArticle([FromBody] CreateHobbyCommand command)
         {
@@ -65,7 +64,7 @@ namespace HobbyProject.Presentation.Controllers
             return Ok(result);
         }
 
-        [Authorize(Roles = "Admin, User")]
+        [Authorize]
         [HttpDelete]
         [Route("{id}")]
         public async Task<IActionResult> DeleteArticle(int id)

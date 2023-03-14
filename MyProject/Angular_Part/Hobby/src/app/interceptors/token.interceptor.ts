@@ -1,7 +1,7 @@
 import { TokenApiModel } from './../shared/interfaces/token-api';
 import { UserService } from './../user/user.service';
 import { Injectable } from '@angular/core';
-import {HttpRequest,HttpHandler,HttpEvent,HttpInterceptor,HttpErrorResponse} from '@angular/common/http';
+import { HttpRequest,HttpHandler,HttpEvent,HttpInterceptor,HttpErrorResponse} from '@angular/common/http';
 import { catchError, Observable, switchMap, throwError } from 'rxjs';
 import { DialogTemplateComponent, ModalType } from '../core/dialog/dialog-template/dialog-template.component';
 import { MatDialog } from '@angular/material/dialog';
