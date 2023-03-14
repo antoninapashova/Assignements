@@ -25,14 +25,9 @@ export class AddHobbyComponent implements OnInit {
   isSuccessfull: boolean = false;
   activeAccount?: string;
 
-  constructor(private formBuilder: FormBuilder, 
-              private hobbyService: HobbyService, 
-              private subCategoryService: SubCategoryService,
-              private tagService: TagService,
-              private uploadService: UploadService,
-              )
-              {}
-
+  constructor(private formBuilder: FormBuilder, private hobbyService: HobbyService, 
+              private subCategoryService: SubCategoryService,private tagService: TagService,
+              private uploadService: UploadService){}
 
   ngOnInit():void{
     this.createArticleForm = this.formBuilder.group({
@@ -47,13 +42,6 @@ export class AddHobbyComponent implements OnInit {
     this.subCategoryService.getSubCategories().subscribe(res=>this.subcategories=res);
   }
 
-	onSelect(event: any) {
-    this.photos.push(...event.addedFiles);
-  }
-
-	onRemove(event: any) {
-    this.photos.splice(this.photos.indexOf(event), 1);
-	}
 
   onSubmit(form: FormGroup){ 
     const data = new FormData();
@@ -69,9 +57,8 @@ export class AddHobbyComponent implements OnInit {
         url: res.url, 
      };
      
-      this.photosData.push(photoMapped);
+    this.photosData.push(photoMapped);
 
-     
      this.hobby = form.value;
      this.hobby.hobbySubcategoryId = form.value['subcategory'];
      this.hobby.username=this.activeAccount;
@@ -88,6 +75,14 @@ export class AddHobbyComponent implements OnInit {
        });
     }); 
   }
+
+	onSelect(event: any) {
+    this.photos.push(...event.addedFiles);
+  }
+
+	onRemove(event: any) {
+    this.photos.splice(this.photos.indexOf(event), 1);
+	}
 
   clear(hobby: IHobby){
     this.createArticleForm.reset();

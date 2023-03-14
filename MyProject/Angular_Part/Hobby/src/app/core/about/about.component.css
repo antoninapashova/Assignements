@@ -1,39 +1,28 @@
 body {
-    font-family: 'Times New Roman', Times, serif;
     margin:0;
     display:flex; 
     flex-direction:column;
     margin-top: 20px;
-    background: #e2e2e2;
 }
 
-.hobbyImg{
-    width: 100%;
-    height: 52rem;
-}
-
-.info {
+section{
     display: flex;
-    justify-content: space-around;
     align-items: center;
     max-width: 91%;
     margin: auto;
+    background-color: wheat;
 }
 
-.info div{
-    width: 40em;
-    margin-top: 20px;
+.advices{
+    margin-bottom: 20px;
 }
 
-.info img{
-    height: 22rem;
+.image{
+     height: 21rem;
 }
 
-.info div p{
-    margin-top: 20px;
-    font-size: 25px;
-    letter-spacing: normal;
-    line-height: normal;
+.info{
+    max-width: 70%;
 }
 
 .needHobby{
@@ -44,29 +33,8 @@ body {
     align-items: center;
 }
 
-.steps {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    max-width: 80%;
-    margin: auto;
-}
-.steps p{
-    font-size: 20px;
-    margin-left: 10px;
-}
-.steps img{
-    height: 25rem;
-}
-
-.steps li h3{
-    font-weight: 500;
-    font-size: 1rem;
-}
-
 
 h1{
-    color: white;
     text-align: center;
     font-family: cursive;
     font-weight: bold;
@@ -78,18 +46,10 @@ h2{
     font-family: cursive;
     font-weight: bold;
     font-size: 40px;
-  color: cornflowerblue;
-    
 }
 
-.advices{
-    max-width: 80%;
-    margin: auto;
-}
-
-.backgroundImage{
-    opacity: 0.5;
-    height: 85vh;
+.mdc-list-item__secondary-text{
+    white-space: pre-wrap;
 }
 
 

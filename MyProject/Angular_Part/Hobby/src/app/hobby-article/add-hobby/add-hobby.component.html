@@ -1,6 +1,11 @@
-<div class="form">
-    <form [formGroup]="createArticleForm" class="form-group add-hobby-form" (ngSubmit)="onSubmit(createArticleForm)">
-      <p>Add hobby</p>
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center"> 
+  <mat-card class="box">
+        <mat-card-header>
+          <mat-card-title>Create hobby</mat-card-title>
+        </mat-card-header>
+     
+    <form [formGroup]="createArticleForm" class="example-form add-hobby-form" (ngSubmit)="onSubmit(createArticleForm)">
+     
       <mat-form-field appearance="fill">
         <mat-label for="title">Title</mat-label>
         <input matInput
@@ -60,7 +65,8 @@
 	</ngx-dropzone-image-preview>
 </div>
 
-   <button type="submit" mat-raised-button color="primary" (click)="clear(createArticleForm.value)"  #submitButton>Submit</button>
+  <button type="submit" mat-raised-button color="primary" (click)="clear(createArticleForm.value)"  #submitButton>Submit</button>
   <span *ngIf="isSuccessfull">Article is added successfull!</span>
 </form>
+</mat-card>
 </div>

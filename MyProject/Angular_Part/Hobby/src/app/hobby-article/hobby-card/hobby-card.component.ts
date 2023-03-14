@@ -17,17 +17,12 @@ export class HobbyCardComponent implements OnInit {
    @Input() hobbies?: IHobby[];
 
    ngOnInit(): void {
-     //this.currentUsername= this.msalService.instance.getActiveAccount()?.name;
      console.log(this.hobbies);
    } 
 
 
    deleteArticle(id: any, username: any){
-    /*
-       if(this.currentUsername==username || this.msalService.instance.getActiveAccount()?.idTokenClaims?.roles){
-         this.hobbyService.deleteHobby(id).subscribe(res=>console.log(res));
-       }
-       */
+
     }
 
 }
