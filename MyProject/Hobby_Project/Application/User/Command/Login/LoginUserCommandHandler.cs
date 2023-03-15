@@ -1,6 +1,5 @@
 ﻿using Application.Logger;
 using Application.Repositories;
-using AutoMapper;
 using FluentAssertions;
 using HobbyProject.Application.Helpers;
 using HobbyProject.Domain.Entity;
@@ -18,17 +17,15 @@ using System.Threading.Tasks;
 namespace HobbyProject.Application.User.Command.Login
 {
 
-    public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand,UserEntity >
+    public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand,UserEntity>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ILog _log;
-        private readonly IMapper _mapper;
         private readonly ITokenManager _tokenManager;
 
-        public LoginUserCommandHandler(IUnitOfWork unitOfWork, IMapper mapper, ITokenManager tokenManager)
+        public LoginUserCommandHandler(IUnitOfWork unitOfWork, ITokenManager tokenManager)
         {
             _unitOfWork = unitOfWork;
-            _mapper = mapper;
             _tokenManager = tokenManager;
             _log = SingletonLogger.Instance;
         }

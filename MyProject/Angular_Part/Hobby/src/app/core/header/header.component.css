@@ -12,15 +12,10 @@ mat-nav-list.list-horizontal {
     margin-right: 1.5rem;
    
 }
-   
 .nav-caption{
   margin-left: 0.5rem;
   color: white;
   font-weight: 500;
-}
-
-.list-horizontal a{
-  color: white;
 }
 
 .username{

@@ -64,9 +64,7 @@
 		<ngx-dropzone-label >{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
 	</ngx-dropzone-image-preview>
 </div>
-
-  <button type="submit" mat-raised-button color="primary" (click)="clear(createArticleForm.value)"  #submitButton>Submit</button>
-  <span *ngIf="isSuccessfull">Article is added successfull!</span>
+   <button type="submit" mat-raised-button color="primary"  #submitButton>Submit</button>
 </form>
 </mat-card>
 </div>

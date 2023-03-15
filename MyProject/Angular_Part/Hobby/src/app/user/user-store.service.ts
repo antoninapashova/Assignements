@@ -13,7 +13,7 @@ export class UserStoreService {
   private fullName = new BehaviorSubject<string>("");
   private role = new BehaviorSubject<string>("");
   baseUrl = environment.baseUrl;
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
    getRoleFromStore(){
     return this.role.asObservable();

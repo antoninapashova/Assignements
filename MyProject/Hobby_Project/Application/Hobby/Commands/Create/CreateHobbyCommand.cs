@@ -5,6 +5,7 @@ using HobbyProject.Application.Categories.Queries.GetAllCategories;
 using HobbyProject.Application.Hobby.Commands;
 using HobbyProject.Application.HobbyTags.Queries;
 using MediatR;
+using Org.BouncyCastle.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Application.Hobby.Commands.Create
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public string Username { get; set; }
+        public int UserId { get; set; }
         public int HobbySubCategoryId { get; set; }
         public List<CreateHobbyTagDto> Tags { get; set; }
         public List<PhotoDTO> HobbyPhoto { get; set; }

@@ -18,3 +18,33 @@
 [Error]21:47 User with that email does not exists!
 *-------------------------------*
 [Error]21:49 User with that email does not exists!
+*-------------------------------*
+[Error]17:23 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]18:23 Error mapping types.
+
+Mapping types:
+CreateHobbyCommand -> HobbyEntity
+Application.Hobby.Commands.Create.CreateHobbyCommand -> Domain.Entity.HobbyEntity
+
+Type Map configuration:
+CreateHobbyCommand -> HobbyEntity
+Application.Hobby.Commands.Create.CreateHobbyCommand -> Domain.Entity.HobbyEntity
+
+Destination Member:
+Tags
+
+*-------------------------------*
+[Error]19:52 Error mapping types.
+
+Mapping types:
+CreateHobbyCommand -> HobbyEntity
+Application.Hobby.Commands.Create.CreateHobbyCommand -> Domain.Entity.HobbyEntity
+
+Type Map configuration:
+CreateHobbyCommand -> HobbyEntity
+Application.Hobby.Commands.Create.CreateHobbyCommand -> Domain.Entity.HobbyEntity
+
+Destination Member:
+Tags
+

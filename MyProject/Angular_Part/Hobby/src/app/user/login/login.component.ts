@@ -9,6 +9,7 @@ import { FormBuilder, FormGroup,  Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { DialogTemplateComponent } from 'src/app/core/dialog/dialog-template/dialog-template.component';
+import { IUser } from 'src/app/shared/interfaces/user';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
    
   invalidLogin?: boolean;
   hide : boolean = true;
+  user!: IUser;
   loginUserForm: FormGroup = new FormGroup({});
 
   constructor(private formBuilder: FormBuilder, private router: Router,
@@ -40,6 +42,8 @@ export class LoginComponent implements OnInit {
         next:(res)=>{
           let obj ={title: 'Login', message: 'Login is successful', type: ModalType.INFO}
           this.matDialog.open( DialogTemplateComponent, {data: obj});
+          this.user = res;
+          this.dataSharingService.loggedInUser = this.user
           this.userService.storeToken(res.accessToken);
           this.userService.storeRefreshToken(res.refreshToken);
           const tokenPayload = this.userService.decodeToken();
@@ -47,7 +51,7 @@ export class LoginComponent implements OnInit {
           this.userStoreService.setRoleForStore(tokenPayload.role);
           this.router.navigate(['home']);
           this.dataSharingService.isUserLoggedIn.next(true);
-         },
+        },
         error:(err)=>{
           let obj ={title: 'Login', message: err, type: ModalType.WARN}
           this.matDialog.open( DialogTemplateComponent, {data: obj})

@@ -89,5 +89,4 @@ export class UserService{
    renewToken(tokenApi: TokenApiModel){
       return this.httpClient.post<any>(`${this.baseUrl}${ApiPaths.User}/refresh`, tokenApi)
    }
-
 }

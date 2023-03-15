@@ -19,8 +19,8 @@ export class HeaderComponent implements OnInit, OnDestroy{
   role!: string;
   mySubscription: any;
   private readonly unsubscribe = new Subject<void>();
+  @Output() public sidenavToggle = new EventEmitter();
   
-@Output() public sidenavToggle = new EventEmitter();
  constructor(private userService: UserService, private userStore:UserStoreService, 
              private dataSharingService: DataSharingService) {
       

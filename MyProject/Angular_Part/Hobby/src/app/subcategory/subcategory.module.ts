@@ -1,5 +1,5 @@
 import { FormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA , NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AddSubcategoryComponent } from './add-subcategory/add-subcategory.component';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -19,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     AddSubcategoryComponent
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -32,7 +33,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatIconModule,
     MatSelectModule,
     MatRadioModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSortModule,
   ]
 })
 export class SubcategoryModule { }

@@ -1,7 +1,10 @@
-<div class="form">
-    <form (ngSubmit)="onSubmit(form)" #form="ngForm" class="form-group sub-category">
-      <p>Add sub category</p>
-        <mat-form-field appearance="fill" class="sub-category-field">
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+    <mat-card class="box">
+       <mat-card-header>
+          <mat-card-title>Create subcategory</mat-card-title>
+       </mat-card-header>
+    <form (ngSubmit)="onSubmit(form)" #form="ngForm" class="example-form sub-category">
+        <mat-form-field  class="example-full-width" appearance="outline">
             <mat-label for="name">Name</mat-label>
             <input matInput
                    class="form-control"
@@ -14,14 +17,13 @@
             <mat-error *ngIf="!name.valid">Name is invalid</mat-error>
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field  class="example-full-width" appearance="outline">
             <mat-label for="hobbyCategoryId">Choose category</mat-label>
             <mat-select class="form-control" ngModel name="hobbyCategoryId">
-                <mat-option  *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
+                <mat-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</mat-option>
             </mat-select>
         </mat-form-field>
     <button [disabled]="!form.valid" type="submit" mat-raised-button color="primary">Submit</button>
-
-    <span *ngIf="isSuccessfull">Subcategory is added successfull!</span>
-    </form>
+ </form>
+    </mat-card>
 </div>

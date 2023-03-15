@@ -51,7 +51,6 @@ builder.Services.AddScoped<IHobbyArticleRepository, HobbyRepository>();
 builder.Services.AddScoped<IPhotoRepository, HobbyPhotoRepository>();
 builder.Services.AddScoped<ITagRepository, TagRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
-//builder.Services.AddScoped<IUserConfiguration, UserConfiguration>();
 builder.Services.AddScoped<ITokenManager, TokenManager>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 
@@ -92,7 +91,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseMiddleware<ExceptionHandlingMiddleware>();
-//app.UseMiddleware<UserConfigurationMiddleware>();
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
@@ -100,5 +98,4 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.UseCors(MyAllowSpecificOrigins);
 app.MapControllers();
-//app.UseUserConfiguration();
 app.Run();

@@ -1,3 +1,4 @@
+import { IUser } from './../shared/interfaces/user';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
@@ -5,5 +6,5 @@ import { BehaviorSubject } from 'rxjs';
 export class DataSharingService {
     public isUserLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     public isCategoryAdded: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-
+    public loggedInUser!: IUser;
 }

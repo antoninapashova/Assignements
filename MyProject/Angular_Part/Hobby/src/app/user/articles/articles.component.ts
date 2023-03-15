@@ -24,7 +24,7 @@ export class ArticlesComponent implements OnInit {
         //console.log(this.activeAccount);
         this.hobbyService.getAll().subscribe(res=> {
             this.hobbies = res;
-           this.userHobbies =this.hobbies.filter(x=>x.username==this.activeAccount);
+            this.userHobbies =this.hobbies.filter(x=>x.username==this.activeAccount);
         });
    }     
 

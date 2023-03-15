@@ -8,7 +8,8 @@ export interface IHobby{
     description: string;
     hobbySubcategoryId: number,
     hobbySubCategory: string | undefined,
-    username: string | undefined,
+    username: string,
+    userId: number,
     hobbyPhoto: IPhoto[],
     tags: ITag[],
     hobbyComments: IComment[]

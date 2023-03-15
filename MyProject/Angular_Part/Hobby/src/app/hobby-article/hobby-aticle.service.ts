@@ -44,5 +44,5 @@ export class HobbyService{
      
     createComment(comment: IComment): Observable<IComment> {
         return this.httpClient.post<IComment>(`${this.baseUrl}${ApiPaths.Comment}`, comment);
-      }
+    }
 }

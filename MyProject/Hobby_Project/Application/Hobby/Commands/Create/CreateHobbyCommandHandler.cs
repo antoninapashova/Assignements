@@ -32,12 +32,11 @@ namespace Application.Hobby.Commands.Create
 
         public async Task<int> Handle(CreateHobbyCommand command, CancellationToken cancellationToken)
         {
-
             try
             {
                 if (command == null) throw new NullReferenceException("Create hobby command is null!");
 
-                var hobby = _mapper.Map<Domain.Entity.HobbyEntity>(command);
+                var hobby = _mapper.Map<HobbyEntity>(command);
                 await _unitOfWork.HobbyArticleRepository.Add(hobby);
                 hobby.HobbyPhoto.Clear();
                 await _unitOfWork.Save();

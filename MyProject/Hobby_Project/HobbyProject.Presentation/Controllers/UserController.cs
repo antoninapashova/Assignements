@@ -50,12 +50,13 @@ namespace HobbyProject.Presentation.Controllers
             var result = await _mediator.Send(obj);
 
             if (result == null) return NotFound(new { Message = "User not found" });
-            
+
             return Ok(new TokenApiDto
             {
+                UserId = result.Id,
                 AccessToken = result.Token,
                 RefreshToken = result.RefreshToken
-            });
+            }); 
         }
 
         [HttpPost("refresh")]
@@ -80,7 +81,7 @@ namespace HobbyProject.Presentation.Controllers
             {
                 Email = email
              };
-            var result = await _mediator.Send(command);
+             await _mediator.Send(command);
             return Ok();
         }
 

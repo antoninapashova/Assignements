@@ -34,7 +34,7 @@ namespace Application.Mapping
             //User
             CreateMap<CreateUserCommand, UserEntity>();
             CreateMap<UserEntity, UserDto>();
-            
+
             //HobbyArticle
             CreateMap<CreateHobbyCommand, HobbyEntity>();
             CreateMap<ArticleCommentDTO, HobbyEntity>();
@@ -66,11 +66,12 @@ namespace Application.Mapping
                 //.ForMember("Username", x=>x.MapFrom(y=>y.Username));
 
             //Tag
+            CreateMap<CreateHobbyTagDto, Tag>();
             CreateMap<CreateTagCommand, Tag>();
             CreateMap<Tag, TagDto>();
             CreateMap<Tag, HobbyTagDto>();
             CreateMap<Tag, CreateHobbyTagDto>();
-            CreateMap<CreateHobbyTagDto, Tag>();
+            
        }
     }
 }
