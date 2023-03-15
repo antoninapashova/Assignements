@@ -30,6 +30,7 @@ import { NgxDropzoneModule } from 'ngx-dropzone';
 import { JwtModule } from "@auth0/angular-jwt";
 import { MatDialogModule } from '@angular/material/dialog';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { LightboxModule } from 'ngx-lightbox';
 
 export function tokenGetter() {
   return localStorage.getItem("access_token");
@@ -75,7 +76,8 @@ export function tokenGetter() {
     MatTabsModule,
     CommonModule,
     NgxDropzoneModule,
-    MatDialogModule
+    MatDialogModule,
+    LightboxModule
   ],
   exports:[
     TagModule,

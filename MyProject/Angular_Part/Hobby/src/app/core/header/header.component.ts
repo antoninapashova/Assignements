@@ -4,7 +4,6 @@ import { Component, EventEmitter, Output, OnInit, OnDestroy } from '@angular/cor
 import { Subject } from 'rxjs';
 import { DataSharingService } from '../data-sharing.service';
 
-
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -13,7 +12,6 @@ import { DataSharingService } from '../data-sharing.service';
 export class HeaderComponent implements OnInit, OnDestroy{
    
   isAuthenticated!: boolean;
-  activeUser!: string;
   fullName: string = ""; 
   username!: string;
   role!: string;

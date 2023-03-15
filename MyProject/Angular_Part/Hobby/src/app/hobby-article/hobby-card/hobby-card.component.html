@@ -1,14 +1,13 @@
    <mat-card class="card" *ngFor="let h of hobbies" >
-        <div *ngFor="let p of h.hobbyPhoto" class="photos">
-              <img [src] = "p.url" />  
-        </div>
+        <app-photo-galery [photos] = "photos"></app-photo-galery>
+
          <mat-card-content class="content">
           <p><strong>{{h.username}}</strong></p>
           <p> <strong>{{h.title}}</strong> </p>
           <p><strong>Subcategory </strong> {{h.hobbySubCategory}}</p>
           <p>{{h.description}}</p>
       
-      <button mat-button (click)="deleteArticle(h.id, h.username)">Delete</button>
+      <button *ngIf="currentUsername == h.username || role=='Admin'" mat-button (click)="deleteArticle(h.id, h.username)">Delete</button>
       <div class="example-action-buttons">
          <button mat-button (click)="accordion.openAll()">Show</button>
          <button mat-button (click)="accordion.closeAll()">Hide</button>

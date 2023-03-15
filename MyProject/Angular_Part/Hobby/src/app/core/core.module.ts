@@ -7,7 +7,6 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
-
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -27,6 +26,7 @@ import { AboutComponent } from './about/about.component';
 import { DialogTemplateComponent } from './dialog/dialog-template/dialog-template.component';
 import { DialogService } from './dialog/dialog.service';
 import { DataSharingService } from './data-sharing.service';
+import { LightboxModule } from 'ngx-lightbox';
 
 
 @NgModule({
@@ -59,7 +59,8 @@ import { DataSharingService } from './data-sharing.service';
     RouterModule,
     MatCardModule,
     HobbyArticleModule,
-    MatDialogModule
+    MatDialogModule,
+    LightboxModule
   ],
   exports: [
     HeaderComponent,

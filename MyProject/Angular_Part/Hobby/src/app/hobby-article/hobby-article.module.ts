@@ -22,7 +22,8 @@ import { HobbyCardComponent } from './hobby-card/hobby-card.component';
 import { CommentsListComponent } from './comments-list/comments-list.component';
 import { CommentFormComponent } from './comment-form/comment-form.component';
 import {MatExpansionModule} from '@angular/material/expansion';
-
+import { LightboxModule } from 'ngx-lightbox';
+import { PhotoGaleryComponent } from './photo-galery/photo-galery.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     CommentComponent,
     HobbyCardComponent,
     CommentsListComponent,
-    CommentFormComponent
+    CommentFormComponent,
+    PhotoGaleryComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 
@@ -53,6 +55,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatButtonModule,
     MatListModule,
     MatExpansionModule,
+    LightboxModule
   ],
   exports:[
     CommentFormComponent,
@@ -60,6 +63,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
      CommentComponent,
     HobbyCardComponent,
     CommentsListComponent,
-    ReactiveFormsModule]
+    ReactiveFormsModule
+  ]
 })
 export class HobbyArticleModule { }
