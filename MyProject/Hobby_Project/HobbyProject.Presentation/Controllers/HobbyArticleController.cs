@@ -1,17 +1,10 @@
-﻿using Application.Categories.Commands.Create;
-using Application.Categories.Commands.Delete;
-using Application.Hobby.Commands.Create;
+﻿using Application.Hobby.Commands.Create;
 using Application.Hobby.Commands.Delete;
-using Application.Hobby.Queries;
-using HobbyProject.Application.Categories.Queries.GetCategoryById;
 using HobbyProject.Application.Hobby.Queries.GetAllUsers;
 using HobbyProject.Application.Hobby.Queries.GetHobbiesByUsername;
 using HobbyProject.Application.Hobby.Queries.GetHobbyById;
-using HobbyProject.Application.HobbySubCategories.Queries.GetAllSubCategories;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HobbyProject.Presentation.Controllers

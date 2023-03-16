@@ -35,7 +35,6 @@ import { PhotoGaleryComponent } from './photo-galery/photo-galery.component';
     PhotoGaleryComponent
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-
   imports: [
     CommonModule,
     NgxDropzoneModule,
@@ -63,7 +62,7 @@ import { PhotoGaleryComponent } from './photo-galery/photo-galery.component';
      CommentComponent,
     HobbyCardComponent,
     CommentsListComponent,
-    ReactiveFormsModule
+    PhotoGaleryComponent
   ]
 })
 export class HobbyArticleModule { }

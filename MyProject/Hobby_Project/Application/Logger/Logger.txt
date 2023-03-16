@@ -48,3 +48,23 @@ Application.Hobby.Commands.Create.CreateHobbyCommand -> Domain.Entity.HobbyEntit
 Destination Member:
 Tags
 
+*-------------------------------*
+[Error]17:12 Error mapping types.
+
+Mapping types:
+CreateHobbyCommand -> HobbyEntity
+Application.Hobby.Commands.Create.CreateHobbyCommand -> Domain.Entity.HobbyEntity
+
+Type Map configuration:
+CreateHobbyCommand -> HobbyEntity
+Application.Hobby.Commands.Create.CreateHobbyCommand -> Domain.Entity.HobbyEntity
+
+Destination Member:
+Tags
+
+*-------------------------------*
+[Error]17:53 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]17:56 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]18:00 An error occurred while saving the entity changes. See the inner exception for details.

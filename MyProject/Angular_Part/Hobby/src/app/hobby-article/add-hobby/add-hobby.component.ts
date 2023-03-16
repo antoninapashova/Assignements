@@ -25,6 +25,7 @@ export class AddHobbyComponent implements OnInit {
   tags: ITag[]=[];
   photosData: IPhoto[] = [];
   hobby!: IHobby;
+  hobbyTags: ITag[] = [];
 
   constructor(private formBuilder: FormBuilder, private hobbyService: HobbyService, 
               private subCategoryService: SubCategoryService,private tagService: TagService,
@@ -61,16 +62,13 @@ export class AddHobbyComponent implements OnInit {
      };
      
      this.photosData.push(photoMapped);
-
      this.hobby = form.value;
      this.hobby.hobbySubcategoryId = form.value['subcategory'];
-     let tags: ITag[] = form.value['tags'];
-     this.hobby.tags = tags;
      this.hobby.hobbyPhoto = this.photosData;
-     this.hobby.userId = this.datasharingService.loggedInUser.id;
+     this.hobby.userId = this.datasharingService.loggedInUser.userId;
 
        this.hobbyService.addHobby(this.hobby).subscribe({
-       next: (res)=>{
+         next: (res)=>{
         let obj ={title: 'Create article', message: "Article is created successfull!", type: ModalType.WARN}
         this.matDialog.open( DialogTemplateComponent, {data: obj})
         },

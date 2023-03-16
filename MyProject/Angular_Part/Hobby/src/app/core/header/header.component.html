@@ -7,7 +7,7 @@
         </button>
     </div>
     <span class="nav-caption">Hobby Blog</span>
-    <span class="nav-caption">Hello, {{fullName}}</span>
+    <span *ngIf="isAuthenticated" class="nav-caption">Hello {{fullName}}</span>
 
   <mat-nav-list class="list-horizontal">
         <a  routerLink="/subcategory/add" *ngIf="isAuthenticated && role==='Admin'">

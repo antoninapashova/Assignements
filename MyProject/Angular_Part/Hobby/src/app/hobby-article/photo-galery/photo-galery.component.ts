@@ -11,7 +11,10 @@ export class PhotoGaleryComponent {
   _albums: any = [];
   @Input() photos?: IPhoto[];
   
-  constructor(private _lightbox: Lightbox){}
+  constructor(private _lightbox: Lightbox){
+    console.log(this.photos);
+     this.photos?.forEach(p=>this._albums.push(p))
+ }
 
   open(index: number): void {
     this._lightbox.open(this._albums, index);

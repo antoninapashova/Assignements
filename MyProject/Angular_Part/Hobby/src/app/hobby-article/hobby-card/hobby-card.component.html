@@ -1,6 +1,9 @@
    <mat-card class="card" *ngFor="let h of hobbies" >
-        <app-photo-galery [photos] = "photos"></app-photo-galery>
-
+    <div class="imgcontainer">
+      <div class="gallery" *ngFor="let image of h.hobbyPhoto; let i=index">
+        <img src="{{image.url}}" (click)="open(i)" />
+      </div>
+    </div>
          <mat-card-content class="content">
           <p><strong>{{h.username}}</strong></p>
           <p> <strong>{{h.title}}</strong> </p>

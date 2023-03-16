@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { UserStoreService } from './../../user/user-store.service';
 import { UserService } from './../../user/user.service';
 import { Component, EventEmitter, Output, OnInit, OnDestroy } from '@angular/core';
@@ -20,7 +21,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
   @Output() public sidenavToggle = new EventEmitter();
   
  constructor(private userService: UserService, private userStore:UserStoreService, 
-             private dataSharingService: DataSharingService) {
+             private dataSharingService: DataSharingService, private router: Router) {
       
        this.dataSharingService.isUserLoggedIn.subscribe( value => {
           this.isAuthenticated = value;
@@ -41,6 +42,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
  
   logOut = () => {
      this.userService.signOut();
+     this.router.navigate(['/'])
      window.location.reload();
    }
 

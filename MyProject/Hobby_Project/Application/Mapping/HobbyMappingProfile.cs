@@ -40,7 +40,7 @@ namespace Application.Mapping
             CreateMap<ArticleCommentDTO, HobbyEntity>();
             CreateMap<EditHobbyCommand, HobbyEntity>();
             CreateMap<HobbyEntity, HobbyDto>()
-                //.ForMember("Username", x=>x.MapFrom(y=>y.Username))
+                .ForMember("Username", x => x.MapFrom(y => y.User.Username))
                 .ForMember("HobbySubCategory", x=>x.MapFrom(y=>y.HobbySubCategory.Name));
 
             //Category

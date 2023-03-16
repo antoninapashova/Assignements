@@ -21,7 +21,7 @@
  <mat-form-field appearance="fill">
        <mat-label for="tags">Tags</mat-label>
        <mat-select class="form-control" formControlName="tags" multiple >
-            <mat-option  *ngFor="let tag of tags" [value]="tag.id">{{ tag.name }}</mat-option>
+            <mat-option  *ngFor="let tag of tags" [value]="tag">{{ tag.name }}</mat-option>
         </mat-select>
     <mat-error *ngIf="createArticleForm.controls['tags'].errors?.['required']">You must choose atleast one tag</mat-error>
    </mat-form-field>
@@ -42,7 +42,8 @@
              class="form-control"
              type="text"
              formControlName="description"
-             #description ></textarea>
+             #description
+             [value]="description" ></textarea>
        <mat-error *ngIf="createArticleForm.controls['description'].errors?.['required']">Description is required</mat-error>
        <mat-error *ngIf="createArticleForm.controls['description'].errors?.['minlenght']">Description must be more than 10 characters</mat-error>
   </mat-form-field>
@@ -60,7 +61,8 @@
          [file]="f" 
          [removable]="true" 
          (removed)="onRemove(f)"
-         ngDefaultControl>
+         ngDefaultControl
+          [value] = "photos">
 		<ngx-dropzone-label >{{ f.name }} ({{ f.type }})</ngx-dropzone-label>
 	</ngx-dropzone-image-preview>
 </div>
