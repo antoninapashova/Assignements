@@ -36,7 +36,7 @@ namespace HobbyProject.Application.Helpers
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = identity,
-                Expires = DateTime.Now.AddSeconds(5),
+                Expires = DateTime.Now.AddMinutes(5),
                 SigningCredentials = credentials
             };
 

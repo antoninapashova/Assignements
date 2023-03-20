@@ -78,6 +78,7 @@ export function tokenGetter() {
     NgxDropzoneModule,
     MatDialogModule,
     LightboxModule
+ 
   ],
   exports:[
     TagModule,

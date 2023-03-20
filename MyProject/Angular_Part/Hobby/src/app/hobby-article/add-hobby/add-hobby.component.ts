@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { DataSharingService } from './../../core/data-sharing.service';
 import { UploadService } from './../upload-service.service';
 import { TagService } from './../../tag/tag.service';
@@ -30,7 +31,7 @@ export class AddHobbyComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private hobbyService: HobbyService, 
               private subCategoryService: SubCategoryService,private tagService: TagService,
               private uploadService: UploadService,  private matDialog: MatDialog, 
-              private datasharingService: DataSharingService){}
+              private datasharingService: DataSharingService, private router: Router){}
 
   ngOnInit():void{
     this.createArticleForm = this.formBuilder.group({
@@ -70,12 +71,14 @@ export class AddHobbyComponent implements OnInit {
        this.hobbyService.addHobby(this.hobby).subscribe({
          next: (res)=>{
         let obj ={title: 'Create article', message: "Article is created successfull!", type: ModalType.WARN}
-        this.matDialog.open( DialogTemplateComponent, {data: obj})
+        this.matDialog.open( DialogTemplateComponent, {data: obj});
+         this.router.navigate(['home'])
         },
         error: (err)=>{
           let obj ={title: 'Create article', message: err, type: ModalType.WARN}
           this.matDialog.open( DialogTemplateComponent, {data: obj})
         }});
+
     },
     error: (err)=>{
       let obj ={title: 'Upload image', message: err, type: ModalType.WARN}

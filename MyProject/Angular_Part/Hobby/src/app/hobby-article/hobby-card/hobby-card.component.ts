@@ -4,10 +4,9 @@ import { UserService } from 'src/app/user/user.service';
 import { Component,  Input, OnInit,  ViewChild } from '@angular/core';
 import { IHobby } from 'src/app/shared/interfaces/hobby-article';
 import { MatAccordion } from '@angular/material/expansion';
-import { IPhoto } from 'src/app/shared/interfaces/photo';
 import { HobbyService } from '../hobby-aticle.service';
 import { DialogTemplateComponent, ModalType } from 'src/app/core/dialog/dialog-template/dialog-template.component';
-import { Lightbox } from 'ngx-lightbox';
+import { HobbyCardDialogComponent } from '../hobby-card-dialog/hobby-card-dialog.component';
 
 @Component({
   selector: 'app-hobby-card',
@@ -19,12 +18,10 @@ export class HobbyCardComponent implements OnInit {
   @Input() hobbies?: IHobby[];
   currentUsername!: string | undefined;
   role!: string;
-  _albums: any = [];
-
 
   constructor(private hobbyService: HobbyService, private userService: UserService,
               private matDialog: MatDialog, private userStore:UserStoreService, 
-              private _lightbox: Lightbox) {}
+              ) {}
 
    ngOnInit(): void {
       this.userStore.getFullNameFromStore().subscribe((val:any)=>{      
@@ -36,15 +33,14 @@ export class HobbyCardComponent implements OnInit {
          const roleFromToken = this.userService.getRoleFromToken();
          this.role = val || roleFromToken;
        });
-
-       this.hobbies?.forEach(h=>{
-          this._albums = [];
-          h.hobbyPhoto?.forEach(p=>this._albums.push(p))
-          console.log(this._albums);
-       });
     } 
 
-   deleteArticle(id: any, username: any){
+    openDialog(hobby: IHobby){
+     let obj = {title: hobby.title, description: hobby.description, username: hobby.username, photos: hobby.hobbyPhoto, comments: hobby.hobbyComments}
+     this.matDialog.open( HobbyCardDialogComponent, {data: obj});
+    }
+
+    deleteArticle(id: any, username: any){
      if(this.currentUsername==username || this.role=='Admin'){
         this.hobbyService.deleteHobby(id).subscribe({
           next: (res)=>{
@@ -60,13 +56,5 @@ export class HobbyCardComponent implements OnInit {
         let obj ={title: 'Hobby', message: "You can not delete other users hobbies!", type: ModalType.WARN}
         this.matDialog.open( DialogTemplateComponent, {data: obj});
       }
-    }
-
-    open(index: number): void {
-      this._lightbox.open(this._albums, index);
-    }
-  
-    close(): void {
-      this._lightbox.close();
     }
 }

@@ -3,7 +3,6 @@ import { RouterModule } from '@angular/router';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AddHobbyComponent } from './add-hobby/add-hobby.component';
-
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -23,7 +22,7 @@ import { CommentsListComponent } from './comments-list/comments-list.component';
 import { CommentFormComponent } from './comment-form/comment-form.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { LightboxModule } from 'ngx-lightbox';
-import { PhotoGaleryComponent } from './photo-galery/photo-galery.component';
+import { HobbyCardDialogComponent } from './hobby-card-dialog/hobby-card-dialog.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +31,7 @@ import { PhotoGaleryComponent } from './photo-galery/photo-galery.component';
     HobbyCardComponent,
     CommentsListComponent,
     CommentFormComponent,
-    PhotoGaleryComponent
+    HobbyCardDialogComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
@@ -54,7 +53,7 @@ import { PhotoGaleryComponent } from './photo-galery/photo-galery.component';
     MatButtonModule,
     MatListModule,
     MatExpansionModule,
-    LightboxModule
+    LightboxModule,
   ],
   exports:[
     CommentFormComponent,
@@ -62,7 +61,6 @@ import { PhotoGaleryComponent } from './photo-galery/photo-galery.component';
      CommentComponent,
     HobbyCardComponent,
     CommentsListComponent,
-    PhotoGaleryComponent
   ]
 })
 export class HobbyArticleModule { }
