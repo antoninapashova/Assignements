@@ -1,4 +1,4 @@
-import { HobbyService } from './../../hobby-article/hobby-aticle.service';
+import { HobbyService } from '../../hobby-article/services/hobby-aticle.service';
 import { UserService } from './../user.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IHobby } from 'src/app/shared/interfaces/hobby-article';

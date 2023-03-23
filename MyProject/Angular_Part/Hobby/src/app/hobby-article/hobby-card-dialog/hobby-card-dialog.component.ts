@@ -27,7 +27,4 @@ export class HobbyCardDialogComponent {
     this.modalId = data.id;
   }
 
-  closeDialog(){
-    
-  }
 }

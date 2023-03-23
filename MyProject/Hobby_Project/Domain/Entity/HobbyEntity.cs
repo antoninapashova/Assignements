@@ -24,6 +24,6 @@ namespace Domain.Entity
         public virtual ICollection<Photo> HobbyPhoto { get; set; }
         public virtual ICollection<Comment> HobbyComments { get; }
         public virtual ICollection<Tag> Tags { get; set; }
-    }
+      }
 
 }

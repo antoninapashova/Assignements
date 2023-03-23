@@ -2,7 +2,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ResetPasswordService } from './../reset-password.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { matchValidator } from 'src/app/core/validators/confirm-password.validator';
 import { ResetPassword } from 'src/app/shared/interfaces/reset-password.model';
 import { DialogTemplateComponent, ModalType } from 'src/app/core/dialog/dialog-template/dialog-template.component';

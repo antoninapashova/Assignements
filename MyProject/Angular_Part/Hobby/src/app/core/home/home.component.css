@@ -1,7 +1,6 @@
 .hobby-card {
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
     gap: 1rem;
     max-width: 80%;
     margin: 0 auto 0 auto;

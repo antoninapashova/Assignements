@@ -1,4 +1,4 @@
-import { HobbyService } from './../hobby-aticle.service';
+import { HobbyService } from '../services/hobby-aticle.service';
 import { IComment } from './../../shared/interfaces/comment';
 import { Component, Input } from '@angular/core';
 

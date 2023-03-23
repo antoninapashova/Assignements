@@ -1,10 +1,10 @@
-import { IComment } from './../shared/interfaces/comment';
-import { ApiPaths } from './../shared/urls/api-paths';
+import { IComment } from '../../shared/interfaces/comment';
+import { ApiPaths } from '../../shared/urls/api-paths';
 import { HttpClient, HttpHeaders} from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import {Observable} from 'rxjs';
-import { IHobby } from "../shared/interfaces/hobby-article";
-import { environment } from "../shared/urls/base-url";
+import { IHobby } from "../../shared/interfaces/hobby-article";
+import { environment } from "../../shared/urls/base-url";
 
 @Injectable({
     providedIn: 'root',

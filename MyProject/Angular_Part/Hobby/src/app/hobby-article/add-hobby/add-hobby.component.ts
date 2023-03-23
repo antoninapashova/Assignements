@@ -1,11 +1,11 @@
 import { Router } from '@angular/router';
 import { DataSharingService } from './../../core/data-sharing.service';
-import { UploadService } from './../upload-service.service';
+import { UploadService } from '../services/upload-service.service';
 import { TagService } from './../../tag/tag.service';
 import { SubCategoryService } from './../../subcategory/sub-category.service';
 import { ITag } from './../../shared/interfaces/tag';
 import { ISubCategory } from './../../shared/interfaces/subcategory';
-import { HobbyService } from './../hobby-aticle.service';
+import { HobbyService } from '../services/hobby-aticle.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IPhoto } from 'src/app/shared/interfaces/photo';

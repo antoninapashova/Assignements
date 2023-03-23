@@ -4,7 +4,7 @@ import { UserService } from 'src/app/user/user.service';
 import { Component,  Input, OnInit,  ViewChild } from '@angular/core';
 import { IHobby } from 'src/app/shared/interfaces/hobby-article';
 import { MatAccordion } from '@angular/material/expansion';
-import { HobbyService } from '../hobby-aticle.service';
+import { HobbyService } from '../services/hobby-aticle.service';
 import { DialogTemplateComponent, ModalType } from 'src/app/core/dialog/dialog-template/dialog-template.component';
 import { HobbyCardDialogComponent } from '../hobby-card-dialog/hobby-card-dialog.component';
 
@@ -36,9 +36,10 @@ export class HobbyCardComponent implements OnInit {
     } 
 
     openDialog(hobby: IHobby){
-     let obj = {title: hobby.title, description: hobby.description, username: hobby.username, photos: hobby.hobbyPhoto, comments: hobby.hobbyComments}
+     let obj = {title: hobby.title, description: hobby.description, username: hobby.username, hobbyPhoto: hobby.hobbyPhoto, comments: hobby.hobbyComments}
      this.matDialog.open( HobbyCardDialogComponent, {data: obj});
     }
+
 
     deleteArticle(id: any, username: any){
      if(this.currentUsername==username || this.role=='Admin'){

@@ -1,6 +1,6 @@
 import { MatDialog } from '@angular/material/dialog';
 import { IHobby } from './../../shared/interfaces/hobby-article';
-import { HobbyService } from './../../hobby-article/hobby-aticle.service';
+import { HobbyService } from '../../hobby-article/services/hobby-aticle.service';
 import { Component, OnInit } from '@angular/core';
 import { DialogTemplateComponent, ModalType } from '../dialog/dialog-template/dialog-template.component';
 
