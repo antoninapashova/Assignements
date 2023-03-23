@@ -47,7 +47,6 @@ export class AddHobbyComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup){ 
-    console.log(form);
     const data = new FormData();
         
     data.append('file', this.photos[0]);

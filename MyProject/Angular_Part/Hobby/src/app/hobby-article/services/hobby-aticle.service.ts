@@ -27,7 +27,6 @@ export class HobbyService{
         const headers = new HttpHeaders()
         .append('Access-Control-Allow-Origin', '*');
            return this.httpClient.get<IHobby[]>(`${this.baseUrl}${ApiPaths.Hobby}/${username}`, {headers});
-
     }
     
     addHobby(hobby: IHobby) : Observable<IHobby>{
@@ -40,9 +39,5 @@ export class HobbyService{
 
     deleteHobby(id: number) : Observable<IHobby>{
         return this.httpClient.delete<IHobby>(`${this.baseUrl}${ApiPaths.Hobby}/${id}`);
-    }
-     
-    createComment(comment: IComment): Observable<IComment> {
-        return this.httpClient.post<IComment>(`${this.baseUrl}${ApiPaths.Comment}`, comment);
     }
 }

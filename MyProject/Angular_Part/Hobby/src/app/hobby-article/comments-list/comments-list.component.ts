@@ -1,6 +1,9 @@
-import { HobbyService } from '../services/hobby-aticle.service';
 import { IComment } from './../../shared/interfaces/comment';
 import { Component, Input } from '@angular/core';
+import { CommentService } from '../services/comment.service';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogTemplateComponent, ModalType } from 'src/app/core/dialog/dialog-template/dialog-template.component';
+import { DataSharingService } from 'src/app/core/data-sharing.service';
 
 @Component({
   selector: 'app-comments-list',
@@ -13,18 +16,25 @@ export class CommentsListComponent  {
    @Input() comments!: IComment[];
    @Input() hobbyArticleId: number | undefined;
 
-   constructor(private hobbyService: HobbyService){
+   constructor(private commentSrvice: CommentService, private matDialog: MatDialog,
+               private datasharingService: DataSharingService){
    }
 
    addComment({text}: {text: any}): void {
     let comment: IComment={
         commentContent : text.title,
-        username : this.currentUsername,
+        userId : this.datasharingService.loggedInUser.userId,
         hobbyArticleId: this.hobbyArticleId
       }
 
-    this.hobbyService.createComment(comment).subscribe(res=>console.log(res));
-    }
-
-  
+    this.commentSrvice.createComment(comment).subscribe({
+      next: (res)=>{
+        console.log(res);
+      },
+      error: (err)=>{
+        let obj ={title: 'Create article', message: err, type: ModalType.WARN}
+        this.matDialog.open( DialogTemplateComponent, {data: obj})
+      }
+    });
+  }
 }

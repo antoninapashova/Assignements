@@ -40,7 +40,6 @@ namespace Infrastructure.Repository
             return await _context.HobbyEntities
                 .Include(h => h.HobbySubCategory)
                 .Include(x=>x.User)
-                .Include(h => h.HobbyComments)
                 .Include(h => h.Tags)
                 .Include(h=>h.HobbyPhoto)
                 .ToListAsync();
@@ -50,7 +49,6 @@ namespace Infrastructure.Repository
         public async Task<IEnumerable<HobbyEntity>> GetAllEntitiesAsync()
         {
             return await _context.HobbyEntities
-                .Include(x=>x.HobbyComments)
                 .Include(x=>x.User)
                 .Include(x => x.HobbySubCategory)
                 .Include(x => x.HobbyPhoto)

@@ -2,8 +2,7 @@
 using Application.Comments.Commands.Create;
 using Application.Comments.Commands.Delete;
 using Application.Comments.Commands.Edit;
-using HobbyProject.Application.Comments.Queries.GetAllComments;
-using HobbyProject.Application.Comments.Queries.GetCommentById;
+using HobbyProject.Application.Comments.Queries.GetCommentsByHobbyId;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,32 +20,28 @@ namespace HobbyProject.Presentation.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAllComments()
-        {
-            var result = await _mediator.Send(new GetCommentsListQuery());
-            return Ok(result);
-        }
-
-
+        [Authorize]
         [HttpGet]
         [Route("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        public async Task<IActionResult> GetCommentsByHobbyId(int id)
         {
-            var query = new GetCommentByIdQuery { Id = id };
-            var result = await _mediator.Send(query);
+            var command = new GetCommentsByHobbyIdQuery
+            {
+                HobbyId = id
+            };
+            var result = await _mediator.Send(command);
             return Ok(result);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> AddComment([FromBody] CreateCommentCommand command)
         {
             var result = await _mediator.Send(command);
-            return CreatedAtAction(nameof(GetById), new { id = result }, result);
+            return Ok(result);
         }
 
-        [Authorize(Roles = "Admin, User")]
+        [Authorize]
         [HttpPut]
         [Route("{id}")]
         public async Task<IActionResult> UpdateComment(int id, [FromBody] EditCommentCommand editComment)
@@ -61,7 +56,7 @@ namespace HobbyProject.Presentation.Controllers
              await _mediator.Send(command);
              return NoContent();
         }
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         [HttpDelete]
         [Route("{id}")]
         public async Task<IActionResult> DeleteComment(int id)

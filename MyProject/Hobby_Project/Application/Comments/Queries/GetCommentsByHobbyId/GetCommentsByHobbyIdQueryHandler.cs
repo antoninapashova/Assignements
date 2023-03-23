@@ -9,30 +9,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HobbyProject.Application.Comments.Queries.GetCommentById
+namespace HobbyProject.Application.Comments.Queries.GetCommentsByHobbyId
 {
-    public class GetCommentByIdQueryHandler : IRequestHandler<GetCommentByIdQuery, CommentDto>
+    public class GetCommentsByHobbyIdQueryHandler : IRequestHandler<GetCommentsByHobbyIdQuery, List<CommentDto>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly ILog _log;
 
-        public GetCommentByIdQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public GetCommentsByHobbyIdQueryHandler(IUnitOfWork unitOfWork, IMapper mapper, ILog log)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
-            _log = SingletonLogger.Instance;
+            _log = log;
         }
 
-        public async Task<CommentDto> Handle(GetCommentByIdQuery request, CancellationToken cancellationToken)
+        public async Task<List<CommentDto>> Handle(GetCommentsByHobbyIdQuery request, CancellationToken cancellationToken)
         {
             try
             {
-                var result = await _unitOfWork.CommentRepository.GetByIdAsync(request.Id);
-                CommentDto comments = _mapper.Map<CommentDto>(result);
+                var result = await _unitOfWork.CommentRepository.GetCommentsByHobbyId(request.HobbyId);
+                List<CommentDto> comments = _mapper.Map<List<CommentDto>>(result);
                 return await Task.FromResult(comments);
 
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 _log.LogError(e.Message);
                 throw;

@@ -23,31 +23,23 @@ namespace Infrastructure.Repository
         public async Task<Comment> Add(Comment entity)
         {
             await _context.Comments.AddAsync(entity);
-           return entity;
+            return entity;
         }
 
         public async Task DeleteAsync(int id)
         {
             var comment = await FindById(id);
             _context.Comments.Remove(comment);
-        }
-        public async Task<IEnumerable<Comment>> GetAllEntitiesAsync()
-        {
-            return await _context.Comments
-                 //.Include(x=>x.Username)
-                .ToListAsync();
-        }
+        } 
 
-        public async Task<Comment> GetByIdAsync(int id)
+        public async Task<IEnumerable<Comment>> GetCommentsByHobbyId(int hobbyId)
         {
-           var hobbyComment =  await FindById(id);
-
-            return await Task.FromResult(hobbyComment);
+           return await _context.Comments.Where(x=>x.HobbyArticleId == hobbyId).ToListAsync();
         }
 
         public async Task<Comment> Update(Comment comment)
         {
-             await FindById(comment.Id);
+            await FindById(comment.Id);
             _context.ChangeTracker.Clear();
             _context.Comments.Update(comment);
             return comment;
@@ -56,12 +48,22 @@ namespace Infrastructure.Repository
         public async Task<Comment> FindById(int id)
         {
             var comment = await _context.Comments
-                //.Include(x=>x.Username)
+                                //.Include(x=>x.Username)
                                 .FirstOrDefaultAsync(c => c.Id == id);
 
-            if (comment == null)  throw new NullReferenceException("Comment with Id " + id + " does not exist!");
+            if (comment == null) throw new NullReferenceException("Comment with Id " + id + " does not exist!");
 
             return comment;
+        }
+
+        public Task<Comment> GetByIdAsync(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Comment>> GetAllEntitiesAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }

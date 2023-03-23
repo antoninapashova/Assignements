@@ -60,10 +60,8 @@ namespace Application.Mapping
             //Comment
             CreateMap<CreateCommentCommand, Comment>();
             CreateMap<EditCommentCommand, Comment>();
-            CreateMap<Comment, CommentDto>();
-            //.ForMember("Username", x=>x.MapFrom(y=>y.Username));
-            CreateMap<Comment, HobbyCommentDTO>();
-                //.ForMember("Username", x=>x.MapFrom(y=>y.Username));
+            CreateMap<Comment, CommentDto>()
+            .ForMember("Username", x=>x.MapFrom(y=>y.User.Username));
 
             //Tag
             CreateMap<CreateHobbyTagDto, Tag>();

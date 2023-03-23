@@ -6,10 +6,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HobbyProject.Application.Comments.Queries.GetAllComments
+namespace HobbyProject.Application.Comments.Queries.GetCommentsByHobbyId
 {
-    public class GetCommentsListQuery : IRequest<IEnumerable<CommentDto>>
+    public class GetCommentsByHobbyIdQuery : IRequest<List<CommentDto>>
     {
-       
+        public int HobbyId { get; set; }
     }
 }

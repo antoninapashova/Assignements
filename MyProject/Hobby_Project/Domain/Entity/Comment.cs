@@ -14,7 +14,6 @@ namespace Hobby_Project
 {
     public class Comment : BaseEntity
     {
-       
         public string CommentContent { get; set; }
         public int HobbyArticleId { get; set; }
         public int UserId { get; set; }
