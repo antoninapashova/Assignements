@@ -23,6 +23,7 @@ import { CommentFormComponent } from './comment-form/comment-form.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { LightboxModule } from 'ngx-lightbox';
 import { HobbyCardDialogComponent } from './hobby-card-dialog/hobby-card-dialog.component';
+import { EditHobbyFormComponent } from './edit-hobby-form/edit-hobby-form.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { HobbyCardDialogComponent } from './hobby-card-dialog/hobby-card-dialog.
     CommentsListComponent,
     CommentFormComponent,
     HobbyCardDialogComponent,
+    EditHobbyFormComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [

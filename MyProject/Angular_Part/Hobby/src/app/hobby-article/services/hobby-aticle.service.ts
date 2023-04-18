@@ -19,14 +19,14 @@ export class HobbyService{
         return this.httpClient.get<IHobby[]>(`${this.baseUrl}${ApiPaths.Hobby}`)
    }
 
-    getById(id: string) : Observable<IHobby>{
-        return this.httpClient.get<IHobby>(`${this.baseUrl}${ApiPaths.Hobby}/${id}`)
+    getById(id: string | undefined) : Observable<IHobby>{
+        const headers = new HttpHeaders().append('Access-Control-Allow-Origin', '*');
+        return this.httpClient.get<IHobby>(`${this.baseUrl}${ApiPaths.Hobby}/${id}`, {headers})
     }
 
     getArticlesByUsername(username: string | undefined): Observable<IHobby[]>{
-        const headers = new HttpHeaders()
-        .append('Access-Control-Allow-Origin', '*');
-           return this.httpClient.get<IHobby[]>(`${this.baseUrl}${ApiPaths.Hobby}/${username}`, {headers});
+        const headers = new HttpHeaders().append('Access-Control-Allow-Origin', '*');
+           return this.httpClient.get<IHobby[]>(`${this.baseUrl}${ApiPaths.Hobby}/byUsername/${username}`, {headers});
     }
     
     addHobby(hobby: IHobby) : Observable<IHobby>{

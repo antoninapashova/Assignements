@@ -41,7 +41,7 @@ namespace HobbyProject.Presentation.Controllers
 
         [Authorize]
         [HttpGet]
-        [Route("{username}")]
+        [Route("byUsername/{username}")]
         public async Task<IActionResult> GetByUsername(string username)
         {
             var query = new GetHobbiesByUsernameQuery { Username = username };

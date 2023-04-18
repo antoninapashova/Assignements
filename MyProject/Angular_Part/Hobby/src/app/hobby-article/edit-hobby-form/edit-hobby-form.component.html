@@ -1,0 +1,74 @@
+<!--
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center"> 
+    <mat-card class="box">
+          <mat-card-header>
+            <mat-card-title>Edit hobby article</mat-card-title>
+          </mat-card-header>
+       
+      <form [formGroup]="createArticleForm" class="example-form add-hobby-form" (ngSubmit)="onSubmit(createArticleForm)">
+       
+        <mat-form-field appearance="fill">
+          <mat-label for="title">Title</mat-label>
+          <input matInput
+                 class="form-control"
+                 type="text"
+                 formControlName="title"
+                 #title 
+                 [value]="hobby.title"/>
+           <mat-error *ngIf="createArticleForm.controls['title'].errors?.['required']">Title is required</mat-error>
+           <mat-error *ngIf="createArticleForm.controls['title'].errors?.['minlenght']">Title must be more than 3 characters</mat-error>
+     </mat-form-field>
+  
+   <mat-form-field appearance="fill">
+         <mat-label for="tags">Tags</mat-label>
+         <mat-select class="form-control" formControlName="tags" multiple >
+              <mat-option  *ngFor="let tag of hobby.tags" [value]="tag">{{ tag.name }}</mat-option>
+          </mat-select>
+      <mat-error *ngIf="createArticleForm.controls['tags'].errors?.['required']">You must choose atleast one tag</mat-error>
+     </mat-form-field>
+  
+  <mat-form-field appearance="fill">
+      <mat-label for="subcategory">Subcategory</mat-label>
+      <mat-select class="form-control" 
+      formControlName="subcategory" 
+      #subcategory>
+        <mat-option *ngFor="let s of hobby.hobbySubCategory" [value]="s.id">{{s.name}}</mat-option>
+     </mat-select>
+       <mat-error *ngIf="createArticleForm.controls['subcategory'].errors?.['required']">You must choose subcategory</mat-error>
+  
+  </mat-form-field >
+     <mat-form-field appearance="fill">
+        <mat-label for="firstName">Description</mat-label>
+        <textarea matInput
+               class="form-control"
+               type="text"
+               formControlName="description"
+               #description
+               [value]="description" ></textarea>
+         <mat-error *ngIf="createArticleForm.controls['description'].errors?.['required']">Description is required</mat-error>
+         <mat-error *ngIf="createArticleForm.controls['description'].errors?.['minlenght']">Description must be more than 10 characters</mat-error>
+    </mat-form-field>
+      
+  <div class="custom-dropzone" ngx-dropzone [accept]="'image/*'" (change)="onSelect($event)">
+      <ngx-dropzone-label>
+          <div>
+              <h2>Add photos</h2>
+          </div>
+      </ngx-dropzone-label>
+    <ngx-dropzone-image-preview ngProjectAs="ngx-dropzone-preview" 
+          *ngFor="let f of hobby.hobbyPhoto" 
+          formControlName="photos" 
+           #photos 
+           [file]="f" 
+           [removable]="true" 
+           (removed)="onRemove(f.url)"
+           ngDefaultControl
+          [value] = "photos">
+          <ngx-dropzone-label >{{ f.url }} ({{ f.type }})</ngx-dropzone-label>
+      </ngx-dropzone-image-preview>
+  </div>
+     <button type="submit" mat-raised-button color="primary" #submitButton>Save</button>
+  </form>
+  </mat-card>
+  </div>
+-->

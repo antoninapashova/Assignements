@@ -14,6 +14,7 @@ import { ArticlesComponent } from './user/articles/articles.component';
 import { AddCategoryComponent } from './category/add-category/add-category.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { EditHobbyFormComponent } from './hobby-article/edit-hobby-form/edit-hobby-form.component';
 
 const routes: Routes = [
     {
@@ -60,6 +61,7 @@ const routes: Routes = [
           roles: [ 'User', 'Admin' ]
         },
        },
+       
       ],
      },
      {
@@ -119,13 +121,26 @@ const routes: Routes = [
         path: 'home',
         component: HomeComponent,
         canActivate: [AuthGuard],
-        //data: {
-          //roles: [ 'User', 'Admin' ]
-        //},
+        data: {
+          roles: [ 'User', 'Admin' ]
+        },
+        children:[
+          
+        ]
       },
       {
         path: 'about',
         component: AboutComponent
+      },
+      {
+        
+          path: 'home/user/edit-article/:id',
+          component: EditHobbyFormComponent,
+          canActivate: [AuthGuard],
+          data: {
+            roles: [ 'User', 'Admin' ]
+          },
+         
       }
 ];
 

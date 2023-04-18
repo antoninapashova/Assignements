@@ -17,11 +17,11 @@ namespace HobbyProject.Application.Comments.Queries.GetCommentsByHobbyId
         private readonly IMapper _mapper;
         private readonly ILog _log;
 
-        public GetCommentsByHobbyIdQueryHandler(IUnitOfWork unitOfWork, IMapper mapper, ILog log)
+        public GetCommentsByHobbyIdQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
-            _log = log;
+            _log = SingletonLogger.Instance;
         }
 
         public async Task<List<CommentDto>> Handle(GetCommentsByHobbyIdQuery request, CancellationToken cancellationToken)

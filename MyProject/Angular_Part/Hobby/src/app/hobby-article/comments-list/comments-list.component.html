@@ -1,4 +1,4 @@
-<div class="comment-form-title">Write comment</div>
+<div class="comment-form-title" (click)="getComments()">Post comment</div>
 <app-comment-form submitLabel="Write" (handleSubmit)="addComment({text: $event})"></app-comment-form>
 
 <div class="comments-container">

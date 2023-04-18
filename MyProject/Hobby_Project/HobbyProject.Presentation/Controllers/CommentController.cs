@@ -22,12 +22,12 @@ namespace HobbyProject.Presentation.Controllers
 
         [Authorize]
         [HttpGet]
-        [Route("{id}")]
-        public async Task<IActionResult> GetCommentsByHobbyId(int id)
+        [Route("{hobbyId}")]
+        public async Task<IActionResult> GetCommentsByHobbyId(int hobbyId)
         {
             var command = new GetCommentsByHobbyIdQuery
             {
-                HobbyId = id
+                HobbyId = hobbyId
             };
             var result = await _mediator.Send(command);
             return Ok(result);
@@ -56,6 +56,7 @@ namespace HobbyProject.Presentation.Controllers
              await _mediator.Send(command);
              return NoContent();
         }
+
         [Authorize]
         [HttpDelete]
         [Route("{id}")]

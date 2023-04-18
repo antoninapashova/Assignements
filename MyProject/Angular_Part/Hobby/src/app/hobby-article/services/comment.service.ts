@@ -16,4 +16,11 @@ export class CommentService {
     return this.httpClient.post<IComment>(`${this.baseUrl}${ApiPaths.Comment}`, comment);
   }
 
+  getCommentsByHobbyId(hobbyId: any): Observable<IComment[]>{
+    return this.httpClient.get<IComment[]>(`${this.baseUrl}${ApiPaths.Comment}/${hobbyId}`)
+  }
+
+  deleteComment(id: any): Observable<any>{
+    return this.httpClient.delete<any>(`${this.baseUrl}${ApiPaths.Comment}/${id}`)
+  }
 }

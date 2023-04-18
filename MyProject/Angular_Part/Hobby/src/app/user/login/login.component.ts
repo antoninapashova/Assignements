@@ -40,8 +40,6 @@ export class LoginComponent implements OnInit {
      if(form.valid){        
        this.userService.login(form.value).subscribe({
         next:(res)=>{
-          let obj ={title: 'Login', message: 'Login is successful', type: ModalType.INFO}
-          this.matDialog.open( DialogTemplateComponent, {data: obj});
           this.user = res;
           this.dataSharingService.loggedInUser = this.user
           this.userService.storeToken(res.accessToken);

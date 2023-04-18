@@ -34,7 +34,7 @@ namespace Infrastructure.Repository
 
         public async Task<IEnumerable<Category>> GetAllEntitiesAsync()
         {
-            return  _context.Categories
+            return _context.Categories
                 .Include(h => h.HobbySubCategories)
                 .AsEnumerable();
         }

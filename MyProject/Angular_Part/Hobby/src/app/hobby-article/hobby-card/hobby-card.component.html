@@ -16,8 +16,12 @@
   <mat-card-actions>
     <button mat-button>LIKE</button>
  </mat-card-actions>
+  
+ <mat-card-actions *ngIf="currentUsername==h.username" >
+   <a mat-button [routerLink]="['user', 'edit-article', h.id]">EDIT</a>
+ </mat-card-actions>
 
-  <mat-accordion class="example-headers-align" multi>
+  <mat-accordion class="example-headers-align" multi >
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <div class="my-panel">
@@ -25,9 +29,7 @@
         </div>
       </mat-expansion-panel-header>
      <div>
-     <app-comments-list [currentUsername]="currentUsername" [comments] = "h.hobbyComments"  
-       [hobbyArticleId] = "h.id">
-      </app-comments-list>
+     <app-comments-list [currentUsername]="currentUsername" [hobbyArticleId] = "h.id"></app-comments-list>
      </div>
     </mat-expansion-panel>
   </mat-accordion>

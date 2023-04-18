@@ -20,8 +20,9 @@ export class ResetPasswordComponent implements OnInit{
   resetPasswordObj = new ResetPassword();
   isSuccessfull: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private activateRoute: ActivatedRoute, private resetService: ResetPasswordService, 
-    private router: Router, private matDialog: MatDialog){}
+  constructor(private formBuilder: FormBuilder, private activateRoute: ActivatedRoute, 
+    private resetService: ResetPasswordService, private router: Router, 
+    private matDialog: MatDialog){}
 
   ngOnInit(): void {
     this.resetPasswordForm = this.formBuilder.group({

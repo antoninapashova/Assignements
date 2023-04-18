@@ -1,4 +1,3 @@
-import { IComment } from './comment';
 import { IPhoto } from './photo';
 import { ITag } from "./tag";
 
@@ -12,5 +11,4 @@ export interface IHobby{
     userId: number,
     hobbyPhoto: IPhoto[],
     tags: ITag[],
-    hobbyComments: IComment[]
 }

@@ -34,7 +34,10 @@ namespace Infrastructure.Repository
 
         public async Task<IEnumerable<Comment>> GetCommentsByHobbyId(int hobbyId)
         {
-           return await _context.Comments.Where(x=>x.HobbyArticleId == hobbyId).ToListAsync();
+           return await _context.Comments.Where(x=>x.HobbyArticleId == hobbyId)
+                .Include(x=>x.User)
+                 
+                .ToListAsync();
         }
 
         public async Task<Comment> Update(Comment comment)

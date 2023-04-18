@@ -1,4 +1,10 @@
 .comment-author {
-    font-weight: 400;
+    font-weight: 800;
     font-size: 15px;
+}
+
+.comment{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
 }

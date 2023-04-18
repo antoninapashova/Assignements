@@ -24,8 +24,7 @@ namespace Application.Comments.Commands.Delete
         {
             try
             {
-                if (command == null)
-                    throw new NullReferenceException("Delete comment command is null");
+                if (command == null) throw new NullReferenceException("Delete comment command is null");
 
                 await _unitOfWork.CommentRepository.DeleteAsync(command.Id);
                 await _unitOfWork.Save();

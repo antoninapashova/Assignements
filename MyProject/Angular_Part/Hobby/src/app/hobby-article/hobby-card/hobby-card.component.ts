@@ -1,7 +1,8 @@
+import { IComment } from 'src/app/shared/interfaces/comment';
 import { UserStoreService } from 'src/app/user/user-store.service';
 import { MatDialog } from '@angular/material/dialog';
 import { UserService } from 'src/app/user/user.service';
-import { Component,  Input, OnInit,  ViewChild } from '@angular/core';
+import { Component,  Input, OnInit,  Output,  ViewChild } from '@angular/core';
 import { IHobby } from 'src/app/shared/interfaces/hobby-article';
 import { MatAccordion } from '@angular/material/expansion';
 import { HobbyService } from '../services/hobby-aticle.service';
@@ -14,14 +15,15 @@ import { HobbyCardDialogComponent } from '../hobby-card-dialog/hobby-card-dialog
   styleUrls: ['./hobby-card.component.css']
 })
 export class HobbyCardComponent implements OnInit {
-  @ViewChild(MatAccordion) accordion!: MatAccordion;
-  @Input() hobbies?: IHobby[];
+  
   currentUsername!: string | undefined;
   role!: string;
-
+  @Output() comments?: IComment[];
+  @ViewChild(MatAccordion) accordion!: MatAccordion;
+  @Input() hobbies?: IHobby[];
+  
   constructor(private hobbyService: HobbyService, private userService: UserService,
-              private matDialog: MatDialog, private userStore:UserStoreService, 
-              ) {}
+              private matDialog: MatDialog, private userStore:UserStoreService) {}
 
    ngOnInit(): void {
       this.userStore.getFullNameFromStore().subscribe((val:any)=>{      
@@ -36,10 +38,9 @@ export class HobbyCardComponent implements OnInit {
     } 
 
     openDialog(hobby: IHobby){
-     let obj = {title: hobby.title, description: hobby.description, username: hobby.username, hobbyPhoto: hobby.hobbyPhoto, comments: hobby.hobbyComments}
+     let obj = {id: hobby.id, title: hobby.title, description: hobby.description, username: hobby.username, hobbyPhoto: hobby.hobbyPhoto, }
      this.matDialog.open( HobbyCardDialogComponent, {data: obj});
     }
-
 
     deleteArticle(id: any, username: any){
      if(this.currentUsername==username || this.role=='Admin'){

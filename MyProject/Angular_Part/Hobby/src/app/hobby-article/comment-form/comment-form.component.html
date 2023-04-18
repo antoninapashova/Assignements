@@ -1,5 +1,5 @@
 <form [formGroup]="commentForm" class="form-group" (ngSubmit)="onSubmit(commentForm)" >
-    <textarea class="comment-form-textarea" formControlName="title"></textarea>
+  <input class="comment-form-textarea" formControlName="title">
 
     <button class="comment-form-button" type="submit" [disabled]="commentForm.invalid">
       {{ submitLabel }}

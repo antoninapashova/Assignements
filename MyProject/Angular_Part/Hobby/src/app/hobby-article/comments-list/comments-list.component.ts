@@ -14,9 +14,9 @@ export class CommentsListComponent  {
 
    @Input() currentUsername: string | undefined;
    @Input() comments!: IComment[];
-   @Input() hobbyArticleId: number | undefined;
+   @Input() hobbyArticleId!: number | undefined;
 
-   constructor(private commentSrvice: CommentService, private matDialog: MatDialog,
+   constructor(private commentService: CommentService, private matDialog: MatDialog,
                private datasharingService: DataSharingService){
    }
 
@@ -27,7 +27,7 @@ export class CommentsListComponent  {
         hobbyArticleId: this.hobbyArticleId
       }
 
-    this.commentSrvice.createComment(comment).subscribe({
+    this.commentService.createComment(comment).subscribe({
       next: (res)=>{
         console.log(res);
       },
@@ -35,6 +35,20 @@ export class CommentsListComponent  {
         let obj ={title: 'Create article', message: err, type: ModalType.WARN}
         this.matDialog.open( DialogTemplateComponent, {data: obj})
       }
+    });
+  }
+
+  getComments(){
+    this.commentService.getCommentsByHobbyId(this.hobbyArticleId).subscribe({
+      
+      next: (res)=>{
+        console.log(res);
+        this.comments = res;
+      },
+       error: (err)=>{
+        console.log(this.hobbyArticleId);
+        console.log(err.detail);
+       }
     });
   }
 }

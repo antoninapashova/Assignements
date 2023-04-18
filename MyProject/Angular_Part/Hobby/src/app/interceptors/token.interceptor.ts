@@ -1,7 +1,7 @@
 import { TokenApiModel } from './../shared/interfaces/token-api';
 import { UserService } from './../user/user.service';
 import { Injectable } from '@angular/core';
-import { HttpRequest,HttpHandler,HttpEvent,HttpInterceptor,HttpErrorResponse} from '@angular/common/http';
+import { HttpRequest,HttpHandler,HttpEvent,HttpInterceptor,HttpErrorResponse, HttpBackend, HttpClient} from '@angular/common/http';
 import { catchError, Observable, switchMap, throwError } from 'rxjs';
 import { DialogTemplateComponent, ModalType } from '../core/dialog/dialog-template/dialog-template.component';
 import { MatDialog } from '@angular/material/dialog';
@@ -9,10 +9,10 @@ import { Router } from '@angular/router';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
-
+ 
   constructor(private userService: UserService, 
               private matDialog: MatDialog,
-              private router: Router) {}
+              private router: Router, private handler: HttpBackend,) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     const token = this.userService.getToken();

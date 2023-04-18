@@ -1,9 +1,13 @@
 <div class="comment">
+  <span class="material-icons"> person_pin </span>
     <div class="comment-right-part">
       <div class="comment-content">
         <div class="comment-author">{{ comment?.username }}</div>
       </div>
       <div class="comment-text">{{ comment?.commentContent }}</div>
+    </div>
+    <div class="comment-action">
+      <button mat-button (click)="deleteComment(comment?.id)">Delete</button>
     </div>
   </div>
   <mat-divider></mat-divider>
