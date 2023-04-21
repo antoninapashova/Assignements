@@ -20,19 +20,27 @@ export class AddSubcategoryComponent implements OnInit {
               private matDialog: MatDialog){}
 
   ngOnInit(): void {
-    this.categoryService.getCategories().subscribe(res=>this.categories=res);
+    this.categoryService.getNames().subscribe({
+      next: (res)=>{
+         this.categories = res;
+       },
+       error: (err)=>{
+        let obj ={title: 'Categories', message: err.message, type: ModalType.WARN}
+        this.matDialog.open( DialogTemplateComponent, {data: obj});
+       }
+    });
   }
 
   onSubmit(form: NgForm) {
     this.subCategory = form.value;
     this.subCategoryService.addSubCategory(this.subCategory).subscribe({
-      next: (response)=>{
+      next: (res)=>{
       let obj ={title: 'Subcategory', message: 'Subcategory is added successfull', type: ModalType.INFO}
       this.matDialog.open( DialogTemplateComponent, {data: obj});
       form.reset();
      },
      error: (err)=>{
-      let obj ={title: 'Subcategory', message: err, type: ModalType.WARN}
+      let obj ={title: 'Subcategory', message: err.message, type: ModalType.WARN}
       this.matDialog.open( DialogTemplateComponent, {data: obj});
      }
     });

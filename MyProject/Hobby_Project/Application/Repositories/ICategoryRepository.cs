@@ -1,4 +1,5 @@
 ﻿using Hobby_Project;
+using NUnit.Framework.Internal.Execution;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,7 @@ namespace Application.Repositories
 {
     public interface ICategoryRepository : IRepository<Category>
     {
+        Task<IQueryable<Category>> GetAllNamesAsync();
+        Task<bool> CheckCategoryExists(string name);
     }
 }

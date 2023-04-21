@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,6 +8,7 @@ using Application.Repositories;
 using Hobby_Project;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
+using NUnit.Framework.Internal.Execution;
 
 namespace Infrastructure.Repository
 {
@@ -25,6 +27,7 @@ namespace Infrastructure.Repository
             await _context.Categories.AddAsync(entity);
             return entity;
         }
+
         public async Task DeleteAsync(int id)
         {
             Category hobbyCategory = await FindById(id);
@@ -34,37 +37,38 @@ namespace Infrastructure.Repository
 
         public async Task<IEnumerable<Category>> GetAllEntitiesAsync()
         {
-            return _context.Categories
-                .Include(h => h.HobbySubCategories)
-                .AsEnumerable();
+            return _context.Categories.AsNoTracking().AsEnumerable();
         }
 
         public async Task<Category> GetByIdAsync(int id)
         {
-            Category hobbyCategory = await FindById(id); 
-
-            return  _context.Categories
-                .Include(x=>x.HobbySubCategories)
-                .FirstOrDefault(x => x.Id == id);
+            return await FindById(id);
         }
 
         public async Task<Category> Update(Category hobbyCategory)
         {
-             await FindById(hobbyCategory.Id);
-             _context.ChangeTracker.Clear();
-             _context.Update(hobbyCategory);
-             return hobbyCategory;
-        } 
-
+            await FindById(hobbyCategory.Id);
+            _context.ChangeTracker.Clear();
+            _context.Update(hobbyCategory);
+            return hobbyCategory;
+        }
+        public async Task<IQueryable<Category>> GetAllNamesAsync() {
+            return _context.Categories.AsQueryable();
+        }
+        public async Task<bool> CheckCategoryExists(string name)
+        {
+            return await _context.Categories.AnyAsync(c => c.Name == name);
+        }
         public async Task<Category> FindById(int id)
         {
-           var hobbyCategory =  await _context.Categories
-                .FirstOrDefaultAsync(c => c.Id == id);
+            var hobbyCategory = await _context.Categories.AsNoTracking()
+                 .FirstOrDefaultAsync(c => c.Id == id);
 
             if (hobbyCategory == null) throw new NullReferenceException("Category is null!");
 
             return hobbyCategory;
         }
 
+       
     }
 }

@@ -27,7 +27,7 @@ export class CategoryListComponent implements OnInit {
           this.dataSharingService.isCategoryAdded.subscribe(value => {
           this.isAdded= value;
        });
-      }
+    }
 
   ngOnInit(): void {
       this.categoryService.getCategories().subscribe(res=>{

@@ -49,7 +49,10 @@ namespace Infrastructure.Repository
             _context.Update(subCategoryForEditing);
             return hobbySubCategory;
         }
-        
+         public async Task<bool> CheckSubCategoryExists(string name)
+         {
+            return await _context.SubCategories.AsNoTracking().AnyAsync(s => s.Name == name);
+         }
         public async Task<SubCategory> FindById(int id)
         {
             var subCategory = await _context.SubCategories.FirstOrDefaultAsync(s => s.Id == id);
@@ -59,5 +62,6 @@ namespace Infrastructure.Repository
             return subCategory;
         }
 
+       
     }
 }

@@ -35,7 +35,7 @@ namespace Application.HobbySubCategories.Commands.Create
             try
             {
                 if (command == null) throw new NullReferenceException("Create sub category command is null!");
-
+                await IsSubCategoryExists(command.Name);
                 SubCategory hobbySubCategory = _mapper.Map<SubCategory>(command);
                 await _unitOfWork.SubCategoryRepository.Add(hobbySubCategory);
                 await _unitOfWork.Save();
@@ -47,6 +47,12 @@ namespace Application.HobbySubCategories.Commands.Create
                 _log.LogError(e.Message);
                 throw;
             }
+        }
+
+        private async Task IsSubCategoryExists(string name)
+        {
+            bool isSubcategoryExists = await _unitOfWork.SubCategoryRepository.CheckSubCategoryExists(name);
+            if (isSubcategoryExists) throw new NullReferenceException($"The subcategory {name} already exists!");
         }
     }
 }

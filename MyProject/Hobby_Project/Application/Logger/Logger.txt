@@ -72,3 +72,15 @@ Tags
 [Error]15:58 An error occurred while saving the entity changes. See the inner exception for details.
 *-------------------------------*
 [Error]16:03 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]14:42 Unable to cast object of type 'Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryable`1[<>f__AnonymousType7`2[System.Int32,System.String]]' to type 'System.Threading.Tasks.Task`1[System.Linq.IQueryable`1[Hobby_Project.Category]]'.
+*-------------------------------*
+[Error]16:51 User with that username already exists!
+*-------------------------------*
+[Error]16:51 User with that username already exists!
+*-------------------------------*
+[Error]16:52 The subcategory Coffee already exists!
+*-------------------------------*
+[Error]16:53 The subcategory Coffee already exists!
+*-------------------------------*
+[Error]16:55 The subcategory Tennis already exists!

@@ -2,7 +2,7 @@ import { IPhoto } from './photo';
 import { ITag } from "./tag";
 
 export interface IHobby{
-    id?: number,
+    id: number,
     title: string;
     description: string;
     hobbySubcategoryId: number,

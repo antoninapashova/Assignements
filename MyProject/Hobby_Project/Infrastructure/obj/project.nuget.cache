@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "SLIBi70ErPxF/gUF6/Q++dzpEPxeoeXymzNF0ig67jgaqHTpMR8w/TPk6EJ33SFSKkDzemDZwujtaRANMvckhg==",
+  "dgSpecHash": "gIpkdCJH0YQ7eHe0jLCFWCC2tezs3pv8RR09p7dDOIe5ykevMOKvxrq2sGPQTx1gH+ZUaxfp+GF79QjyTWwJDQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\PC\\Desktop\\Assignements\\Assignements\\MyProject\\Hobby_Project\\Infrastructure\\HobbyProject.Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -76,7 +76,9 @@
     "C:\\Users\\PC\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\moq\\4.18.2\\moq.4.18.2.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\netcore.mailkit\\2.1.0\\netcore.mailkit.2.1.0.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\netstandard.library\\2.0.0\\netstandard.library.2.0.0.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\nunit\\3.13.3\\nunit.3.13.3.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\portable.bouncycastle\\1.9.0\\portable.bouncycastle.1.9.0.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",

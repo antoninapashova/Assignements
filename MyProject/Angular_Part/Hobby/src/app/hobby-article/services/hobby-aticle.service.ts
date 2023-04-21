@@ -33,7 +33,7 @@ export class HobbyService{
         return this.httpClient.post<IHobby>(`${this.baseUrl}${ApiPaths.Hobby}`, hobby);
     }
 
-    updateHobby(id: string, hobby: IHobby) : Observable<IHobby>{
+    updateHobby(id: number, hobby: IHobby) : Observable<IHobby>{
         return this.httpClient.put<IHobby>(`${this.baseUrl}${ApiPaths.Hobby}/${id}`, hobby);
     }
 

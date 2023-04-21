@@ -30,7 +30,7 @@ namespace Application.Categories.Commands.Create
             try
             {
                 if (command == null) throw new NullReferenceException("Create category command is null!");
-
+                await IsExist(command.Name);
                 Category hobbyCategory = _mapper.Map<Category>(command);
                 await _unitOfWork.CategoryRepository.Add(hobbyCategory);
                 await _unitOfWork.Save();
@@ -42,6 +42,12 @@ namespace Application.Categories.Commands.Create
                 _log.LogError(e.Message);
                 throw;
             }
+        }
+
+        private async Task IsExist(string name)
+        {
+            bool isExist = await _unitOfWork.CategoryRepository.CheckCategoryExists(name);
+            if (isExist) throw new NullReferenceException($"The category {name} already exists!");
         }
     }
 }
