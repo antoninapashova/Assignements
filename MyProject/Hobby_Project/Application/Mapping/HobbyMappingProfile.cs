@@ -1,5 +1,4 @@
 ﻿using Application.Categories.Commands.Create;
-using Application.Categories.Commands.Edit;
 using Application.Comments.Commands.Create;
 using Application.Comments.Commands.Edit;
 using Application.Comments.Queries;
@@ -44,7 +43,7 @@ namespace Application.Mapping
 
             //Category
             CreateMap<CreateCategoryCommand, Category>();
-            CreateMap<EditCategoryCommand, Category>();
+            
             CreateMap<Category, CategoryDto>();
             CreateMap<Category, CategoryNameDto>();
 

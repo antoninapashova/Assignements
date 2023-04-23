@@ -33,26 +33,20 @@ namespace Infrastructure.Repository
 
         public async Task<IEnumerable<SubCategory>> GetAllEntitiesAsync()
         {
-            return  _context.SubCategories.AsEnumerable();
+            return  _context.SubCategories.AsQueryable();
         }
 
         public async Task<SubCategory> GetByIdAsync(int id)
         {
-            SubCategory hobbySubCategory = await FindById(id);
-            return hobbySubCategory;
+           return await FindById(id);
+             
         }
 
-        public async Task<SubCategory> Update(SubCategory hobbySubCategory)
+        public async Task<bool> CheckSubCategoryExists(string name)
         {
-            SubCategory subCategoryForEditing = await FindById(hobbySubCategory.Id);
-
-            _context.Update(subCategoryForEditing);
-            return hobbySubCategory;
+           return await _context.SubCategories.AnyAsync(s => s.Name == name);
         }
-         public async Task<bool> CheckSubCategoryExists(string name)
-         {
-            return await _context.SubCategories.AsNoTracking().AnyAsync(s => s.Name == name);
-         }
+
         public async Task<SubCategory> FindById(int id)
         {
             var subCategory = await _context.SubCategories.FirstOrDefaultAsync(s => s.Id == id);
@@ -62,6 +56,9 @@ namespace Infrastructure.Repository
             return subCategory;
         }
 
-       
+        public Task<SubCategory> Update(SubCategory entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

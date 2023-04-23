@@ -37,7 +37,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Photos\Queries\" />
     <Folder Include="User\Command\Create\" />
     <Folder Include="User\Query\" />
   </ItemGroup>

@@ -35,29 +35,32 @@ namespace Infrastructure.Repository
 
         public async Task<IEnumerable<Tag>> GetAllEntitiesAsync()
         {
-            return await _context.Tags.ToListAsync();
+            return _context.Tags.AsNoTracking().AsQueryable();
         }
 
         public async Task<Tag> GetByIdAsync(int id)
         {
-           Tag tag = await FindById(id);
-           return tag;
+           return await FindById(id);
+        } 
+        
+        public async Task<bool> CheckTagExists(string name)
+        {
+            return await _context.Tags.AnyAsync(t => t.Name == name);
         }
 
-        public async Task<Tag> Update(Tag entity)
-        {
-            Tag tagForUpdating = await FindById(entity.Id);
-            _context.Update(tagForUpdating);
-            return entity;
-        }
         public async Task<Tag> FindById(int id)
         {
             var tag = await _context.Tags.AsNoTracking().FirstOrDefaultAsync(t => t.Id == id);
 
             if (tag == null) 
-                throw new NullReferenceException("Tag with id: " + id + " does not exist!");
+                throw new NullReferenceException($"Tag with Id {id} does not exist!");
 
             return tag;
+        }
+
+        public Task<Tag> Update(Tag entity)
+        {
+            throw new NotImplementedException();
         }
     }
 }

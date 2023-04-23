@@ -23,8 +23,7 @@ namespace Infrastructure.Repository
         public async Task<HobbyEntity> Add(HobbyEntity entity)
         {
              _context.HobbyEntities.Attach(entity).State = EntityState.Added;
-            
-            return entity;
+             return entity;
         }
 
         public async Task DeleteAsync(int id)
@@ -34,37 +33,35 @@ namespace Infrastructure.Repository
             _context.HobbyEntities.Remove(articleForDeleting);
         }
 
-        
         public async Task<IEnumerable<HobbyEntity>> GetHobbyArticlesByUserId(int id)
         {
-            return await _context.HobbyEntities
+            return _context.HobbyEntities
                 .Include(h => h.HobbySubCategory)
-                .Include(x=>x.User)
+                .Include(x => x.User)
                 .Include(h => h.Tags)
-                .Include(h=>h.HobbyPhoto)
-                .ToListAsync();
+                .Include(h => h.HobbyPhoto)
+                .AsQueryable()
+                .Where(h=>h.User.Id==id);
         }
         
-
         public async Task<IEnumerable<HobbyEntity>> GetAllEntitiesAsync()
         {
-            return await _context.HobbyEntities
+            return _context.HobbyEntities
                 .Include(x=>x.User)
                 .Include(x => x.HobbySubCategory)
                 .Include(x => x.HobbyPhoto)
                 .Include(x => x.Tags)
-                .ToListAsync();
+                .AsQueryable();
         }
         public async Task<HobbyEntity> GetByIdAsync(int id)
         {
            await FindById(id);
-            
+
             return await _context.HobbyEntities
-                    .Where(h => h.Id == id)
                     .Include(h => h.HobbySubCategory)
-                    .Include(h=>h.Tags)
+                    .Include(h => h.Tags)
                     .Include(h => h.HobbyPhoto)
-                    .FirstOrDefaultAsync();
+                    .SingleAsync(x => x.Id == id);
         }
       
         public async Task<HobbyEntity> Update(HobbyEntity hobbyArticle)
@@ -75,22 +72,20 @@ namespace Infrastructure.Repository
         
         public async Task<IEnumerable<HobbyEntity>> GetHobbyArticlesByUsername(string username)
         {
-            return await _context.HobbyEntities
-                     //.Where(h => h.Username.Equals(username))
+            return _context.HobbyEntities
                      .Include(h => h.HobbySubCategory)
                      .Include(h => h.Tags)
                      .Include(h => h.HobbyPhoto)
-                     .ToListAsync();
+                     .AsQueryable() 
+                     .Where(h => h.User.Username.Equals(username));
         }
 
         public async Task<HobbyEntity> FindById(int id)
         {
             var hobby = await _context.HobbyEntities.FirstOrDefaultAsync(h => h.Id == id);
 
-            if (hobby == null) throw new NullReferenceException("HobbyArticle with Id: " + id + " does not exist");
+            if (hobby == null) throw new NullReferenceException($"HobbyArticle with Id: {id} does not exist");
             return hobby;
         }
-
-        
     }
 }

@@ -62,7 +62,7 @@ addRowData(obj: any){
         },
         error:(err)=>{
           console.log(err);
-          let obj ={title: 'Add category', message: err.error.detail, type: ModalType.WARN}
+          let obj ={title: 'Add category', message: err.message, type: ModalType.WARN}
           this.dialog.open( DialogTemplateComponent, {data: obj})
         }
     });

@@ -32,15 +32,10 @@ namespace Infrastructure.Repository
             _context.Photos.Remove(hobbyPhoto);
         }
 
-        public async Task<IEnumerable<Photo>> GetAllEntitiesAsync()
-        {
-            return _context.Photos.AsEnumerable();
-        }
-
         public async Task<Photo> GetByIdAsync(int id)
         {
-            Photo hobbyPhoto = await FindById(id);
-            return await Task.FromResult(hobbyPhoto);
+            var hobbyPhoto = await FindById(id);
+            return  hobbyPhoto;
         }
         public async Task<Photo> Update(Photo entity)
         {
@@ -53,10 +48,14 @@ namespace Infrastructure.Repository
         {
             var photo = await _context.Photos.FirstOrDefaultAsync(c => c.Id == id);
 
-            if (photo == null)
-                throw new InvalidOperationException("Photo with Id" + id + "does not exist!");
+            if (photo == null) throw new InvalidOperationException($"Photo with Id {id} does not exist!");
 
             return photo;
+        }
+
+        public Task<IEnumerable<Photo>> GetAllEntitiesAsync()
+        {
+            throw new NotImplementedException();
         }
     }
 }

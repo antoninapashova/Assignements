@@ -2,8 +2,10 @@
 using Application.Notifications;
 using Application.Repositories;
 using AutoMapper;
+using FluentValidation;
 using Hobby_Project;
 using HobbyProject.Application.Categories.Queries;
+using HobbyProject.Application.Validators;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -35,6 +37,10 @@ namespace Application.HobbySubCategories.Commands.Create
             try
             {
                 if (command == null) throw new NullReferenceException("Create sub category command is null!");
+
+                var subCategoryValidator = new SubCategoryValidator();
+                await subCategoryValidator.ValidateAndThrowAsync(command);
+
                 await IsSubCategoryExists(command.Name);
                 SubCategory hobbySubCategory = _mapper.Map<SubCategory>(command);
                 await _unitOfWork.SubCategoryRepository.Add(hobbySubCategory);

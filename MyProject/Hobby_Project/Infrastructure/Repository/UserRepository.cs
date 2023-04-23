@@ -30,19 +30,18 @@ namespace HobbyProject.Infrastructure.Repository
         public async Task DeleteAsync(int id)
         {
             UserEntity user = await FindById(id);
-
-            _context.Remove(user);
+           _context.Remove(user);
         }
 
         public async Task<IEnumerable<UserEntity>> GetAllEntitiesAsync()
         {
-            return _context.Users.AsEnumerable();
+            return _context.Users.AsNoTracking();
         }
 
         public async Task<UserEntity> GetByIdAsync(int id)
         {
-            await FindById(id);
-            return await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
+            return await FindById(id);
+            
         }
 
         public async Task<UserEntity> Update(UserEntity entity)
@@ -55,12 +54,12 @@ namespace HobbyProject.Infrastructure.Repository
 
         public async Task<UserEntity> FindByUsername(string username)
         {
-            return await _context.Users.FirstOrDefaultAsync(x => x.Username == username);
+            return await _context.Users.SingleAsync(x => x.Username == username);
         }
 
         public async Task<UserEntity> FindByEmail(string email)
         {
-            return await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
+            return await _context.Users.SingleAsync(x => x.Email == email);
         }
 
         public async Task<bool> CheckUsernameExists(string username)
@@ -78,7 +77,7 @@ namespace HobbyProject.Infrastructure.Repository
             var user = await _context.Users
                  .FirstOrDefaultAsync(c => c.Id == id);
 
-            if (user == null) throw new NullReferenceException("User is null!");
+            if (user == null) throw new NullReferenceException($"User with Id {id} does not exist");
 
             return user;
         }

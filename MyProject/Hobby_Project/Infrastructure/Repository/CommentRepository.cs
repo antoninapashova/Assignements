@@ -34,10 +34,10 @@ namespace Infrastructure.Repository
 
         public async Task<IEnumerable<Comment>> GetCommentsByHobbyId(int hobbyId)
         {
-           return await _context.Comments.Where(x=>x.HobbyArticleId == hobbyId)
-                .Include(x=>x.User)
-                 
-                .ToListAsync();
+            return _context.Comments
+                .Include(x => x.User)
+                .AsQueryable()
+                .Where(c => c.HobbyArticleId == hobbyId);
         }
 
         public async Task<Comment> Update(Comment comment)
@@ -54,7 +54,7 @@ namespace Infrastructure.Repository
                                 //.Include(x=>x.Username)
                                 .FirstOrDefaultAsync(c => c.Id == id);
 
-            if (comment == null) throw new NullReferenceException("Comment with Id " + id + " does not exist!");
+            if (comment == null) throw new NullReferenceException($"Comment with Id: {id} does not exist!");
 
             return comment;
         }

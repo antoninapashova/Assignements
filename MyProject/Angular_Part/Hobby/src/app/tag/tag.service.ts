@@ -15,8 +15,6 @@ export class TagService {
 
     baseUrl = environment.baseUrl;
 
-
-
     getAll() : Observable<ITag[]>{
         return this.httpClient.get<ITag[]>(`${this.baseUrl}${ApiPaths.Tag}`);
     }

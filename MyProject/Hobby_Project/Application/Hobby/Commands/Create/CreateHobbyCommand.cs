@@ -20,8 +20,8 @@ namespace Application.Hobby.Commands.Create
         public string Description { get; set; }
         public int UserId { get; set; }
         public int HobbySubCategoryId { get; set; }
-        public List<CreateHobbyTagDto> Tags { get; set; }
-        public List<PhotoDTO> HobbyPhoto { get; set; }
+        public IEnumerable<CreateHobbyTagDto> Tags { get; set; }
+        public IEnumerable<PhotoDTO> HobbyPhoto { get; set; }
 
     }
 }

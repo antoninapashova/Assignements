@@ -39,7 +39,7 @@ namespace HobbyProject.Application.User.Command.Create
 
                 UserEntity userEntity = _mapper.Map<UserEntity>(command);
                 userEntity.Password = PasswordHasher.HashPassword(command.Password);
-                userEntity.Role = "Admin";
+                userEntity.Role = "User";
                 userEntity.Token = "";
                 userEntity.RefreshToken = "";
                 await _unitOfWork.UserRepository.Add(userEntity);

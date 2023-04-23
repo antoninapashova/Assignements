@@ -59,9 +59,6 @@ namespace HobbyProject.Presentation.Controllers
         [HttpPost]
         public async Task<ActionResult> AddCategory([FromBody] CreateCategoryCommand command)
         {
-            var validator = new CategoryValidator(); 
-            
-            validator.Validate(command);
             var result = await _mediator.Send(command);
             return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
         }

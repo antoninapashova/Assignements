@@ -37,7 +37,7 @@ namespace Infrastructure.Repository
 
         public async Task<IEnumerable<Category>> GetAllEntitiesAsync()
         {
-            return _context.Categories.AsNoTracking().AsEnumerable();
+            return _context.Categories.AsEnumerable();
         }
 
         public async Task<Category> GetByIdAsync(int id)
@@ -45,16 +45,10 @@ namespace Infrastructure.Repository
             return await FindById(id);
         }
 
-        public async Task<Category> Update(Category hobbyCategory)
-        {
-            await FindById(hobbyCategory.Id);
-            _context.ChangeTracker.Clear();
-            _context.Update(hobbyCategory);
-            return hobbyCategory;
-        }
         public async Task<IQueryable<Category>> GetAllNamesAsync() {
-            return _context.Categories.AsQueryable();
+            return _context.Categories.AsNoTracking().AsQueryable();
         }
+
         public async Task<bool> CheckCategoryExists(string name)
         {
             return await _context.Categories.AnyAsync(c => c.Name == name);
@@ -69,6 +63,9 @@ namespace Infrastructure.Repository
             return hobbyCategory;
         }
 
-       
+        public Task<Category> Update(Category entity)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

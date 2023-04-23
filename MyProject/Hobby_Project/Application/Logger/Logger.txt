@@ -84,3 +84,9 @@ Tags
 [Error]16:53 The subcategory Coffee already exists!
 *-------------------------------*
 [Error]16:55 The subcategory Tennis already exists!
+*-------------------------------*
+[Error]17:07 The category Sport already exists!
+*-------------------------------*
+[Error]17:08 The category Sport already exists!
+*-------------------------------*
+[Error]17:41 Tag Inside hobby already exists!

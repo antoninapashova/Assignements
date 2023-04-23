@@ -1,7 +1,9 @@
 ﻿using Application.Logger;
 using Application.Repositories;
 using AutoMapper;
+using FluentValidation;
 using Hobby_Project;
+using HobbyProject.Application.Validators;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -30,6 +32,8 @@ namespace Application.Categories.Commands.Create
             try
             {
                 if (command == null) throw new NullReferenceException("Create category command is null!");
+                var tagValidator = new CategoryValidator();
+                await tagValidator.ValidateAndThrowAsync(command);
                 await IsExist(command.Name);
                 Category hobbyCategory = _mapper.Map<Category>(command);
                 await _unitOfWork.CategoryRepository.Add(hobbyCategory);

@@ -14,6 +14,8 @@ using System.Text;
 using System.Threading.Tasks;
 using CloudinaryDotNet;
 using HobbyProject.Application.Hobby;
+using HobbyProject.Application.Validators;
+using FluentValidation;
 
 namespace Application.Hobby.Commands.Create
 {
@@ -35,6 +37,9 @@ namespace Application.Hobby.Commands.Create
             try
             {
                 if (command == null) throw new NullReferenceException("Create hobby command is null!");
+
+                var hobbyValidator = new HobbyArticleValidator();
+                await hobbyValidator.ValidateAndThrowAsync(command);
 
                 var hobby = _mapper.Map<HobbyEntity>(command);
                 await _unitOfWork.HobbyArticleRepository.Add(hobby);

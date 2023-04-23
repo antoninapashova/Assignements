@@ -20,9 +20,9 @@ namespace HobbyProjectTests.Queries
 {
     public class GetSubCategoryListRequestHandlerTests
     {
-        private Mock<IUnitOfWork> _unitOfWorkMock;
-        private Mock<ISubCategoryRepository> _repoMock;
-        private IMapper _mapper;
+        private readonly Mock<IUnitOfWork> _unitOfWorkMock;
+        private readonly Mock<ISubCategoryRepository> _repoMock;
+        private readonly IMapper _mapper;
 
         public GetSubCategoryListRequestHandlerTests()
         {
