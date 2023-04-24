@@ -7,5 +7,5 @@ export class DataSharingService {
     public isCategoryAdded: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     public isTagAdded: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-    public loggedInUser!: any;
+    public loggedInUser!:any;
 }

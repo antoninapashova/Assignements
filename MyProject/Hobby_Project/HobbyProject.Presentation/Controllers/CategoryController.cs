@@ -1,7 +1,6 @@
 ﻿
 using Application.Categories.Commands.Create;
 using Application.Categories.Commands.Delete;
-using Application.Categories.Commands.Edit;
 using HobbyProject.Application.Categories.Queries.GetAllCategories;
 using HobbyProject.Application.Categories.Queries.GetAllNames;
 using HobbyProject.Application.Categories.Queries.GetCategoryById;
@@ -63,15 +62,6 @@ namespace HobbyProject.Presentation.Controllers
             return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
         }
 
-        [Authorize]
-        [HttpPut]
-        [Route("{id}")]
-        public async Task<ActionResult> UpdateCategory(int id, [FromBody] EditCategoryCommand editCategory)
-        {
-             editCategory = new EditCategoryCommand { Id = id, Name = editCategory.Name };
-             var result = await _mediator.Send(editCategory);
-             return Ok(result);
-        }
 
         [Authorize]
         [HttpDelete]

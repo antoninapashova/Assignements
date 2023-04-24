@@ -20,6 +20,10 @@ export class CommentService {
     return this.httpClient.get<IComment[]>(`${this.baseUrl}${ApiPaths.Comment}/${hobbyId}`)
   }
 
+  editComment(hobbyId: any,comment: IComment): Observable<IComment> {
+    return this.httpClient.put<IComment>(`${this.baseUrl}${ApiPaths.Comment}/${hobbyId}`, comment)
+  }
+
   deleteComment(id: any): Observable<any>{
     return this.httpClient.delete<any>(`${this.baseUrl}${ApiPaths.Comment}/${id}`)
   }

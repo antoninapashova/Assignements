@@ -25,7 +25,6 @@ export class CommentFormComponent implements OnInit{
 
   onSubmit(form: FormGroup): void {
     this.handleSubmit.emit(form.value);
-    
     this.commentForm.reset();
   }
 }

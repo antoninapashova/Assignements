@@ -58,9 +58,7 @@ namespace Infrastructure.Repository
             var hobbyCategory = await _context.Categories.AsNoTracking()
                  .FirstOrDefaultAsync(c => c.Id == id);
 
-            if (hobbyCategory == null) throw new NullReferenceException("Category is null!");
-
-            return hobbyCategory;
+            return hobbyCategory ?? throw new NullReferenceException("Category is null!");
         }
 
         public Task<Category> Update(Category entity)

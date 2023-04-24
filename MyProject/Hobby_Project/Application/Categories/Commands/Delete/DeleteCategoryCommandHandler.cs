@@ -30,7 +30,7 @@ namespace Application.Categories.Commands.Delete
                 await _unitOfWork.CategoryRepository.DeleteAsync(command.Id);
                 await _unitOfWork.Save();
 
-               return await Task.FromResult(command.Id);
+                return await Task.FromResult(command.Id);
 
             }catch(Exception e)
             {

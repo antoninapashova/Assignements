@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
        this.userService.login(form.value).subscribe({
         next:(res)=>{
           this.user = res;
-          this.dataSharingService.loggedInUser = this.user
+          this.dataSharingService.loggedInUser = this.user;
           this.userService.storeToken(res.accessToken);
           this.userService.storeRefreshToken(res.refreshToken);
           const tokenPayload = this.userService.decodeToken();

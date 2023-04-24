@@ -2,5 +2,7 @@
 <app-comment-form submitLabel="Write" (handleSubmit)="addComment({text: $event})"></app-comment-form>
 
 <div class="comments-container">
-  <app-comment *ngFor="let comment of comments" [comment]="comment"></app-comment>
+  <h3>Comments</h3>
+  <app-comment *ngFor="let comment of comments" [comment]="comment" (setActiveComment)="setActiveComment($event)" 
+  [activeComment]="activeComment" (addComment)="addComment($event)"></app-comment>
 </div>

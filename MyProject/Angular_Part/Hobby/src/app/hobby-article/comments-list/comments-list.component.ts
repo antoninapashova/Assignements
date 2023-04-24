@@ -4,6 +4,7 @@ import { CommentService } from '../services/comment.service';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogTemplateComponent, ModalType } from 'src/app/core/dialog/dialog-template/dialog-template.component';
 import { DataSharingService } from 'src/app/core/data-sharing.service';
+import { ActiveCommentInterface } from 'src/app/shared/interfaces/active-comment';
 
 @Component({
   selector: 'app-comments-list',
@@ -11,14 +12,14 @@ import { DataSharingService } from 'src/app/core/data-sharing.service';
   styleUrls: ['./comments-list.component.css']
 })
 export class CommentsListComponent  {
+   
+  activeComment: ActiveCommentInterface | null = null;
 
-   @Input() currentUsername: string | undefined;
-   @Input() comments!: IComment[];
+   @Input() comments: IComment[] = [];
    @Input() hobbyArticleId!: number | undefined;
 
    constructor(private commentService: CommentService, private matDialog: MatDialog,
-               private datasharingService: DataSharingService){
-   }
+               private datasharingService: DataSharingService){}
 
    addComment({text}: {text: any}): void {
     let comment: IComment={
@@ -27,12 +28,10 @@ export class CommentsListComponent  {
         hobbyArticleId: this.hobbyArticleId
       }
 
-    this.commentService.createComment(comment).subscribe({
-      next: (res)=>{
-        console.log(res);
-      },
-      error: (err)=>{
-        let obj ={title: 'Create article', message: err, type: ModalType.WARN}
+      this.commentService.createComment(comment).subscribe({
+       next: (res)=>{ },
+       error: (err)=>{
+        let obj ={title: 'Create comment', message: err.message, type: ModalType.WARN}
         this.matDialog.open( DialogTemplateComponent, {data: obj})
       }
     });
@@ -40,15 +39,17 @@ export class CommentsListComponent  {
 
   getComments(){
     this.commentService.getCommentsByHobbyId(this.hobbyArticleId).subscribe({
-      
       next: (res)=>{
-        console.log(res);
-        this.comments = res;
+         this.comments = res;
       },
        error: (err)=>{
-        console.log(this.hobbyArticleId);
-        console.log(err.detail);
+        let obj ={title: 'Load comments', message: err.message, type: ModalType.WARN}
+        this.matDialog.open( DialogTemplateComponent, {data: obj})
        }
     });
+  }
+
+  setActiveComment(activeComment: ActiveCommentInterface | null): void {
+    this.activeComment = activeComment;
   }
 }

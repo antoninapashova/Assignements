@@ -49,7 +49,6 @@ namespace HobbyProject.Presentation.Controllers
             var command = new EditCommentCommand
             {
                 Id = id,
-                Title = editComment.Title,
                 CommentContent = editComment.CommentContent,
             };
            

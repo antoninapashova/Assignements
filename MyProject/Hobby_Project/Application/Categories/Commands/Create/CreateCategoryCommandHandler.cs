@@ -17,7 +17,7 @@ namespace Application.Categories.Commands.Create
     public class CreateCategoryCommandHandler : IRequestHandler<CreateCategoryCommand, Category>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private ILog _log;
+        private readonly ILog _log;
         private readonly IMapper _mapper;
         
         public CreateCategoryCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
@@ -32,8 +32,8 @@ namespace Application.Categories.Commands.Create
             try
             {
                 if (command == null) throw new NullReferenceException("Create category command is null!");
-                var tagValidator = new CategoryValidator();
-                await tagValidator.ValidateAndThrowAsync(command);
+                var categoryValidator = new CategoryValidator();
+                await categoryValidator.ValidateAndThrowAsync(command);
                 await IsExist(command.Name);
                 Category hobbyCategory = _mapper.Map<Category>(command);
                 await _unitOfWork.CategoryRepository.Add(hobbyCategory);

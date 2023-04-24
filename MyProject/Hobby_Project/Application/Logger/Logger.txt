@@ -90,3 +90,16 @@ Tags
 [Error]17:08 The category Sport already exists!
 *-------------------------------*
 [Error]17:41 Tag Inside hobby already exists!
+*-------------------------------*
+[Error]19:09 535: 5.7.8 Username and Password not accepted. Learn more at
+5.7.8  https://support.google.com/mail/?p=BadCredentials aa21-20020a170907355500b00957dad777c1sm2236912ejc.107 - gsmtp
+*-------------------------------*
+[Error]19:10 535: 5.7.8 Username and Password not accepted. Learn more at
+5.7.8  https://support.google.com/mail/?p=BadCredentials s22-20020a170906169600b0094f3132cb86sm4508213ejd.40 - gsmtp
+*-------------------------------*
+[Error]19:10 535: 5.7.8 Username and Password not accepted. Learn more at
+5.7.8  https://support.google.com/mail/?p=BadCredentials o9-20020a1709064f8900b0094f3b18044bsm4490227eju.218 - gsmtp
+*-------------------------------*
+[Error]19:28 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]19:28 An error occurred while saving the entity changes. See the inner exception for details.
