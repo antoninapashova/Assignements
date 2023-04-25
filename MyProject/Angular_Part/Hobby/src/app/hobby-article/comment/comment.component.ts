@@ -23,7 +23,7 @@ export class CommentComponent implements OnInit {
   @Input() comment!: IComment;
   @Input() parentId!: number | null;
   @Output() setActiveComment = new EventEmitter<ActiveCommentInterface | null>();
-  @Output() addComment = new EventEmitter<{ text: string; parentId: string | null }>();
+  @Output() addComment = new EventEmitter<{ text: string; parentId: number | null }>();
   
   constructor(private commentService: CommentService, private matDialog: MatDialog,
               private dataSharing: DataSharingService) {}
@@ -31,7 +31,7 @@ export class CommentComponent implements OnInit {
   ngOnInit(): void {
      this.canEdit = this.dataSharing.isUserLoggedIn.getValue();
      this.canDelete = this.dataSharing.isUserLoggedIn.getValue();
-     this.replyId = this.parentId ? this.parentId : this.comment.id;
+     //this.replyId = this.parentId ? this.parentId : this.comment.id;
   }
 
   deleteComment(id: any){
@@ -46,7 +46,7 @@ export class CommentComponent implements OnInit {
        }
      });
   }
-
+  /*
   editComment( commentContent: any ){
     let comment : IComment= {
        id: this.comment?.id,
@@ -56,6 +56,7 @@ export class CommentComponent implements OnInit {
     };
     this.commentService.editComment(this.comment?.id,comment ).subscribe();
   }
+  */
 
   isReplying(): boolean {
     if (!this.activeComment) {

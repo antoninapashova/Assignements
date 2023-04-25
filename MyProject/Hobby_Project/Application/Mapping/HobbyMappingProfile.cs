@@ -11,6 +11,8 @@ using AutoMapper;
 using Domain.Entity;
 using Hobby_Project;
 using HobbyProject.Application.Categories.Queries;
+using HobbyProject.Application.CommentReply;
+using HobbyProject.Application.CommentReply.Commands;
 using HobbyProject.Application.Comments.Commands;
 using HobbyProject.Application.Hobby.Commands;
 using HobbyProject.Application.HobbyTags.Queries;
@@ -60,6 +62,11 @@ namespace Application.Mapping
             CreateMap<EditCommentCommand, Comment>();
             CreateMap<Comment, CommentDto>()
             .ForMember("Username", x=>x.MapFrom(y=>y.User.Username));
+
+            //Reply
+            CreateMap<CreateReplyCommand, Reply>();
+            CreateMap<Reply, ReplyDto>()
+                .ForMember("Username", x => x.MapFrom(y => y.User.Username));
 
             //Tag
             CreateMap<CreateHobbyTagDto, Tag>();

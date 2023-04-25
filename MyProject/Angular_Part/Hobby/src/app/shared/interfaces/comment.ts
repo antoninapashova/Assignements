@@ -3,5 +3,6 @@ export interface IComment{
     commentContent: string,
     username?: string,
     userId : number,
+    parentId: null | string;
     hobbyArticleId: number | undefined
 }

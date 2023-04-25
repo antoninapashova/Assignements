@@ -19,6 +19,7 @@ namespace Hobby_Project
         public int UserId { get; set; }
         public virtual UserEntity User { get; set; }
         public virtual HobbyEntity HobbyArticle { get; set; }
+        public virtual ICollection<Reply> Replies { get; set; }
 
     }
 }

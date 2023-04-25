@@ -21,6 +21,7 @@ namespace Infrastructure.Data
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Photo> Photos { get; set; }
         public DbSet<UserEntity> Users { get; set; }
+        public DbSet<Reply> Replies { get; set; }
 
         public HobbyDbContext() : base(){ }
         public HobbyDbContext(DbContextOptions<HobbyDbContext> options) : base(options) { }
@@ -33,13 +34,12 @@ namespace Infrastructure.Data
             {
                 optionsBuilder.UseSqlServer(conn);
             }
-         }
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            
             modelBuilder.Entity<HobbyEntity>(a =>
             {
                 a.HasMany(x => x.HobbyComments).WithOne(x => x.HobbyArticle)
@@ -60,10 +60,16 @@ namespace Infrastructure.Data
 
                 u.HasMany(x => x.Comments).WithOne(x => x.User)
                  .HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.NoAction);
+
+                u.HasMany(r => r.Replies).WithOne(u => u.User)
+                 .HasForeignKey(x => x.UserId).OnDelete(DeleteBehavior.NoAction);
             });
 
-           
-           
+            modelBuilder.Entity<Comment>(c =>
+            {
+                c.HasMany(x => x.Replies).WithOne(x => x.Comment)
+                .HasForeignKey(x => x.CommentId).OnDelete(DeleteBehavior.Cascade);
+            });
         }
     }
 }

@@ -36,7 +36,7 @@ namespace Application.Categories.Commands.Delete
             {
                 _log.LogError(e.Message);
                 throw;
-  ;         }
+            }
         }
     }
 }

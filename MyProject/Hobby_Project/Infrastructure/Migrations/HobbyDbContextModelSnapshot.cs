@@ -100,6 +100,36 @@ namespace HobbyProject.Infrastructure.Migrations
                     b.ToTable("HobbyEntityTag");
                 });
 
+            modelBuilder.Entity("HobbyProject.Domain.Entity.Reply", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CommentId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CommentId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Replies");
+                });
+
             modelBuilder.Entity("HobbyProject.Domain.Entity.Tag", b =>
                 {
                     b.Property<int>("Id")
@@ -298,6 +328,25 @@ namespace HobbyProject.Infrastructure.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("HobbyProject.Domain.Entity.Reply", b =>
+                {
+                    b.HasOne("Hobby_Project.Comment", "Comment")
+                        .WithMany("Replies")
+                        .HasForeignKey("CommentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HobbyProject.Domain.Entity.UserEntity", "User")
+                        .WithMany("Replies")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Comment");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Hobby_Project.Comment", b =>
                 {
                     b.HasOne("Domain.Entity.HobbyEntity", "HobbyArticle")
@@ -340,11 +389,18 @@ namespace HobbyProject.Infrastructure.Migrations
                     b.Navigation("Comments");
 
                     b.Navigation("Hobbies");
+
+                    b.Navigation("Replies");
                 });
 
             modelBuilder.Entity("Hobby_Project.Category", b =>
                 {
                     b.Navigation("HobbySubCategories");
+                });
+
+            modelBuilder.Entity("Hobby_Project.Comment", b =>
+                {
+                    b.Navigation("Replies");
                 });
 
             modelBuilder.Entity("Hobby_Project.SubCategory", b =>

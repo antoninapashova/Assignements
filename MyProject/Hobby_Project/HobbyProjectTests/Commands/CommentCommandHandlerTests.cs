@@ -1,6 +1,5 @@
 ﻿using Application.Categories.Commands.Create;
 using Application.Categories.Commands.Delete;
-using Application.Categories.Commands.Edit;
 using Application.Comments.Commands.Create;
 using Application.Comments.Commands.Delete;
 using Application.Comments.Commands.Edit;
@@ -22,9 +21,9 @@ namespace HobbyProjectTests.Commands
 {
      public class CommentCommandHandlerTests
      {
-        private Mock<IUnitOfWork> _unitOfWorkMock;
-        private Mock<ICommentRepository> _repoMock;
-        private IMapper _mapper;
+        private readonly Mock<IUnitOfWork> _unitOfWorkMock;
+        private readonly Mock<ICommentRepository> _repoMock;
+        private readonly IMapper _mapper;
         private readonly CreateCommentCommand _command;
 
         public CommentCommandHandlerTests()
@@ -36,7 +35,7 @@ namespace HobbyProjectTests.Commands
             _mapper = mapperConfig.CreateMapper();
             _unitOfWorkMock = new();
             _repoMock = MockCommentRepository.GetAllComments();
-            _command = new CreateCommentCommand {  CommentContent="New comment is added", HobbyArticleId=1, Username="Ivan" };
+            _command = new CreateCommentCommand {  CommentContent="New comment is added", HobbyArticleId=1 };
         }
 
         [Fact]
@@ -75,7 +74,7 @@ namespace HobbyProjectTests.Commands
         {
             _unitOfWorkMock.Setup(x => x.CommentRepository).Returns(_repoMock.Object);
 
-            var command = new EditCommentCommand {Id=1,  Title = "New comment", CommentContent = "New comment is added" };
+            var command = new EditCommentCommand {Id=1, CommentContent = "New comment is added" };
 
             var handler = new EditCommentCommandHandler(_unitOfWorkMock.Object, _mapper);
 

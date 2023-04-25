@@ -16,6 +16,7 @@ namespace Application.Repositories
        public ICategoryRepository CategoryRepository { get; }
        public IPhotoRepository PhotoRepository { get; }
        public IUserRepository  UserRepository { get; }
+       public IReplyRepository ReplyRepository { get; }
        
        Task Save();
 

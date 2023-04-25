@@ -21,11 +21,12 @@ export class CommentsListComponent  {
    constructor(private commentService: CommentService, private matDialog: MatDialog,
                private datasharingService: DataSharingService){}
 
-   addComment({text}: {text: any}): void {
+   addComment({text, parentId}: {text: string; parentId: string | null}): void {
     let comment: IComment={
-        commentContent : text.title,
+        commentContent : text,
         userId : this.datasharingService.loggedInUser.userId,
-        hobbyArticleId: this.hobbyArticleId
+        hobbyArticleId: this.hobbyArticleId,
+        parentId : null
       }
 
       this.commentService.createComment(comment).subscribe({

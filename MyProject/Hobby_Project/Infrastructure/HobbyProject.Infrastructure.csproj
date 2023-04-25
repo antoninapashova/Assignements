@@ -35,4 +35,8 @@
     <ProjectReference Include="..\Domain\HobbyProject.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\" />
+  </ItemGroup>
+
 </Project>

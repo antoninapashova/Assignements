@@ -1,6 +1,5 @@
 ﻿using Application.Categories.Commands.Create;
 using Application.Categories.Commands.Delete;
-using Application.Categories.Commands.Edit;
 using Application.HobbyTags.Commands.Create;
 using Application.HobbyTags.Commands.Delete;
 using Application.Mapping;
@@ -22,9 +21,9 @@ namespace HobbyProjectTests.Commands
 {
     public class TagCommandHandlerTest
     {
-        private Mock<IUnitOfWork> _unitOfWorkMock;
-        private Mock<ITagRepository> _repoMock;
-        private IMapper _mapper;
+        private readonly Mock<IUnitOfWork> _unitOfWorkMock;
+        private readonly Mock<ITagRepository> _repoMock;
+        private readonly IMapper _mapper;
         private CreateTagCommand _tagCommand;
 
         public TagCommandHandlerTest()

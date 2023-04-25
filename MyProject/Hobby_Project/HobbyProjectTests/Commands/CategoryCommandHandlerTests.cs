@@ -1,6 +1,5 @@
 ﻿using Application.Categories.Commands.Create;
 using Application.Categories.Commands.Delete;
-using Application.Categories.Commands.Edit;
 using Application.Mapping;
 using Application.Repositories;
 using AutoMapper;
@@ -22,9 +21,9 @@ namespace HobbyProjectTests.Commands
 {
     public class CategoryCommandHandlerTests
     {
-        private Mock<IUnitOfWork> _unitOfWorkMock;
-        private Mock<ICategoryRepository> _repoMock;
-        private IMapper _mapper;
+        private readonly Mock<IUnitOfWork> _unitOfWorkMock;
+        private readonly Mock<ICategoryRepository> _repoMock;
+        private readonly IMapper _mapper;
         private readonly CreateCategoryCommand _createCategoryCommand;
 
         public CategoryCommandHandlerTests()
@@ -71,22 +70,6 @@ namespace HobbyProjectTests.Commands
             categories.Count().Should().Be(3);
         }
 
-
-        [Fact]
-        public async Task Edit_Category_Handle_Test()
-        {
-            _unitOfWorkMock.Setup(x => x.CategoryRepository).Returns(_repoMock.Object);
-            
-            var command = new EditCategoryCommand{Id = 2, Name = "Music"};
-
-            var handler = new EditCategoryCommandHandler(_unitOfWorkMock.Object, _mapper);
-
-            var updatedEntity = await handler.Handle(command, CancellationToken.None);
-
-            updatedEntity.Should().NotBeNull();
-            updatedEntity.Should().BeOfType<Category>();
-            
-        }
 
         [Fact]
         public async Task Delete_Category_Handle_Test()

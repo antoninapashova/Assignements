@@ -1,6 +1,5 @@
 ﻿using Application.Categories.Commands.Create;
 using Application.Categories.Commands.Delete;
-using Application.Categories.Commands.Edit;
 using Application.Hobby.Commands.Create;
 using Application.Hobby.Commands.Delete;
 using Application.Hobby.Commands.Edit;
@@ -25,10 +24,9 @@ namespace HobbyProjectTests.Commands
 {
     public class HobbyArticleCommandHandlerTest
     {
-
-        private Mock<IUnitOfWork> _unitOfWorkMock;
-        private Mock<IHobbyArticleRepository> _repoMock;
-        private IMapper _mapper;
+        private readonly Mock<IUnitOfWork> _unitOfWorkMock;
+        private readonly Mock<IHobbyArticleRepository> _repoMock;
+        private readonly IMapper _mapper;
         private readonly CreateHobbyCommand _command;
 
         public HobbyArticleCommandHandlerTest()

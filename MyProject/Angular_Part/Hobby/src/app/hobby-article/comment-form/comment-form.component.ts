@@ -20,7 +20,6 @@ export class CommentFormComponent implements OnInit{
     this.commentForm = this.fb.group({
       title: [this.initialText, Validators.required],
     });
-  
   }
 
   onSubmit(form: FormGroup): void {
