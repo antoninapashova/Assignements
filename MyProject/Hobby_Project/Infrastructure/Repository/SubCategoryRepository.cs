@@ -2,11 +2,6 @@
 using Hobby_Project;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Repository
 {
@@ -38,8 +33,7 @@ namespace Infrastructure.Repository
 
         public async Task<SubCategory> GetByIdAsync(int id)
         {
-           return await FindById(id);
-             
+            return await FindById(id);
         }
 
         public async Task<bool> CheckSubCategoryExists(string name)

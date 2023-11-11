@@ -1,13 +1,7 @@
 ﻿using Application.Repositories;
 using Domain.Entity;
-using Hobby_Project;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Repository
 {
@@ -36,9 +30,7 @@ namespace Infrastructure.Repository
         public async Task<IEnumerable<HobbyEntity>> GetHobbyArticlesByUserId(int id)
         {
             return _context.HobbyEntities
-         
                 .Include(x => x.User)
-                
                 .Include(h => h.HobbyPhoto)
                 .AsQueryable()
                 .Where(h=>h.User.Id==id);
@@ -56,7 +48,6 @@ namespace Infrastructure.Repository
            await FindById(id);
 
             return await _context.HobbyEntities
-                 
                     .Include(h => h.HobbyPhoto)
                     .SingleAsync(x => x.Id == id);
         }
@@ -70,7 +61,6 @@ namespace Infrastructure.Repository
         public async Task<IEnumerable<HobbyEntity>> GetHobbyArticlesByUsername(string username)
         {
             return _context.HobbyEntities
-                
                      .Include(h => h.HobbyPhoto)
                      .AsQueryable() 
                      .Where(h => h.User.Username.Equals(username));

@@ -1,14 +1,7 @@
-﻿using Hobby_Project;
-using HobbyProject.Application.Repositories;
+﻿using HobbyProject.Application.Repositories;
 using HobbyProject.Domain.Entity;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HobbyProject.Infrastructure.Repository
 {
@@ -41,7 +34,6 @@ namespace HobbyProject.Infrastructure.Repository
         public async Task<UserEntity> GetByIdAsync(int id)
         {
             return await FindById(id);
-            
         }
 
         public async Task<UserEntity> Update(UserEntity entity)

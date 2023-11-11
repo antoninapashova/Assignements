@@ -1,11 +1,6 @@
 ﻿using Application.Repositories;
 using HobbyProject.Application.Repositories;
 using Infrastructure.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure
 {
@@ -29,6 +24,7 @@ namespace Infrastructure
             UserRepository = userRepository;
             ReplyRepository = replyRepository;
         }
+
         public IHobbyArticleRepository HobbyArticleRepository { get; private set; }
         public ICommentRepository CommentRepository { get; private set; }
         public ITagRepository TagRepository { get; private set; }

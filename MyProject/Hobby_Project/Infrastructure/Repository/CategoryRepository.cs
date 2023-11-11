@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Application.Repositories;
+﻿using Application.Repositories;
 using Hobby_Project;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using NUnit.Framework.Internal.Execution;
 
 namespace Infrastructure.Repository
 {

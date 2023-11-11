@@ -1,13 +1,7 @@
-﻿using Hobby_Project;
-using HobbyProject.Application.Repositories;
+﻿using HobbyProject.Application.Repositories;
 using HobbyProject.Domain.Entity;
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HobbyProject.Infrastructure.Repository
 {
@@ -47,7 +41,7 @@ namespace HobbyProject.Infrastructure.Repository
 
         public async Task<IEnumerable<Reply>> GetAllRepliesByCommentId(int commentId)
         {
-          return _context.Replies.Include(x=>x.User).Where(r => r.CommentId == commentId);
+           return _context.Replies.Include(x=>x.User).Where(r => r.CommentId == commentId);
         }
 
         public Task<Reply> GetByIdAsync(int id)
