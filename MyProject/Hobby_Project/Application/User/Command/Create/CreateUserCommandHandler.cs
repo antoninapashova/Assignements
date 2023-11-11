@@ -27,18 +27,18 @@ namespace HobbyProject.Application.User.Command.Create
                 if (command == null) throw new NullReferenceException("Create user command is null!");
 
                 await IsUsernameExists(command.Username);
-
                 await IsEmailExists(command.Email);
 
-                UserEntity userEntity = _mapper.Map<UserEntity>(command);
+                var userEntity = _mapper.Map<UserEntity>(command);
                 userEntity.Password = PasswordHasher.HashPassword(command.Password);
                 userEntity.Role = "Admin";
                 userEntity.Token = "";
                 userEntity.RefreshToken = "";
+
                 await _unitOfWork.UserRepository.Add(userEntity);
                 await _unitOfWork.Save();
 
-                return await Task.FromResult(userEntity.Id);
+                return userEntity.Id;
             }
             catch (Exception e)
             {

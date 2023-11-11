@@ -43,7 +43,7 @@ namespace Application.Hobby.Commands.Create
                     await _unitOfWork.Save();
                 }
 
-                return await Task.FromResult(hobby.Id);
+                return hobby.Id;
             }
             catch(Exception e)
             {

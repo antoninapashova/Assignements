@@ -1,4 +1,4 @@
-﻿namespace HobbyProject.Application.Hobby.Commands
+﻿namespace HobbyProject.Application.Hobby.Dto
 {
     public class PhotoDTO
     {

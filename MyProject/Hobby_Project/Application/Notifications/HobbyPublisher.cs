@@ -5,26 +5,26 @@ namespace Application.Notifications
 {
     public class HobbyPublisher
     {
-        private List<ISubscriber> subscribers;
+        private IList<ISubscriber> _subscribers;
 
         public HobbyPublisher(List<ISubscriber> subscribers)
         {
-            this.subscribers = subscribers;
+            this._subscribers = subscribers;
         }
 
         public void RemoveSubscriber(ISubscriber subscriber)
         {
-            subscribers.Remove(subscriber);
+            _subscribers.Remove(subscriber);
         }
 
         public void AddSubscriber(ISubscriber subscriber)
         {
-            subscribers.Add(subscriber);
+            _subscribers.Add(subscriber);
         }
 
         public void Publish(SubCategory hobbySubCategory)
         {
-            subscribers.ForEach(s => s.Notify(hobbySubCategory));
+            _subscribers.ToList().ForEach(s => s.Notify(hobbySubCategory));
         }
     }
 }

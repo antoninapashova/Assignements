@@ -1,32 +1,35 @@
 ﻿using Application.Logger;
 using Application.Repositories;
 using AutoMapper;
+using Domain.Entity;
 using MediatR;
 
 namespace Application.Hobby.Commands.Edit
 {
-    public class EditHobbyCommandHandler : IRequestHandler<EditHobbyCommand, int>
+    public class UpdateHobbyCommandHandler : IRequestHandler<UpdateHobbyCommand, int>
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly IMapper _mapper;
         private ILog _log;
-        private IMapper _mapper;
 
-        public EditHobbyCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public UpdateHobbyCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
-            _log = SingletonLogger.Instance;
             _mapper = mapper;
+            _log = SingletonLogger.Instance;
         }
 
-        public async Task<int> Handle(EditHobbyCommand command, CancellationToken cancellationToken)
+        public async Task<int> Handle(UpdateHobbyCommand command, CancellationToken cancellationToken)
         {
             try
             {
                 if (command == null) throw new NullReferenceException("Edit hobby command is null");
-                Domain.Entity.HobbyEntity hobbyArticle = _mapper.Map<Domain.Entity.HobbyEntity>(command);
+
+                var hobbyArticle = _mapper.Map<HobbyEntity>(command);
                 await _unitOfWork.HobbyArticleRepository.Update(hobbyArticle);
                 await _unitOfWork.Save();
-                return await Task.FromResult(command.Id);
+
+                return command.Id;
             }
             catch (Exception e)
             {

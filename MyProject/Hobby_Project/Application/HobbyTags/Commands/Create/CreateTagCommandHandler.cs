@@ -28,10 +28,11 @@ namespace Application.HobbyTags.Commands.Create
                 var tagValidator = new TagValidator();
                 await tagValidator.ValidateAndThrowAsync(command);
                 await IsExist(command.Name);
-                Tag tag = _mapper.Map<Tag>(command);  
+                var tag = _mapper.Map<Tag>(command);  
                 await _unitOfWork.TagRepository.Add(tag);
                 await _unitOfWork.Save();
-                return await Task.FromResult(tag);
+
+                return tag;
             }
             catch(Exception e)
             {

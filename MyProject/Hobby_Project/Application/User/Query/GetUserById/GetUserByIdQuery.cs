@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using HobbyProject.Application.User.Dto;
+using MediatR;
 
 namespace HobbyProject.Application.User.Query.GetById
 {

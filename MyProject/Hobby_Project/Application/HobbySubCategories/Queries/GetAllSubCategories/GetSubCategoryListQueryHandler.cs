@@ -23,8 +23,8 @@ namespace HobbyProject.Application.HobbySubCategories.Queries.GetAllSubCategorie
         {
             try
             {
-               IEnumerable<SubCategory> result = await _unitOfWork.SubCategoryRepository.GetAllEntitiesAsync();
-                List<HobbySubCategoryDto> subCategories = new List<HobbySubCategoryDto>();
+                var result = await _unitOfWork.SubCategoryRepository.GetAllEntitiesAsync();
+                var subCategories = new List<HobbySubCategoryDto>();
 
                 foreach (var c in result)
                 {
@@ -37,7 +37,7 @@ namespace HobbyProject.Application.HobbySubCategories.Queries.GetAllSubCategorie
                     subCategories.Add(subCategoryDto);
                 }
 
-                return await Task.FromResult(subCategories.ToList());
+                return subCategories.ToList();
             }
             catch (Exception e)
             {

@@ -1,4 +1,4 @@
-﻿namespace HobbyProject.Application.Categories.Queries
+﻿namespace HobbyProject.Application.Categories.Dto
 {
     public class CategoryNameDto
     {

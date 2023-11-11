@@ -1,6 +1,4 @@
 ﻿namespace HobbyProject.Application
 {
-    public class AssemblyMarketPresentatio
-    {
-    }
+    public class AssemblyMarketPresentatio { }
 }

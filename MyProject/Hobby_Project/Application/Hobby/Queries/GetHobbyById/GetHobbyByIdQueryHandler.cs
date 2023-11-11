@@ -1,7 +1,7 @@
-﻿using Application.Hobby.Queries;
-using Application.Logger;
+﻿using Application.Logger;
 using Application.Repositories;
 using AutoMapper;
+using HobbyProject.Application.Hobby.Dto;
 using MediatR;
 
 namespace HobbyProject.Application.Hobby.Queries.GetHobbyById
@@ -11,6 +11,7 @@ namespace HobbyProject.Application.Hobby.Queries.GetHobbyById
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly ILog _logger;
+
         public GetHobbyByIdQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
@@ -26,8 +27,9 @@ namespace HobbyProject.Application.Hobby.Queries.GetHobbyById
                     throw new NullReferenceException("Hobby by Id query is null");
 
                 var result = await _unitOfWork.HobbyArticleRepository.GetByIdAsync(request.Id);
-                HobbyDto hobbyVm = _mapper.Map<HobbyDto>(result);
-                return await Task.FromResult(hobbyVm);
+                var hobbyVm = _mapper.Map<HobbyDto>(result);
+
+                return hobbyVm;
             }
             catch (Exception e)
             {

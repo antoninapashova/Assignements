@@ -1,4 +1,4 @@
-﻿namespace Application.Hobby.Queries
+﻿namespace HobbyProject.Application.Hobby.Dto
 {
     public class HobbyTagDto
     {

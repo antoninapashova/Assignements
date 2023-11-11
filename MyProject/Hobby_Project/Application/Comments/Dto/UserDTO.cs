@@ -1,4 +1,4 @@
-﻿namespace HobbyProject.Application.Comments.Commands
+﻿namespace HobbyProject.Application.Comments.Dto
 {
     public class UserDTO
     {

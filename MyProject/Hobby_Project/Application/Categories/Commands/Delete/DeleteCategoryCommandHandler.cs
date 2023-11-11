@@ -1,11 +1,6 @@
 ﻿using Application.Logger;
 using Application.Repositories;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Categories.Commands.Delete
 {
@@ -24,15 +19,17 @@ namespace Application.Categories.Commands.Delete
         {
             try
             {
-               if (command == null)
-                    throw new NullReferenceException("Delete category command is null");
+               if (command == null) throw new NullReferenceException("Delete category command is null");
+
+                var category = _unitOfWork.CategoryRepository.FindById(command.Id);
+                if(category == null) throw new NullReferenceException("Category not found1");
 
                 await _unitOfWork.CategoryRepository.DeleteAsync(command.Id);
                 await _unitOfWork.Save();
 
-                return await Task.FromResult(command.Id);
-
-            }catch(Exception e)
+                return command.Id;
+            }
+            catch(Exception e)
             {
                 _log.LogError(e.Message);
                 throw;

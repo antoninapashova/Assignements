@@ -11,16 +11,12 @@ namespace Application.HobbySubCategories.Commands.Create
     public class CreateSubCategoryCommandHandler : IRequestHandler<CreateSubCategoryCommand, SubCategory>
     {
         private readonly IUnitOfWork _unitOfWork;
-        //private readonly HobbyPublisher _hobbyPublisher;
         private readonly ILog _log;
         private readonly IMapper _mapper;
 
-        public CreateSubCategoryCommandHandler(IUnitOfWork unitOfWork,
-           // HobbyPublisher hobbyPublisher,
-            IMapper mapper)
+        public CreateSubCategoryCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
-            //_hobbyPublisher = hobbyPublisher;
             _log = SingletonLogger.Instance;
             _mapper= mapper;
         }
@@ -35,11 +31,11 @@ namespace Application.HobbySubCategories.Commands.Create
                 await subCategoryValidator.ValidateAndThrowAsync(command);
 
                 await IsSubCategoryExists(command.Name);
-                SubCategory hobbySubCategory = _mapper.Map<SubCategory>(command);
+                var hobbySubCategory = _mapper.Map<SubCategory>(command);
                 await _unitOfWork.SubCategoryRepository.Add(hobbySubCategory);
                 await _unitOfWork.Save();
-               // _hobbyPublisher.Publish(hobbySubCategory);
-                return await Task.FromResult(hobbySubCategory);
+
+                return hobbySubCategory;
             }
             catch (Exception e)
             {

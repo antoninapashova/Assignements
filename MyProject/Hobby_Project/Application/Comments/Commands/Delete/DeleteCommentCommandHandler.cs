@@ -8,6 +8,7 @@ namespace Application.Comments.Commands.Delete
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ILog _log;
+
         public DeleteCommentCommandHandler(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -22,9 +23,9 @@ namespace Application.Comments.Commands.Delete
 
                 await _unitOfWork.CommentRepository.DeleteAsync(command.Id);
                 await _unitOfWork.Save();
-                return await Task.FromResult(command.Id);
-
-            }catch (Exception e)
+                return command.Id;
+            }
+            catch (Exception e)
             {
                 _log.LogError(e.Message);
                 throw;

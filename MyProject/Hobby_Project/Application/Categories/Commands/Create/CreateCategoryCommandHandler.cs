@@ -26,14 +26,16 @@ namespace Application.Categories.Commands.Create
             try
             {
                 if (command == null) throw new NullReferenceException("Create category command is null!");
+
                 var categoryValidator = new CategoryValidator();
                 await categoryValidator.ValidateAndThrowAsync(command);
+
                 await IsExist(command.Name);
-                Category hobbyCategory = _mapper.Map<Category>(command);
+                var hobbyCategory = _mapper.Map<Category>(command);
                 await _unitOfWork.CategoryRepository.Add(hobbyCategory);
                 await _unitOfWork.Save();
 
-                return await Task.FromResult(hobbyCategory);
+                return hobbyCategory;
             }
             catch (Exception e)
             {

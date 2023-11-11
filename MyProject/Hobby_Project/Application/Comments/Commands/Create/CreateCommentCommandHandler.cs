@@ -25,12 +25,13 @@ namespace Application.Comments.Commands.Create
             {
                 if (command == null) throw new NullReferenceException("Create comment command is null");
 
-                Comment hobbyComment = _mapper.Map<Comment>(command);
+                var hobbyComment = _mapper.Map<Comment>(command);
                 await _unitOfWork.CommentRepository.Add(hobbyComment);
                 await _unitOfWork.Save();
-                return await Task.FromResult(hobbyComment.Id);
 
-            } catch(Exception e)
+                return hobbyComment.Id;
+            } 
+            catch(Exception e)
             {
                 _log.LogError(e.Message);
                 throw;

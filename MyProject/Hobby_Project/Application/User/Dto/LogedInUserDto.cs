@@ -1,4 +1,4 @@
-﻿namespace HobbyProject.Application.User
+﻿namespace HobbyProject.Application.User.Dto
 {
     public class LogedInUserDto
     {

@@ -24,7 +24,8 @@ namespace Application.Hobby.Commands.Delete
 
                 await _unitOfWork.HobbyArticleRepository.DeleteAsync(command.Id);
                 await _unitOfWork.Save();
-                return await Task.FromResult(command.Id);
+
+                return command.Id;
             }
             catch (Exception e)
             {

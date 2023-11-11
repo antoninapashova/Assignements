@@ -1,6 +1,6 @@
-﻿using Application.Hobby.Queries;
-using Application.Repositories;
+﻿using Application.Repositories;
 using AutoMapper;
+using HobbyProject.Application.Hobby.Dto;
 using MediatR;
 
 namespace HobbyProject.Application.Hobby.Queries.GetAllUsers
@@ -19,8 +19,8 @@ namespace HobbyProject.Application.Hobby.Queries.GetAllUsers
         public async Task<IEnumerable<HobbyDto>> Handle(GetHobbyListQuery request, CancellationToken cancellationToken)
         {
             var result = await _unitOfWork.HobbyArticleRepository.GetAllEntitiesAsync();
-            List<HobbyDto> hobbyListVms = _mapper.Map<List<HobbyDto>>(result.ToList());
-            return await Task.FromResult(hobbyListVms);
+            var hobbyListVms = _mapper.Map<List<HobbyDto>>(result.ToList());
+            return hobbyListVms;
         }
     }
 }

@@ -22,12 +22,12 @@ namespace HobbyProject.Application.HobbyTags.Queries.GetTagById
         {
             try
             {
-                if (request == null) 
-                    throw new NullReferenceException("Get tag by id query is null!");
+                if (request == null) throw new NullReferenceException("Get tag by id query is null!");
 
                 var tag = await _unitOfWork.TagRepository.GetByIdAsync(request.Id);
                 var result = _mapper.Map<TagDto>(tag);
-                return await Task.FromResult(result);
+
+                return result;
             }
             catch (Exception e)
             {

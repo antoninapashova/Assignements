@@ -1,6 +1,7 @@
 ﻿using Application.Logger;
 using Application.Repositories;
 using AutoMapper;
+using HobbyProject.Application.User.Dto;
 using HobbyProject.Application.User.Query.GetById;
 using MediatR;
 
@@ -23,12 +24,12 @@ namespace HobbyProject.Application.User.Query.GetUserById
         {
             try
             {
-                if (request == null)
-                    throw new NullReferenceException("Get user by Id query is null!");
+                if (request == null) throw new NullReferenceException("Get user by Id query is null!");
 
                 var user = await _unitOfWork.UserRepository.GetByIdAsync(request.Id);
                 var result = _mapper.Map<UserDto>(user);
-                return await Task.FromResult(result);
+
+                return result;
             }
             catch (Exception e)
             {

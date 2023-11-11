@@ -1,12 +1,12 @@
 ﻿using Application.Logger;
 using Application.Repositories;
 using AutoMapper;
-using Hobby_Project;
+using HobbyProject.Application.Categories.Dto;
 using MediatR;
 
 namespace HobbyProject.Application.Categories.Queries.GetAllCategories
 {
-    public class GetCategoryListQueryHandler : IRequestHandler<GetCategoriesListQuery, List<CategoryDto>>
+    public class GetCategoryListQueryHandler : IRequestHandler<GetCategoriesListQuery, IList<CategoryDto>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -18,23 +18,16 @@ namespace HobbyProject.Application.Categories.Queries.GetAllCategories
             _log = SingletonLogger.Instance;
         }
 
-        public async Task<List<CategoryDto>> Handle(GetCategoriesListQuery request, CancellationToken cancellationToken)
+        public async Task<IList<CategoryDto>> Handle(GetCategoriesListQuery request, CancellationToken cancellationToken)
         {
             try
             {
-               IEnumerable<Category> categories =
-                    await _unitOfWork.CategoryRepository.GetAllEntitiesAsync();
+                var categories = await _unitOfWork.CategoryRepository.GetAllEntitiesAsync();
+                categories.ToList().ForEach(c => c.CreatedDate.ToString("MM/dd/yyyy"));
 
-                foreach(var el in categories)
-                {
-                     el.CreatedDate.ToString("MM/dd/yyyy");
-                }
-
-                List<CategoryDto> categoryListVms = 
-                    _mapper.Map<List<CategoryDto>>(categories.ToList());
-               
-                return await Task.FromResult(categoryListVms);
-            }catch (Exception e)
+                return _mapper.Map<IList<CategoryDto>>(categories);
+            }
+            catch (Exception e)
             {
                 _log.LogError(e.Message);
                 throw;

@@ -1,7 +1,6 @@
 ﻿using Application.Logger;
 using Application.Repositories;
 using AutoMapper;
-using HobbyProject.Domain.Entity;
 using MediatR;
 
 namespace HobbyProject.Application.CommentReply.Queries.GetRepliesByCommentId
@@ -23,13 +22,10 @@ namespace HobbyProject.Application.CommentReply.Queries.GetRepliesByCommentId
         {
             try
             {
-                IEnumerable<Reply> replies =
-                     await _unitOfWork.ReplyRepository.GetAllRepliesByCommentId(request.CommentId);
+                var replies = await _unitOfWork.ReplyRepository.GetAllRepliesByCommentId(request.CommentId);
+                var replyListVms = _mapper.Map<List<ReplyDto>>(replies);
 
-                var replyListVms =
-                     _mapper.Map<List<ReplyDto>>(replies);
-
-                return await Task.FromResult(replyListVms.ToList());
+                return replyListVms.ToList();
             }
             catch (Exception e)
             {

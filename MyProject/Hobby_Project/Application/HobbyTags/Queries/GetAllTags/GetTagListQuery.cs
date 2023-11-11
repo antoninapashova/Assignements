@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Application.HobbyTags.Queries
 {
-    public class GetTagQuery : IRequest<IEnumerable<TagDto>>
+    public class GetTagListQuery : IRequest<IEnumerable<TagDto>>
     {
         public int Id { get; set; }
     }

@@ -18,13 +18,12 @@ namespace Application.HobbySubCategories.Commands.Delete
         {
             try
             {
-                if (command == null) 
-                    throw new NullReferenceException("Delete sub category command is null!");
+                if (command == null) throw new NullReferenceException("Delete sub category command is null!");
 
                 await _unitOfWork.SubCategoryRepository.DeleteAsync(command.Id);
                 await _unitOfWork.Save();
-                return await Task.FromResult(command.Id);
 
+                return command.Id;
             }
             catch(Exception e)
             {

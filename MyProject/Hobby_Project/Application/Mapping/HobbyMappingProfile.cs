@@ -1,23 +1,22 @@
 ﻿using Application.Categories.Commands.Create;
 using Application.Comments.Commands.Create;
 using Application.Comments.Commands.Edit;
-using Application.Comments.Queries;
 using Application.Hobby.Commands.Create;
 using Application.Hobby.Commands.Edit;
-using Application.Hobby.Queries;
 using Application.HobbySubCategories.Commands.Create;
 using Application.HobbyTags.Commands.Create;
 using AutoMapper;
 using Domain.Entity;
 using Hobby_Project;
-using HobbyProject.Application.Categories.Queries;
+using HobbyProject.Application.Categories.Dto;
 using HobbyProject.Application.CommentReply;
 using HobbyProject.Application.CommentReply.Commands;
 using HobbyProject.Application.Comments.Commands;
-using HobbyProject.Application.Hobby.Commands;
+using HobbyProject.Application.Comments.Dto;
+using HobbyProject.Application.Hobby.Dto;
 using HobbyProject.Application.HobbyTags.Queries;
-using HobbyProject.Application.User;
 using HobbyProject.Application.User.Command.Create;
+using HobbyProject.Application.User.Dto;
 using HobbyProject.Domain.Entity;
 
 namespace Application.Mapping
@@ -31,7 +30,7 @@ namespace Application.Mapping
 
             CreateMap<CreateHobbyCommand, HobbyEntity>();
             CreateMap<ArticleCommentDTO, HobbyEntity>();
-            CreateMap<EditHobbyCommand, HobbyEntity>();
+            CreateMap<UpdateHobbyCommand, HobbyEntity>();
             CreateMap<HobbyEntity, HobbyDto>()
                 .ForMember("Username", x => x.MapFrom(y => y.User.Username))
                 .ForMember("HobbySubCategory", x=>x.MapFrom(y=>y.HobbySubCategory.Name));

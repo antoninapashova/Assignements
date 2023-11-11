@@ -2,7 +2,5 @@
 
 namespace HobbyProject.Application.HobbySubCategories.Queries.GetAllSubCategories
 {
-    public class GetSubCategoryListQuery : IRequest<IEnumerable<HobbySubCategoryDto>>
-    {
-    }
+    public class GetSubCategoryListQuery : IRequest<IEnumerable<HobbySubCategoryDto>> { }
 }

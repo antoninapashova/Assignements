@@ -1,4 +1,4 @@
-﻿using HobbyProject.Application.Hobby.Commands;
+﻿using HobbyProject.Application.Hobby.Dto;
 using MediatR;
 
 namespace Application.Hobby.Commands.Create

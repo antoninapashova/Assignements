@@ -1,7 +1,7 @@
-﻿using Application.Comments.Queries;
-using Application.Logger;
+﻿using Application.Logger;
 using Application.Repositories;
 using AutoMapper;
+using HobbyProject.Application.Comments.Dto;
 using MediatR;
 
 namespace HobbyProject.Application.Comments.Queries.GetCommentsByHobbyId
@@ -24,9 +24,7 @@ namespace HobbyProject.Application.Comments.Queries.GetCommentsByHobbyId
             try
             {
                 var result = await _unitOfWork.CommentRepository.GetCommentsByHobbyId(request.HobbyId);
-                List<CommentDto> comments = _mapper.Map<List<CommentDto>>(result);
-                return await Task.FromResult(comments);
-
+                return _mapper.Map<List<CommentDto>>(result);
             }
             catch (Exception e)
             {

@@ -23,14 +23,15 @@ namespace Application.Comments.Commands.Edit
         {
             try
             {
-                if (command == null)  throw new NullReferenceException("Edit comment command is null");
+                if (command == null) throw new NullReferenceException("Edit comment command is null");
 
-                Comment hobbyComment = _mapper.Map<Comment>(command);
+                var hobbyComment = _mapper.Map<Comment>(command);
                 await _unitOfWork.CommentRepository.Update(hobbyComment);
                 await _unitOfWork.Save();
-                return await Task.FromResult(command.Id);
 
-            }catch (Exception e)
+                return command.Id;
+            }
+            catch (Exception e)
             {
                 _log.LogError(e.Message);
                 throw;

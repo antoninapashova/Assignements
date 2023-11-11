@@ -5,10 +5,10 @@ using MediatR;
 
 namespace Application.HobbyTags.Queries
 {
-    public class GetTagListQueryHandler : IRequestHandler<GetTagQuery, IEnumerable<TagDto>>
+    public class GetTagListQueryHandler : IRequestHandler<GetTagListQuery, IEnumerable<TagDto>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private IMapper _mapper;
+        private readonly IMapper _mapper;
 
         public GetTagListQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
@@ -16,12 +16,12 @@ namespace Application.HobbyTags.Queries
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<TagDto>> Handle(GetTagQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<TagDto>> Handle(GetTagListQuery request, CancellationToken cancellationToken)
         {
             var result = await _unitOfWork.TagRepository.GetAllEntitiesAsync();
-            IEnumerable<TagDto> enumerable = _mapper.Map<IEnumerable<TagDto>>(result.ToList());
+            var enumerable = _mapper.Map<IEnumerable<TagDto>>(result.ToList());
 
-            return await Task.FromResult(enumerable);
+            return enumerable;
         }
     }
 }

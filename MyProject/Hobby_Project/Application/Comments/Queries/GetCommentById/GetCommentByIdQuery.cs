@@ -1,4 +1,4 @@
-﻿using Application.Comments.Queries;
+﻿using HobbyProject.Application.Comments.Dto;
 using MediatR;
 
 namespace HobbyProject.Application.Comments.Queries.GetCommentById

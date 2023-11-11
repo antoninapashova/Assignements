@@ -1,6 +1,7 @@
 ﻿using Application.Logger;
 using Application.Repositories;
 using HobbyProject.Application.Helpers;
+using HobbyProject.Application.User.Dto;
 using MediatR;
 
 namespace HobbyProject.Application.User.Command.RefreshToken
@@ -26,7 +27,7 @@ namespace HobbyProject.Application.User.Command.RefreshToken
                 var username = principal.Identity.Name;
                 var user = _unitOfWork.UserRepository.GetAllEntitiesAsync().Result.FirstOrDefault(u => u.Username == username);
 
-                if (user is null || user.RefreshToken != command.RefreshToken || user.RefreshTokenExpiredTime <= DateTime.Now)
+                if (user == null || user.RefreshToken != command.RefreshToken || user.RefreshTokenExpiredTime <= DateTime.Now)
                     throw new NullReferenceException("Invalid request");
 
                 var newAccessToken = _tokenManager.CreateJwtToken(user);
@@ -34,7 +35,8 @@ namespace HobbyProject.Application.User.Command.RefreshToken
 
                 user.RefreshToken = newRefreshToken;
                 await _unitOfWork.Save();
-                return await Task.FromResult(new TokenApiDto() { AccessToken = newAccessToken, RefreshToken = newRefreshToken });
+
+                return new TokenApiDto { AccessToken = newAccessToken, RefreshToken = newRefreshToken };
             }
             catch(Exception e)
             {

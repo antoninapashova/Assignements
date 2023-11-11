@@ -1,7 +1,7 @@
-﻿using Application.Hobby.Queries;
-using Application.Logger;
+﻿using Application.Logger;
 using Application.Repositories;
 using AutoMapper;
+using HobbyProject.Application.Hobby.Dto;
 using MediatR;
 
 namespace HobbyProject.Application.Hobby.Queries.GetHobbiesByUsername
@@ -23,12 +23,10 @@ namespace HobbyProject.Application.Hobby.Queries.GetHobbiesByUsername
         {
             try
             {
-                if (request == null)
-                    throw new NullReferenceException("Hobby by Id query is null");
+                if (request == null) throw new NullReferenceException("Hobby by Id query is null");
 
                 var result = await _unitOfWork.HobbyArticleRepository.GetHobbyArticlesByUsername(request.Username);
-                List<HobbyDto> hobbyVm = _mapper.Map<List<HobbyDto>>(result);
-                return await Task.FromResult(hobbyVm);
+                return _mapper.Map<List<HobbyDto>>(result);
             }
             catch (Exception e)
             {

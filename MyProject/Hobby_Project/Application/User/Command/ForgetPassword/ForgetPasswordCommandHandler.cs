@@ -41,7 +41,8 @@ namespace HobbyProject.Application.User.Command.ForgetPassword
                 _emailService.SendEmail(emailModel);
                 await _unitOfWork.UserRepository.Update(user);
                 await _unitOfWork.Save();
-                return await Task.FromResult(user.Email);
+
+                return user.Email;
             }
             catch(Exception e)
             {

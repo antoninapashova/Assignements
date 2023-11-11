@@ -25,8 +25,7 @@ namespace HobbyProject.Application.User.Command.Login
             {
               if (command == null) throw new NullReferenceException("Login user command is null");
 
-                var user = await _unitOfWork.UserRepository
-                    .FindByUsername(command.Username);
+                var user = await _unitOfWork.UserRepository.FindByUsername(command.Username);
 
                 if (!PasswordHasher.VerifyPassword(command.Password, user.Password)) 
                     throw new NullReferenceException("Password is incorect!");
@@ -34,12 +33,11 @@ namespace HobbyProject.Application.User.Command.Login
                 user.Token = _tokenManager.CreateJwtToken(user);
                 var newAccessToken = user.Token;
                 var newRefreshToken = _tokenManager.CreateRefreshToken();
-                
                 user.RefreshToken = newRefreshToken;
                 user.RefreshTokenExpiredTime = DateTime.Now.AddDays(5);
                 await _unitOfWork.Save();
 
-                return await Task.FromResult(user);
+                return user;
             }
             catch(Exception e)
             {

@@ -2,11 +2,12 @@
 using Application.Repositories;
 using AutoMapper;
 using Hobby_Project;
+using HobbyProject.Application.Categories.Dto;
 using MediatR;
 
 namespace HobbyProject.Application.Categories.Queries.GetAllNames
 {
-    public class GetAllNamesQueryHandler : IRequestHandler<GetAllNamesQuery, List<CategoryNameDto>>
+    public class GetAllNamesQueryHandler : IRequestHandler<GetAllNamesQuery, IList<CategoryNameDto>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -19,17 +20,14 @@ namespace HobbyProject.Application.Categories.Queries.GetAllNames
             _log = SingletonLogger.Instance;
         }
 
-        public async Task<List<CategoryNameDto>> Handle(GetAllNamesQuery request, CancellationToken cancellationToken)
+        public async Task<IList<CategoryNameDto>> Handle(GetAllNamesQuery request, CancellationToken cancellationToken)
         {
             try
             {
-                IEnumerable<Category> categories =
-                     await _unitOfWork.CategoryRepository.GetAllNamesAsync();
-               
-               var categoryListVms = 
-                    _mapper.Map<List<CategoryNameDto>>(categories);
+               var categories = await _unitOfWork.CategoryRepository.GetAllNamesAsync();
+               var categoryListVms = _mapper.Map<IList<CategoryNameDto>>(categories);
             
-                return await Task.FromResult(categoryListVms.ToList());
+               return categoryListVms.ToList();
             }
             catch (Exception e)
             {
