@@ -1,3 +1,0 @@
-﻿<Project>
-  <Import Project="..\buildMultiTargeting\HobbyProject.Presentation.props" />
-</Project>
