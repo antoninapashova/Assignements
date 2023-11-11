@@ -1,14 +1,6 @@
 ﻿using Application.Repositories;
-using Azure;
-using Hobby_Project;
 using HobbyProject.Domain.Entity;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HobbyProjectTests.Mocks
 {

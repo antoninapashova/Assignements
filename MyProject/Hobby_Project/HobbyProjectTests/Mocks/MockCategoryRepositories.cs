@@ -1,11 +1,6 @@
 ﻿using Application.Repositories;
 using Hobby_Project;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HobbyProjectTests.Mocks
 {
@@ -13,7 +8,6 @@ namespace HobbyProjectTests.Mocks
     {
         public static Mock<ICategoryRepository> GetCategoryRepository()
         {
-
             var categories = new List<Category>
             {
                 new Category{Id = 1, Name = "Sports", CreatedDate = DateTime.Now, HobbySubCategories = new List<SubCategory>()},
@@ -44,6 +38,7 @@ namespace HobbyProjectTests.Mocks
                 categories.Remove(hobbyCategory1);
                 return Task.FromResult(hobbyCategory1.Id);
             });
+
             return mockRepo;
         }
     }

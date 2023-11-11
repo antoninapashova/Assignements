@@ -8,11 +8,6 @@ using HobbyProject.Application.Categories.Queries.GetAllCategories;
 using HobbyProject.Application.Categories.Queries.GetCategoryById;
 using HobbyProjectTests.Mocks;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HobbyProjectTests.Queries
 {
@@ -55,10 +50,11 @@ namespace HobbyProjectTests.Queries
                 CreatedDate = DateTime.Now,
                 HobbySubCategories = new List<SubCategory>()
             };
+
            _repoMock.Setup(x => x.GetByIdAsync(1)).ReturnsAsync(category);
             var handler = new GetCategoryByIdHandler(_unitOfWorkMock.Object, _mapper);
             var result = await handler.Handle(new GetCategoryByIdQuery { Id= 1}, CancellationToken.None);
-           result.Should().BeOfType<CategoryDto>();
+            result.Should().BeOfType<CategoryDto>();
             result.Should().NotBeNull();
         }
     }

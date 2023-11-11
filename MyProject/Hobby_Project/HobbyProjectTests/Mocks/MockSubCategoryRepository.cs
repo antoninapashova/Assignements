@@ -1,17 +1,10 @@
 ﻿using Application.Repositories;
-using Domain.Entity;
-using EmptyFiles;
 using Hobby_Project;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HobbyProjectTests.Mocks
 {
-     public static class MockSubCategoryRepository
+    public static class MockSubCategoryRepository
     {
         public static Mock<ISubCategoryRepository> GetAllSubCategories()
         {

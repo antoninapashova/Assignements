@@ -1,25 +1,17 @@
-﻿using Application.Categories.Commands.Create;
-using Application.Categories.Commands.Delete;
-using Application.Comments.Commands.Create;
+﻿using Application.Comments.Commands.Create;
 using Application.Comments.Commands.Delete;
 using Application.Comments.Commands.Edit;
 using Application.Mapping;
 using Application.Repositories;
 using AutoMapper;
 using FluentAssertions;
-using Hobby_Project;
 using HobbyProjectTests.Mocks;
 using Moq;
 using Shouldly;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HobbyProjectTests.Commands
 {
-     public class CommentCommandHandlerTests
+    public class CommentCommandHandlerTests
      {
         private readonly Mock<IUnitOfWork> _unitOfWorkMock;
         private readonly Mock<ICommentRepository> _repoMock;
@@ -32,6 +24,7 @@ namespace HobbyProjectTests.Commands
             {
                 c.AddProfile<HobbyMappingProfile>();
             });
+
             _mapper = mapperConfig.CreateMapper();
             _unitOfWorkMock = new();
             _repoMock = MockCommentRepository.GetAllComments();
@@ -83,7 +76,6 @@ namespace HobbyProjectTests.Commands
             updatedEntity.Should().ShouldNotBeNull();
             updatedEntity.ShouldBeOfType<Int32>();
             updatedEntity.Should().Be(1);
-
         }
 
         [Fact]
@@ -111,6 +103,5 @@ namespace HobbyProjectTests.Commands
             var comments = await _repoMock.Object.GetAllEntitiesAsync();
             comments.Count().Should().Be(3);
         }
-
-     }
+    }
 }

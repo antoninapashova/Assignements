@@ -1,19 +1,11 @@
 ﻿using Application.Mapping;
 using Application.Repositories;
 using AutoMapper;
-using HobbyProject.Application.Categories.Queries.GetAllCategories;
 using HobbyProject.Application.Categories.Queries;
 using HobbyProjectTests.Mocks;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using HobbyProject.Application.HobbySubCategories.Queries.GetAllSubCategories;
 using FluentAssertions;
-using Application.Hobby.Queries;
-using HobbyProject.Application.Hobby.Queries.GetHobbyById;
 using HobbyProject.Application.HobbySubCategories.Queries.GetSubCategoryById;
 
 namespace HobbyProjectTests.Queries
@@ -55,6 +47,5 @@ namespace HobbyProjectTests.Queries
             result.Should().BeOfType<HobbySubCategoryDto>();
             result.Should().NotBeNull();
         }
-
     }
 }

@@ -1,11 +1,6 @@
 ﻿using Application.Repositories;
 using Hobby_Project;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HobbyProjectTests.Mocks
 {
@@ -43,6 +38,7 @@ namespace HobbyProjectTests.Mocks
                 comments.Remove(hobbyComment1);
                 return Task.FromResult(hobbyComment1.Id);
             });
+
             return mockRepo;
         }
     }

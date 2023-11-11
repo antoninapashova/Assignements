@@ -1,21 +1,13 @@
-﻿using Application.Categories.Commands.Create;
-using Application.Categories.Commands.Delete;
-using Application.HobbyTags.Commands.Create;
+﻿using Application.HobbyTags.Commands.Create;
 using Application.HobbyTags.Commands.Delete;
 using Application.Mapping;
 using Application.Repositories;
 using AutoMapper;
 using FluentAssertions;
-using Hobby_Project;
 using HobbyProject.Domain.Entity;
 using HobbyProjectTests.Mocks;
 using Moq;
 using Shouldly;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HobbyProjectTests.Commands
 {
@@ -33,6 +25,7 @@ namespace HobbyProjectTests.Commands
             {
                 c.AddProfile<HobbyMappingProfile>();
             });
+
             _mapper = mapperConfig.CreateMapper();
             _unitOfWorkMock = new();
             

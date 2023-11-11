@@ -1,24 +1,14 @@
-﻿using Application.Categories.Commands.Create;
-using Application.Categories.Commands.Delete;
-using Application.Hobby.Commands.Create;
+﻿using Application.Hobby.Commands.Create;
 using Application.Hobby.Commands.Delete;
 using Application.Hobby.Commands.Edit;
-using Application.Hobby.Queries;
 using Application.Mapping;
 using Application.Repositories;
 using AutoMapper;
-using Domain.Entity;
 using FluentAssertions;
-using Hobby_Project;
 using HobbyProject.Application.Hobby.Commands;
 using HobbyProjectTests.Mocks;
 using Moq;
 using Shouldly;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HobbyProjectTests.Commands
 {
@@ -35,13 +25,16 @@ namespace HobbyProjectTests.Commands
             {
                 c.AddProfile<HobbyMappingProfile>();
             });
+
             _mapper = mapperConfig.CreateMapper();
             _unitOfWorkMock = new();
             _repoMock = MockHobbyRepository.GetHobbyArticleRepository();
             _command = new CreateHobbyCommand 
-            { Title="New hobby", Description="-------", HobbySubCategoryId=1,  
+            {
+                Title="New hobby", Description="-------", HobbySubCategoryId=1,  
                 Tags = new List<CreateHobbyTagDto>(),
-                HobbyPhoto = new List<PhotoDTO>() };
+                HobbyPhoto = new List<PhotoDTO>() 
+            };
         }
 
 
@@ -118,6 +111,5 @@ namespace HobbyProjectTests.Commands
             var categories = await _repoMock.Object.GetAllEntitiesAsync();
             categories.Count().Should().Be(3);
         }
-
     }
 }

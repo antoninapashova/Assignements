@@ -1,14 +1,6 @@
 ﻿using Application.Repositories;
 using Domain.Entity;
-using Hobby_Project;
-
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EmptyFiles;
 using HobbyProject.Domain.Entity;
 
 namespace HobbyProjectTests.Mocks
@@ -21,17 +13,14 @@ namespace HobbyProjectTests.Mocks
             {
                 new HobbyEntity {Id = 1, Title="A great day for playing tennis", Description="---------",
                                   CreatedDate= DateTime.Now, 
-                    //Username = "Ivan", 
                     HobbySubCategoryId=1,
                                   Tags = new List<Tag>()},
                 new HobbyEntity {Id = 2, Title="A great day for playing tennis", Description="---------",
                                   CreatedDate= DateTime.Now, 
-                    //Username="Ivan", 
                     HobbySubCategoryId=1,
                                   Tags = new List<Tag>()},
                 new HobbyEntity {Id = 3, Title="A great day for playing tennis", Description="---------",
                                   CreatedDate= DateTime.Now, 
-                    //Username = "Ivan", 
                     HobbySubCategoryId=1,
                                   Tags = new List<Tag>()},
             };
@@ -69,7 +58,7 @@ namespace HobbyProjectTests.Mocks
                 return Task.FromResult(article.Id);
             });
 
-           return mockRepo;
+            return mockRepo;
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using Application.Categories.Commands.Create;
-using Application.Comments.Commands.Delete;
-using Application.HobbySubCategories.Commands.Create;
+﻿using Application.HobbySubCategories.Commands.Create;
 using Application.HobbySubCategories.Commands.Delete;
 using Application.Mapping;
 using Application.Repositories;
@@ -10,11 +8,6 @@ using Hobby_Project;
 using HobbyProjectTests.Mocks;
 using Moq;
 using Shouldly;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HobbyProjectTests.Commands
 {
@@ -93,7 +86,5 @@ namespace HobbyProjectTests.Commands
             var comments = await _repoMock.Object.GetAllEntitiesAsync();
             comments.Count().Should().Be(2);
         }
-
-
     }
 }

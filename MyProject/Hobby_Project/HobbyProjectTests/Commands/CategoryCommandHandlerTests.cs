@@ -8,14 +8,6 @@ using Hobby_Project;
 using HobbyProjectTests.Mocks;
 using Moq;
 using Shouldly;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Collections.Specialized.BitVector32;
 
 namespace HobbyProjectTests.Commands
 {
@@ -63,8 +55,8 @@ namespace HobbyProjectTests.Commands
 
             var handler = new CreateCategoryCommandHandler(_unitOfWorkMock.Object, _mapper);
 
-           await Should.ThrowAsync<NullReferenceException>(async()=>
-           await handler.Handle(null, CancellationToken.None));
+            await Should.ThrowAsync<NullReferenceException>(async()=>
+            await handler.Handle(null, CancellationToken.None));
 
             var categories = await _repoMock.Object.GetAllEntitiesAsync();
             categories.Count().Should().Be(3);
@@ -81,7 +73,6 @@ namespace HobbyProjectTests.Commands
 
             var categories = await _repoMock.Object.GetAllEntitiesAsync();
             categories.Count().Should().Be(2);
-
         }
 
         [Fact]
@@ -96,7 +87,6 @@ namespace HobbyProjectTests.Commands
 
             var categories = await _repoMock.Object.GetAllEntitiesAsync();
             categories.Count().Should().Be(3);
-
         }
     }
 }

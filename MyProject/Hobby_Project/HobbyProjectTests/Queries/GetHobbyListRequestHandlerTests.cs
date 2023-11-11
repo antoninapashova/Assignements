@@ -1,25 +1,16 @@
 ﻿using Application.Mapping;
 using Application.Repositories;
 using AutoMapper;
-using HobbyProject.Application.Categories.Queries.GetAllCategories;
-using HobbyProject.Application.Categories.Queries;
 using HobbyProjectTests.Mocks;
 using Moq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FluentAssertions;
 using HobbyProject.Application.Hobby.Queries.GetAllUsers;
 using Application.Hobby.Queries;
-using Hobby_Project;
-using HobbyProject.Application.Categories.Queries.GetCategoryById;
 using HobbyProject.Application.Hobby.Queries.GetHobbyById;
 
 namespace HobbyProjectTests.Queries
 {
-     public class GetHobbyListRequestHandlerTests
+    public class GetHobbyListRequestHandlerTests
      {
         private Mock<IUnitOfWork> _unitOfWorkMock;
         private Mock<IHobbyArticleRepository> _repoMock;
@@ -31,6 +22,7 @@ namespace HobbyProjectTests.Queries
             {
                 c.AddProfile<HobbyMappingProfile>();
             });
+
             _mapper = mapperConfig.CreateMapper();
             _unitOfWorkMock = new();
             _repoMock = MockHobbyRepository.GetHobbyArticleRepository();
@@ -57,6 +49,5 @@ namespace HobbyProjectTests.Queries
             result.Should().BeOfType<HobbyDto>();
             result.Should().NotBeNull();
         }
-
     }
 }
