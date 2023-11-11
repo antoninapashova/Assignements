@@ -7,6 +7,8 @@ namespace Infrastructure.Data
 {
     public class HobbyDbContext : DbContext
     {
+        public HobbyDbContext(DbContextOptions<HobbyDbContext> options) : base(options) { }
+
         public DbSet<HobbyEntity> HobbyEntities { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Comment> Comments { get; set; }
@@ -15,19 +17,6 @@ namespace Infrastructure.Data
         public DbSet<Photo> Photos { get; set; }
         public DbSet<UserEntity> Users { get; set; }
         public DbSet<Reply> Replies { get; set; }
-
-        public HobbyDbContext() : base(){ }
-        public HobbyDbContext(DbContextOptions<HobbyDbContext> options) : base(options) { }
-        
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            string conn = @"Server=DESKTOP-AI1LMFV\SQLEXPRESS;Database = HobbyDB;Trusted_Connection=SSPI;Encrypt = false;TrustServerCertificate=true";
-            
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlServer(conn);
-            }
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
