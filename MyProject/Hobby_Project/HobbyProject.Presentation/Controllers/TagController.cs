@@ -1,14 +1,9 @@
-﻿using Application.Categories.Commands.Delete;
-using Application.HobbySubCategories.Commands.Create;
-using Application.HobbyTags.Commands.Create;
+﻿using Application.HobbyTags.Commands.Create;
 using Application.HobbyTags.Commands.Delete;
 using Application.HobbyTags.Queries;
-using HobbyProject.Application.HobbySubCategories.Queries.GetAllSubCategories;
-using HobbyProject.Application.HobbySubCategories.Queries.GetSubCategoryById;
 using HobbyProject.Application.HobbyTags.Queries.GetTagById;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HobbyProject.Presentation.Controllers
@@ -45,7 +40,6 @@ namespace HobbyProject.Presentation.Controllers
         public async Task<IActionResult> AddTag([FromBody] CreateTagCommand command)
         {
             var result = await _mediator.Send(command);
-            
             return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
         }
 

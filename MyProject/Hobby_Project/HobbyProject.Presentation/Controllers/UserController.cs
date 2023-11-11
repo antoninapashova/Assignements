@@ -7,12 +7,6 @@ using HobbyProject.Application.User.Command.ResetPassword;
 using HobbyProject.Application.User.Query.GetById;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.IdentityModel.Tokens;
-using System.Drawing;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
 
 namespace HobbyProject.Presentation.Controllers
 {
@@ -91,6 +85,5 @@ namespace HobbyProject.Presentation.Controllers
             var result = await _mediator.Send(command);
             return Ok(result);
         }
-
     }
 }

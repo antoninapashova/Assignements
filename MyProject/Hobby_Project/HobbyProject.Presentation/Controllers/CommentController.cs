@@ -29,6 +29,7 @@ namespace HobbyProject.Presentation.Controllers
             {
                 HobbyId = hobbyId
             };
+
             var result = await _mediator.Send(command);
             return Ok(result);
         }
@@ -52,8 +53,8 @@ namespace HobbyProject.Presentation.Controllers
                 CommentContent = editComment.CommentContent,
             };
            
-             await _mediator.Send(command);
-             return NoContent();
+            await _mediator.Send(command);
+            return NoContent();
         }
 
         [Authorize]

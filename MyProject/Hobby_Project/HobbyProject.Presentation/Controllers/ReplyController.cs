@@ -1,12 +1,8 @@
-﻿using Application.Categories.Commands.Delete;
-using Application.Comments.Commands.Create;
-using HobbyProject.Application.Categories.Queries.GetCategoryById;
-using HobbyProject.Application.CommentReply.Commands;
+﻿using HobbyProject.Application.CommentReply.Commands;
 using HobbyProject.Application.CommentReply.Commands.Delete;
 using HobbyProject.Application.CommentReply.Queries.GetRepliesByCommentId;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HobbyProject.Presentation.Controllers
@@ -16,6 +12,7 @@ namespace HobbyProject.Presentation.Controllers
     public class ReplyController : ControllerBase
     {
         public readonly IMediator _mediator;
+
         public ReplyController(IMediator mediator)
         {
             _mediator = mediator;

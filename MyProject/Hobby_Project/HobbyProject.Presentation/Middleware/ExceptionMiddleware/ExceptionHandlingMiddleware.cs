@@ -1,8 +1,5 @@
-﻿using FluentAssertions;
-using FluentValidation;
+﻿using FluentValidation;
 using HobbyProject.Presentation.Middleware.ExceptionMiddleware.Exceptions;
-using System.Collections.Immutable;
-using System.Collections.ObjectModel;
 using System.Text.Json;
 
 namespace HobbyProject.Presentation.Middleware.ExceptionMiddleware
@@ -57,7 +54,6 @@ namespace HobbyProject.Presentation.Middleware.ExceptionMiddleware
 
         private static Dictionary<string, string> GetErrors(Exception exception)
         {
-            //Dictionary<string, string> errors = null;
             if (exception is ValidationException validationException)
             {
                 if (validationException.Errors.Any())
@@ -69,9 +65,9 @@ namespace HobbyProject.Presentation.Middleware.ExceptionMiddleware
                         errors.Add(e.PropertyName, e.ErrorMessage);
                     }
                     return errors;
-                 }
-
+                }
             }
+
             return null;
         }
     }

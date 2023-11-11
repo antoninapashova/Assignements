@@ -1,16 +1,11 @@
-﻿
-using Application.Categories.Commands.Create;
+﻿using Application.Categories.Commands.Create;
 using Application.Categories.Commands.Delete;
 using HobbyProject.Application.Categories.Queries.GetAllCategories;
 using HobbyProject.Application.Categories.Queries.GetAllNames;
 using HobbyProject.Application.Categories.Queries.GetCategoryById;
-using HobbyProject.Application.Validators;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Identity.Web.Resource;
-using System.ComponentModel.DataAnnotations;
 
 namespace HobbyProject.Presentation.Controllers
 {
@@ -62,7 +57,6 @@ namespace HobbyProject.Presentation.Controllers
             return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
         }
 
-
         [Authorize]
         [HttpDelete]
         [Route("{id}")]
@@ -72,6 +66,5 @@ namespace HobbyProject.Presentation.Controllers
             var result = await _mediator.Send(command);
             return Ok(result);
         }
-
     }
 }
