@@ -48,14 +48,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbConfiguration(connectionString);
-builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-builder.Services.AddScoped<ISubCategoryRepository, SubCategoryRepository>();
-builder.Services.AddScoped<ICommentRepository, CommentRepository>();
-builder.Services.AddScoped<IHobbyArticleRepository, HobbyRepository>();
-builder.Services.AddScoped<IPhotoRepository, HobbyPhotoRepository>();
-builder.Services.AddScoped<ITagRepository, TagRepository>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
-builder.Services.AddScoped<IReplyRepository, ReplyRepository>();
+builder.Services.AddRepositoryConfigurations();
+
 builder.Services.AddTransient<ITokenManager, TokenManager>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 
