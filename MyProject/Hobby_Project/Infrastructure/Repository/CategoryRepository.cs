@@ -7,7 +7,6 @@ namespace Infrastructure.Repository
 {
     public class CategoryRepository : ICategoryRepository
     {
-
         private readonly HobbyDbContext _context;
 
         public CategoryRepository(HobbyDbContext context)
@@ -24,7 +23,6 @@ namespace Infrastructure.Repository
         public async Task DeleteAsync(int id)
         {
             Category hobbyCategory = await FindById(id);
-
             _context.Remove(hobbyCategory);
         }
 
@@ -38,7 +36,8 @@ namespace Infrastructure.Repository
             return await FindById(id);
         }
 
-        public async Task<IQueryable<Category>> GetAllNamesAsync() {
+        public async Task<IQueryable<Category>> GetAllNamesAsync() 
+        {
             return _context.Categories.AsNoTracking().AsQueryable();
         }
 
@@ -46,12 +45,10 @@ namespace Infrastructure.Repository
         {
             return await _context.Categories.AnyAsync(c => c.Name == name);
         }
+
         public async Task<Category> FindById(int id)
         {
-            var hobbyCategory = await _context.Categories.AsNoTracking()
-                 .FirstOrDefaultAsync(c => c.Id == id);
-
-            return hobbyCategory ?? throw new NullReferenceException("Category is null!");
+           return await _context.Categories.AsNoTracking().FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public Task<Category> Update(Category entity)

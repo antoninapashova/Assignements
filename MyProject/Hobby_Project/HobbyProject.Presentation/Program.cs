@@ -1,15 +1,9 @@
-using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using MediatR;
-using Application.Repositories;
-using Infrastructure.Repository;
-using Infrastructure;
 using System.Reflection;
 using HobbyProject.Application.Categories.Queries.GetAllCategories;
 using HobbyProject.Presentation.Middleware.ExceptionMiddleware;
 using FluentValidation.AspNetCore;
-using HobbyProject.Application.Repositories;
-using HobbyProject.Infrastructure.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -55,10 +49,6 @@ builder.Services.AddScoped<IEmailService, EmailService>();
 
 builder.Services.AddMediatR(typeof(GetCategoriesListQuery).GetTypeInfo().Assembly);
 builder.Services.AddAutoMapper(typeof(HobbyProject.Application.AssemblyMarketPresentatio));
-
-builder.Services.AddDbContext<HobbyDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
-
 builder.Services.AddTransient<ExceptionHandlingMiddleware>();
 
 builder.Services.AddAuthentication(x =>
@@ -77,8 +67,6 @@ builder.Services.AddAuthentication(x =>
         ValidateIssuer = false
     };
 });
-
-builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 
 builder.Services.AddOptions();
 

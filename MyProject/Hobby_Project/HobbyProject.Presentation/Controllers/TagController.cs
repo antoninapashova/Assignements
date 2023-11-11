@@ -23,7 +23,7 @@ namespace HobbyProject.Presentation.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllTags()
         {
-           var result = await _mediator.Send(new GetTagQuery());
+           var result = await _mediator.Send(new GetTagListQuery());
            return Ok(result);
         }
 
