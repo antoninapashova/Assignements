@@ -1,16 +1,5 @@
-﻿using Application.Comments.Commands.Create;
-using Application.Hobby.Queries;
-using Hobby_Project;
-using HobbyProject.Application.Categories.Queries.GetAllCategories;
-using HobbyProject.Application.Hobby.Commands;
-using HobbyProject.Application.HobbyTags.Queries;
+﻿using HobbyProject.Application.Hobby.Commands;
 using MediatR;
-using Org.BouncyCastle.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Hobby.Commands.Create
 {
@@ -22,6 +11,5 @@ namespace Application.Hobby.Commands.Create
         public int HobbySubCategoryId { get; set; }
         public IEnumerable<CreateHobbyTagDto> Tags { get; set; }
         public IEnumerable<PhotoDTO> HobbyPhoto { get; set; }
-
     }
 }

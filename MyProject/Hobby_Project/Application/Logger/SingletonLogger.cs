@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 
 namespace Application.Logger
 {
@@ -13,7 +7,8 @@ namespace Application.Logger
         private static SingletonLogger instance = null;
         private static readonly object padlock = new object();
         private const string FILE_PATH = @"C:\\Users\\PC\\Desktop\\Assignements\\Assignements\\MyProject\\Hobby_Project\\Application\\Logger\\Logger.txt ";
-        SingletonLogger() { }
+
+        SingletonLogger() {}
 
         public static SingletonLogger Instance
         {
@@ -29,6 +24,7 @@ namespace Application.Logger
                         }
                     }
                 }
+
                 return instance;
             }
         }
@@ -36,7 +32,6 @@ namespace Application.Logger
         public void LogError(string message)
         {
             StringBuilder sb = new StringBuilder();
-            //only for log error
             sb.AppendLine("*-------------------------------*");
             sb.Append("[Error]");
             sb.Append(DateTime.Now.ToShortTimeString() + " ");
@@ -49,7 +44,8 @@ namespace Application.Logger
                     writer.WriteLine(sb.ToString());
                     writer.Flush();
                 }
-            } catch (Exception e)
+            } 
+            catch (Exception e)
             {
                 
                 Console.WriteLine("Exception: " + e.Message);
@@ -99,5 +95,4 @@ namespace Application.Logger
            }
         }
     }
-    
 }

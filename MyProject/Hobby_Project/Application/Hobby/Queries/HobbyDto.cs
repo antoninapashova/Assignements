@@ -1,11 +1,4 @@
-﻿using Hobby_Project;
-using HobbyProject.Application.Hobby.Commands;
-using HobbyProject.Application.Hobby.Queries;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HobbyProject.Application.Hobby.Commands;
 
 namespace Application.Hobby.Queries
 {

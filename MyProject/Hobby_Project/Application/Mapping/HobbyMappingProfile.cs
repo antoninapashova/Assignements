@@ -19,23 +19,16 @@ using HobbyProject.Application.HobbyTags.Queries;
 using HobbyProject.Application.User;
 using HobbyProject.Application.User.Command.Create;
 using HobbyProject.Domain.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Mapping
 {
     public class HobbyMappingProfile : Profile
     {
        public HobbyMappingProfile()
-        {
-            //User
+       {
             CreateMap<CreateUserCommand, UserEntity>();
             CreateMap<UserEntity, UserDto>();
 
-            //HobbyArticle
             CreateMap<CreateHobbyCommand, HobbyEntity>();
             CreateMap<ArticleCommentDTO, HobbyEntity>();
             CreateMap<EditHobbyCommand, HobbyEntity>();
@@ -43,38 +36,32 @@ namespace Application.Mapping
                 .ForMember("Username", x => x.MapFrom(y => y.User.Username))
                 .ForMember("HobbySubCategory", x=>x.MapFrom(y=>y.HobbySubCategory.Name));
 
-            //Category
             CreateMap<CreateCategoryCommand, Category>();
             
             CreateMap<Category, CategoryDto>();
             CreateMap<Category, CategoryNameDto>();
 
-            //Subcategory
+            
             CreateMap<CreateSubCategoryCommand, SubCategory>();
             CreateMap<SubCategory, HobbySubCategoryDto>();
 
-            //Photo
             CreateMap<Photo, PhotoDTO>();
             CreateMap<PhotoDTO, Photo>();
 
-            //Comment
             CreateMap<CreateCommentCommand, Comment>();
             CreateMap<EditCommentCommand, Comment>();
             CreateMap<Comment, CommentDto>()
             .ForMember("Username", x=>x.MapFrom(y=>y.User.Username));
 
-            //Reply
             CreateMap<CreateReplyCommand, Reply>();
             CreateMap<Reply, ReplyDto>()
                 .ForMember("Username", x => x.MapFrom(y => y.User.Username));
 
-            //Tag
             CreateMap<CreateHobbyTagDto, Tag>();
             CreateMap<CreateTagCommand, Tag>();
             CreateMap<Tag, TagDto>();
             CreateMap<Tag, HobbyTagDto>();
             CreateMap<Tag, CreateHobbyTagDto>();
-            
        }
     }
 }

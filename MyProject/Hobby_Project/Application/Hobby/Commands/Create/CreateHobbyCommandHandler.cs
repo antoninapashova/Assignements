@@ -1,19 +1,8 @@
 ﻿using Application.Logger;
-using Application.Notifications;
 using Application.Repositories;
 using AutoMapper;
-using CloudinaryDotNet.Actions;
 using Domain.Entity;
-using Hobby_Project;
-using HobbyProject.Application.Photos.Commands.Create;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using CloudinaryDotNet;
-using HobbyProject.Application.Hobby;
 using HobbyProject.Application.Validators;
 using FluentValidation;
 
@@ -55,8 +44,8 @@ namespace Application.Hobby.Commands.Create
                 }
 
                 return await Task.FromResult(hobby.Id);
-
-            }catch(Exception e)
+            }
+            catch(Exception e)
             {
                 _log.LogError(e.Message);
                 throw;

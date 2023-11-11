@@ -1,10 +1,5 @@
 ﻿using Application.Hobby.Commands.Create;
 using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HobbyProject.Application.Validators
 {
@@ -18,7 +13,6 @@ namespace HobbyProject.Application.Validators
 
             RuleFor(hobby => hobby.Description).NotEmpty().Length(5, 100)
                 .WithMessage("Description can not be empty and must be more than 5 characters");
-
         }
     }
 }

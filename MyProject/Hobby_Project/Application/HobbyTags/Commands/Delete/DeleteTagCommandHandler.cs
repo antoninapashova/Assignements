@@ -1,21 +1,14 @@
 ﻿using Application.Logger;
 using Application.Repositories;
-using Hobby_Project;
 using MediatR;
-using MediatR.Pipeline;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Application.HobbyTags.Commands.Delete
 {
-     public class DeleteTagCommandHandler : IRequestHandler<DeleteTagCommand, int>
+    public class DeleteTagCommandHandler : IRequestHandler<DeleteTagCommand, int>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ILog _log;
+
         public DeleteTagCommandHandler(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;

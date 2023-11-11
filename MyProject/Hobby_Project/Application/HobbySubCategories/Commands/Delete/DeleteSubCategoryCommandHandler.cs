@@ -1,11 +1,6 @@
 ﻿using Application.Logger;
 using Application.Repositories;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.HobbySubCategories.Commands.Delete
 {
@@ -30,7 +25,8 @@ namespace Application.HobbySubCategories.Commands.Delete
                 await _unitOfWork.Save();
                 return await Task.FromResult(command.Id);
 
-            }catch(Exception e)
+            }
+            catch(Exception e)
             {
                 _log.LogError(e.Message);
                 throw;

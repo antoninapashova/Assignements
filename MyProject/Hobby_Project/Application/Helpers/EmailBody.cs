@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HobbyProject.Application.Helpers
+﻿namespace HobbyProject.Application.Helpers
 {
     public static class EmailBody
     {

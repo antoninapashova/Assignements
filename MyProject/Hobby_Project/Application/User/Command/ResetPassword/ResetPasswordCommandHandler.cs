@@ -2,11 +2,6 @@
 using Application.Repositories;
 using HobbyProject.Application.Helpers;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HobbyProject.Application.User.Command.ResetPassword
 {
@@ -42,7 +37,6 @@ namespace HobbyProject.Application.User.Command.ResetPassword
                 _log.LogError(e.Message);
                 throw;
             }
-           
         }
     }
 }

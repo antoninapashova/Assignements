@@ -3,11 +3,6 @@ using Application.Repositories;
 using AutoMapper;
 using HobbyProject.Application.User.Query.GetById;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HobbyProject.Application.User.Query.GetUserById
 {
@@ -34,7 +29,6 @@ namespace HobbyProject.Application.User.Query.GetUserById
                 var user = await _unitOfWork.UserRepository.GetByIdAsync(request.Id);
                 var result = _mapper.Map<UserDto>(user);
                 return await Task.FromResult(result);
-
             }
             catch (Exception e)
             {

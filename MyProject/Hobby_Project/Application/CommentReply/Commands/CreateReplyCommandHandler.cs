@@ -1,16 +1,8 @@
 ﻿using Application.Logger;
 using Application.Repositories;
 using AutoMapper;
-using Hobby_Project;
-using HobbyProject.Application.Validators;
 using HobbyProject.Domain.Entity;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace HobbyProject.Application.CommentReply.Commands
 {

@@ -2,7 +2,6 @@
 {
     public class HobbyTagDto
     {
-      
         public string Name { get; set; }
     }
 }

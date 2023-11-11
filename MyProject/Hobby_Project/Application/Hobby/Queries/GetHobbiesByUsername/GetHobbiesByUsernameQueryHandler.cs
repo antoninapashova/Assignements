@@ -2,13 +2,7 @@
 using Application.Logger;
 using Application.Repositories;
 using AutoMapper;
-using HobbyProject.Application.Hobby.Queries.GetHobbyById;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HobbyProject.Application.Hobby.Queries.GetHobbiesByUsername
 {

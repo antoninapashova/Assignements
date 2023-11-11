@@ -1,18 +1,10 @@
-﻿using Castle.Components.DictionaryAdapter.Xml;
-using Castle.Core.Configuration;
-using MailKit.Net.Smtp;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+﻿using MailKit.Net.Smtp;
 using Microsoft.Extensions.Options;
 using MimeKit;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HobbyProject.Application.Helpers
 {
-     public class EmailService : IEmailService
+    public class EmailService : IEmailService
     {
         private readonly EmailSettings _emailSettings;
 
@@ -20,7 +12,9 @@ namespace HobbyProject.Application.Helpers
         {
             _emailSettings = options.Value;
         }
+
         public EmailSettings Get() => _emailSettings;
+
         public void SendEmail(EmailModel emailModel)
         {
             var emailMessage = new MimeMessage();

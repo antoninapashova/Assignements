@@ -3,13 +3,6 @@ using Application.Repositories;
 using AutoMapper;
 using Hobby_Project;
 using MediatR;
-using Microsoft.VisualBasic;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HobbyProject.Application.Categories.Queries.GetAllCategories
 {
@@ -46,7 +39,6 @@ namespace HobbyProject.Application.Categories.Queries.GetAllCategories
                 _log.LogError(e.Message);
                 throw;
             }
-            
         }
     }
 }

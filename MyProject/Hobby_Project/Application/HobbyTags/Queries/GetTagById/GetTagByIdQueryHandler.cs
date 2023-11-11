@@ -1,15 +1,7 @@
-﻿using Application.HobbyTags.Queries;
-using Application.Logger;
+﻿using Application.Logger;
 using Application.Repositories;
 using AutoMapper;
-using Hobby_Project;
-using HobbyProject.Application.Categories.Queries.GetAllCategories;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HobbyProject.Application.HobbyTags.Queries.GetTagById
 {
@@ -18,6 +10,7 @@ namespace HobbyProject.Application.HobbyTags.Queries.GetTagById
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly ILog _log;
+
         public GetTagByIdQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;

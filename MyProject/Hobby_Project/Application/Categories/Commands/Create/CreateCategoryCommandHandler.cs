@@ -5,12 +5,6 @@ using FluentValidation;
 using Hobby_Project;
 using HobbyProject.Application.Validators;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Application.Categories.Commands.Create
 {

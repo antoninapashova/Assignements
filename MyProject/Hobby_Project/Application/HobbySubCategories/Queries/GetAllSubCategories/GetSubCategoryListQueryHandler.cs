@@ -3,11 +3,6 @@ using Application.Repositories;
 using AutoMapper;
 using Hobby_Project;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HobbyProject.Application.HobbySubCategories.Queries.GetAllSubCategories
 {
@@ -38,17 +33,17 @@ namespace HobbyProject.Application.HobbySubCategories.Queries.GetAllSubCategorie
                         Id = c.Id,
                         Name = c.Name
                     };
+
                     subCategories.Add(subCategoryDto);
                 }
 
                 return await Task.FromResult(subCategories.ToList());
-
-            }catch (Exception e)
+            }
+            catch (Exception e)
             {
                 _logger.LogError(e.Message);
                 throw;
             }
-            
         }
     }
 }

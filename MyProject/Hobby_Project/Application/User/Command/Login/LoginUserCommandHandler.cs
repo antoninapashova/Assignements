@@ -1,18 +1,8 @@
 ﻿using Application.Logger;
 using Application.Repositories;
-using FluentAssertions;
 using HobbyProject.Application.Helpers;
 using HobbyProject.Domain.Entity;
 using MediatR;
-using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
-using System.Security.Claims;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HobbyProject.Application.User.Command.Login
 {
@@ -50,11 +40,12 @@ namespace HobbyProject.Application.User.Command.Login
                 await _unitOfWork.Save();
 
                 return await Task.FromResult(user);
-            }catch(Exception e)
+            }
+            catch(Exception e)
             {
                 _log.LogError(e.Message);
                 throw;
             }
-         } 
+        } 
     }
 }

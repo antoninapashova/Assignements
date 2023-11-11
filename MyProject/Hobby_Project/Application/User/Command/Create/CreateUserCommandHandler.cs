@@ -1,16 +1,9 @@
 ﻿using Application.Logger;
 using Application.Repositories;
 using AutoMapper;
-using Hobby_Project;
 using HobbyProject.Application.Helpers;
 using HobbyProject.Domain.Entity;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace HobbyProject.Application.User.Command.Create
 {
@@ -52,7 +45,7 @@ namespace HobbyProject.Application.User.Command.Create
                 _log.LogError(e.Message);
                 throw;
             }
-         }
+        }
 
         private async Task IsUsernameExists(string username)
         {

@@ -1,18 +1,8 @@
-﻿
-using Application.Hobby.Commands.Create;
-using Application.Logger;
+﻿using Application.Logger;
 using Application.Repositories;
 using AutoMapper;
-using CloudinaryDotNet;
-using CloudinaryDotNet.Actions;
 using Domain.Entity;
 using MediatR;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HobbyProject.Application.Photos.Commands.Create
 {
@@ -40,7 +30,6 @@ namespace HobbyProject.Application.Photos.Commands.Create
                 await _unitOfWork.PhotoRepository.Add(hobbyPhoto);
                 await _unitOfWork.Save();
                 return await Task.FromResult(hobbyPhoto.Id);
-
             }
             catch (Exception e)
             {
@@ -48,7 +37,5 @@ namespace HobbyProject.Application.Photos.Commands.Create
                 throw;
             }
         }
-
-        
     }
 }

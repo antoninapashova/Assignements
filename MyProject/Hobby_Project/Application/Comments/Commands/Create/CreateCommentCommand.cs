@@ -1,10 +1,4 @@
-﻿
-using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using MediatR;
 
 namespace Application.Comments.Commands.Create
 {
@@ -14,5 +8,4 @@ namespace Application.Comments.Commands.Create
         public int UserId { get; set; }
         public int HobbyArticleId { get; set; }
     }
-
 }

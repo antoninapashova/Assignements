@@ -1,9 +1,4 @@
 ﻿using HobbyProject.Application.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Repositories
 {
@@ -19,6 +14,5 @@ namespace Application.Repositories
        public IReplyRepository ReplyRepository { get; }
        
        Task Save();
-
     }
 }

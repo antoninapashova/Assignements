@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace HobbyProject.Application.User
+﻿namespace HobbyProject.Application.User
 {
     public class UserDto
     {
@@ -13,6 +7,5 @@ namespace HobbyProject.Application.User
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-
     }
 }

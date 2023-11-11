@@ -1,17 +1,10 @@
 ﻿using Application.Logger;
-using Application.Notifications;
 using Application.Repositories;
 using AutoMapper;
 using FluentValidation;
 using Hobby_Project;
-using HobbyProject.Application.Categories.Queries;
 using HobbyProject.Application.Validators;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.HobbySubCategories.Commands.Create
 {

@@ -3,11 +3,6 @@ using Application.Logger;
 using Application.Repositories;
 using AutoMapper;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HobbyProject.Application.Hobby.Queries.GetHobbyById
 {
@@ -33,12 +28,12 @@ namespace HobbyProject.Application.Hobby.Queries.GetHobbyById
                 var result = await _unitOfWork.HobbyArticleRepository.GetByIdAsync(request.Id);
                 HobbyDto hobbyVm = _mapper.Map<HobbyDto>(result);
                 return await Task.FromResult(hobbyVm);
-            }catch (Exception e)
+            }
+            catch (Exception e)
             {
                 _logger.LogError(e.Message);
                 throw;
-             }
-            
+            }
         }
     }
 }

@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Security.Cryptography;
+﻿using System.Security.Cryptography;
 
 namespace HobbyProject.Application.Helpers
 {
     public class PasswordHasher
     {
-
         private static RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
         private static readonly int SaltSize = 16;
         private static readonly int HashSize = 20;
@@ -44,6 +38,7 @@ namespace HobbyProject.Application.Helpers
             {
                 if (hashBytes[i+SaltSize] != hash[i]) return false;
             }
+
             return true;
         }
     }
