@@ -103,3 +103,23 @@ Tags
 [Error]19:28 An error occurred while saving the entity changes. See the inner exception for details.
 *-------------------------------*
 [Error]19:28 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]14:24 An error occurred while saving the entity changes. See the inner exception for details.
+*-------------------------------*
+[Error]19:49 Validation failed: 
+ -- Description: Description can not be empty and must be more than 5 characters Severity: Error
+*-------------------------------*
+[Error]19:50 Validation failed: 
+ -- Description: Description can not be empty and must be more than 5 characters Severity: Error
+*-------------------------------*
+[Error]19:50 Validation failed: 
+ -- Description: Description can not be empty and must be more than 5 characters Severity: Error
+*-------------------------------*
+[Error]19:50 Validation failed: 
+ -- Description: Description can not be empty and must be more than 5 characters Severity: Error
+*-------------------------------*
+[Error]21:18 Comment with Id: 1 does not exist!
+*-------------------------------*
+[Error]21:18 Comment with Id: 3 does not exist!
+*-------------------------------*
+[Error]19:55 Sequence contains no elements.

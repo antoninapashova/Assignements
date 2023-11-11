@@ -1,7 +1,9 @@
 ﻿using Application.Categories.Commands.Delete;
 using Application.Comments.Commands.Create;
+using HobbyProject.Application.Categories.Queries.GetCategoryById;
 using HobbyProject.Application.CommentReply.Commands;
 using HobbyProject.Application.CommentReply.Commands.Delete;
+using HobbyProject.Application.CommentReply.Queries.GetRepliesByCommentId;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -24,6 +26,17 @@ namespace HobbyProject.Presentation.Controllers
         public async Task<IActionResult> AddReply([FromBody] CreateReplyCommand command)
         {
             var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+
+        [Authorize]
+        [HttpGet]
+        [Route("{commentId}")]
+        public async Task<ActionResult> GetByCommentId(int commentId)
+        {
+            var query = new GetRepliesByCommentIdListQuery { CommentId = commentId };
+            var result = await _mediator.Send(query);
             return Ok(result);
         }
 

@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace HobbyProject.Application.CommentReply.Queries.GetRepliesByCommentId
 {
-    public class GetRepliesByCommentIdListQueryHandler : IRequestHandler<GetRepliesByCommentIdListQuery, List<ReplyDto>
+    public class GetRepliesByCommentIdListQueryHandler : IRequestHandler<GetRepliesByCommentIdListQuery, List<ReplyDto>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;

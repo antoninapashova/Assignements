@@ -36,9 +36,9 @@ namespace Infrastructure.Repository
         public async Task<IEnumerable<HobbyEntity>> GetHobbyArticlesByUserId(int id)
         {
             return _context.HobbyEntities
-                .Include(h => h.HobbySubCategory)
+         
                 .Include(x => x.User)
-                .Include(h => h.Tags)
+                
                 .Include(h => h.HobbyPhoto)
                 .AsQueryable()
                 .Where(h=>h.User.Id==id);
@@ -48,9 +48,7 @@ namespace Infrastructure.Repository
         {
             return _context.HobbyEntities
                 .Include(x=>x.User)
-                .Include(x => x.HobbySubCategory)
                 .Include(x => x.HobbyPhoto)
-                .Include(x => x.Tags)
                 .AsQueryable();
         }
         public async Task<HobbyEntity> GetByIdAsync(int id)
@@ -58,8 +56,7 @@ namespace Infrastructure.Repository
            await FindById(id);
 
             return await _context.HobbyEntities
-                    .Include(h => h.HobbySubCategory)
-                    .Include(h => h.Tags)
+                 
                     .Include(h => h.HobbyPhoto)
                     .SingleAsync(x => x.Id == id);
         }
@@ -73,8 +70,7 @@ namespace Infrastructure.Repository
         public async Task<IEnumerable<HobbyEntity>> GetHobbyArticlesByUsername(string username)
         {
             return _context.HobbyEntities
-                     .Include(h => h.HobbySubCategory)
-                     .Include(h => h.Tags)
+                
                      .Include(h => h.HobbyPhoto)
                      .AsQueryable() 
                      .Where(h => h.User.Username.Equals(username));

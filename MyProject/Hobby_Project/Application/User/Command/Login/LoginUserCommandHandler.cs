@@ -16,7 +16,6 @@ using System.Threading.Tasks;
 
 namespace HobbyProject.Application.User.Command.Login
 {
-
     public class LoginUserCommandHandler : IRequestHandler<LoginUserCommand,UserEntity>
     {
         private readonly IUnitOfWork _unitOfWork;

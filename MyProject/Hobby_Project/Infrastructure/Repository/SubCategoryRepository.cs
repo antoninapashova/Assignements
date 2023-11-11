@@ -33,7 +33,7 @@ namespace Infrastructure.Repository
 
         public async Task<IEnumerable<SubCategory>> GetAllEntitiesAsync()
         {
-            return  _context.SubCategories.AsQueryable();
+            return  _context.SubCategories.AsEnumerable();
         }
 
         public async Task<SubCategory> GetByIdAsync(int id)
@@ -51,7 +51,7 @@ namespace Infrastructure.Repository
         {
             var subCategory = await _context.SubCategories.FirstOrDefaultAsync(s => s.Id == id);
 
-            if (subCategory == null) throw new NullReferenceException("SubCategory with Id: " + id + " does not exist");
+            if (subCategory == null) throw new NullReferenceException($"SubCategory with Id: {id} does not exist");
 
             return subCategory;
         }

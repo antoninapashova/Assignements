@@ -6,16 +6,27 @@
       </div>
       <div class="comment-text">{{ comment.commentContent }}</div>
     </div>
+
     <div class="comment-actions">
-      <button mat-button *ngIf="canDelete" (click)="deleteComment(comment.id)">Delete</button>
-      <button
-      *ngIf="canEdit"
-      class="comment-action"
-      (click)="setActiveComment.emit({
-          id: comment.id,
-          type: activeCommentType.editing
-        })">Edit</button>
+      <button mat-button *ngIf="canReply">Reply</button>
+      <button *ngIf="canEdit" class="comment-action" (click)="setActiveComment.emit({id: comment.id, type: activeCommentType.editing})" >Edit</button>
+      <button mat-button 
+      *ngIf="canDelete" 
+      (click)="deleteComment.emit(comment.id)">Delete</button>
     </div>
-    <app-comment-form *ngIf="isReplying()" submitLabel="Reply", (handleSubmit)="addComment.emit({text: $event, parentId: replyId})"></app-comment-form>
+    
+    <app-comment-form *ngIf="isReplying()" submitLabel="Reply", (handleSubmit)="addComment.emit({commentContent: $event, parentId: replyId})",
+     (handleCancel)="setActiveComment.emit(null)"></app-comment-form>
+    <div class="replies" *ngIf="replies.length > 0">
+      <app-comment *ngFor="let reply of replies"
+        [comment]="reply"
+        (setActiveComment)="setActiveComment.emit($event)"
+        [activeComment]="activeComment"
+        (updateComment)="updateComment.emit($event)"
+        (deleteComment)="deleteComment.emit($event)"
+        (addComment)="addComment.emit($event)"
+        [parentId]="comment.id"
+        [replies]="[]">
+      </app-comment>
   </div>
   <mat-divider></mat-divider>

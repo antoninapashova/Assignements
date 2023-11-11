@@ -1,5 +1,5 @@
 <mat-card class="example-card">
-  <div class="container" *ngFor="let p of modalPhotos">
+  <div class="container-photo" *ngFor="let p of modalPhotos">
     <img class="image" mat-card-image src={{p.url}}  alt="Photos">
   </div>
   
@@ -14,13 +14,16 @@
     </mat-card-content>
   
     <mat-card-actions>
-      <button mat-button>LIKE</button>
+      <button mat-button>Like</button>
      </mat-card-actions>
   
-   <mat-card-actions>
-    <button mat-button>EDIT</button>
+   <mat-card-actions *ngIf="currentUsername==modalUsername">
+    <button mat-button>Edit</button>
    </mat-card-actions>
 
+   <mat-card-actions *ngIf="currentUsername==modalUsername">
+    <button mat-button>Delete</button>
+   </mat-card-actions>
    
     <mat-accordion class="example-headers-align" multi>
       <mat-expansion-panel>

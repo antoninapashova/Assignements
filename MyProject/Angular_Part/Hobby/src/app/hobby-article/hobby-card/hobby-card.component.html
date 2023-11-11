@@ -9,16 +9,16 @@
     <img class="image" mat-card-image src={{p.url}} (click)="openDialog(h)" alt="Photo of a Shiba Inu">
  </div> 
 
-  <mat-card-content  (click)="openDialog(h)">
-    <p class="container"> {{h.description}}</p>
-  </mat-card-content>
-
   <mat-card-actions>
-    <button mat-button>LIKE</button>
+    <button mat-button>Like</button>
  </mat-card-actions>
+
+ <mat-card-actions *ngIf="currentUsername==h.username || role=='Admin'">
+  <button (click)="deleteArticle(h.id, h.username)" mat-button>Delete</button>
+</mat-card-actions>
   
  <mat-card-actions *ngIf="currentUsername==h.username" >
-   <a mat-button [routerLink]="['user', 'edit-article', h.id]">EDIT</a>
+   <a mat-button [routerLink]="['user', 'edit-article', h.id]">Edit</a>
  </mat-card-actions>
 
   <mat-accordion class="example-headers-align" multi >

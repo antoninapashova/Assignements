@@ -14,7 +14,6 @@ namespace Domain.Entity
 {
       public class HobbyEntity : BaseEntity
       {
-       
         public string Title { get; set; }
         public string Description { get; set; }
         public int HobbySubCategoryId { get; set; }

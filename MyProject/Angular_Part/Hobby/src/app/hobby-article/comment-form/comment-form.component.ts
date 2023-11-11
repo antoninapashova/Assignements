@@ -14,16 +14,18 @@ export class CommentFormComponent implements OnInit{
   @Input() submitLabel!: string;
   @Input() hasCancelButton: boolean = false;
   @Input() initialText: string = '';
+  
   @Output() handleSubmit = new EventEmitter<string>();
+  @Output() handleCancel = new EventEmitter<void>();
 
-   ngOnInit(): void {
+  ngOnInit(): void {
     this.commentForm = this.fb.group({
-      title: [this.initialText, Validators.required],
+      commentContent: [this.initialText, Validators.required],
     });
   }
 
   onSubmit(form: FormGroup): void {
-    this.handleSubmit.emit(form.value);
+    this.handleSubmit.emit(form.value.commentContent);
     this.commentForm.reset();
   }
 }

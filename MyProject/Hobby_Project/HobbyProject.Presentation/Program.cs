@@ -52,7 +52,7 @@ builder.Services.AddScoped<IPhotoRepository, HobbyPhotoRepository>();
 builder.Services.AddScoped<ITagRepository, TagRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IReplyRepository, ReplyRepository>();
-builder.Services.AddScoped<ITokenManager, TokenManager>();
+builder.Services.AddTransient<ITokenManager, TokenManager>();
 builder.Services.AddScoped<IEmailService, EmailService>();
 
 builder.Services.AddMediatR(typeof(GetCategoriesListQuery).GetTypeInfo().Assembly);
