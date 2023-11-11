@@ -9,9 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HobbyProject.Application", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HobbyProject.Domain", "Domain\HobbyProject.Domain.csproj", "{28E102A5-8E65-45A6-8BBA-D455BDD54921}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HobbyProjectTests", "HobbyProjectTests\HobbyProjectTests.csproj", "{B2D4A3D5-D492-4E75-A2CB-8F5F09B062DD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HobbyProject.Presentation", "HobbyProject.Presentation\HobbyProject.Presentation.csproj", "{99DE392B-6D9E-4566-A3D1-8499A575BE70}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HobbyProject.Presentation", "HobbyProject.Presentation\HobbyProject.Presentation.csproj", "{99DE392B-6D9E-4566-A3D1-8499A575BE70}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +29,6 @@ Global
 		{28E102A5-8E65-45A6-8BBA-D455BDD54921}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28E102A5-8E65-45A6-8BBA-D455BDD54921}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28E102A5-8E65-45A6-8BBA-D455BDD54921}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B2D4A3D5-D492-4E75-A2CB-8F5F09B062DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B2D4A3D5-D492-4E75-A2CB-8F5F09B062DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B2D4A3D5-D492-4E75-A2CB-8F5F09B062DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B2D4A3D5-D492-4E75-A2CB-8F5F09B062DD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{99DE392B-6D9E-4566-A3D1-8499A575BE70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{99DE392B-6D9E-4566-A3D1-8499A575BE70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99DE392B-6D9E-4566-A3D1-8499A575BE70}.Release|Any CPU.ActiveCfg = Release|Any CPU
