@@ -23,8 +23,6 @@ namespace HobbyProject.Application.User.Command.Login
         {
             try
             {
-              if (command == null) throw new NullReferenceException("Login user command is null");
-
                 var user = await _unitOfWork.UserRepository.FindByUsername(command.Username);
 
                 if (!PasswordHasher.VerifyPassword(command.Password, user.Password)) 
