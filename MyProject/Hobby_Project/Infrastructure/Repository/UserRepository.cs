@@ -46,12 +46,12 @@ namespace HobbyProject.Infrastructure.Repository
 
         public async Task<UserEntity> FindByUsername(string username)
         {
-            return await _context.Users.SingleAsync(x => x.Username == username);
+            return await _context.Users.FirstOrDefaultAsync(x => x.Username == username);
         }
 
         public async Task<UserEntity> FindByEmail(string email)
         {
-            return await _context.Users.SingleAsync(x => x.Email == email);
+            return await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
         }
 
         public async Task<bool> CheckUsernameExists(string username)
@@ -66,12 +66,7 @@ namespace HobbyProject.Infrastructure.Repository
 
         public async Task<UserEntity> FindById(int id)
         {
-            var user = await _context.Users
-                 .FirstOrDefaultAsync(c => c.Id == id);
-
-            if (user == null) throw new NullReferenceException($"User with Id {id} does not exist");
-
-            return user;
+           return await _context.Users.FirstOrDefaultAsync(c => c.Id == id);
         }
     }
 }
