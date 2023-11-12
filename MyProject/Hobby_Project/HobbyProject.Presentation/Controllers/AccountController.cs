@@ -23,6 +23,7 @@ namespace HobbyProject.Presentation.Controllers
             _mediator = mediator;
         }
 
+        [Authorize(Roles = "Admin, User")]
         [HttpGet("{id}")]
         public async Task<ActionResult> GetById(int id)
         {
@@ -55,12 +56,13 @@ namespace HobbyProject.Presentation.Controllers
         }
 
         [HttpPost("Authenticate")]
-        public async Task<ActionResult> Authenticate([FromBody] LoginUserCommand obj)
+        public async Task<ActionResult> Authenticate([FromBody] LoginUserCommand command)
         {
-            if (obj == null) return BadRequest();
-            var result = await _mediator.Send(obj);
+            if (command == null) return BadRequest("Request body cannot be null!");
 
-            if (result == null) return NotFound(new { Message = "User not found" });
+            var result = await _mediator.Send(command);
+
+            if (result == null) return NotFound("User not found");
 
             return Ok(new TokenApiDto
             {
@@ -77,6 +79,8 @@ namespace HobbyProject.Presentation.Controllers
 
             var result = await _mediator.Send(tokenCommand);
 
+            if (result == null) return NotFound("TokenApi not found");
+
             return Ok(new TokenApiDto()
             {
                 AccessToken = result.AccessToken,
@@ -87,8 +91,12 @@ namespace HobbyProject.Presentation.Controllers
         [HttpGet("Send-reset-email/{email}")]
         public async Task<IActionResult> SendEmail(string email)
         {
+            if (string.IsNullOrEmpty(email)) return BadRequest("Email not provided!");
+
             var command = new ForgetPasswordCommand { Email = email };
             var result = await _mediator.Send(command);
+            if (result == null) return NotFound("Email not found!");
+
             return Ok(result);
         }
 
