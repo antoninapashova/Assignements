@@ -129,15 +129,3 @@ Tags
 [Error]15:08 The input is not a valid Base-64 string as it contains a non-base 64 character, more than two padding characters, or an illegal character among the padding characters.
 *-------------------------------*
 [Error]15:17 Password is incorect!
-*-------------------------------*
-[Error]16:47 Sequence contains more than one element.
-*-------------------------------*
-[Error]16:50 Sequence contains more than one element.
-*-------------------------------*
-[Error]16:51 Sequence contains more than one element.
-*-------------------------------*
-[Error]16:53 Sequence contains more than one element.
-*-------------------------------*
-[Error]16:55 Sequence contains more than one element.
-*-------------------------------*
-[Error]16:57 Sequence contains more than one element.
