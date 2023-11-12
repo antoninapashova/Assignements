@@ -3,7 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AddCategoryComponent } from './add-category/add-category.component';
-
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -17,7 +16,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { CategoryListComponent } from './category-list/category-list.component';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
-
 
 @NgModule({
   declarations: [
@@ -41,7 +39,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatListModule,
     MatDialogModule
   ],
-   providers: [AddCategoryComponent, CategoryListComponent],
-   exports: [CategoryListComponent, AddCategoryComponent]
+  providers: [AddCategoryComponent, CategoryListComponent],
+  exports: [CategoryListComponent, AddCategoryComponent]
 })
 export class CategoryModule { }

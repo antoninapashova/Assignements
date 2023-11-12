@@ -12,72 +12,72 @@ import { IUser } from 'src/app/shared/interfaces/user';
   templateUrl: './comments-list.component.html',
   styleUrls: ['./comments-list.component.css']
 })
-export class CommentsListComponent  {
-   
-   replies: IComment[] = [];
-   activeComment: ActiveCommentInterface | null = null;
-   @Input() comments: IComment[] = [];
-   @Input() hobbyArticleId!: number | undefined;
+export class CommentsListComponent {
 
-   constructor(private commentService: CommentService, private matDialog: MatDialog,
-               private datasharingService: DataSharingService, private dataSharing: DataSharingService){}
+  replies: IComment[] = [];
+  activeComment: ActiveCommentInterface | null = null;
+  @Input() comments: IComment[] = [];
+  @Input() hobbyArticleId!: number | undefined;
 
-   addComment({commentContent, parentId}:{commentContent: string, parentId: number| null}): void {
-    let comment={
-        id: null,
-        commentContent,
-        userId : this.datasharingService.loggedInUser.userId,
-        hobbyArticleId: this.hobbyArticleId,
-        parentId : null
-      }
+  constructor(private commentService: CommentService, private matDialog: MatDialog,
+    private datasharingService: DataSharingService, private dataSharing: DataSharingService) { }
 
-      this.commentService.createComment(comment).subscribe({
-       next: (res)=>{
+  addComment({ commentContent, parentId }: { commentContent: string, parentId: number | null }): void {
+    let comment = {
+      id: null,
+      commentContent,
+      userId: this.datasharingService.loggedInUser.userId,
+      hobbyArticleId: this.hobbyArticleId,
+      parentId: null
+    }
+
+    this.commentService.createComment(comment).subscribe({
+      next: (res) => {
         this.comments = [...this.comments, comment];
         this.activeComment = null;
-       },
-       error: (err)=>{
-        let obj ={title: 'Create comment', message: err.message, type: ModalType.WARN}
-        this.matDialog.open( DialogTemplateComponent, {data: obj})
+      },
+      error: (err) => {
+        let obj = { title: 'Create comment', message: err.message, type: ModalType.WARN }
+        this.matDialog.open(DialogTemplateComponent, { data: obj })
       }
     });
   }
-  
-  editComment( commentContent: any ){
-   let user: IUser =  this.dataSharing.loggedInUser;
-    let comment : any= {
-       commentContent: commentContent,
+
+  editComment(commentContent: any) {
+    let user: IUser = this.dataSharing.loggedInUser;
+    let comment: any = {
+      commentContent: commentContent,
     };
 
-    this.commentService.editComment(comment.id, comment ).subscribe();
+    this.commentService.editComment(comment.id, comment).subscribe();
   }
-  
-  getComments(){
+
+  getComments() {
     this.commentService.getCommentsByHobbyId(this.hobbyArticleId).subscribe({
-      next: (res)=>{this.comments = res;},
-      error: (err)=>{
-        let obj ={title: 'Load comments', message: err.message, type: ModalType.WARN};
-        this.matDialog.open( DialogTemplateComponent, {data: obj});
-       }
+      next: (res) => { this.comments = res; },
+      error: (err) => {
+        let obj = { title: 'Load comments', message: err.message, type: ModalType.WARN };
+        this.matDialog.open(DialogTemplateComponent, { data: obj });
+      }
     });
   }
 
-  deleteComment(id: any){
+  deleteComment(id: any) {
     this.commentService.deleteComment(id).subscribe({
-      next: (res)=>{
-       let obj ={title: 'Comment', message: "Comment is deleted successfull", type: ModalType.INFO};
-       this.matDialog.open( DialogTemplateComponent, {data: obj});
-       this.comments = this.comments.filter((comment)=> comment.id != id);
+      next: (res) => {
+        let obj = { title: 'Comment', message: "Comment is deleted successfull", type: ModalType.INFO };
+        this.matDialog.open(DialogTemplateComponent, { data: obj });
+        this.comments = this.comments.filter((comment) => comment.id != id);
       },
-      error: (err)=>{
-       let obj ={title: 'Comment', message: err.detail, type: ModalType.WARN};
-       this.matDialog.open( DialogTemplateComponent, {data: obj});
+      error: (err) => {
+        let obj = { title: 'Comment', message: err.detail, type: ModalType.WARN };
+        this.matDialog.open(DialogTemplateComponent, { data: obj });
       }
     });
- }
- 
-  getReplies(parrentId: number | null) : IComment[] {
-   // this.commentService.getCommentReplies(parrentId).subscribe(res=> this.replies=res);
+  }
+
+  getReplies(parrentId: number | null): IComment[] {
+    // this.commentService.getCommentReplies(parrentId).subscribe(res=> this.replies=res);
     return this.replies;
   }
 

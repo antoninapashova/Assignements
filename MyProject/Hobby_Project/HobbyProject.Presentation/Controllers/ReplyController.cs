@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HobbyProject.Presentation.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class ReplyController : ControllerBase
     {
         public readonly IMediator _mediator;
@@ -26,10 +26,8 @@ namespace HobbyProject.Presentation.Controllers
             return Ok(result);
         }
 
-
         [Authorize]
-        [HttpGet]
-        [Route("{commentId}")]
+        [HttpGet("{commentId}")]
         public async Task<ActionResult> GetByCommentId(int commentId)
         {
             var query = new GetRepliesByCommentIdListQuery { CommentId = commentId };
@@ -38,8 +36,7 @@ namespace HobbyProject.Presentation.Controllers
         }
 
         [Authorize]
-        [HttpDelete]
-        [Route("{id}")]
+        [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteReply(int id)
         {
             var command = new DeleteReplyCommand { Id = id };

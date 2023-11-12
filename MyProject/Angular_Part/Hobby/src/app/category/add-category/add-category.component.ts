@@ -8,21 +8,20 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./add-category.component.css']
 })
 export class AddCategoryComponent {
-  action:string;
-  local_data:any;
-  
-   constructor(public dialogRef: MatDialogRef<AddCategoryComponent>,
-              @Optional() @Inject(MAT_DIALOG_DATA) public category: ICategory ){
-              this.local_data = {...category};
+  action: string;
+  local_data: any;
+
+  constructor(public dialogRef: MatDialogRef<AddCategoryComponent>,
+    @Optional() @Inject(MAT_DIALOG_DATA) public category: ICategory) {
+    this.local_data = { ...category };
     this.action = this.local_data.action;
   }
 
-  doAction(){
-    this.dialogRef.close({event:this.action, data:this.local_data});
+  doAction() {
+    this.dialogRef.close({ event: this.action, data: this.local_data });
   }
 
-  closeDialog(){
-    this.dialogRef.close({event:'Cancel'});
+  closeDialog() {
+    this.dialogRef.close({ event: 'Cancel' });
   }
-
 }

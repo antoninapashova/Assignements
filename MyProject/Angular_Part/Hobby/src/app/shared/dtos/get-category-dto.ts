@@ -1,5 +1,5 @@
-export interface GetCategoryDto{
-        name: string,
+export interface GetCategoryDto {
+    name: string,
     id: number,
     createdDate: string
 }

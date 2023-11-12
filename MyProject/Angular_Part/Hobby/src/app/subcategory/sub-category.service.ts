@@ -15,7 +15,7 @@ export class SubCategoryService{
     baseUrl = environment.baseUrl;
     
     getSubCategories() : Observable<ISubCategory[]>{
-        return this.httpClient.get<ISubCategory[]>(`${this.baseUrl}${ApiPaths.SubCategory}`);
+        return this.httpClient.get<ISubCategory[]>(`${this.baseUrl}${ApiPaths.SubCategory}/All`);
     }
 
     getSubCategoryById(id: string) : Observable<ISubCategory>{
@@ -29,5 +29,4 @@ export class SubCategoryService{
     deleteSubCategory(id: string) : Observable<ISubCategory>{
         return this.httpClient.delete<ISubCategory>(`${this.baseUrl}${ApiPaths.SubCategory}/${id}`);
     }
-
 }

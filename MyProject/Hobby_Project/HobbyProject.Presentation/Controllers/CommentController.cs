@@ -1,5 +1,4 @@
-﻿
-using Application.Comments.Commands.Create;
+﻿using Application.Comments.Commands.Create;
 using Application.Comments.Commands.Delete;
 using Application.Comments.Commands.Edit;
 using HobbyProject.Application.Comments.Queries.GetCommentsByHobbyId;
@@ -9,8 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HobbyProject.Presentation.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class CommentController : ControllerBase
     {
         public readonly IMediator _mediator;
@@ -21,8 +20,7 @@ namespace HobbyProject.Presentation.Controllers
         }
 
         [Authorize]
-        [HttpGet]
-        [Route("{hobbyId}")]
+        [HttpGet("{hobbyId}")]
         public async Task<IActionResult> GetCommentsByHobbyId(int hobbyId)
         {
             var command = new GetCommentsByHobbyIdQuery
@@ -43,8 +41,7 @@ namespace HobbyProject.Presentation.Controllers
         }
 
         [Authorize]
-        [HttpPut]
-        [Route("{id}")]
+        [HttpPut("{id}")]
         public async Task<IActionResult> UpdateComment(int id, [FromBody] EditCommentCommand editComment)
         {
             var command = new EditCommentCommand
@@ -58,13 +55,12 @@ namespace HobbyProject.Presentation.Controllers
         }
 
         [Authorize]
-        [HttpDelete]
-        [Route("{id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteComment(int id)
         {
             var command = new DeleteCommentCommand { Id = id };
-            await _mediator.Send(command);
-            return NoContent();
+            var commentId = await _mediator.Send(command);
+            return Ok(id);
         }
     }
 }

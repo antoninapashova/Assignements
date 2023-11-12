@@ -1,5 +1,6 @@
 ﻿using Application.Hobby.Commands.Create;
 using Application.Hobby.Commands.Delete;
+using Application.Hobby.Commands.Edit;
 using HobbyProject.Application.Hobby.Queries.GetAllUsers;
 using HobbyProject.Application.Hobby.Queries.GetHobbiesByUsername;
 using HobbyProject.Application.Hobby.Queries.GetHobbyById;
@@ -9,8 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HobbyProject.Presentation.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class HobbyArticleController : ControllerBase
     {
 
@@ -22,7 +23,7 @@ namespace HobbyProject.Presentation.Controllers
         }
         
         [Authorize]
-        [HttpGet]
+        [HttpGet("All")]
         public async Task<IActionResult> GetAllHobbyArticles()
         {
             var result = await _mediator.Send(new GetHobbyListQuery());
@@ -30,8 +31,7 @@ namespace HobbyProject.Presentation.Controllers
         }
 
         [Authorize]
-        [HttpGet]
-        [Route("{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var query = new GetHobbyByIdQuery { Id = id };
@@ -40,8 +40,7 @@ namespace HobbyProject.Presentation.Controllers
         }
 
         [Authorize]
-        [HttpGet]
-        [Route("byUsername/{username}")]
+        [HttpGet("{username}")]
         public async Task<IActionResult> GetByUsername(string username)
         {
             var query = new GetHobbiesByUsernameQuery { Username = username };
@@ -58,8 +57,15 @@ namespace HobbyProject.Presentation.Controllers
         }
 
         [Authorize]
-        [HttpDelete]
-        [Route("{id}")]
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateHobbyArticle([FromBody] UpdateHobbyCommand command)
+        {
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+
+        [Authorize]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteArticle(int id)
         {
             var command = new DeleteHobbyCommand { Id = id };

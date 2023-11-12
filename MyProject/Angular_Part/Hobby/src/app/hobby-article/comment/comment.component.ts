@@ -2,7 +2,7 @@ import { ActiveCommentInterface } from './../../shared/interfaces/active-comment
 import { MatDialog } from '@angular/material/dialog';
 import { CommentService } from './../services/comment.service';
 import { IComment } from './../../shared/interfaces/comment';
-import { Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DataSharingService } from 'src/app/core/data-sharing.service';
 import { ActiveCommentTypeEnum } from 'src/app/shared/interfaces/active-comment.enum';
 
@@ -31,28 +31,29 @@ export class CommentComponent implements OnInit {
   @Output() updateComment = new EventEmitter<{ commentContent: string; commentId: string }>();
 
   constructor(private commentService: CommentService, private matDialog: MatDialog,
-              private dataSharing: DataSharingService) {}
+    private dataSharing: DataSharingService) { }
 
   ngOnInit(): void {
-     this.isUserLoggedIn = this.dataSharing.isUserLoggedIn.getValue();
-     this.canReply = this.isUserLoggedIn;
-     this.canEdit = this.isUserLoggedIn;
-     this.canDelete = this.isUserLoggedIn && this.replies.length===0;
-     this.replyId = this.parentId ? this.parentId : this.comment.id;
+    this.isUserLoggedIn = this.dataSharing.isUserLoggedIn.getValue();
+    this.canReply = this.isUserLoggedIn;
+    this.canEdit = this.isUserLoggedIn;
+    this.canDelete = this.isUserLoggedIn && this.replies.length === 0;
+    this.replyId = this.parentId ? this.parentId : this.comment.id;
   }
 
   isReplying(): boolean {
     if (!this.activeComment) {
       return false;
     }
+
     return this.activeComment.id === this.comment.id && this.activeComment.type === this.activeCommentType.replying;
-    
   }
-  
+
   isEditing(): boolean {
     if (!this.activeComment) {
       return false;
     }
+    
     return this.activeComment.id === this.comment.id && this.activeComment.type === 'editing';
   }
 }

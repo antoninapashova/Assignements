@@ -1,9 +1,9 @@
 export enum ApiPaths {
-    User = '/User',
-    Admin = '/Admin',
+    Account = '/Account',
     Category='/Category',
     Hobby = '/HobbyArticle',
     Comment='/Comment',
     SubCategory='/SubCategory',
-    Tag = '/Tag'
+    Tag = '/Tag',
+    Reply = '/Reply'
 }

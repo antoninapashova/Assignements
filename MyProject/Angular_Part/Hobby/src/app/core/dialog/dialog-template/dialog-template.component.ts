@@ -1,4 +1,4 @@
-import { Component, Inject  } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
@@ -17,8 +17,8 @@ export class DialogTemplateComponent {
     this.modalMessage = data.message;
     this.modalType = data.type;
   }
-
 }
+
 export enum ModalType {
   INFO = 'info',
   WARN = 'warn'

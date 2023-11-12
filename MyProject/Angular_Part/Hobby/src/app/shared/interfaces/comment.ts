@@ -1,8 +1,8 @@
-export interface IComment{
+export interface IComment {
     id: number | null,
     commentContent: string,
     username?: string,
-    userId : number,
+    userId: number,
     parentId: null | number;
     hobbyArticleId: number | undefined
 }

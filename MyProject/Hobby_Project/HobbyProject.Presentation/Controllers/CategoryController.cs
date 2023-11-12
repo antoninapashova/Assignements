@@ -9,8 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HobbyProject.Presentation.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class CategoryController : ControllerBase
     {
         public readonly IMediator _mediator;
@@ -21,8 +21,7 @@ namespace HobbyProject.Presentation.Controllers
         }
 
         [Authorize]
-        [HttpGet]
-        [Route("categories")]
+        [HttpGet("All")]
         public async Task<ActionResult> GetAllCategories()
         {
             var result = await _mediator.Send(new GetCategoriesListQuery());
@@ -30,18 +29,15 @@ namespace HobbyProject.Presentation.Controllers
         }
 
         [Authorize]
-        [HttpGet]
-        [Route("names")]
+        [HttpGet("AllNames")]
         public async Task<ActionResult> GetAllNames()
         {
             var result = await _mediator.Send(new GetAllNamesQuery());
             return Ok(result);
         }
 
-
         [Authorize]
-        [HttpGet]
-        [Route("{id}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult> GetById(int id)
         {
             var query = new GetCategoryByIdQuery { Id = id };
@@ -58,8 +54,7 @@ namespace HobbyProject.Presentation.Controllers
         }
 
         [Authorize]
-        [HttpDelete]
-        [Route("{id}")]
+        [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteCategory(int id)
         {
             var command = new DeleteCategoryCommand { Id = id };

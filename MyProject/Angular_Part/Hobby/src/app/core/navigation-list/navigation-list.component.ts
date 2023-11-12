@@ -19,33 +19,33 @@ export class NavigationListComponent implements OnInit, OnDestroy {
   category!: ICategory | undefined;
   mySubscription: any;
 
-  constructor(private dataSharingService: DataSharingService, private userService: UserService, private userStore:UserStoreService,) {
-    this.dataSharingService.isUserLoggedIn.subscribe( value => {
+  constructor(private dataSharingService: DataSharingService, private userService: UserService, private userStore: UserStoreService,) {
+    this.dataSharingService.isUserLoggedIn.subscribe(value => {
       this.isAuthenticated = value;
-   });
+    });
   }
-  
+
   @Output() sidenavClose = new EventEmitter();
 
   ngOnInit() {
-    this.userStore.getFullNameFromStore().subscribe((val:any)=>{      
+    this.userStore.getFullNameFromStore().subscribe((val: any) => {
       const fullNameFromToken = this.userService.getFullNameFromToken();
-      this.fullName = val || fullNameFromToken; 
-     });
- 
-     this.userStore.getRoleFromStore().subscribe((val:any)=>{
-       const roleFromToken = this.userService.getRoleFromToken();
-       this.role = val || roleFromToken;
-     });
+      this.fullName = val || fullNameFromToken;
+    });
+
+    this.userStore.getRoleFromStore().subscribe((val: any) => {
+      const roleFromToken = this.userService.getRoleFromToken();
+      this.role = val || roleFromToken;
+    });
   }
-  
+
   public onSidenavClose = () => {
     this.sidenavClose.emit();
   }
 
   ngOnDestroy(): void {
     if (this.mySubscription) {
-        this.mySubscription.unsubscribe();
+      this.mySubscription.unsubscribe();
     }
   }
 }

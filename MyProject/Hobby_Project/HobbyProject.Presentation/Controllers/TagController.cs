@@ -8,8 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HobbyProject.Presentation.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class TagController : ControllerBase
     {
         public readonly IMediator _mediator;
@@ -20,15 +20,14 @@ namespace HobbyProject.Presentation.Controllers
         }
 
         [Authorize(Roles = "Admin, User")]
-        [HttpGet]
+        [HttpGet("All")]
         public async Task<IActionResult> GetAllTags()
         {
            var result = await _mediator.Send(new GetTagListQuery());
            return Ok(result);
         }
 
-        [HttpGet]
-        [Route("{id}")]
+        [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
            var query = new GetTagByIdQuery { Id = id };
@@ -44,8 +43,7 @@ namespace HobbyProject.Presentation.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpDelete]
-        [Route("{id}")]
+        [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteTag(int id)
         {
             var command = new DeleteTagCommand { Id = id };

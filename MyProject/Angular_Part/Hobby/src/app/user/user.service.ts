@@ -11,86 +11,78 @@ import { TokenApiModel } from '../shared/interfaces/token-api';
 @Injectable({
     providedIn: 'root',
 })
-export class UserService{
+export class UserService {
 
-    private userPayload:any;
+    private userPayload: any;
     baseUrl = environment.baseUrl;
 
-    constructor(private httpClient: HttpClient){
+    constructor(private httpClient: HttpClient) {
         this.userPayload = this.decodeToken();
     }
-     
-    getById(id: string) : Observable<IUser>{
-        return this.httpClient.get<IUser>(`${this.baseUrl}${ApiPaths.User}/${id}`);
+
+    getById(id: string): Observable<IUser> {
+        return this.httpClient.get<IUser>(`${this.baseUrl}${ApiPaths.Account}/${id}`);
     }
 
-    addUser(user: IUser) : Observable<any>{
-        return this.httpClient.post(`${this.baseUrl}${ApiPaths.User}/User`, user);
+    addUser(user: IUser): Observable<any> {
+        return this.httpClient.post(`${this.baseUrl}${ApiPaths.Account}/User`, user);
     }
 
-    addAdmin(user: IUser) : Observable<any>{
-        return this.httpClient.post(`${this.baseUrl}${ApiPaths.User}/Admin`, user);
+    addAdmin(user: IUser): Observable<any> {
+        return this.httpClient.post(`${this.baseUrl}${ApiPaths.Account}/Admin`, user);
     }
 
-    updateUser(id: string, user: IUser) : Observable<IUser>{
-        return this.httpClient.put<IUser>(`${this.baseUrl}${ApiPaths.User}/${id}`, user);
-    }
-   
-    deleteUser(id: string) : Observable<any>{
-        return this.httpClient.delete(`${this.baseUrl}${ApiPaths.User}/${id}`);
+    getUserArticles(id: string): Observable<IHobby[]> {
+        return this.httpClient.get<IHobby[]>(`${this.baseUrl}${ApiPaths.Account}/${id}`)
     }
 
-    getUserArticles(id: string) : Observable<IHobby[]>{
-        return this.httpClient.get<IHobby[]>(`${this.baseUrl}${ApiPaths.User}/${id}`)
+    login(obj: Object): Observable<any> {
+        return this.httpClient.post<any>(`${this.baseUrl}${ApiPaths.Account}/Authenticate`, obj);
     }
 
-    login(obj: Object): Observable<any>{
-        return this.httpClient.post<any>(`${this.baseUrl}${ApiPaths.User}/authenticate`, obj);
+    signOut() {
+        localStorage.clear();
     }
 
-    signOut(){
-       localStorage.clear();
-    }
-
-    storeToken(tokenValue: string){
+    storeToken(tokenValue: string) {
         localStorage.setItem('token', tokenValue);
     }
 
-    storeRefreshToken(tokenValue: string){
+    storeRefreshToken(tokenValue: string) {
         localStorage.setItem('refreshToken', tokenValue);
     }
 
-    getToken(){
+    getToken() {
         return localStorage.getItem('token');
     }
 
-    getRefreshToken(){
+    getRefreshToken() {
         return localStorage.getItem('refreshToken');
     }
 
-    isLoggedIn(): boolean{
+    isLoggedIn(): boolean {
         return !!localStorage.getItem('token');
     }
 
-    decodeToken(){
+    decodeToken() {
         const jwtHelper = new JwtHelperService();
         const token = this.getToken()!;
         return jwtHelper.decodeToken(token);
     }
 
-    getFullNameFromToken(){
-        if(this.userPayload){
+    getFullNameFromToken() {
+        if (this.userPayload) {
             return this.userPayload.unique_name;
         }
     }
 
-    getRoleFromToken(){
-        if(this.userPayload){
+    getRoleFromToken() {
+        if (this.userPayload) {
             return this.userPayload.role;
         }
     }
-    
-   renewToken(tokenApi: TokenApiModel){
-      return this.httpClient.post<any>(`${this.baseUrl}${ApiPaths.User}/refresh`, tokenApi)
-   }
+
+    renewToken(tokenApi: TokenApiModel) {
+        return this.httpClient.post<any>(`${this.baseUrl}${ApiPaths.Account}/Refresh`, tokenApi)
+    }
 }

@@ -12,19 +12,18 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HobbyProject.Presentation.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    [Route("api/[controller]")]
+    public class AccountController : ControllerBase
     {
         public readonly IMediator _mediator;
 
-        public UserController(IMediator mediator)
+        public AccountController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
-        [HttpGet]
-        [Route("{id}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult> GetById(int id)
         {
             var query = new GetUserByIdQuery { Id = id };
@@ -55,7 +54,7 @@ namespace HobbyProject.Presentation.Controllers
             return CreatedAtAction(nameof(GetById), new { id = result }, result);
         }
 
-        [HttpPost("authenticate")]
+        [HttpPost("Authenticate")]
         public async Task<ActionResult> Authenticate([FromBody] LoginUserCommand obj)
         {
             if (obj == null) return BadRequest();
@@ -71,7 +70,7 @@ namespace HobbyProject.Presentation.Controllers
             }); 
         }
 
-        [HttpPost("refresh")]
+        [HttpPost("Refresh")]
         public async Task<IActionResult> Refresh(RefreshTokenCommand tokenCommand)
         {
             if (tokenCommand is null) return BadRequest("Invalid Client Request");
@@ -85,7 +84,7 @@ namespace HobbyProject.Presentation.Controllers
             });
         }
 
-        [HttpGet("send-reset-email/{email}")]
+        [HttpGet("Send-reset-email/{email}")]
         public async Task<IActionResult> SendEmail(string email)
         {
             var command = new ForgetPasswordCommand { Email = email };
@@ -93,7 +92,7 @@ namespace HobbyProject.Presentation.Controllers
             return Ok(result);
         }
 
-        [HttpPost("reset-password")]
+        [HttpPost("Reset-password")]
         public async Task<IActionResult> ResetPassword(ResetPasswordCommand command)
         {
             var result = await _mediator.Send(command);

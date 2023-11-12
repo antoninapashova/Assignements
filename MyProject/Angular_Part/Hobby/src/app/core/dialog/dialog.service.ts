@@ -1,8 +1,6 @@
-
 import { Injectable } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DialogTemplateComponent } from './dialog-template/dialog-template.component';
-
 
 @Injectable()
 export class DialogService {

@@ -8,16 +8,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CommentFormComponent implements OnInit{
   commentForm: FormGroup = new FormGroup({});
-
-  constructor(private fb: FormBuilder) {}
-
+  
   @Input() submitLabel!: string;
   @Input() hasCancelButton: boolean = false;
   @Input() initialText: string = '';
   
   @Output() handleSubmit = new EventEmitter<string>();
   @Output() handleCancel = new EventEmitter<void>();
-
+  
+  constructor(private fb: FormBuilder) {}
+  
   ngOnInit(): void {
     this.commentForm = this.fb.group({
       commentContent: [this.initialText, Validators.required],

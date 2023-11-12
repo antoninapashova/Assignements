@@ -1,4 +1,4 @@
-export interface IPhoto{
+export interface IPhoto {
     id?: number,
     publicId: number;
     url: string,

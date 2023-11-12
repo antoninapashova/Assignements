@@ -1,4 +1,4 @@
-export interface ITag{
+export interface ITag {
     id?: number
     name?: string | undefined;
 }

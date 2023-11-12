@@ -1,16 +1,14 @@
-.sidenav{
+.sidenav {
     position: fixed;
     width: 100%;
     background-color: transparent;
 }
 
-a{
+a {
     text-decoration: none;
 }
 
-.nav-caption{
+.nav-caption {
     display: inline-block;
     padding-left: 6px;
-   
 }
-

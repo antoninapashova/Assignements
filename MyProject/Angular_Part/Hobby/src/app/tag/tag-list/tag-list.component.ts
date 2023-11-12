@@ -17,50 +17,49 @@ export class TagListComponent {
   displayedColumns: string[] = ['id', 'name', 'action'];
 
   tags: ITag[] = [];
-  tag : ITag | undefined;  
+  tag: ITag | undefined;
 
-  @ViewChild(MatTable, {static:true}) table!: MatTable<any>;
+  @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
 
-  constructor(private tagService: TagService, 
-    public dialog: MatDialog, private dataSharingService: DataSharingService){}
-  
-ngOnInit(): void {
-    this.tagService.getAll().subscribe(res=> this.tags = res);
-}
- 
-openDialog(action: any, obj: any ) {
-obj.action = action;
-const dialogRef = this.dialog.open(AddTagComponent, {
-  width: '250px',
-  data:obj
-});
+  constructor(private tagService: TagService,
+    public dialog: MatDialog, private dataSharingService: DataSharingService) { }
 
-dialogRef.afterClosed().subscribe(result => {
-  if(result.event == 'Add'){
-    this.addRowData(result.data);
-  }else if(result.event == 'Delete'){
-    this.deleteRowData(result.data);
+  ngOnInit(): void {
+    this.tagService.getAll().subscribe(res => this.tags = res);
   }
-});
-}
 
-addRowData(obj: any){
-  this.tagService.addTag({name: obj.name}).subscribe({
-    next:(res)=>{
-      let obj ={title: 'Add tag', message: 'New tag is added successful', type: ModalType.INFO};
-           this.dialog.open(DialogTemplateComponent, {data: obj});
-           this.dataSharingService.isTagAdded.next(true);
-      },
-      error:(err)=>{
-        let obj ={title: 'Add tag', message: err.message, type: ModalType.WARN};
-        this.dialog.open( DialogTemplateComponent, {data: obj});
+  openDialog(action: any, obj: any) {
+    obj.action = action;
+    const dialogRef = this.dialog.open(AddTagComponent, {
+      width: '250px',
+      data: obj
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.event == 'Add') {
+        this.addRowData(result.data);
+      } else if (result.event == 'Delete') {
+        this.deleteRowData(result.data);
       }
-  });
-  this.table.renderRows();
-}
+    });
+  }
 
-deleteRowData(obj: any){
-   this.tagService.delete(obj.id).subscribe();
-}
+  addRowData(obj: any) {
+    this.tagService.addTag({ name: obj.name }).subscribe({
+      next: (res) => {
+        let obj = { title: 'Add tag', message: 'New tag is added successful', type: ModalType.INFO };
+        this.dialog.open(DialogTemplateComponent, { data: obj });
+        this.dataSharingService.isTagAdded.next(true);
+      },
+      error: (err) => {
+        let obj = { title: 'Add tag', message: err.message, type: ModalType.WARN };
+        this.dialog.open(DialogTemplateComponent, { data: obj });
+      }
+    });
+    this.table.renderRows();
+  }
 
+  deleteRowData(obj: any) {
+    this.tagService.delete(obj.id).subscribe();
+  }
 }

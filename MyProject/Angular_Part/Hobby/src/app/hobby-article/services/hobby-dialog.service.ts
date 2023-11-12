@@ -11,16 +11,16 @@ export class HobbyDialogService {
 
   constructor(public dialog: MatDialog) { }
 
-  openModal(title:string, description:string, username: string, photos: IPhoto[], comments: IComment[], yes: Function, no: Function) {
+  openModal(title: string, description: string, username: string, photos: IPhoto[], comments: IComment[], yes: Function, no: Function) {
     const dialogConfig = new MatDialogConfig();
 
     dialogConfig.autoFocus = true;
     dialogConfig.data = {
-        title: title,
-        description:description,
-        username: username,
-        photos: photos,
-        comments: comments
+      title: title,
+      description: description,
+      username: username,
+      photos: photos,
+      comments: comments
     };
     dialogConfig.minWidth = 300;
     dialogConfig.minHeight = 300
@@ -28,12 +28,12 @@ export class HobbyDialogService {
     const dialogRef = this.dialog.open(HobbyCardDialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        if(yes){
+      if (result) {
+        if (yes) {
           yes();
         }
-      }else{
-        if(no){
+      } else {
+        if (no) {
           no();
         }
       }

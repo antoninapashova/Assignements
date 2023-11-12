@@ -1,11 +1,11 @@
 body {
-    margin:0;
-    display:flex; 
-    flex-direction:column;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
     margin-top: 20px;
 }
 
-section{
+section {
     display: flex;
     align-items: center;
     max-width: 91%;
@@ -13,19 +13,19 @@ section{
     background-color: wheat;
 }
 
-.advices{
+.advices {
     margin-bottom: 20px;
 }
 
-.image{
-     height: 21rem;
+.image {
+    height: 21rem;
 }
 
-.info{
+.info {
     max-width: 70%;
 }
 
-.needHobby{
+.needHobby {
     text-align: center;
     padding: 10px 0 10px 0;
     font-size: 40px;
@@ -34,7 +34,7 @@ section{
 }
 
 
-h1{
+h1 {
     text-align: center;
     font-family: cursive;
     font-weight: bold;
@@ -42,15 +42,12 @@ h1{
     font-size: 70px;
 }
 
-h2{
+h2 {
     font-family: cursive;
     font-weight: bold;
     font-size: 40px;
 }
 
-.mdc-list-item__secondary-text{
+.mdc-list-item__secondary-text {
     white-space: pre-wrap;
 }
-
-
-

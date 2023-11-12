@@ -8,20 +8,20 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./add-tag.component.css']
 })
 export class AddTagComponent {
-  action:string;
-  local_data:any;
-  
-   constructor(public dialogRef: MatDialogRef<AddTagComponent>,
-                @Optional() @Inject(MAT_DIALOG_DATA) public tag: ITag ){
-                this.local_data = {...tag};
+  action: string;
+  local_data: any;
+
+  constructor(public dialogRef: MatDialogRef<AddTagComponent>,
+    @Optional() @Inject(MAT_DIALOG_DATA) public tag: ITag) {
+    this.local_data = { ...tag };
     this.action = this.local_data.action;
   }
 
-  doAction(){
-    this.dialogRef.close({event:this.action,data:this.local_data});
+  doAction() {
+    this.dialogRef.close({ event: this.action, data: this.local_data });
   }
 
-  closeDialog(){
-    this.dialogRef.close({event:'Cancel'});
+  closeDialog() {
+    this.dialogRef.close({ event: 'Cancel' });
   }
 }

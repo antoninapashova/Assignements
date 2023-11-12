@@ -16,19 +16,19 @@ export class CommentService {
     return this.httpClient.post<IComment>(`${this.baseUrl}${ApiPaths.Comment}`, comment);
   }
 
-  getCommentsByHobbyId(hobbyId: any): Observable<IComment[]>{
+  getCommentsByHobbyId(hobbyId: any): Observable<IComment[]> {
     return this.httpClient.get<IComment[]>(`${this.baseUrl}${ApiPaths.Comment}/${hobbyId}`);
   }
 
-  editComment(hobbyId: any, comment: any): Observable<number> {
-    return this.httpClient.put<number>(`${this.baseUrl}${ApiPaths.Comment}/${hobbyId}`, comment);
+  editComment(id: any, comment: any): Observable<number> {
+    return this.httpClient.put<number>(`${this.baseUrl}${ApiPaths.Comment}/${id}`, comment);
   }
 
-  deleteComment(id: any): Observable<any>{
+  deleteComment(id: any): Observable<any> {
     return this.httpClient.delete<any>(`${this.baseUrl}${ApiPaths.Comment}/${id}`);
   }
 
   getCommentReplies(parrentId: number): Observable<IComment[]> {
-    return this.httpClient.get<IComment[]>(`${this.baseUrl}/reply/${parrentId}`);
+    return this.httpClient.get<IComment[]>(`${this.baseUrl}${ApiPaths.Reply}/${parrentId}`);
   }
 }

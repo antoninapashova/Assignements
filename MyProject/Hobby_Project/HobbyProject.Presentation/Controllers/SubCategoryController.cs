@@ -8,8 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HobbyProject.Presentation.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class SubCategoryController : ControllerBase
     {
         public readonly IMediator _mediator;
@@ -21,7 +21,7 @@ namespace HobbyProject.Presentation.Controllers
 
 
         [Authorize(Roles = "Admin, User")]
-        [HttpGet]
+        [HttpGet("All")]
         public async Task<IActionResult> GetAllSubCategories()
         {
             var result = await _mediator.Send(new GetSubCategoryListQuery());
@@ -37,7 +37,6 @@ namespace HobbyProject.Presentation.Controllers
             return Ok(result);
         }
 
-
         [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> AddSubCategory([FromBody] CreateSubCategoryCommand command)
@@ -47,8 +46,7 @@ namespace HobbyProject.Presentation.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpDelete]
-        [Route("{id}")]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSubCategory(int id)
         {
             var command = new DeleteSubCategoryCommand { Id = id };

@@ -12,7 +12,7 @@ import { DialogTemplateComponent, ModalType } from 'src/app/core/dialog/dialog-t
   templateUrl: './reset-password.component.html',
   styleUrls: ['./reset-password.component.css']
 })
-export class ResetPasswordComponent implements OnInit{
+export class ResetPasswordComponent implements OnInit {
 
   resetPasswordForm!: FormGroup;
   emailToReset!: string;
@@ -20,9 +20,9 @@ export class ResetPasswordComponent implements OnInit{
   resetPasswordObj = new ResetPassword();
   isSuccessfull: boolean = false;
 
-  constructor(private formBuilder: FormBuilder, private activateRoute: ActivatedRoute, 
-    private resetService: ResetPasswordService, private router: Router, 
-    private matDialog: MatDialog){}
+  constructor(private formBuilder: FormBuilder, private activateRoute: ActivatedRoute,
+    private resetService: ResetPasswordService, private router: Router,
+    private matDialog: MatDialog) { }
 
   ngOnInit(): void {
     this.resetPasswordForm = this.formBuilder.group({
@@ -30,7 +30,7 @@ export class ResetPasswordComponent implements OnInit{
       confirmPassword: [null, [Validators.required, Validators.minLength(5), matchValidator('password')]]
     });
 
-    this.activateRoute.queryParams.subscribe(val=>{
+    this.activateRoute.queryParams.subscribe(val => {
       this.emailToReset = val['email'];
       let uriToken = val['code'];
 
@@ -40,27 +40,27 @@ export class ResetPasswordComponent implements OnInit{
     })
   }
 
-  onSubmit(form: FormGroup){
-    if(this.resetPasswordForm.valid){
-       this.resetPasswordObj.email = this.emailToReset;
-       this.resetPasswordObj.newPassword = this.resetPasswordForm.value.password;
-       this.resetPasswordObj.confirmPassword = this.resetPasswordForm.value.confirmPassword;
-       this.resetPasswordObj.emailToken = this.emailToken;
+  onSubmit(form: FormGroup) {
+    if (this.resetPasswordForm.valid) {
+      this.resetPasswordObj.email = this.emailToReset;
+      this.resetPasswordObj.newPassword = this.resetPasswordForm.value.password;
+      this.resetPasswordObj.confirmPassword = this.resetPasswordForm.value.confirmPassword;
+      this.resetPasswordObj.emailToken = this.emailToken;
 
-       this.resetService.resetPassword(this.resetPasswordObj)
-       .subscribe({
-        next: (res)=>{
-          console.log(res);
-          let obj ={title: 'Reset password', message: 'Reset password is successfully', type: ModalType.INFO}
-          this.matDialog.open( DialogTemplateComponent, {data: obj});
-          this.router.navigate(['/login']);
-        },
-        error: (err)=>{
-          console.log(err);
-          let obj ={title: 'Reset password', message: err, type: ModalType.INFO}
-          this.matDialog.open( DialogTemplateComponent, {data: obj});
-        }
-       });
+      this.resetService.resetPassword(this.resetPasswordObj)
+        .subscribe({
+          next: (res) => {
+            console.log(res);
+            let obj = { title: 'Reset password', message: 'Reset password is successfully', type: ModalType.INFO };
+            this.matDialog.open(DialogTemplateComponent, { data: obj });
+            this.router.navigate(['/login']);
+          },
+          error: (err) => {
+            console.log(err);
+            let obj = { title: 'Reset password', message: err, type: ModalType.INFO };
+            this.matDialog.open(DialogTemplateComponent, { data: obj });
+          }
+        });
     }
   }
 }

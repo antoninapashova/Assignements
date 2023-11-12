@@ -11,57 +11,58 @@
   height: 22em;
 }
 
-.photos{
+.photos {
   width: 40%;
 }
 
-.photos img{
-    width: 100%;
-    border-radius: 10px;
-    height: 100%;
+.photos img {
+  width: 100%;
+  border-radius: 10px;
+  height: 100%;
 }
 
-.content{
+.content {
   max-width: 50%;
 }
 
-.card button{
-    background-color: none;
+.card button {
+  background-color: none;
 }
 
-.card button :hover{
-     background-color: aqua;
+.card button :hover {
+  background-color: aqua;
 }
 
-.comments{
-    display: none;;
+.comments {
+  display: none;
+  ;
 }
 
 
 .example-action-buttons {
-    padding-bottom: 20px;
-  }
-  
-  .example-headers-align .mat-expansion-panel-header-title,
-  .example-headers-align .mat-expansion-panel-header-description {
-    flex-basis: 0;
-  }
-  
-  .example-headers-align .mat-expansion-panel-header-description {
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .example-headers-align .mat-form-field + .mat-form-field {
-    margin-left: 8px;
-  }
-  
-  .my-panel {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-  }
-  .my-panel button {
-      margin: 15px 25px;
-    }
-  
+  padding-bottom: 20px;
+}
+
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.example-headers-align .mat-form-field+.mat-form-field {
+  margin-left: 8px;
+}
+
+.my-panel {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.my-panel button {
+  margin: 15px 25px;
+}

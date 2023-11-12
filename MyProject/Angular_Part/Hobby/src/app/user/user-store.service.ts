@@ -13,21 +13,22 @@ export class UserStoreService {
   private fullName = new BehaviorSubject<string>("");
   private role = new BehaviorSubject<string>("");
   baseUrl = environment.baseUrl;
+
   constructor() { }
 
-   getRoleFromStore(){
+  getRoleFromStore() {
     return this.role.asObservable();
-   }
+  }
 
-   setRoleForStore(role: string){
+  setRoleForStore(role: string) {
     this.role.next(role);
-   }
+  }
 
-   getFullNameFromStore(){
+  getFullNameFromStore() {
     return this.fullName.asObservable();
-   }
+  }
 
-   setFullName(fullName: string){
+  setFullName(fullName: string) {
     return this.fullName.next(fullName)
-   }
+  }
 }

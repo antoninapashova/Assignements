@@ -3,33 +3,33 @@
 }
 
 mat-nav-list.list-horizontal {
-    display: flex;
-    flex-direction: row;
-    gap: 2rem;
-    align-items: center;
-    justify-content: center;
-    margin-left: auto;
-    margin-right: 1.5rem;
-   
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: 1.5rem;
+
 }
-.nav-caption{
+
+.nav-caption {
   margin-left: 0.5rem;
   color: white;
   font-weight: 500;
 }
 
-.username{
+.username {
   font-size: 20px;
   margin-left: 1rem;
 }
 
-mat-icon{
+mat-icon {
   color: white;
 }
 
-@media(max-width: 959px){
-  mat-toolbar{
-      border-radius: 0px;
+@media(max-width: 959px) {
+  mat-toolbar {
+    border-radius: 0px;
   }
 }
-
