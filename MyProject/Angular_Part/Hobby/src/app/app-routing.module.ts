@@ -15,133 +15,141 @@ import { AddCategoryComponent } from './category/add-category/add-category.compo
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EditHobbyFormComponent } from './hobby-article/edit-hobby-form/edit-hobby-form.component';
+import { RegisterAdminComponent } from './user/register-admin/register-admin.component';
 
 const routes: Routes = [
-    {
+  {
     path: 'login',
-     component: LoginComponent
-    },
-    {
-     path: 'register',
-     component: RegisterComponent
-    },
-     {
-     path: 'forgot-password',
-     component: ForgetPasswordComponent
-     },
-     {
-        path: 'reset',
-        component: ResetPasswordComponent
-     },
-     {
+    component: LoginComponent
+  },
+  {
+    path: 'register',
+    children: [
+      {
+        path: 'user',
+        component: RegisterComponent,
+      },
+      {
+        path: 'admin',
+        component: RegisterAdminComponent,
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Admin']
+        },
+      },
+    ]
+  },
+  {
+    path: 'forgot-password',
+    component: ForgetPasswordComponent
+  },
+  {
+    path: 'reset',
+    component: ResetPasswordComponent
+  },
+  {
     path: 'add-category',
     component: AddCategoryComponent,
     canActivate: [AuthGuard],
     data: {
-      roles: [ 'Admin' ]
+      roles: ['Admin']
     },
-   },
-
-   {
+  },
+  {
     path: 'user',
-    children:[
+    children: [
       {
-          path: 'articles',
-          component: ArticlesComponent,
-          canActivate: [AuthGuard],
-          data: {
-            roles: [ 'Admin', 'User' ]
-          },
-       },
-       {
+        path: 'articles',
+        component: ArticlesComponent,
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Admin', 'User']
+        },
+      },
+      {
         path: 'add-article',
         component: AddHobbyComponent,
         canActivate: [AuthGuard],
         data: {
-          roles: [ 'User', 'Admin' ]
+          roles: ['User', 'Admin']
         },
-       },
-       
-      ],
-     },
-     {
-      path: 'category',
-      children:[
-        {
-          path: 'add',
-          component: AddCategoryComponent,
-          canActivate: [AuthGuard],
-          data: {
-            roles: [ 'Admin' ]
-          },
-        },
-        {
-          path: 'get-all',
-          component: CategoryListComponent,
-          canActivate: [AuthGuard],
-        }
-      ]
-     },
-     {
-      path: 'subcategory',
-      children: [
-        {
-         path: 'add',
-         component: AddSubcategoryComponent,
-         canActivate: [AuthGuard],
-         data: {
-          roles: [ 'Admin' ]
-        },
-        },
-      ],
-     },
-     {
-        path: 'tag',
-        children:[
-          {
-            path: 'add',
-            component: AddTagComponent,
-            canActivate: [AuthGuard],
-            data: {
-              roles: [ 'Admin' ]
-            },
-          },
-          {
-            path: 'get-all',
-            component: TagListComponent,
-            canActivate: [AuthGuard],
-            data:{
-              roles: [ 'Admin', 'User' ]
-
-            }
-          }
-         ]
       },
+    ],
+  },
+  {
+    path: 'category',
+    children: [
       {
-        path: 'home',
-        component: HomeComponent,
+        path: 'add',
+        component: AddCategoryComponent,
         canActivate: [AuthGuard],
         data: {
-          roles: [ 'User', 'Admin' ]
+          roles: ['Admin']
         },
-        children:[
-          
-        ]
       },
       {
-        path: 'about',
-        component: AboutComponent
-      },
-      {
-        
-          path: 'home/user/edit-article/:id',
-          component: EditHobbyFormComponent,
-          canActivate: [AuthGuard],
-          data: {
-            roles: [ 'User', 'Admin' ]
-          },
-         
+        path: 'get-all',
+        component: CategoryListComponent,
+        canActivate: [AuthGuard],
       }
+    ]
+  },
+  {
+    path: 'subcategory',
+    children: [
+      {
+        path: 'add',
+        component: AddSubcategoryComponent,
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Admin']
+        },
+      },
+    ],
+  },
+  {
+    path: 'tag',
+    children: [
+      {
+        path: 'add',
+        component: AddTagComponent,
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Admin']
+        },
+      },
+      {
+        path: 'get-all',
+        component: TagListComponent,
+        canActivate: [AuthGuard],
+        data: {
+          roles: ['Admin', 'User']
+
+        }
+      }
+    ]
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [AuthGuard],
+    data: {
+      roles: ['User', 'Admin']
+    },
+  },
+  {
+    path: 'about',
+    component: AboutComponent
+  },
+  {
+
+    path: 'home/user/edit-article/:id',
+    component: EditHobbyFormComponent,
+    canActivate: [AuthGuard],
+    data: {
+      roles: ['User', 'Admin']
+    },
+  }
 ];
 
 @NgModule({

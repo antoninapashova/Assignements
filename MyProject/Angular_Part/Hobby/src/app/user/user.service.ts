@@ -25,7 +25,11 @@ export class UserService{
     }
 
     addUser(user: IUser) : Observable<any>{
-        return this.httpClient.post(`${this.baseUrl}${ApiPaths.User}`, user);
+        return this.httpClient.post(`${this.baseUrl}${ApiPaths.User}/User`, user);
+    }
+
+    addAdmin(user: IUser) : Observable<any>{
+        return this.httpClient.post(`${this.baseUrl}${ApiPaths.User}/Admin`, user);
     }
 
     updateUser(id: string, user: IUser) : Observable<IUser>{

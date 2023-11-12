@@ -16,8 +16,11 @@
         <a  routerLink="/user/add-article"  *ngIf="isAuthenticated && (role==='Admin' || role==='User')">
             <mat-icon>app_registration</mat-icon> <span class="nav-caption">Create hobby article</span>
         </a>
-        <a routerLink="/register" *ngIf="!isAuthenticated">
-            <mat-icon>app_registration</mat-icon> <span class="nav-caption" *ngIf="!isAuthenticated">Register</span>   
+        <a routerLink="/register/user" *ngIf="!isAuthenticated">
+            <mat-icon>app_registration</mat-icon> <span class="nav-caption" *ngIf="!isAuthenticated">Register user</span>   
+        </a>
+        <a routerLink="/register/admin" *ngIf="isAuthenticated && role==='Admin'">
+            <mat-icon>app_registration</mat-icon> <span class="nav-caption">Register admin</span>   
         </a>
         <a routerLink="/login" *ngIf="!isAuthenticated">
             <mat-icon aria-hidden="false">login</mat-icon> <span class="nav-caption">Login</span>   

@@ -1,5 +1,6 @@
-export enum ApiPaths{
-    User='/User',
+export enum ApiPaths {
+    User = '/User',
+    Admin = '/Admin',
     Category='/Category',
     Hobby = '/HobbyArticle',
     Comment='/Comment',

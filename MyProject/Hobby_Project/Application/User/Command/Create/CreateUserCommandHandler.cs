@@ -10,28 +10,26 @@ namespace HobbyProject.Application.User.Command.Create
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, int>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ILog _log;
         private readonly IMapper _mapper;
+        private readonly ILog _log;
 
         public CreateUserCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
-            _log = SingletonLogger.Instance;
             _mapper = mapper;
+            _log = SingletonLogger.Instance;
         }
 
         public async Task<int> Handle(CreateUserCommand command, CancellationToken cancellationToken)
         {
             try
             {
-                if (command == null) throw new NullReferenceException("Create user command is null!");
-
                 await IsUsernameExists(command.Username);
                 await IsEmailExists(command.Email);
 
                 var userEntity = _mapper.Map<UserEntity>(command);
                 userEntity.Password = PasswordHasher.HashPassword(command.Password);
-                userEntity.Role = "Admin";
+                userEntity.Role = command.Role;
                 userEntity.Token = "";
                 userEntity.RefreshToken = "";
 

@@ -10,7 +10,7 @@ import { DataSharingService } from '../data-sharing.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent implements OnInit, OnDestroy{
+export class HeaderComponent implements OnInit, OnDestroy {
    
   isAuthenticated!: boolean;
   fullName: string = ""; 
@@ -54,6 +54,7 @@ export class HeaderComponent implements OnInit, OnDestroy{
     if (this.mySubscription) {
         this.mySubscription.unsubscribe();
     }
+    
     this.unsubscribe.next(undefined);
     this.unsubscribe.complete();
   }

@@ -1,24 +1,24 @@
-import { UserService } from './../user.service';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { matchValidator } from 'src/app/core/validators/confirm-password.validator';
 import { Router } from '@angular/router';
+import { UserService } from '../user.service';
 import { MatDialog } from '@angular/material/dialog';
+import { matchValidator } from 'src/app/core/validators/confirm-password.validator';
 import { DialogTemplateComponent, ModalType } from 'src/app/core/dialog/dialog-template/dialog-template.component';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-register-admin',
+  templateUrl: './register-admin.component.html',
+  styleUrls: ['./register-admin.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterAdminComponent {
 
-  registerUserForm: FormGroup = new FormGroup({});
+  registerAdminForm: FormGroup = new FormGroup({});
   isSuccessfull: boolean = false;
   constructor(private formBuilder: FormBuilder, private router: Router, private userService: UserService, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
-   this.registerUserForm = this.formBuilder.group({
+   this.registerAdminForm = this.formBuilder.group({
       username: [null, [Validators.required, Validators.minLength(3)]],
       email: [null, [Validators.required, Validators.minLength(5), Validators.email]],
       firstName: [null, [Validators.required, Validators.minLength(3)]],
@@ -29,20 +29,20 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(form: FormGroup) { 
-    if(form.valid){
-      this.userService.addUser(form.value).subscribe({
+    if(form.valid) {
+      this.userService.addAdmin(form.value).subscribe({
           next: (res) => {
-            let obj = { title: 'Sign up', message: 'Register is successful', type: ModalType.INFO };
-            this.matDialog.open(DialogTemplateComponent, {data: obj});
+            let obj = { title: 'Sign up', message: 'Register admin is successful', type: ModalType.INFO }
+            this.matDialog.open(DialogTemplateComponent, {data: obj})
             form.reset();
             this.router.navigate(['login']);
           },
           error: (err) => {
             console.log(err);
-            let obj = { title: 'Sign up', message: err, type: ModalType.WARN };
+            let obj = { title: 'Sign up', message: err, type: ModalType.WARN }
             form.reset();
-            this.matDialog.open(DialogTemplateComponent, {data: obj});
-         }
+            this.matDialog.open(DialogTemplateComponent, {data: obj})
+          } 
       });
     }
   }
