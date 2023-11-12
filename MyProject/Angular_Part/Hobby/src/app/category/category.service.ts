@@ -16,11 +16,11 @@ export class CategoryService {
     baseUrl = environment.baseUrl;
 
     getCategories(): Observable<any> {
-        return this.httpClient.get<any>(`${this.baseUrl}${ApiPaths.Category}/categories`);
+        return this.httpClient.get<any>(`${this.baseUrl}${ApiPaths.Category}/All`);
     }
 
     getNames(): Observable<any> {
-        return this.httpClient.get<any>(`${this.baseUrl}${ApiPaths.Category}/names`);
+        return this.httpClient.get<any>(`${this.baseUrl}${ApiPaths.Category}/AllNames`);
     }
 
     getCategoryById(id: string): Observable<GetCategoryDto> {
