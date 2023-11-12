@@ -18,15 +18,19 @@ export class HeaderComponent implements OnInit, OnDestroy {
   role!: string;
   mySubscription: any;
   private readonly unsubscribe = new Subject<void>();
-  @Output() public sidenavToggle = new EventEmitter();
 
-  constructor(private userService: UserService, private userStore: UserStoreService,
-    private dataSharingService: DataSharingService, private router: Router) {
-
+  constructor(private userService: UserService, private userStore: UserStoreService, private dataSharingService: DataSharingService, private router: Router) {
     this.dataSharingService.isUserLoggedIn.subscribe(value => {
       this.isAuthenticated = value;
     });
+
+    let token = this.userService.getToken();
+    if (token) {
+      this.isAuthenticated = true;
+    }
   }
+
+  @Output() public sidenavToggle = new EventEmitter();
 
   ngOnInit(): void {
     this.userStore.getFullNameFromStore().subscribe((val: any) => {

@@ -19,10 +19,15 @@ export class NavigationListComponent implements OnInit, OnDestroy {
   category!: ICategory | undefined;
   mySubscription: any;
 
-  constructor(private dataSharingService: DataSharingService, private userService: UserService, private userStore: UserStoreService,) {
+  constructor(private dataSharingService: DataSharingService, private userService: UserService, private userStore: UserStoreService) {
     this.dataSharingService.isUserLoggedIn.subscribe(value => {
       this.isAuthenticated = value;
     });
+
+    let token = this.userService.getToken();
+    if (token) {
+      this.isAuthenticated = true;
+    }
   }
 
   @Output() sidenavClose = new EventEmitter();
