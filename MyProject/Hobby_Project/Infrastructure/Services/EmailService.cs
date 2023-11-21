@@ -1,8 +1,9 @@
-﻿using MailKit.Net.Smtp;
+﻿using HobbyProject.Application.Helpers;
+using MailKit.Net.Smtp;
 using Microsoft.Extensions.Options;
 using MimeKit;
 
-namespace HobbyProject.Application.Helpers
+namespace HobbyProject.Infrastructure.Services
 {
     public class EmailService : IEmailService
     {

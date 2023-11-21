@@ -1,4 +1,5 @@
 ﻿using Application.Repositories;
+using HobbyProject.Application.Helpers;
 using HobbyProject.Domain.Entity;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -6,7 +7,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace HobbyProject.Application.Helpers
+namespace HobbyProject.Infrastructure.Services
 {
     public class TokenManager : ITokenManager
     {
