@@ -14,7 +14,6 @@ namespace HobbyProject.Presentation.Controllers
     [Route("api/[controller]")]
     public class HobbyArticleController : ControllerBase
     {
-
         public readonly IMediator _mediator;
 
         public HobbyArticleController(IMediator mediator)

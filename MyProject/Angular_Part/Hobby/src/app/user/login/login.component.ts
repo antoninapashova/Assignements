@@ -26,8 +26,7 @@ export class LoginComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private router: Router,
     private userService: UserService, private jwtHelper: JwtHelperService,
     private matDialog: MatDialog, private userStoreService: UserStoreService,
-    private dataSharingService: DataSharingService
-  ) { }
+    private dataSharingService: DataSharingService) { }
 
   ngOnInit(): void {
     this.loginUserForm = this.formBuilder.group({

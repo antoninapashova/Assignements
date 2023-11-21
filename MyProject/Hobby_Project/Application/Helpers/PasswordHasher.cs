@@ -4,7 +4,7 @@ namespace HobbyProject.Application.Helpers
 {
     public class PasswordHasher
     {
-        private static RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
+        private static readonly RNGCryptoServiceProvider rng = new();
         private static readonly int SaltSize = 16;
         private static readonly int HashSize = 20;
         private static readonly int Iterations = 10000;

@@ -10,6 +10,7 @@ using System.Text;
 using HobbyProject.Application.Helpers;
 using HobbyProject.Infrastructure.Data;
 using HobbyProject.Infrastructure.Configurations;
+using HobbyProject.Infrastructure.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,18 +18,16 @@ var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
 var connectionString = builder.Configuration.GetConnectionString("Default");
 builder.Services.Configure<EmailSettings>(builder.Configuration.GetSection("EmailSettings"));
 
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy(name: MyAllowSpecificOrigins,
-                      policy =>
-                      {
-                          policy
-                          .WithOrigins("http://localhost:4200")
-                          .AllowCredentials()
-                          .AllowAnyHeader()
-                          .AllowAnyMethod(); 
-                      });
-});
+builder.Services.AddCors(options => options.AddPolicy(name: MyAllowSpecificOrigins,
+        policy =>
+        {
+            policy
+            .WithOrigins("http://localhost:4200")
+            .AllowCredentials()
+            .AllowAnyHeader()
+            .AllowAnyMethod(); 
+        })
+);
 
 builder.Services.AddControllers().AddFluentValidation(options =>
                 {
