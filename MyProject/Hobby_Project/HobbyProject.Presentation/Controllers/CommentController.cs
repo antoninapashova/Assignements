@@ -19,6 +19,7 @@ namespace HobbyProject.Presentation.Controllers
             _mediator = mediator;
         }
 
+
         [Authorize]
         [HttpGet("{hobbyId}")]
         public async Task<IActionResult> GetCommentsByHobbyId(int hobbyId)
@@ -34,24 +35,21 @@ namespace HobbyProject.Presentation.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> AddComment([FromBody] CreateCommentCommand command)
+        public async Task<IActionResult> AddComment(CreateCommentCommand command)
         {
+            if (command == null) return BadRequest("Command can not be null!");
             var result = await _mediator.Send(command);
             return Ok(result);
         }
 
         [Authorize]
-        [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateComment(int id, [FromBody] EditCommentCommand editComment)
+        [HttpPut]
+        public async Task<IActionResult> UpdateComment(EditCommentCommand command)
         {
-            var command = new EditCommentCommand
-            {
-                Id = id,
-                CommentContent = editComment.CommentContent,
-            };
-           
-            await _mediator.Send(command);
-            return NoContent();
+            if (command == null) return BadRequest("Command can not be null!");
+
+            var id = await _mediator.Send(command);
+            return Ok(id);
         }
 
         [Authorize]
@@ -60,7 +58,7 @@ namespace HobbyProject.Presentation.Controllers
         {
             var command = new DeleteCommentCommand { Id = id };
             var commentId = await _mediator.Send(command);
-            return Ok(id);
+            return Ok(commentId);
         }
     }
 }
