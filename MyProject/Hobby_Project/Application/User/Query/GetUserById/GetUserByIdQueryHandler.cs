@@ -24,12 +24,10 @@ namespace HobbyProject.Application.User.Query.GetUserById
         {
             try
             {
-                if (request == null) throw new NullReferenceException("Get user by Id query is null!");
-
                 var user = await _unitOfWork.UserRepository.GetByIdAsync(request.Id);
-                var result = _mapper.Map<UserDto>(user);
+                if (user == null) throw new NullReferenceException($"User with ID: {request.Id} does not exist!");
 
-                return result;
+                return _mapper.Map<UserDto>(user);
             }
             catch (Exception e)
             {

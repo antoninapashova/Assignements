@@ -27,8 +27,11 @@ namespace HobbyProject.Presentation.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult> GetById(int id)
         {
+            if (id == 0) return BadRequest("Id not provided!");
+
             var query = new GetUserByIdQuery { Id = id };
             var result = await _mediator.Send(query);
+
             return Ok(result);
         }
 
