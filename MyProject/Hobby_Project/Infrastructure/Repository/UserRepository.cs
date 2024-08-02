@@ -22,7 +22,7 @@ namespace HobbyProject.Infrastructure.Repository
 
         public void Delete(UserEntity user)
         {
-           _context.Remove(user);
+            _context.Remove(user);
         }
 
         public IEnumerable<UserEntity> GetAllEntities()
@@ -32,40 +32,39 @@ namespace HobbyProject.Infrastructure.Repository
 
         public async Task<UserEntity> GetByIdAsync(int id)
         {
-            return await FindById(id);
+            return await _context.Users.FirstOrDefaultAsync(c => c.Id == id);
         }
 
-        public async Task<UserEntity> Update(UserEntity entity)
+        public async Task<UserEntity> GetByUsername(string username)
         {
-            await FindById(entity.Id);
+            return await _context.Users.FirstOrDefaultAsync(c => c.Username == username);
+        }
+
+        public UserEntity Update(UserEntity entity)
+        {
             _context.ChangeTracker.Clear();
             _context.Update(entity);
             return entity;
         }
 
-        public async Task<UserEntity> FindByUsername(string username)
-        {
-            return await _context.Users.FirstOrDefaultAsync(x => x.Username == username);
-        }
-
-        public async Task<UserEntity> FindByEmail(string email)
-        {
-            return await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
-        }
-
         public async Task<bool> CheckUsernameExists(string username)
         {
-            return await _context.Users.AnyAsync(x => x.Username == username);
+            return await _context.Users.AsNoTracking().AnyAsync(x => x.Username == username);
         }
 
         public async Task<bool> CheckEmailExists(string email)
         {
-            return await _context.Users.AnyAsync(x => x.Email == email);
+            return await _context.Users.AsNoTracking().AnyAsync(x => x.Email == email);
         }
 
-        public async Task<UserEntity> FindById(int id)
+        public async Task<bool> FindById(int id)
         {
-           return await _context.Users.FirstOrDefaultAsync(c => c.Id == id);
+           return await _context.Users.AsNoTracking().AnyAsync(c => c.Id == id);
+        }
+
+        public async Task<UserEntity> GetByEmail(string email)
+        {
+            return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
         }
     }
 }

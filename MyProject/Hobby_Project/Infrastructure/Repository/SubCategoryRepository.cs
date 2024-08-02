@@ -42,14 +42,15 @@ namespace Infrastructure.Repository
 
         public async Task<SubCategory> FindById(int id)
         {
-            var subCategory = await _context.SubCategories.FirstOrDefaultAsync(s => s.Id == id);
-
-            if (subCategory == null) throw new NullReferenceException($"SubCategory with Id: {id} does not exist");
-
-            return subCategory;
+            return await _context.SubCategories.FirstOrDefaultAsync(s => s.Id == id);
         }
 
-        public Task<SubCategory> Update(SubCategory entity)
+        public SubCategory Update(SubCategory entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<bool> IRepository<SubCategory>.FindById(int id)
         {
             throw new NotImplementedException();
         }

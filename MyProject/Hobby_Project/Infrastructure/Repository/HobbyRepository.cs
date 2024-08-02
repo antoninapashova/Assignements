@@ -43,14 +43,14 @@ namespace Infrastructure.Repository
 
         public async Task<HobbyEntity> GetByIdAsync(int id)
         {
-           await FindById(id);
+           await GetById(id);
 
             return await _context.HobbyEntities
                     .Include(h => h.HobbyPhoto)
                     .SingleAsync(x => x.Id == id);
         }
       
-        public async Task<HobbyEntity> Update(HobbyEntity hobbyArticle)
+        public HobbyEntity Update(HobbyEntity hobbyArticle)
         {
             _context.HobbyEntities.Update(hobbyArticle);
             return hobbyArticle;
@@ -64,12 +64,14 @@ namespace Infrastructure.Repository
                      .Where(h => h.User.Username.Equals(username));
         }
 
-        public async Task<HobbyEntity> FindById(int id)
+        public async Task<HobbyEntity> GetById(int id)
         {
-            var hobby = await _context.HobbyEntities.FirstOrDefaultAsync(h => h.Id == id);
+            return await _context.HobbyEntities.FirstOrDefaultAsync(h => h.Id == id);
+        }
 
-            if (hobby == null) throw new NullReferenceException($"HobbyArticle with Id: {id} does not exist");
-            return hobby;
+        public Task<bool> FindById(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

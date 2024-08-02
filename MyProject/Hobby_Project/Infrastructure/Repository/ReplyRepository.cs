@@ -17,7 +17,7 @@ namespace HobbyProject.Infrastructure.Repository
         public async Task<Reply> Add(Reply entity)
         {
            await _context.Replies.AddAsync(entity);
-            return entity;
+           return entity;
         }
 
         public void Delete(Reply reply)
@@ -25,12 +25,9 @@ namespace HobbyProject.Infrastructure.Repository
             _context.Replies.Remove(reply);
         }
 
-        public async Task<Reply> FindById(int id)
+        public async Task<bool> FindById(int id)
         {
-            var reply = await _context.Replies.AsNoTracking()
-                .FirstOrDefaultAsync(r => r.Id == id);
-
-            return reply ?? throw new NullReferenceException("Reply is null!");
+            return await _context.Replies.AsNoTracking().AnyAsync(r => r.Id == id);
         }
 
         public IEnumerable<Reply> GetAllEntities()
@@ -43,12 +40,12 @@ namespace HobbyProject.Infrastructure.Repository
            return _context.Replies.Include(x=>x.User).Where(r => r.CommentId == commentId);
         }
 
-        public Task<Reply> GetByIdAsync(int id)
+        public async Task<Reply> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Replies.FirstOrDefaultAsync(r => r.Id == id);
         }
 
-        public Task<Reply> Update(Reply entity)
+        public Reply Update(Reply entity)
         {
             throw new NotImplementedException();
         }

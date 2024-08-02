@@ -33,28 +33,21 @@ namespace Infrastructure.Repository
                 .Where(c => c.HobbyArticleId == hobbyId);
         }
 
-        public async Task<Comment> Update(Comment comment)
+        public Comment Update(Comment comment)
         {
-            await FindById(comment.Id);
             _context.ChangeTracker.Clear();
             _context.Comments.Update(comment);
             return comment;
         }
 
-        public async Task<Comment> FindById(int id)
+        public async Task<bool> FindById(int id)
         {
-            var comment = await _context.Comments
-                                //.Include(x=>x.Username)
-                                .FirstOrDefaultAsync(c => c.Id == id);
-
-            if (comment == null) throw new NullReferenceException($"Comment with Id: {id} does not exist!");
-
-            return comment;
+           return await _context.Comments.AsNoTracking().AnyAsync(c => c.Id == id);
         }
 
-        public Task<Comment> GetByIdAsync(int id)
+        public async Task<Comment> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Comments.FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public IEnumerable<Comment> GetAllEntities()

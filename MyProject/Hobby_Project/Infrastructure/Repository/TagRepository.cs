@@ -24,7 +24,7 @@ namespace Infrastructure.Repository
         {
             _context.Tags.Remove(entity);
         }
-
+        
         public IEnumerable<Tag> GetAllEntities()
         {
             return _context.Tags.AsNoTracking();
@@ -32,25 +32,20 @@ namespace Infrastructure.Repository
 
         public async Task<Tag> GetByIdAsync(int id)
         {
-           return await FindById(id);
-        } 
+           return await _context.Tags.AsNoTracking().FirstOrDefaultAsync(t => t.Id == id);
+        }
         
         public async Task<bool> CheckTagExists(string name)
         {
             return await _context.Tags.AnyAsync(t => t.Name == name);
         }
 
-        public async Task<Tag> FindById(int id)
+        public Tag Update(Tag entity)
         {
-            var tag = await _context.Tags.AsNoTracking().FirstOrDefaultAsync(t => t.Id == id);
-
-            if (tag == null) 
-                throw new NullReferenceException($"Tag with Id {id} does not exist!");
-
-            return tag;
+            throw new NotImplementedException();
         }
 
-        public Task<Tag> Update(Tag entity)
+        Task<bool> IRepository<Tag>.FindById(int id)
         {
             throw new NotImplementedException();
         }

@@ -17,7 +17,7 @@ namespace Infrastructure.Repository
         public async Task<Photo> Add(Photo entity)
         {
            await _context.Photos.AddAsync(entity);
-            return entity;
+           return entity;
         }
 
         public async Task<Photo> GetByIdAsync(int id)
@@ -31,23 +31,23 @@ namespace Infrastructure.Repository
             _context.Photos.Remove(entity);
         }
 
-        public async Task<Photo> Update(Photo entity)
+        public Photo Update(Photo entity)
         {
-            await FindById(entity.Id);
             _context.Photos.Update(entity);
             return entity;
         }
 
         public async Task<Photo> FindById(int id)
         {
-            var photo = await _context.Photos.FirstOrDefaultAsync(c => c.Id == id);
+            return await _context.Photos.FirstOrDefaultAsync(c => c.Id == id);
+        }
 
         public IEnumerable<Photo> GetAllEntities()
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Photo>> GetAllEntitiesAsync()
+        Task<bool> IRepository<Photo>.FindById(int id)
         {
             throw new NotImplementedException();
         }

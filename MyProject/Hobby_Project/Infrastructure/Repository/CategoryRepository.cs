@@ -32,7 +32,7 @@ namespace Infrastructure.Repository
 
         public async Task<Category> GetByIdAsync(int id)
         {
-            return await FindById(id);
+            return await _context.Categories.FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public IQueryable<Category> GetAllNames() 
@@ -45,12 +45,12 @@ namespace Infrastructure.Repository
             return await _context.Categories.AnyAsync(c => c.Name == name);
         }
 
-        public async Task<Category> FindById(int id)
+        public async Task<bool> FindById(int id)
         {
-           return await _context.Categories.AsNoTracking().FirstOrDefaultAsync(c => c.Id == id);
+           return await _context.Categories.AsNoTracking().AnyAsync(c => c.Id == id);
         }
 
-        public Task<Category> Update(Category entity)
+        public Category Update(Category entity)
         {
             throw new NotImplementedException();
         }
