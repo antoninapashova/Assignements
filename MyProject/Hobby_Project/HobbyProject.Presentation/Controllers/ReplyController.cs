@@ -20,8 +20,10 @@ namespace HobbyProject.Presentation.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> AddReply([FromBody] CreateReplyCommand command)
+        public async Task<IActionResult> AddReply(CreateReplyCommand command)
         {
+            if (command == null) return BadRequest("Command not found!");
+
             var result = await _mediator.Send(command);
             return Ok(result);
         }

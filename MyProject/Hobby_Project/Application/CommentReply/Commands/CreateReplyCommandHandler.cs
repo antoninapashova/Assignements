@@ -23,8 +23,6 @@ namespace HobbyProject.Application.CommentReply.Commands
         {
             try
             {
-                if (command == null) throw new NullReferenceException("Create reply command is null!");
-               
                 var reply = _mapper.Map<Reply>(command);
                 await _unitOfWork.ReplyRepository.Add(reply);
                 await _unitOfWork.Save();
