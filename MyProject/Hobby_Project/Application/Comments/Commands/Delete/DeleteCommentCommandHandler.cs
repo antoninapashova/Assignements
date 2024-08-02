@@ -19,9 +19,9 @@ namespace Application.Comments.Commands.Delete
         {
             try
             {
-                if (command == null) throw new NullReferenceException("Delete comment command is null");
+                var entity = await _unitOfWork.CommentRepository.GetByIdAsync(command.Id);
 
-                await _unitOfWork.CommentRepository.DeleteAsync(command.Id);
+                if (entity == null) throw new NullReferenceException($"Comment with id: {command.Id} does not exist!");
                 await _unitOfWork.Save();
                 return command.Id;
             }
