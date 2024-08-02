@@ -25,9 +25,9 @@ namespace Infrastructure.Repository
             _context.Remove(category);
         }
 
-        public async Task<IEnumerable<Category>> GetAllEntitiesAsync()
+        public IEnumerable<Category> GetAllEntities()
         {
-            return _context.Categories.AsEnumerable();
+            return _context.Categories;
         }
 
         public async Task<Category> GetByIdAsync(int id)

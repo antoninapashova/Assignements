@@ -34,13 +34,13 @@ namespace Infrastructure.Repository
                 .Where(h=>h.User.Id==id);
         }
         
-        public async Task<IEnumerable<HobbyEntity>> GetAllEntitiesAsync()
+        public IEnumerable<HobbyEntity> GetAllEntities()
         {
             return _context.HobbyEntities
-                .Include(x=>x.User)
-                .Include(x => x.HobbyPhoto)
-                .AsQueryable();
+                .Include(x => x.User)
+                .Include(x => x.HobbyPhoto);
         }
+
         public async Task<HobbyEntity> GetByIdAsync(int id)
         {
            await FindById(id);

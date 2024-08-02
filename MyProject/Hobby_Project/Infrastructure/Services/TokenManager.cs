@@ -46,7 +46,7 @@ namespace HobbyProject.Infrastructure.Services
             var tokenBytes = RandomNumberGenerator.GetBytes(64);
             var refreshToken = Convert.ToBase64String(tokenBytes);
 
-            var tokenInUser = _unitOfWork.UserRepository.GetAllEntitiesAsync().Result.Any(a => a.RefreshToken == refreshToken);
+            var tokenInUser = _unitOfWork.UserRepository.GetAllEntities().Any(a => a.RefreshToken == refreshToken);
 
             if (tokenInUser)
             {

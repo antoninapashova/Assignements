@@ -25,9 +25,9 @@ namespace Infrastructure.Repository
              _context.SubCategories.Remove(subCategory);
         }
 
-        public async Task<IEnumerable<SubCategory>> GetAllEntitiesAsync()
+        public IEnumerable<SubCategory> GetAllEntities()
         {
-            return  _context.SubCategories.AsEnumerable();
+            return _context.SubCategories.AsEnumerable();
         }
 
         public async Task<SubCategory> GetByIdAsync(int id)

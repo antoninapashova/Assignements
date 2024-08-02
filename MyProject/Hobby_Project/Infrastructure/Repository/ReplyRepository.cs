@@ -33,7 +33,7 @@ namespace HobbyProject.Infrastructure.Repository
             return reply ?? throw new NullReferenceException("Reply is null!");
         }
 
-        public Task<IEnumerable<Reply>> GetAllEntitiesAsync()
+        public IEnumerable<Reply> GetAllEntities()
         {
             throw new NotImplementedException();
         }

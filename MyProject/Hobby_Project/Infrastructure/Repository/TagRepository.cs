@@ -25,9 +25,9 @@ namespace Infrastructure.Repository
             _context.Tags.Remove(entity);
         }
 
-        public async Task<IEnumerable<Tag>> GetAllEntitiesAsync()
+        public IEnumerable<Tag> GetAllEntities()
         {
-            return _context.Tags.AsNoTracking().AsQueryable();
+            return _context.Tags.AsNoTracking();
         }
 
         public async Task<Tag> GetByIdAsync(int id)

@@ -11,6 +11,7 @@ namespace HobbyProject.Application.Categories.Queries.GetAllCategories
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly ILog _log;
+
         public GetCategoryListQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
@@ -22,7 +23,7 @@ namespace HobbyProject.Application.Categories.Queries.GetAllCategories
         {
             try
             {
-                var categories = await _unitOfWork.CategoryRepository.GetAllEntitiesAsync();
+                var categories = _unitOfWork.CategoryRepository.GetAllEntities();
                 categories.ToList().ForEach(c => c.CreatedDate.ToString("MM/dd/yyyy"));
 
                 return _mapper.Map<IList<CategoryDto>>(categories);

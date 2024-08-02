@@ -9,13 +9,11 @@ namespace HobbyProject.Application.HobbySubCategories.Queries.GetAllSubCategorie
     public class GetSubCategoryListQueryHandler : IRequestHandler<GetSubCategoryListQuery, IEnumerable<HobbySubCategoryDto>>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IMapper _mapper;
         private readonly ILog _logger;
 
-        public GetSubCategoryListQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
+        public GetSubCategoryListQueryHandler(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _mapper = mapper;
             _logger = SingletonLogger.Instance;
         }
 
@@ -23,7 +21,7 @@ namespace HobbyProject.Application.HobbySubCategories.Queries.GetAllSubCategorie
         {
             try
             {
-                var result = await _unitOfWork.SubCategoryRepository.GetAllEntitiesAsync();
+                var result = _unitOfWork.SubCategoryRepository.GetAllEntities();
                 var subCategories = new List<HobbySubCategoryDto>();
 
                 foreach (var c in result)

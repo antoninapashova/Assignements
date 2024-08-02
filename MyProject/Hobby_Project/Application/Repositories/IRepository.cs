@@ -6,7 +6,7 @@
         Task<T> Update(T entity);
         void Delete(T entity);
         Task<T> GetByIdAsync(int id);
-        Task<IEnumerable<T>> GetAllEntitiesAsync();
+        IEnumerable<T> GetAllEntities();
         Task<bool> FindById(int id);
     }
 }

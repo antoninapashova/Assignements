@@ -18,7 +18,7 @@ namespace Application.HobbyTags.Queries
 
         public async Task<IEnumerable<TagDto>> Handle(GetTagListQuery request, CancellationToken cancellationToken)
         {
-            var result = await _unitOfWork.TagRepository.GetAllEntitiesAsync();
+            var result = _unitOfWork.TagRepository.GetAllEntities();
             var enumerable = _mapper.Map<IEnumerable<TagDto>>(result.ToList());
 
             return enumerable;

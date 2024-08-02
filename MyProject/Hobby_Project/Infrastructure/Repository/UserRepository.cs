@@ -25,9 +25,9 @@ namespace HobbyProject.Infrastructure.Repository
            _context.Remove(user);
         }
 
-        public async Task<IEnumerable<UserEntity>> GetAllEntitiesAsync()
+        public IEnumerable<UserEntity> GetAllEntities()
         {
-            return _context.Users.AsNoTracking();
+            return _context.Users;
         }
 
         public async Task<UserEntity> GetByIdAsync(int id)

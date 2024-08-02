@@ -57,7 +57,7 @@ namespace Infrastructure.Repository
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Comment>> GetAllEntitiesAsync()
+        public IEnumerable<Comment> GetAllEntities()
         {
             throw new NotImplementedException();
         }
