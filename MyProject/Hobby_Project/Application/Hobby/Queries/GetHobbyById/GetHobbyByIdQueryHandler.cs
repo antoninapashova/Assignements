@@ -23,10 +23,9 @@ namespace HobbyProject.Application.Hobby.Queries.GetHobbyById
         {
             try
             {
-                if (request == null) 
-                    throw new NullReferenceException("Hobby by Id query is null");
-
                 var result = await _unitOfWork.HobbyArticleRepository.GetByIdAsync(request.Id);
+                if (result == null) throw new NullReferenceException($"Hobby with id: ${request.Id} does not exist!");
+
                 var hobbyVm = _mapper.Map<HobbyDto>(result);
 
                 return hobbyVm;
