@@ -10,7 +10,7 @@ namespace Application.Hobby.Commands.Edit
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private ILog _log;
+        private readonly ILog _log;
 
         public UpdateHobbyCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
@@ -26,7 +26,7 @@ namespace Application.Hobby.Commands.Edit
                 if (command == null) throw new NullReferenceException("Edit hobby command is null");
 
                 var hobbyArticle = _mapper.Map<HobbyEntity>(command);
-                await _unitOfWork.HobbyArticleRepository.Update(hobbyArticle);
+                _unitOfWork.HobbyArticleRepository.Update(hobbyArticle);
                 await _unitOfWork.Save();
 
                 return command.Id;

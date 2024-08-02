@@ -32,7 +32,7 @@ namespace HobbyProject.Application.User.Command.ResetPassword
 
                 user.Password = PasswordHasher.HashPassword(command.NewPassword);
 
-                await _unitOfWork.UserRepository.Update(user);
+                _unitOfWork.UserRepository.Update(user);
                 await _unitOfWork.Save();
 
                 return token;

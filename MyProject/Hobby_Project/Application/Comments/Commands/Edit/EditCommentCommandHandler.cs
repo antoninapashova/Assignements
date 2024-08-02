@@ -24,7 +24,7 @@ namespace Application.Comments.Commands.Edit
             try
             {
                 var hobbyComment = _mapper.Map<Comment>(command);
-                await _unitOfWork.CommentRepository.Update(hobbyComment);
+                _unitOfWork.CommentRepository.Update(hobbyComment);
                 await _unitOfWork.Save();
 
                 return command.Id;

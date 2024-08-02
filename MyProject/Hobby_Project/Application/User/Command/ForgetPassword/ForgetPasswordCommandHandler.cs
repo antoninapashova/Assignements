@@ -41,7 +41,7 @@ namespace HobbyProject.Application.User.Command.ForgetPassword
                 var emailModel = new EmailModel(command.Email, "Reset password!", EmailBody.EmailStringBody(command.Email, emailToken));
                 _emailService.SendEmail(emailModel);
 
-                await _unitOfWork.UserRepository.Update(user);
+                _unitOfWork.UserRepository.Update(user);
                 await _unitOfWork.Save();
 
                 return user.Email;
