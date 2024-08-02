@@ -21,6 +21,8 @@ namespace HobbyProject.Application.CommentReply.Commands.Delete
             {
                 var reply = await _unitOfWork.ReplyRepository.GetByIdAsync(command.Id);
 
+                if (reply == null) throw new NullReferenceException($"Comment with id: {command.Id} does not exist!");
+
                 _unitOfWork.ReplyRepository.Delete(reply);
                 await _unitOfWork.Save();
 
