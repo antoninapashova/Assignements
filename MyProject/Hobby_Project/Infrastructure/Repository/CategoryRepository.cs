@@ -35,7 +35,7 @@ namespace Infrastructure.Repository
             return await FindById(id);
         }
 
-        public async Task<IQueryable<Category>> GetAllNamesAsync() 
+        public IQueryable<Category> GetAllNames() 
         {
             return _context.Categories.AsNoTracking().AsQueryable();
         }

@@ -38,7 +38,7 @@ namespace HobbyProject.Infrastructure.Repository
             throw new NotImplementedException();
         }
 
-        public async Task<IEnumerable<Reply>> GetAllRepliesByCommentId(int commentId)
+        public IEnumerable<Reply> GetAllRepliesByCommentId(int commentId)
         {
            return _context.Replies.Include(x=>x.User).Where(r => r.CommentId == commentId);
         }

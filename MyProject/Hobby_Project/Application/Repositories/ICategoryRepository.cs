@@ -4,7 +4,7 @@ namespace Application.Repositories
 {
     public interface ICategoryRepository : IRepository<Category>
     {
-        Task<IQueryable<Category>> GetAllNamesAsync();
+        IQueryable<Category> GetAllNames();
         Task<bool> CheckCategoryExists(string name);
     }
 }

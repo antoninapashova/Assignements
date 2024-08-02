@@ -25,7 +25,7 @@ namespace Infrastructure.Repository
             _context.Comments.Remove(comment);
         } 
 
-        public async Task<IEnumerable<Comment>> GetCommentsByHobbyId(int hobbyId)
+        public IEnumerable<Comment> GetCommentsByHobbyId(int hobbyId)
         {
             return _context.Comments
                 .Include(x => x.User)

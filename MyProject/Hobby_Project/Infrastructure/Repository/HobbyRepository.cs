@@ -25,7 +25,7 @@ namespace Infrastructure.Repository
             _context.HobbyEntities.Remove(hobbyEntity);
         }
 
-        public async Task<IEnumerable<HobbyEntity>> GetHobbyArticlesByUserId(int id)
+        public IEnumerable<HobbyEntity> GetHobbyArticlesByUserId(int id)
         {
             return _context.HobbyEntities
                 .Include(x => x.User)
@@ -56,7 +56,7 @@ namespace Infrastructure.Repository
             return hobbyArticle;
         }
         
-        public async Task<IEnumerable<HobbyEntity>> GetHobbyArticlesByUsername(string username)
+        public IEnumerable<HobbyEntity> GetHobbyArticlesByUsername(string username)
         {
             return _context.HobbyEntities
                      .Include(h => h.HobbyPhoto)

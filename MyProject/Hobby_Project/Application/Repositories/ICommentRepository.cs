@@ -4,6 +4,6 @@ namespace Application.Repositories
 {
     public interface ICommentRepository : IRepository<Comment>
     {
-        public Task<IEnumerable<Comment>> GetCommentsByHobbyId(int hobbyId);
+        public IEnumerable<Comment> GetCommentsByHobbyId(int hobbyId);
     }
 }

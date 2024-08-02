@@ -23,7 +23,7 @@ namespace HobbyProject.Application.Comments.Queries.GetCommentsByHobbyId
         {
             try
             {
-                var result = await _unitOfWork.CommentRepository.GetCommentsByHobbyId(request.HobbyId);
+                var result = _unitOfWork.CommentRepository.GetCommentsByHobbyId(request.HobbyId);
                 return _mapper.Map<List<CommentDto>>(result);
             }
             catch (Exception e)

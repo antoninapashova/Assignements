@@ -42,9 +42,9 @@ namespace Infrastructure.Repository
         {
             var photo = await _context.Photos.FirstOrDefaultAsync(c => c.Id == id);
 
-            if (photo == null) throw new InvalidOperationException($"Photo with Id {id} does not exist!");
-
-            return photo;
+        public IEnumerable<Photo> GetAllEntities()
+        {
+            throw new NotImplementedException();
         }
 
         public Task<IEnumerable<Photo>> GetAllEntitiesAsync()

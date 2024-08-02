@@ -23,7 +23,7 @@ namespace HobbyProject.Application.Categories.Queries.GetAllNames
         {
             try
             {
-               var categories = await _unitOfWork.CategoryRepository.GetAllNamesAsync();
+               var categories = _unitOfWork.CategoryRepository.GetAllNames();
                var categoryListVms = _mapper.Map<IList<CategoryNameDto>>(categories);
             
                return categoryListVms.ToList();
