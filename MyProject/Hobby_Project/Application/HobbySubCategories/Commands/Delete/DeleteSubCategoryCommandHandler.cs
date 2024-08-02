@@ -22,7 +22,7 @@ namespace Application.HobbySubCategories.Commands.Delete
 
                 if (subCategory == null) throw new NullReferenceException($"SubCategory with id: {command.Id} does not exist!");
 
-                await _unitOfWork.SubCategoryRepository.DeleteAsync(command.Id);
+                _unitOfWork.SubCategoryRepository.Delete(subCategory);
                 await _unitOfWork.Save();
 
                 return command.Id;

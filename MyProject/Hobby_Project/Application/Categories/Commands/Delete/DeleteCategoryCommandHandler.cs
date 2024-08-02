@@ -22,10 +22,7 @@ namespace Application.Categories.Commands.Delete
                 var category = await _unitOfWork.CategoryRepository.GetByIdAsync(command.Id);
                 if (category == null) throw new NullReferenceException("Category not found!");
 
-                var category = _unitOfWork.CategoryRepository.FindById(command.Id);
-                if(category == null) throw new NullReferenceException("Category not found1");
-
-                await _unitOfWork.CategoryRepository.DeleteAsync(command.Id);
+                _unitOfWork.CategoryRepository.Delete(category);
                 await _unitOfWork.Save();
 
                 return command.Id;

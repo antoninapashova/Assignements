@@ -22,7 +22,10 @@ namespace Application.Comments.Commands.Delete
                 var entity = await _unitOfWork.CommentRepository.GetByIdAsync(command.Id);
 
                 if (entity == null) throw new NullReferenceException($"Comment with id: {command.Id} does not exist!");
+
+                _unitOfWork.CommentRepository.Delete(entity);
                 await _unitOfWork.Save();
+
                 return command.Id;
             }
             catch (Exception e)

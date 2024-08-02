@@ -21,7 +21,7 @@ namespace HobbyProject.Application.CommentReply.Commands.Delete
             {
                 var reply = await _unitOfWork.ReplyRepository.GetByIdAsync(command.Id);
 
-                await _unitOfWork.ReplyRepository.DeleteAsync(command.Id);
+                _unitOfWork.ReplyRepository.Delete(reply);
                 await _unitOfWork.Save();
 
                 return command.Id;
