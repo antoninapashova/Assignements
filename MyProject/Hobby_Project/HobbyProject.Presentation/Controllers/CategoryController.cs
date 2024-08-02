@@ -40,8 +40,11 @@ namespace HobbyProject.Presentation.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult> GetById(int id)
         {
+            if (id == 0) return BadRequest("Id not found!");
+
             var query = new GetCategoryByIdQuery { Id = id };
             var result = await _mediator.Send(query); 
+
             return Ok(result);
         }
 
