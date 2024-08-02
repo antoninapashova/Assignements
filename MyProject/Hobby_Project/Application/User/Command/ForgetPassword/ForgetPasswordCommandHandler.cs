@@ -28,17 +28,19 @@ namespace HobbyProject.Application.User.Command.ForgetPassword
         {
             try
             {
-                var user = await _unitOfWork.UserRepository.FindByEmail(command.Email);
-
+                var user = await _unitOfWork.UserRepository.GetByEmail(command.Email);
                 if (user == null) throw new NullReferenceException("User with that email does not exists!");
 
                 var tokenBytes = RandomNumberGenerator.GetBytes(64);
                 var emailToken = Convert.ToBase64String(tokenBytes);
+
                 user.ResetPasswordToken = emailToken;
                 user.ResetPasswordExpiry = DateTime.Now.AddMinutes(15);
+
                 string from = _emailSettings.From;
                 var emailModel = new EmailModel(command.Email, "Reset password!", EmailBody.EmailStringBody(command.Email, emailToken));
                 _emailService.SendEmail(emailModel);
+
                 await _unitOfWork.UserRepository.Update(user);
                 await _unitOfWork.Save();
 

@@ -21,15 +21,17 @@ namespace HobbyProject.Application.User.Command.ResetPassword
             try
             {
                var newToken = command.EmailToken.Replace(" ", "+");
-               var user = await _unitOfWork.UserRepository.FindByEmail(command.Email);
 
+               var user = await _unitOfWork.UserRepository.GetByEmail(command.Email);
                if (user == null) throw new NullReferenceException("User with that email does not exists!");
 
                 var token = user.ResetPasswordToken;
-                DateTime emailTokneExpiry = user.ResetPasswordExpiry;
-                if(token != command.EmailToken || emailTokneExpiry < DateTime.Now) throw new Exception("Token is expired");
+                var emailTokenExpiry = user.ResetPasswordExpiry;
+
+                if(token != command.EmailToken || emailTokenExpiry < DateTime.Now) throw new Exception("Token is expired");
 
                 user.Password = PasswordHasher.HashPassword(command.NewPassword);
+
                 await _unitOfWork.UserRepository.Update(user);
                 await _unitOfWork.Save();
 

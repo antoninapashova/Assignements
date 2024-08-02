@@ -25,7 +25,7 @@ namespace HobbyProject.Application.User.Command.RefreshToken
             {
                 var principal = _tokenManager.GetPrincipleFromExpiredToken(command.AccessToken);
                 var username = principal.Identity.Name;
-                var user = _unitOfWork.UserRepository.GetAllEntitiesAsync().Result.FirstOrDefault(u => u.Username == username);
+                var user = await _unitOfWork.UserRepository.GetByUsername(username);
 
                 if (user == null || user.RefreshToken != command.RefreshToken || user.RefreshTokenExpiredTime <= DateTime.Now)
                     throw new NullReferenceException("Invalid request");

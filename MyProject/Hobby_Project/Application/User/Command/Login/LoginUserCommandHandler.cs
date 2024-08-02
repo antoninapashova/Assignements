@@ -23,7 +23,7 @@ namespace HobbyProject.Application.User.Command.Login
         {
             try
             {
-                var user = await _unitOfWork.UserRepository.FindByUsername(command.Username);
+                var user = await _unitOfWork.UserRepository.GetByUsername(command.Username);
 
                 if (!PasswordHasher.VerifyPassword(command.Password, user.Password)) 
                     throw new NullReferenceException("Password is incorect!");
