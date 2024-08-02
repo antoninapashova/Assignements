@@ -10,7 +10,7 @@ using Domain.Entity;
 using Hobby_Project;
 using HobbyProject.Application.Categories.Dto;
 using HobbyProject.Application.CommentReply;
-using HobbyProject.Application.CommentReply.Commands;
+using HobbyProject.Application.CommentReply.Commands.Create;
 using HobbyProject.Application.Comments.Commands;
 using HobbyProject.Application.Comments.Dto;
 using HobbyProject.Application.Hobby.Dto;

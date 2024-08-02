@@ -1,8 +1,6 @@
 ﻿using Application.Logger;
 using Application.Repositories;
 using MediatR;
-using MimeKit.Encodings;
-
 namespace Application.Hobby.Commands.Delete
 {
     public  class DeleteHobbyCommandHandler : IRequestHandler<DeleteHobbyCommand, int>

@@ -24,8 +24,8 @@ namespace HobbyProject.Infrastructure.Services
             var key = Encoding.ASCII.GetBytes("veryverysecret.......");
             var identity = new ClaimsIdentity(new Claim[]
             {
-                new Claim(ClaimTypes.Role, user.Role),
-                new Claim(ClaimTypes.Name, $"{user.Username}")
+                new (ClaimTypes.Role, user.Role),
+                new (ClaimTypes.Name, $"{user.Username}")
             });
 
             var credentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256);
