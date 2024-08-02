@@ -19,7 +19,9 @@ namespace Application.HobbyTags.Commands.Delete
         {
             try
             {
-                if (command == null) throw new NullReferenceException("Delete Tag command is null!");
+               var tag = await _unitOfWork.TagRepository.GetByIdAsync(command.Id);
+
+               if (tag == null) throw new NullReferenceException($"Tag with id: {command.Id} does not exist!"); 
 
                 await _unitOfWork.TagRepository.DeleteAsync(command.Id);
                 await _unitOfWork.Save();
