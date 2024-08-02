@@ -8,6 +8,7 @@ namespace Application.HobbySubCategories.Commands.Delete
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ILog _log;
+
         public DeleteSubCategoryCommandHandler(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;

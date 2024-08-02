@@ -26,7 +26,6 @@ namespace HobbyProject.Application.Categories.Queries.GetCategoryById
                 var category = await _unitOfWork.CategoryRepository.GetByIdAsync(request.Id);
                 if (category == null) throw new NullReferenceException("Category not found!");
 
-                var category = await _unitOfWork.CategoryRepository.GetByIdAsync(request.Id);
                 category.CreatedDate.ToString("MM/dd/yyyy");
 
                 return _mapper.Map<CategoryDto>(category);

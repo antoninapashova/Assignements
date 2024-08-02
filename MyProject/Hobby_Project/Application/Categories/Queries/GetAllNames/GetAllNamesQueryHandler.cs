@@ -1,7 +1,6 @@
 ﻿using Application.Logger;
 using Application.Repositories;
 using AutoMapper;
-using Hobby_Project;
 using HobbyProject.Application.Categories.Dto;
 using MediatR;
 

@@ -9,14 +9,14 @@ namespace Application.Comments.Commands.Create
     public class CreateCommentCommandHandler : IRequestHandler<CreateCommentCommand, int>
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly ILog _log;
         private readonly IMapper _mapper;
+        private readonly ILog _log;
 
         public CreateCommentCommandHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
-            _log = SingletonLogger.Instance;
             _mapper = mapper;
+            _log = SingletonLogger.Instance;
         }
 
         public async Task<int> Handle(CreateCommentCommand command, CancellationToken cancellationToken)
