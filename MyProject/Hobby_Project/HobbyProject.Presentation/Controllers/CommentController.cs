@@ -24,10 +24,9 @@ namespace HobbyProject.Presentation.Controllers
         [HttpGet("{hobbyId}")]
         public async Task<IActionResult> GetCommentsByHobbyId(int hobbyId)
         {
-            var command = new GetCommentsByHobbyIdQuery
-            {
-                HobbyId = hobbyId
-            };
+            if (hobbyId == 0) return BadRequest("Id not provided!");
+
+            var command = new GetCommentsByHobbyIdQuery { HobbyId = hobbyId };
 
             var result = await _mediator.Send(command);
             return Ok(result);
