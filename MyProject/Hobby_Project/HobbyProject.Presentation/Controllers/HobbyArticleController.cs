@@ -33,6 +33,8 @@ namespace HobbyProject.Presentation.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
+            if (id == 0) return BadRequest("Id not provided!");
+
             var query = new GetHobbyByIdQuery { Id = id };
             var result = await _mediator.Send(query);
             return Ok(result);
@@ -42,6 +44,8 @@ namespace HobbyProject.Presentation.Controllers
         [HttpGet("{username}")]
         public async Task<IActionResult> GetByUsername(string username)
         {
+            if(string.IsNullOrWhiteSpace(username)) return BadRequest("Request body cannot be null!");
+
             var query = new GetHobbiesByUsernameQuery { Username = username };
             var result = await _mediator.Send(query);
             return Ok(result);
@@ -49,16 +53,20 @@ namespace HobbyProject.Presentation.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<IActionResult> AddHobbyArticle([FromBody] CreateHobbyCommand command)
+        public async Task<IActionResult> AddHobbyArticle(CreateHobbyCommand command)
         {
+            if (command == null) return BadRequest("Request body cannot be null!");
+
             var result = await _mediator.Send(command);
             return Ok(result);
         }
 
         [Authorize]
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateHobbyArticle([FromBody] UpdateHobbyCommand command)
+        public async Task<IActionResult> UpdateHobbyArticle(UpdateHobbyCommand command)
         {
+            if (command == null) return BadRequest("Request body cannot be null!");
+
             var result = await _mediator.Send(command);
             return Ok(result);
         }
@@ -67,6 +75,8 @@ namespace HobbyProject.Presentation.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteArticle(int id)
         {
+            if (id == 0) return BadRequest("Id not provided!");
+
             var command = new DeleteHobbyCommand { Id = id };
             await _mediator.Send(command);
             return NoContent();

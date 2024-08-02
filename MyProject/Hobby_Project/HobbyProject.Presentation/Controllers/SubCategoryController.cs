@@ -32,6 +32,8 @@ namespace HobbyProject.Presentation.Controllers
         [Route("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
+            if (id == 0) return BadRequest("Id not provided!");
+
             var query = new GetSubCategoryQuery { Id = id };
             var result = await _mediator.Send(query);
             return Ok(result);
@@ -39,8 +41,10 @@ namespace HobbyProject.Presentation.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost]
-        public async Task<IActionResult> AddSubCategory([FromBody] CreateSubCategoryCommand command)
+        public async Task<IActionResult> AddSubCategory(CreateSubCategoryCommand command)
         {
+            if (command == null) return BadRequest("Request body cannot be null!");
+
             var result = await _mediator.Send(command);
             return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
         }
@@ -49,6 +53,8 @@ namespace HobbyProject.Presentation.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteSubCategory(int id)
         {
+            if (id == 0) return BadRequest("Id not provided!");
+
             var command = new DeleteSubCategoryCommand { Id = id };
             await _mediator.Send(command);
             return NoContent();

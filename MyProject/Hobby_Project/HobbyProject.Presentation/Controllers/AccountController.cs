@@ -36,7 +36,7 @@ namespace HobbyProject.Presentation.Controllers
         }
 
         [HttpPost("User")]
-        public async Task<ActionResult> RegisterUser([FromBody] CreateUserCommand command)
+        public async Task<ActionResult> RegisterUser(CreateUserCommand command)
         {
             if (command == null) return BadRequest("Request body cannot be null!");
 
@@ -48,7 +48,7 @@ namespace HobbyProject.Presentation.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPost("Admin")]
-        public async Task<ActionResult> RegisterAdmin([FromBody] CreateUserCommand command)
+        public async Task<ActionResult> RegisterAdmin(CreateUserCommand command)
         {
             if (command == null) return BadRequest("Request body cannot be null!");
 
@@ -59,7 +59,7 @@ namespace HobbyProject.Presentation.Controllers
         }
 
         [HttpPost("Authenticate")]
-        public async Task<ActionResult> Authenticate([FromBody] LoginUserCommand command)
+        public async Task<ActionResult> Authenticate(LoginUserCommand command)
         {
             if (command == null) return BadRequest("Request body cannot be null!");
 

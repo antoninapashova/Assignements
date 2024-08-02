@@ -1,4 +1,4 @@
-﻿using HobbyProject.Application.CommentReply.Commands;
+﻿using HobbyProject.Application.CommentReply.Commands.Create;
 using HobbyProject.Application.CommentReply.Commands.Delete;
 using HobbyProject.Application.CommentReply.Queries.GetRepliesByCommentId;
 using MediatR;
@@ -32,6 +32,8 @@ namespace HobbyProject.Presentation.Controllers
         [HttpGet("{commentId}")]
         public async Task<ActionResult> GetByCommentId(int commentId)
         {
+            if (commentId == 0) return BadRequest("Id not provided!");
+
             var query = new GetRepliesByCommentIdListQuery { CommentId = commentId };
             var result = await _mediator.Send(query);
             return Ok(result);

@@ -37,6 +37,7 @@ namespace HobbyProject.Presentation.Controllers
         public async Task<IActionResult> AddComment(CreateCommentCommand command)
         {
             if (command == null) return BadRequest("Command can not be null!");
+
             var result = await _mediator.Send(command);
             return Ok(result);
         }
