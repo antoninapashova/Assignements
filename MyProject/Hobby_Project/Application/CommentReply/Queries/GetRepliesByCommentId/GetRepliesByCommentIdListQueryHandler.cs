@@ -23,9 +23,9 @@ namespace HobbyProject.Application.CommentReply.Queries.GetRepliesByCommentId
             try
             {
                 var replies = _unitOfWork.ReplyRepository.GetAllRepliesByCommentId(request.CommentId);
-                var replyListVms = _mapper.Map<List<ReplyDto>>(replies);
+                var replyListVms = _mapper.Map<IList<ReplyDto>>(replies);
 
-                return replyListVms.ToList();
+                return replyListVms;
             }
             catch (Exception e)
             {

@@ -23,10 +23,8 @@ namespace HobbyProject.Application.Hobby.Queries.GetHobbiesByUsername
         {
             try
             {
-                if (request == null) throw new NullReferenceException("Hobby by Id query is null");
-
-                var result = await _unitOfWork.HobbyArticleRepository.GetHobbyArticlesByUsername(request.Username);
-                return _mapper.Map<List<HobbyDto>>(result);
+                var result = _unitOfWork.HobbyArticleRepository.GetHobbyArticlesByUsername(request.Username);
+                return _mapper.Map<IList<HobbyDto>>(result);
             }
             catch (Exception e)
             {
