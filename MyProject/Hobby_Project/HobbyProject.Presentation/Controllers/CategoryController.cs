@@ -59,6 +59,8 @@ namespace HobbyProject.Presentation.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteCategory(int id)
         {
+            if (id == 0) return BadRequest("Id not found!");
+
             var command = new DeleteCategoryCommand { Id = id };
             var result = await _mediator.Send(command);
             return Ok(result);

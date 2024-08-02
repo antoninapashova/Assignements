@@ -19,7 +19,8 @@ namespace Application.Categories.Commands.Delete
         {
             try
             {
-               if (command == null) throw new NullReferenceException("Delete category command is null");
+                var category = await _unitOfWork.CategoryRepository.GetByIdAsync(command.Id);
+                if (category == null) throw new NullReferenceException("Category not found!");
 
                 var category = _unitOfWork.CategoryRepository.FindById(command.Id);
                 if(category == null) throw new NullReferenceException("Category not found1");
