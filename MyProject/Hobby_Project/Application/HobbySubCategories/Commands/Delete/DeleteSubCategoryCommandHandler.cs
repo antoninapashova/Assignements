@@ -18,7 +18,9 @@ namespace Application.HobbySubCategories.Commands.Delete
         {
             try
             {
-                if (command == null) throw new NullReferenceException("Delete sub category command is null!");
+                var subCategory = await _unitOfWork.SubCategoryRepository.GetByIdAsync(command.Id);
+
+                if (subCategory == null) throw new NullReferenceException($"SubCategory with id: {command.Id} does not exist!");
 
                 await _unitOfWork.SubCategoryRepository.DeleteAsync(command.Id);
                 await _unitOfWork.Save();
