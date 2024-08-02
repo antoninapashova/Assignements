@@ -39,8 +39,11 @@ namespace HobbyProject.Presentation.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteReply(int id)
         {
+            if (id == 0) return BadRequest("Id not provided!");
+
             var command = new DeleteReplyCommand { Id = id };
             var result = await _mediator.Send(command);
+
             return Ok(result);
         }
     }

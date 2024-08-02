@@ -19,7 +19,7 @@ namespace HobbyProject.Application.CommentReply.Commands.Delete
         {
             try
             {
-                if (command == null) throw new NullReferenceException("Delete reply command is null");
+                var reply = await _unitOfWork.ReplyRepository.GetByIdAsync(command.Id);
 
                 await _unitOfWork.ReplyRepository.DeleteAsync(command.Id);
                 await _unitOfWork.Save();
