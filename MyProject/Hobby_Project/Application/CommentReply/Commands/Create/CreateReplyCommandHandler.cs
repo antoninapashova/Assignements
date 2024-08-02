@@ -4,7 +4,7 @@ using AutoMapper;
 using HobbyProject.Domain.Entity;
 using MediatR;
 
-namespace HobbyProject.Application.CommentReply.Commands
+namespace HobbyProject.Application.CommentReply.Commands.Create
 {
     public class CreateReplyCommandHandler : IRequestHandler<CreateReplyCommand, Reply>
     {
