@@ -49,6 +49,8 @@ namespace HobbyProject.Presentation.Controllers
         [HttpPost]
         public async Task<ActionResult> AddCategory([FromBody] CreateCategoryCommand command)
         {
+            if (command == null) return BadRequest("Category command is null!");
+
             var result = await _mediator.Send(command);
             return CreatedAtAction(nameof(GetById), new { id = result.Id }, result);
         }
