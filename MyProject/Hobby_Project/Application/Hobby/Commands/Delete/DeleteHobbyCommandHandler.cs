@@ -1,6 +1,7 @@
 ﻿using Application.Logger;
 using Application.Repositories;
 using MediatR;
+using MimeKit.Encodings;
 
 namespace Application.Hobby.Commands.Delete
 {
@@ -19,8 +20,8 @@ namespace Application.Hobby.Commands.Delete
         {
             try
             {
-                if (command == null) 
-                    throw new NullReferenceException("Delete hobby command is null");
+                var hobby = await _unitOfWork.HobbyArticleRepository.GetByIdAsync(command.Id);
+                if (hobby == null) throw new NullReferenceException($"Hobby with id: {command.Id} does not exist!");
 
                 _unitOfWork.HobbyArticleRepository.Delete(hobby);
                 await _unitOfWork.Save();
