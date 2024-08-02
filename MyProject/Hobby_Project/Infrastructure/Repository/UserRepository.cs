@@ -20,9 +20,8 @@ namespace HobbyProject.Infrastructure.Repository
             return entity;
         }
 
-        public async Task DeleteAsync(int id)
+        public void Delete(UserEntity user)
         {
-            UserEntity user = await FindById(id);
            _context.Remove(user);
         }
 

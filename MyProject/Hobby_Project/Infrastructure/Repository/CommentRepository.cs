@@ -20,9 +20,8 @@ namespace Infrastructure.Repository
             return entity;
         }
 
-        public async Task DeleteAsync(int id)
+        public void Delete(Comment comment)
         {
-            var comment = await FindById(id);
             _context.Comments.Remove(comment);
         } 
 

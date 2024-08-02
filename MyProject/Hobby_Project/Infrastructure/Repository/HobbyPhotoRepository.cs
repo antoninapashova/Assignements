@@ -20,17 +20,17 @@ namespace Infrastructure.Repository
             return entity;
         }
 
-        public async Task DeleteAsync(int id)
-        {
-            var hobbyPhoto = await FindById(id);
-            _context.Photos.Remove(hobbyPhoto);
-        }
-
         public async Task<Photo> GetByIdAsync(int id)
         {
             var hobbyPhoto = await FindById(id);
             return  hobbyPhoto;
         }
+
+        public void Delete(Photo entity)
+        {
+            _context.Photos.Remove(entity);
+        }
+
         public async Task<Photo> Update(Photo entity)
         {
             await FindById(entity.Id);

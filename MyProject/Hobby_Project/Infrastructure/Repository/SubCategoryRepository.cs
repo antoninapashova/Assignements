@@ -20,10 +20,9 @@ namespace Infrastructure.Repository
             return entity;
         }
 
-        public async Task DeleteAsync(int id)
+        public void Delete(SubCategory subCategory)
         {
-             SubCategory hobbySubCategory = await FindById(id);
-             _context.SubCategories.Remove(hobbySubCategory);
+             _context.SubCategories.Remove(subCategory);
         }
 
         public async Task<IEnumerable<SubCategory>> GetAllEntitiesAsync()

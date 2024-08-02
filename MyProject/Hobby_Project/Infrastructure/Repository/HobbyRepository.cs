@@ -20,11 +20,9 @@ namespace Infrastructure.Repository
              return entity;
         }
 
-        public async Task DeleteAsync(int id)
+        public void Delete(HobbyEntity hobbyEntity)
         {
-            HobbyEntity articleForDeleting = await FindById(id);
-
-            _context.HobbyEntities.Remove(articleForDeleting);
+            _context.HobbyEntities.Remove(hobbyEntity);
         }
 
         public async Task<IEnumerable<HobbyEntity>> GetHobbyArticlesByUserId(int id)

@@ -20,10 +20,9 @@ namespace Infrastructure.Repository
             return entity;
         }
 
-        public async Task DeleteAsync(int id)
+        public void Delete(Tag entity)
         {
-             Tag tagForDeletion = await FindById(id);
-             _context.Tags.Remove(tagForDeletion);
+            _context.Tags.Remove(entity);
         }
 
         public async Task<IEnumerable<Tag>> GetAllEntitiesAsync()
