@@ -22,9 +22,9 @@ export class HobbyDialogService {
       photos: photos,
       comments: comments
     };
+
     dialogConfig.minWidth = 300;
     dialogConfig.minHeight = 300
-
     const dialogRef = this.dialog.open(HobbyCardDialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {

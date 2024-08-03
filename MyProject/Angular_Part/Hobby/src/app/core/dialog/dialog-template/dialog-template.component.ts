@@ -7,7 +7,6 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./dialog-template.component.css']
 })
 export class DialogTemplateComponent {
-
   modalTitle: string;
   modalMessage: string;
   modalType: ModalType = ModalType.INFO;

@@ -13,7 +13,6 @@ import { IUser } from 'src/app/shared/interfaces/user';
   styleUrls: ['./comments-list.component.css']
 })
 export class CommentsListComponent {
-
   replies: IComment[] = [];
   activeComment: ActiveCommentInterface | null = null;
   @Input() comments: IComment[] = [];
@@ -32,7 +31,7 @@ export class CommentsListComponent {
     }
 
     this.commentService.createComment(comment).subscribe({
-      next: (res) => {
+      next: () => {
         this.comments = [...this.comments, comment];
         this.activeComment = null;
       },
@@ -44,7 +43,6 @@ export class CommentsListComponent {
   }
 
   editComment(commentContent: any) {
-    let user: IUser = this.dataSharing.loggedInUser;
     let comment: any = {
       commentContent: commentContent,
     };
@@ -64,7 +62,7 @@ export class CommentsListComponent {
 
   deleteComment(id: any) {
     this.commentService.deleteComment(id).subscribe({
-      next: (res) => {
+      next: () => {
         let obj = { title: 'Comment', message: "Comment is deleted successfull", type: ModalType.INFO };
         this.matDialog.open(DialogTemplateComponent, { data: obj });
         this.comments = this.comments.filter((comment) => comment.id != id);

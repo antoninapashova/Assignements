@@ -15,7 +15,6 @@ import { HobbyCardDialogComponent } from '../hobby-card-dialog/hobby-card-dialog
   styleUrls: ['./hobby-card.component.css']
 })
 export class HobbyCardComponent implements OnInit {
-
   currentUsername!: string | undefined;
   role!: string;
   @Output() comments?: IComment[];
@@ -23,7 +22,7 @@ export class HobbyCardComponent implements OnInit {
   @Input() hobbies?: IHobby[];
 
   constructor(private hobbyService: HobbyService, private userService: UserService,
-    private matDialog: MatDialog, private userStore: UserStoreService) { }
+    private matDialog: MatDialog, private userStore: UserStoreService) {}
 
   ngOnInit(): void {
     this.userStore.getFullNameFromStore().subscribe((val: any) => {
@@ -42,10 +41,16 @@ export class HobbyCardComponent implements OnInit {
     this.matDialog.open(HobbyCardDialogComponent, { data: obj });
   }
 
+  likeCard(id: any){
+    this.hobbyService.likeHobby(id).subscribe({
+     // TO DO
+    });
+  }
+
   deleteArticle(id: any, username: any) {
     if (this.currentUsername == username || this.role == 'Admin') {
       this.hobbyService.deleteHobby(id).subscribe({
-        next: (res) => {
+        next: () => {
           let obj = { title: 'Hobby', message: 'Hobby is deleted successfull!', type: ModalType.INFO }
           this.matDialog.open(DialogTemplateComponent, { data: obj });
         },

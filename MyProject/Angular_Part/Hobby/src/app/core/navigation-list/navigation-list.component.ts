@@ -11,7 +11,6 @@ import { UserStoreService } from 'src/app/user/user-store.service';
   styleUrls: ['./navigation-list.component.css']
 })
 export class NavigationListComponent implements OnInit, OnDestroy {
-
   isAuthenticated!: boolean;
   fullName: string | undefined;
   role!: string;

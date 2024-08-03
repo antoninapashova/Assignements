@@ -17,7 +17,6 @@ import { IUser } from 'src/app/shared/interfaces/user';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
   invalidLogin?: boolean;
   hide: boolean = true;
   user!: IUser;

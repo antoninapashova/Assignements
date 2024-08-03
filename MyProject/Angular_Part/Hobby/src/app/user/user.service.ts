@@ -12,7 +12,6 @@ import { TokenApiModel } from '../shared/interfaces/token-api';
     providedIn: 'root',
 })
 export class UserService {
-
     private userPayload: any;
     baseUrl = environment.baseUrl;
 

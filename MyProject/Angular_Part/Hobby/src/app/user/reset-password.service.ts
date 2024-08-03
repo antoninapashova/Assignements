@@ -9,7 +9,6 @@ import { ApiPaths } from './../shared/urls/api-paths';
    providedIn: 'root'
 })
 export class ResetPasswordService {
-
    baseUrl = environment.baseUrl;
 
    constructor(private _httpClient: HttpClient) { }

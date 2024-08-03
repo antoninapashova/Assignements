@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { CommentFormComponent } from './comment-form.component';
 
 describe('CommentFormComponent', () => {

@@ -1,6 +1,5 @@
 <div class="comment-form-title">Post comment</div>
 <app-comment-form submitLabel="Write" (handleSubmit)="addComment({commentContent: $event, parentId: null})"></app-comment-form>
-
 <div class="comments-container" (click)="getComments()">
   <h3>Comments</h3>
   <app-comment 

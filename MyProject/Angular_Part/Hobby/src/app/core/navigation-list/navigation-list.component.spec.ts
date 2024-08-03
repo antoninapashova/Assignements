@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { NavigationListComponent } from './navigation-list.component';
 
 describe('NavigationListComponent', () => {

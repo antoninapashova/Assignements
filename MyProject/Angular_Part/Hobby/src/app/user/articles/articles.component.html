@@ -5,7 +5,6 @@
   <mat-card-content class="content">
     <p><strong>{{h.username}}</strong></p>
     <p> <strong>{{h.title}}</strong> </p>
-
     <p>{{h.description}}</p>
     <button (click)="deleteArticle(h.id, h.username)">Delete</button>
     <div class="example-action-buttons">
@@ -13,7 +12,6 @@
       <button mat-button (click)="accordion.closeAll()">Hide</button>
     </div>
     <mat-devider></mat-devider>
-
     <mat-accordion class="example-headers-align" multi>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -26,5 +24,4 @@
       </mat-expansion-panel>
     </mat-accordion>
   </mat-card-content>
-
 </mat-card>

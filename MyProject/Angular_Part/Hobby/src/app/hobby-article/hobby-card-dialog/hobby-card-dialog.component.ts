@@ -14,7 +14,6 @@ import { UserService } from 'src/app/user/user.service';
   styleUrls: ['./hobby-card-dialog.component.css']
 })
 export class HobbyCardDialogComponent {
-
   modalTitle: string;
   modalDescription: string;
   modalUsername: string;

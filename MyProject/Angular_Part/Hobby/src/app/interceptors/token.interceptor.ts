@@ -48,7 +48,7 @@ export class TokenInterceptor implements HttpInterceptor {
           });
           return next.handle(req);
         }),
-        catchError((err) => {
+        catchError(() => {
           return throwError(() => {
             this.matDialog.open(DialogTemplateComponent, { data: { title: 'Warning', message: 'Token is expired, please sign in again', type: ModalType.INFO } });
             this.router.navigate(['login'])

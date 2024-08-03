@@ -19,7 +19,6 @@ import { DialogTemplateComponent, ModalType } from 'src/app/core/dialog/dialog-t
   styleUrls: ['./add-hobby.component.css']
 })
 export class AddHobbyComponent implements OnInit {
-
   createArticleForm: FormGroup = new FormGroup({});
   photos: File[] = [];
   subcategories: ISubCategory[] = [];
@@ -31,7 +30,7 @@ export class AddHobbyComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private hobbyService: HobbyService,
     private subCategoryService: SubCategoryService, private tagService: TagService,
     private uploadService: UploadService, private matDialog: MatDialog,
-    private datasharingService: DataSharingService, private router: Router) { }
+    private datasharingService: DataSharingService, private router: Router) {}
 
   ngOnInit(): void {
     this.createArticleForm = this.formBuilder.group({
@@ -55,7 +54,6 @@ export class AddHobbyComponent implements OnInit {
 
     this.uploadService.uploadImage(data).subscribe({
       next: (res) => {
-
         let photoMapped: IPhoto = {
           publicId: res.public_id,
           url: res.url,
@@ -68,7 +66,7 @@ export class AddHobbyComponent implements OnInit {
         this.hobby.userId = this.datasharingService.loggedInUser.userId;
 
         this.hobbyService.addHobby(this.hobby).subscribe({
-          next: (res) => {
+          next: () => {
             let obj = { title: 'Create article', message: "Article is created successfull!", type: ModalType.WARN }
             this.matDialog.open(DialogTemplateComponent, { data: obj });
             this.router.navigate(['home'])
@@ -78,7 +76,6 @@ export class AddHobbyComponent implements OnInit {
             this.matDialog.open(DialogTemplateComponent, { data: obj })
           }
         });
-
       },
       error: (err) => {
         let obj = { title: 'Upload image', message: err, type: ModalType.WARN }

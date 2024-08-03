@@ -13,7 +13,6 @@ import { DialogTemplateComponent, ModalType } from 'src/app/core/dialog/dialog-t
   styleUrls: ['./reset-password.component.css']
 })
 export class ResetPasswordComponent implements OnInit {
-
   resetPasswordForm!: FormGroup;
   emailToReset!: string;
   emailToken!: string;
@@ -35,8 +34,6 @@ export class ResetPasswordComponent implements OnInit {
       let uriToken = val['code'];
 
       this.emailToken = uriToken.replace(/ /g, '+');
-      console.log(this.emailToken);
-      console.log(this.emailToReset);
     })
   }
 
@@ -49,14 +46,12 @@ export class ResetPasswordComponent implements OnInit {
 
       this.resetService.resetPassword(this.resetPasswordObj)
         .subscribe({
-          next: (res) => {
-            console.log(res);
+          next: () => {
             let obj = { title: 'Reset password', message: 'Reset password is successfully', type: ModalType.INFO };
             this.matDialog.open(DialogTemplateComponent, { data: obj });
             this.router.navigate(['/login']);
           },
           error: (err) => {
-            console.log(err);
             let obj = { title: 'Reset password', message: err, type: ModalType.INFO };
             this.matDialog.open(DialogTemplateComponent, { data: obj });
           }

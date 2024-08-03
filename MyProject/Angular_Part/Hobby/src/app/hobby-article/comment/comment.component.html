@@ -6,14 +6,12 @@
     </div>
     <div class="comment-text">{{ comment.commentContent }}</div>
   </div>
-
   <div class="comment-actions">
     <button mat-button *ngIf="canReply">Reply</button>
     <button *ngIf="canEdit" class="comment-action"
       (click)="setActiveComment.emit({id: comment.id, type: activeCommentType.editing})">Edit</button>
     <button mat-button *ngIf="canDelete" (click)="deleteComment.emit(comment.id)">Delete</button>
   </div>
-
   <app-comment-form *ngIf="isReplying()" submitLabel="Reply" ,
     (handleSubmit)="addComment.emit({commentContent: $event, parentId: replyId})" ,
     (handleCancel)="setActiveComment.emit(null)"></app-comment-form>

@@ -11,29 +11,31 @@ import { MatAccordion } from '@angular/material/expansion';
   providers: [UserService]
 })
 export class ArticlesComponent implements OnInit {
-
   activeAccount: string | undefined;
   hobbies: IHobby[] = [];
   userHobbies: IHobby[] = [];
+
   constructor(private hobbyService: HobbyService){}
 
   @ViewChild(MatAccordion) accordion!: MatAccordion;
 
   ngOnInit(): void {
-       // this.activeAccount = this.authService.instance.getActiveAccount()?.name; 
-        //console.log(this.activeAccount);
+    //TO DO:
+        //this.activeAccount = this.authService.instance.getActiveAccount()?.name; 
+        //to provide active account from jwt
         this.hobbyService.getAll().subscribe(res=> {
             this.hobbies = res;
-            this.userHobbies =this.hobbies.filter(x=>x.username==this.activeAccount);
+            this.userHobbies = this.hobbies.filter(x=>x.username == this.activeAccount);
         });
    }     
 
 
   deleteArticle(id: any, username: any){
-    /*
-    if(this.activeAccount==username || this.authService.instance.getActiveAccount()?.idTokenClaims?.roles){
-      this.hobbyService.deleteHobby(id).subscribe(res=>console.log(res));
+    //TO DO:
+    const role = false 
+    //get role from jwt --> this.authService.instance.getActiveAccount()?.idTokenClaims?.roles
+    if(this.activeAccount == username || role ){
+      this.hobbyService.deleteHobby(id).subscribe();
     }
-    */
- }
+  }
 }

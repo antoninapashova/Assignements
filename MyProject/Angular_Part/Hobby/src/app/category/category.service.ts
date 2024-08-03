@@ -10,10 +10,9 @@ import { Observable } from 'rxjs';
     providedIn: 'root',
 })
 export class CategoryService {
+    baseUrl = environment.baseUrl;
 
     constructor(private httpClient: HttpClient) { }
-
-    baseUrl = environment.baseUrl;
 
     getCategories(): Observable<any> {
         return this.httpClient.get<any>(`${this.baseUrl}${ApiPaths.Category}/All`);

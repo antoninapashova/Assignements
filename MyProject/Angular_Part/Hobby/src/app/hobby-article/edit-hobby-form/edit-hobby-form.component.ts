@@ -18,7 +18,6 @@ import { UploadService } from '../services/upload-service.service';
   styleUrls: ['./edit-hobby-form.component.css']
 })
 export class EditHobbyFormComponent implements OnInit {
-
   hobby!: IHobby;
   photos: File[] = [];
   private httpClient: HttpClient;
@@ -33,7 +32,6 @@ export class EditHobbyFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
     this.activeRoute.paramMap.subscribe({
       next: (params) => {
         const id = params.get('id');
@@ -48,7 +46,6 @@ export class EditHobbyFormComponent implements OnInit {
                   })).forEach(f => this.photos.push(f));
               });
               this.getSubcategories();
-              console.log(this.hobby);
             },
             error: (err) => {
               let obj = { title: 'Edit article', message: err, type: ModalType.WARN }
@@ -70,12 +67,11 @@ export class EditHobbyFormComponent implements OnInit {
       subcategory: [null, [Validators.required]],
       photos: [null]
     });
-
   }
 
   onSubmit(form: FormGroup) {
     this.hobbyService.updateHobby(this.hobby.id, this.hobby).subscribe({
-      next: (res) => {
+      next: () => {
         let obj = { title: 'Edit article', message: "Article is changed successfull!", type: ModalType.WARN }
         this.matDialog.open(DialogTemplateComponent, { data: obj });
         this.router.navigate(['home']);

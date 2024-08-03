@@ -10,7 +10,6 @@ import { DialogTemplateComponent, ModalType } from 'src/app/core/dialog/dialog-t
   styleUrls: ['./forget-password.component.css']
 })
 export class ForgetPasswordComponent implements OnInit{
-
   resetPasswordForm: FormGroup = new FormGroup({});
 
   constructor(private formBuilder: FormBuilder, public dialogRef: MatDialogRef<ForgetPasswordComponent>, private matDialog: MatDialog,
@@ -24,15 +23,13 @@ export class ForgetPasswordComponent implements OnInit{
 
   onSubmit (form: FormGroup) {
     if(form.valid){
-      console.log(form.value.email);
       this.resetPasswordService.sendResetPassworLink(form.value.email).subscribe({
-        next: (res)=>{
+        next: ()=>{
            let obj ={title: 'Send email', message: 'Email is send successfull!', type: ModalType.INFO}
            this.matDialog.open( DialogTemplateComponent, {data: obj});
            this.closeDialog();
         },
         error: (err)=>{
-          console.log(err);
           let obj ={title: 'Send email', message: err, type: ModalType.WARN}
           this.matDialog.open( DialogTemplateComponent, {data: obj});
           this.closeDialog();
@@ -44,5 +41,4 @@ export class ForgetPasswordComponent implements OnInit{
   closeDialog(){
     this.dialogRef.close({event:'Cancel'});
   }
-
 }

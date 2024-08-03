@@ -1,4 +1,3 @@
-import { IComment } from '../../shared/interfaces/comment';
 import { ApiPaths } from '../../shared/urls/api-paths';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
@@ -10,10 +9,9 @@ import { environment } from "../../shared/urls/base-url";
     providedIn: 'root',
 })
 export class HobbyService {
+    baseUrl = environment.baseUrl;
 
     constructor(private httpClient: HttpClient) { }
-
-    baseUrl = environment.baseUrl;
 
     getAll(): Observable<IHobby[]> {
         return this.httpClient.get<IHobby[]>(`${this.baseUrl}${ApiPaths.Hobby}/All`);
@@ -35,6 +33,10 @@ export class HobbyService {
 
     updateHobby(id: number, hobby: IHobby): Observable<IHobby> {
         return this.httpClient.put<IHobby>(`${this.baseUrl}${ApiPaths.Hobby}/${id}`, hobby);
+    }
+
+    likeHobby(id: number): Observable<any> {
+        return this.httpClient.patch(`${this.baseUrl}${ApiPaths.Hobby}/${id}`, null);
     }
 
     deleteHobby(id: number): Observable<IHobby> {

@@ -10,10 +10,9 @@ import { environment } from '../shared/urls/base-url';
     providedIn: 'root',
 })
 export class TagService {
+    baseUrl = environment.baseUrl;
 
     constructor(private httpClient : HttpClient){}
-
-    baseUrl = environment.baseUrl;
 
     getAll() : Observable<ITag[]>{
         return this.httpClient.get<ITag[]>(`${this.baseUrl}${ApiPaths.Tag}/All`);

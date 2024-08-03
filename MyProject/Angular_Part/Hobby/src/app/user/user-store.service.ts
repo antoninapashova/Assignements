@@ -5,7 +5,6 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class UserStoreService {
-
   private fullName = new BehaviorSubject<string>("");
   private role = new BehaviorSubject<string>("");
 

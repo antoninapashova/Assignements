@@ -13,9 +13,7 @@ import { DialogTemplateComponent, ModalType } from 'src/app/core/dialog/dialog-t
   styleUrls: ['./tag-list.component.css']
 })
 export class TagListComponent {
-
   displayedColumns: string[] = ['id', 'name', 'action'];
-
   tags: ITag[] = [];
   tag: ITag | undefined;
 
@@ -46,7 +44,7 @@ export class TagListComponent {
 
   addRowData(obj: any) {
     this.tagService.addTag({ name: obj.name }).subscribe({
-      next: (res) => {
+      next: () => {
         let obj = { title: 'Add tag', message: 'New tag is added successful', type: ModalType.INFO };
         this.dialog.open(DialogTemplateComponent, { data: obj });
         this.dataSharingService.isTagAdded.next(true);
@@ -56,6 +54,7 @@ export class TagListComponent {
         this.dialog.open(DialogTemplateComponent, { data: obj });
       }
     });
+    
     this.table.renderRows();
   }
 

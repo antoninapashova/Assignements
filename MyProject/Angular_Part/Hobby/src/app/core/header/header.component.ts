@@ -11,7 +11,6 @@ import { DataSharingService } from '../data-sharing.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit, OnDestroy {
-
   isAuthenticated!: boolean;
   fullName: string = "";
   username!: string;

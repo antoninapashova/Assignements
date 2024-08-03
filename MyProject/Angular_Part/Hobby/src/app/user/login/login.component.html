@@ -4,7 +4,6 @@
         <mat-card-title>Sign in</mat-card-title>
       </mat-card-header>
       <form class="example-form" [formGroup]="loginUserForm"  (ngSubmit)="onSubmit(loginUserForm)">
-        
         <mat-card-content>
           <mat-form-field class="example-full-width" appearance="outline">
            <input  matInput 
@@ -15,7 +14,6 @@
             <mat-error *ngIf="loginUserForm.controls['username'].errors?.['required']">Username is required</mat-error>
             <mat-error *ngIf="loginUserForm.controls['username'].errors?.['minlenght']">Username must be more than 3 characters</mat-error>
           </mat-form-field>
-
           <mat-form-field class="example-full-width" appearance="outline">
             <input matInput
             formControlName="password"

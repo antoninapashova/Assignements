@@ -2,7 +2,6 @@
   <div *ngIf="isAuthenticated">
     <!--<app-user-card [username]="username" [name] = "name"></app-user-card>-->
   </div>
-
   <mat-divider></mat-divider>
   <mat-nav-list>
     <a mat-list-item routerLink="/home" *ngIf="isAuthenticated && (role==='Admin' || role==='User')"

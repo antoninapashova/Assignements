@@ -15,7 +15,6 @@ import { DialogTemplateComponent, ModalType } from 'src/app/core/dialog/dialog-t
 })
 export class CategoryListComponent implements OnInit {
     displayedColumns: string[] = ['id', 'name','created-date', 'action'];
-
     categories: ICategory[] = [];
     subCategories: ISubCategory[] | undefined;
     category! : ICategory | undefined;  
@@ -37,34 +36,33 @@ export class CategoryListComponent implements OnInit {
    }
    
   openDialog(action: any, obj: any ) {
-  obj.action = action;
-  const dialogRef = this.dialog.open(AddCategoryComponent, {
-    width: '250px',
-    data:obj
-  });
+    obj.action = action;
+    const dialogRef = this.dialog.open(AddCategoryComponent, {
+      width: '250px',
+      data:obj
+    });
 
-  dialogRef.afterClosed().subscribe(result => {
-    if(result.event == 'Add'){
-      this.addRowData(result.data);
-    }else if(result.event == 'Delete'){
-      this.deleteRowData(result.data);
-    }
-  });
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.event == 'Add'){
+        this.addRowData(result.data);
+      }else if(result.event == 'Delete'){
+        this.deleteRowData(result.data);
+      }
+    });
 }
 
 addRowData(obj: any){
     this.categoryService.addCategory({name: obj.name}).subscribe({
-      next:(res)=>{
+      next:() => {
         let obj ={title: 'Add category', message: 'New category is added successful', type: ModalType.INFO}
-             this.dialog.open(DialogTemplateComponent, {data: obj})
-             this.dataSharingService.isCategoryAdded.next(true);
-             this.table.renderRows();
-        },
-        error:(err)=>{
-          console.log(err);
-          let obj ={title: 'Add category', message: err.message, type: ModalType.WARN}
-          this.dialog.open( DialogTemplateComponent, {data: obj})
-        }
+        this.dialog.open(DialogTemplateComponent, {data: obj});
+        this.dataSharingService.isCategoryAdded.next(true);
+        this.table.renderRows();
+      },
+      error:(err) => {
+        let obj ={title: 'Add category', message: err.message, type: ModalType.WARN};
+        this.dialog.open( DialogTemplateComponent, {data: obj});
+      }
     });
   }
 

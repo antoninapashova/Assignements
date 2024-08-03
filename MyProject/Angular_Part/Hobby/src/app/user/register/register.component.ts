@@ -12,7 +12,6 @@ import { DialogTemplateComponent, ModalType } from 'src/app/core/dialog/dialog-t
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-
   registerUserForm: FormGroup = new FormGroup({});
   isSuccessfull: boolean = false;
   constructor(private formBuilder: FormBuilder, private router: Router, private userService: UserService, private matDialog: MatDialog) { }
@@ -31,14 +30,13 @@ export class RegisterComponent implements OnInit {
   onSubmit(form: FormGroup) { 
     if(form.valid){
       this.userService.addUser(form.value).subscribe({
-          next: (res) => {
+          next: () => {
             let obj = { title: 'Sign up', message: 'Register is successful', type: ModalType.INFO };
             this.matDialog.open(DialogTemplateComponent, {data: obj});
             form.reset();
             this.router.navigate(['login']);
           },
           error: (err) => {
-            console.log(err);
             let obj = { title: 'Sign up', message: err, type: ModalType.WARN };
             form.reset();
             this.matDialog.open(DialogTemplateComponent, {data: obj});
