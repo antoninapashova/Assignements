@@ -2,3 +2,11 @@
     max-width: 80%;
     margin: auto;
 }
+
+.btn-delete {
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
