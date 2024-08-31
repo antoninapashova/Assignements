@@ -1,10 +1,10 @@
 .example-card {
-  width: 55rem;
-  height: 30rem;
+  width: 75rem;
+  height: 45rem;
   background-color: white;
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  justify-content: space-between;
   padding: 5px;
 }
 
@@ -19,14 +19,11 @@
   width: 70%;
 }
 
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-}
-
 .card-header {
   display: flex;
-  flex-direction: column;
-  gap: 5px;
+  flex-direction: row;
+  margin-bottom: 0.7rem;
+  justify-content: space-between;
 }
 
 .card-header mat-card-subtitle {
@@ -34,9 +31,16 @@
   font-size: medium;
 }
 
-.card-header mat-card-title {
+mat-card-title {
   font-weight: 500;
-  font-size: small;
+  font-size: medium;
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.actions {
+  display: block;
+  margin: 0.5rem auto;
 }
 
 .image {

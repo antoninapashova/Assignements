@@ -7,28 +7,31 @@
 
 .card-header {
   display: flex;
-  flex-direction: column;
-  gap: 5px;
+  flex-direction: row;
+  margin-bottom: 0.5rem;
+  justify-content: space-between;
 }
 
-.card-header mat-card-subtitle {
+.card-header mat-card-title {
   font-weight: 800;
   font-size: medium;
 }
 
-.card-header mat-card-title {
+.card-header mat-card-subtitle {
   font-weight: 500;
   font-size: small;
+}
+
+.actions {
+  display: block;
+}
+
+.comment-section-header:hover{
+  cursor: pointer;
 }
 
 .image {
   width: 100%;
   height: 50%;
-}
-
-.container {
-  font-size: 16px;
-  line-height: 16px;
-  height: 32px;
-  overflow: hidden;
+  background-size: cover;
 }

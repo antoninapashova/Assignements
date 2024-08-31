@@ -9,3 +9,7 @@ body {
 .comments-container{
     margin-top: 10px;
 }
+
+.header:hover{
+    cursor: pointer;
+}
