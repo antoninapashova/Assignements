@@ -11,7 +11,7 @@ namespace HobbyProject.Application.Validators
             RuleFor(hobby => hobby.Tags).NotNull()
                 .WithMessage("Tag list must contain at least one tag");
 
-            RuleFor(hobby => hobby.Description).NotEmpty().Length(5, 100)
+            RuleFor(hobby => hobby.Description).NotEmpty().Length(5, 10000)
                 .WithMessage("Description can not be empty and must be more than 5 characters");
         }
     }
