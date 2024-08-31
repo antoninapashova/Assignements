@@ -37,13 +37,18 @@ export class HobbyCardComponent implements OnInit {
   }
 
   openDialog(hobby: IHobby) {
-    let obj = { id: hobby.id, title: hobby.title, description: hobby.description, username: hobby.username, hobbyPhoto: hobby.hobbyPhoto, }
+    let obj = { id: hobby.id, title: hobby.title, description: hobby.description, username: hobby.username, hobbyPhoto: hobby.hobbyPhoto, likes: hobby.likes }
     this.matDialog.open(HobbyCardDialogComponent, { data: obj });
   }
 
-  likeCard(id: any){
-    this.hobbyService.likeHobby(id).subscribe({
-     // TO DO
+  likeArticle(id: any, hobby: IHobby){
+    let updatedHobby = {...hobby, likes: hobby.likes++}
+    this.hobbyService.updateHobby(id, updatedHobby).subscribe({
+      next: () => {},
+      error: (err) => {
+        let obj = { title: 'Hobby', message: err, type: ModalType.WARN }
+        this.matDialog.open(DialogTemplateComponent, { data: obj });
+      }
     });
   }
 

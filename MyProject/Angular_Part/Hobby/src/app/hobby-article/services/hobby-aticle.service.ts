@@ -35,10 +35,6 @@ export class HobbyService {
         return this.httpClient.put<IHobby>(`${this.baseUrl}${ApiPaths.Hobby}/${id}`, hobby);
     }
 
-    likeHobby(id: number): Observable<any> {
-        return this.httpClient.patch(`${this.baseUrl}${ApiPaths.Hobby}/${id}`, null);
-    }
-
     deleteHobby(id: number): Observable<IHobby> {
         return this.httpClient.delete<IHobby>(`${this.baseUrl}${ApiPaths.Hobby}/${id}`);
     }
