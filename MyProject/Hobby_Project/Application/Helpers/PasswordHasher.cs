@@ -29,7 +29,7 @@ namespace HobbyProject.Application.Helpers
         {
             var hashBytes = Convert.FromBase64String(base64Hash);
             var salt = new byte[SaltSize];
-            Array.Copy(hashBytes, 0, salt,0, SaltSize);
+            Array.Copy(hashBytes, 0, salt, 0, SaltSize);
             var key = new Rfc2898DeriveBytes(password, salt, Iterations);
 
             byte[] hash = key.GetBytes(HashSize);

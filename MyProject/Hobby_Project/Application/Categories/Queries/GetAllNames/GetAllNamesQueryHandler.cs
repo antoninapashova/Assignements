@@ -24,9 +24,7 @@ namespace HobbyProject.Application.Categories.Queries.GetAllNames
             try
             {
                var categories = _unitOfWork.CategoryRepository.GetAllNames();
-               var categoryListVms = _mapper.Map<IList<CategoryNameDto>>(categories);
-            
-               return categoryListVms.ToList();
+               return _mapper.Map<IList<CategoryNameDto>>(categories).ToList();
             }
             catch (Exception e)
             {

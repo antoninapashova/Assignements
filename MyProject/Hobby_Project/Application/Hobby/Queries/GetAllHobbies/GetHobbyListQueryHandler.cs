@@ -19,8 +19,7 @@ namespace HobbyProject.Application.Hobby.Queries.GetAllUsers
         public async Task<IEnumerable<HobbyDto>> Handle(GetHobbyListQuery request, CancellationToken cancellationToken)
         {
             var result = _unitOfWork.HobbyArticleRepository.GetAllEntities();
-            var hobbyListVms = _mapper.Map<List<HobbyDto>>(result.ToList());
-            return hobbyListVms;
+            return _mapper.Map<IList<HobbyDto>>(result.ToList());
         }
     }
 }

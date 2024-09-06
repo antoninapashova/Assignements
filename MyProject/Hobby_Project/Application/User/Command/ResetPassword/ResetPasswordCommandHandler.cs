@@ -1,6 +1,7 @@
 ﻿using Application.Logger;
 using Application.Repositories;
 using HobbyProject.Application.Helpers;
+using HobbyProject.Domain.Entity;
 using MediatR;
 
 namespace HobbyProject.Application.User.Command.ResetPassword
@@ -20,10 +21,9 @@ namespace HobbyProject.Application.User.Command.ResetPassword
         {
             try
             {
-               var newToken = command.EmailToken.Replace(" ", "+");
+                var newToken = command.EmailToken.Replace(" ", "+");
 
-               var user = await _unitOfWork.UserRepository.GetByEmail(command.Email);
-               if (user == null) throw new NullReferenceException("User with that email does not exists!");
+                var user = await IsUserExist(command.Email);
 
                 var token = user.ResetPasswordToken;
                 var emailTokenExpiry = user.ResetPasswordExpiry;
@@ -42,6 +42,12 @@ namespace HobbyProject.Application.User.Command.ResetPassword
                 _log.LogError(e.Message);
                 throw;
             }
+        }
+
+        private async Task<UserEntity> IsUserExist(string email)
+        {
+            var isExists = await _unitOfWork.UserRepository.GetByEmail(email);
+            return isExists ?? throw new NullReferenceException("User with that email already exists");
         }
     }
 }

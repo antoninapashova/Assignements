@@ -1,5 +1,6 @@
 ﻿using Application.Logger;
 using Application.Repositories;
+using Domain.Entity;
 using MediatR;
 namespace Application.Hobby.Commands.Delete
 {
@@ -18,8 +19,7 @@ namespace Application.Hobby.Commands.Delete
         {
             try
             {
-                var hobby = await _unitOfWork.HobbyArticleRepository.GetByIdAsync(command.Id);
-                if (hobby == null) throw new NullReferenceException($"Hobby with id: {command.Id} does not exist!");
+                var hobby = await IsExist(command.Id);
 
                 _unitOfWork.HobbyArticleRepository.Delete(hobby);
                 await _unitOfWork.Save();
@@ -31,6 +31,12 @@ namespace Application.Hobby.Commands.Delete
                 _log.LogError(e.Message);
                 throw;
             }
+        }
+
+        private async Task<HobbyEntity> IsExist(int id)
+        {
+            var hobby = await _unitOfWork.HobbyArticleRepository.GetByIdAsync(id);
+            return hobby ?? throw new NullReferenceException($"Hobby with id: {id} does not exist!");
         }
     }
 }

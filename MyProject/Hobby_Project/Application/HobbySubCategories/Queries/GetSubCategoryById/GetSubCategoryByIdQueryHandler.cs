@@ -1,6 +1,7 @@
 ﻿using Application.Logger;
 using Application.Repositories;
 using AutoMapper;
+using Hobby_Project;
 using MediatR;
 
 namespace HobbyProject.Application.HobbySubCategories.Queries.GetSubCategoryById
@@ -9,7 +10,7 @@ namespace HobbyProject.Application.HobbySubCategories.Queries.GetSubCategoryById
     {
         private readonly IMapper _mapper;
         private readonly IUnitOfWork _unitOfWork;
-        private ILog _logger;
+        private readonly ILog _logger;
 
         public GetSubCategoryByIdQueryHandler(IMapper mapper, IUnitOfWork unitOfWork)
         {
@@ -22,18 +23,20 @@ namespace HobbyProject.Application.HobbySubCategories.Queries.GetSubCategoryById
         {
             try
             {
-                if (request == null) throw new NullReferenceException("Get subCategory query is null!");
-
-                var subCategory = await _unitOfWork.SubCategoryRepository.GetByIdAsync(request.Id);
-                var hobbySubCategoryVm = _mapper.Map<HobbySubCategoryDto>(subCategory);
-
-                return hobbySubCategoryVm;
+                var subCategory = IsExist(request.Id);
+                return _mapper.Map<HobbySubCategoryDto>(subCategory);
             }
             catch(Exception e)
             {
                 _logger.LogError(e.Message);
                 throw;
             }
+        }
+
+        private async Task<SubCategory> IsExist(int id)
+        {
+            var subCategory = await _unitOfWork.SubCategoryRepository.GetByIdAsync(id);
+            return subCategory ?? throw new NullReferenceException($"Hobby with id: {id} does not exist!");
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using Application.Logger;
 using Application.Repositories;
+using Hobby_Project;
+using HobbyProject.Domain.Entity;
 using MediatR;
 
 namespace Application.HobbyTags.Commands.Delete
@@ -19,9 +21,7 @@ namespace Application.HobbyTags.Commands.Delete
         {
             try
             {
-               var tag = await _unitOfWork.TagRepository.GetByIdAsync(command.Id);
-
-               if (tag == null) throw new NullReferenceException($"Tag with id: {command.Id} does not exist!"); 
+                var tag = await IsExist(command.Id);
 
                _unitOfWork.TagRepository.Delete(tag);
                await _unitOfWork.Save();
@@ -33,6 +33,12 @@ namespace Application.HobbyTags.Commands.Delete
                 _log.LogError(e.Message);
                 throw;
             }
+        }
+
+        private async Task<Tag> IsExist(int id)
+        {
+            var tag = await _unitOfWork.TagRepository.GetByIdAsync(id);
+            return tag ?? throw new NullReferenceException($"Tag with id: {id} doesn't exist!");
         }
     }
 }

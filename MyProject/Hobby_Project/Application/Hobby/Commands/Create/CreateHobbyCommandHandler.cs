@@ -25,10 +25,7 @@ namespace Application.Hobby.Commands.Create
         {
             try
             {
-                if (command == null) throw new NullReferenceException("Create hobby command is null!");
-
-                var hobbyValidator = new HobbyArticleValidator();
-                await hobbyValidator.ValidateAndThrowAsync(command);
+                await ValidateCommand(command);
 
                 var hobby = _mapper.Map<HobbyEntity>(command);
                 await _unitOfWork.HobbyArticleRepository.Add(hobby);
@@ -40,8 +37,9 @@ namespace Application.Hobby.Commands.Create
                     var photo = _mapper.Map<Photo>(p);
                     photo.HobbyArticleId = hobby.Id;
                     await _unitOfWork.PhotoRepository.Add(photo);
-                    await _unitOfWork.Save();
                 }
+
+                await _unitOfWork.Save();
 
                 return hobby.Id;
             }
@@ -50,6 +48,12 @@ namespace Application.Hobby.Commands.Create
                 _log.LogError(e.Message);
                 throw;
             }
+        }
+
+        private static async Task ValidateCommand(CreateHobbyCommand command)
+        {
+            var hobbyValidator = new HobbyArticleValidator();
+            await hobbyValidator.ValidateAndThrowAsync(command);
         }
     }
 }

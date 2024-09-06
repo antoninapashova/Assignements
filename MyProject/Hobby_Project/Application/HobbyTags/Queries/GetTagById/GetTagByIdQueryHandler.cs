@@ -1,6 +1,7 @@
 ﻿using Application.Logger;
 using Application.Repositories;
 using AutoMapper;
+using HobbyProject.Domain.Entity;
 using MediatR;
 
 namespace HobbyProject.Application.HobbyTags.Queries.GetTagById
@@ -22,18 +23,20 @@ namespace HobbyProject.Application.HobbyTags.Queries.GetTagById
         {
             try
             {
-                if (request == null) throw new NullReferenceException("Get tag by id query is null!");
-
-                var tag = await _unitOfWork.TagRepository.GetByIdAsync(request.Id);
-                var result = _mapper.Map<TagDto>(tag);
-
-                return result;
+                var tag = await IsExist(request.Id);
+                return _mapper.Map<TagDto>(tag); 
             }
             catch (Exception e)
             {
                 _log.LogError(e.Message);
                 throw;
             }
+        }
+
+        private async Task<Tag> IsExist(int id)
+        {
+            var tag = await _unitOfWork.TagRepository.GetByIdAsync(id);
+            return tag ?? throw new NullReferenceException($"Tag with id: {id} doesn't exist!");
         }
     }
 }

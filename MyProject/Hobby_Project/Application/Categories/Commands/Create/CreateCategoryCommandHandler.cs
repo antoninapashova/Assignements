@@ -26,10 +26,8 @@ namespace Application.Categories.Commands.Create
             try
             {
                 await IsExist(command.Name);
-
-                var categoryValidator = new CategoryValidator();
-                await categoryValidator.ValidateAndThrowAsync(command);
-
+                await ValidateCommand(command);
+              
                 var hobbyCategory = _mapper.Map<Category>(command);
                 await _unitOfWork.CategoryRepository.Add(hobbyCategory);
                 await _unitOfWork.Save();
@@ -47,6 +45,12 @@ namespace Application.Categories.Commands.Create
         {
             bool isExist = await _unitOfWork.CategoryRepository.CheckCategoryExists(name);
             if (isExist) throw new NullReferenceException($"The category {name} already exists!");
+        }
+
+        private static async Task ValidateCommand(CreateCategoryCommand command)
+        {
+            var categoryValidator = new CategoryValidator();
+            await categoryValidator.ValidateAndThrowAsync(command);
         }
     }
 }

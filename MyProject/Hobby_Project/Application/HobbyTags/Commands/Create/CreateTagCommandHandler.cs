@@ -25,9 +25,9 @@ namespace Application.HobbyTags.Commands.Create
         {
             try
             {
-                var tagValidator = new TagValidator();
-                await tagValidator.ValidateAndThrowAsync(command);
                 await IsExist(command.Name);
+                await ValidateCommand(command);
+
                 var tag = _mapper.Map<Tag>(command);  
                 await _unitOfWork.TagRepository.Add(tag);
                 await _unitOfWork.Save();
@@ -45,6 +45,12 @@ namespace Application.HobbyTags.Commands.Create
         {
             bool isExist = await _unitOfWork.TagRepository.CheckTagExists(name);
             if (isExist) throw new NullReferenceException($"Tag {name} already exists!");
+        }
+
+        private static async Task ValidateCommand(CreateTagCommand command)
+        {
+            var tagValidator = new TagValidator();
+            await tagValidator.ValidateAndThrowAsync(command);
         }
     }
 }

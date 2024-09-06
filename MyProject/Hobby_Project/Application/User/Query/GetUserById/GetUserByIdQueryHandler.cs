@@ -3,6 +3,7 @@ using Application.Repositories;
 using AutoMapper;
 using HobbyProject.Application.User.Dto;
 using HobbyProject.Application.User.Query.GetById;
+using HobbyProject.Domain.Entity;
 using MediatR;
 
 namespace HobbyProject.Application.User.Query.GetUserById
@@ -24,9 +25,7 @@ namespace HobbyProject.Application.User.Query.GetUserById
         {
             try
             {
-                var user = await _unitOfWork.UserRepository.GetByIdAsync(request.Id);
-                if (user == null) throw new NullReferenceException($"User with ID: {request.Id} does not exist!");
-
+                var user = await IsExist(request.Id);
                 return _mapper.Map<UserDto>(user);
             }
             catch (Exception e)
@@ -34,6 +33,12 @@ namespace HobbyProject.Application.User.Query.GetUserById
                 _log.LogError(e.Message);
                 throw;
             }
+        }
+
+        private async Task<UserEntity> IsExist(int id)
+        {
+            var user = await _unitOfWork.UserRepository.GetByIdAsync(id);
+            return user ?? throw new NullReferenceException($"User with ID: {id} does not exist!");
         }
     }
 }

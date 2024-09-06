@@ -1,5 +1,6 @@
 ﻿using Application.Logger;
 using Application.Repositories;
+using Hobby_Project;
 using MediatR;
 
 namespace Application.Categories.Commands.Delete
@@ -19,8 +20,7 @@ namespace Application.Categories.Commands.Delete
         {
             try
             {
-                var category = await _unitOfWork.CategoryRepository.GetByIdAsync(command.Id);
-                if (category == null) throw new NullReferenceException("Category not found!");
+                var category = await IsExist(command.Id);
 
                 _unitOfWork.CategoryRepository.Delete(category);
                 await _unitOfWork.Save();
@@ -32,6 +32,12 @@ namespace Application.Categories.Commands.Delete
                 _log.LogError(e.Message);
                 throw;
             }
+        }
+
+        private async Task<Category> IsExist(int id)
+        {
+            var category = await _unitOfWork.CategoryRepository.GetByIdAsync(id);
+            return category ?? throw new NullReferenceException("Category not found!");
         }
     }
 }

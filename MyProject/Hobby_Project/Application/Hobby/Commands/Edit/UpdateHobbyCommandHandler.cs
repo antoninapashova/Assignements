@@ -23,8 +23,6 @@ namespace Application.Hobby.Commands.Edit
         {
             try
             {
-                if (command == null) throw new NullReferenceException("Edit hobby command is null");
-
                 var hobbyArticle = _mapper.Map<HobbyEntity>(command);
                 _unitOfWork.HobbyArticleRepository.Update(hobbyArticle);
                 await _unitOfWork.Save();

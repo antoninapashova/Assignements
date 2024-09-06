@@ -1,6 +1,7 @@
 ﻿using Application.Logger;
 using Application.Repositories;
 using AutoMapper;
+using Hobby_Project;
 using HobbyProject.Application.Categories.Dto;
 using MediatR;
 
@@ -23,9 +24,7 @@ namespace HobbyProject.Application.Categories.Queries.GetCategoryById
         {
             try
             {
-                var category = await _unitOfWork.CategoryRepository.GetByIdAsync(request.Id);
-                if (category == null) throw new NullReferenceException("Category not found!");
-
+                var category = await IsExist(request.Id);
                 category.CreatedDate.ToString("MM/dd/yyyy");
 
                 return _mapper.Map<CategoryDto>(category);
@@ -35,6 +34,12 @@ namespace HobbyProject.Application.Categories.Queries.GetCategoryById
                 _log.LogError(e.Message);
                 throw;
             }
+        }
+
+        private async Task<Category> IsExist(int id)
+        {
+            var category = await _unitOfWork.CategoryRepository.GetByIdAsync(id);
+            return category ?? throw new NullReferenceException("Category not found!");
         }
     }
 }

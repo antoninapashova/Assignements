@@ -1,5 +1,6 @@
 ﻿using Application.Logger;
 using Application.Repositories;
+using Hobby_Project;
 using MediatR;
 
 namespace Application.HobbySubCategories.Commands.Delete
@@ -19,9 +20,7 @@ namespace Application.HobbySubCategories.Commands.Delete
         {
             try
             {
-                var subCategory = await _unitOfWork.SubCategoryRepository.GetByIdAsync(command.Id);
-
-                if (subCategory == null) throw new NullReferenceException($"SubCategory with id: {command.Id} does not exist!");
+                var subCategory = await IsExist(command.Id);
 
                 _unitOfWork.SubCategoryRepository.Delete(subCategory);
                 await _unitOfWork.Save();
@@ -33,6 +32,12 @@ namespace Application.HobbySubCategories.Commands.Delete
                 _log.LogError(e.Message);
                 throw;
             }
+        }
+
+        private async Task<SubCategory> IsExist(int id)
+        {
+            var subCategory = await _unitOfWork.SubCategoryRepository.GetByIdAsync(id);
+            return subCategory ?? throw new NullReferenceException($"Hobby with id: {id} does not exist!");
         }
     }
 }

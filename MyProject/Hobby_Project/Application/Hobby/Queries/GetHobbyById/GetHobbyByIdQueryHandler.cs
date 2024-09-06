@@ -1,6 +1,7 @@
 ﻿using Application.Logger;
 using Application.Repositories;
 using AutoMapper;
+using Domain.Entity;
 using HobbyProject.Application.Hobby.Dto;
 using MediatR;
 
@@ -23,18 +24,20 @@ namespace HobbyProject.Application.Hobby.Queries.GetHobbyById
         {
             try
             {
-                var result = await _unitOfWork.HobbyArticleRepository.GetByIdAsync(request.Id);
-                if (result == null) throw new NullReferenceException($"Hobby with id: ${request.Id} does not exist!");
-
-                var hobbyVm = _mapper.Map<HobbyDto>(result);
-
-                return hobbyVm;
+                var hobby = IsExist(request.Id);
+                return _mapper.Map<HobbyDto>(hobby);
             }
             catch (Exception e)
             {
                 _logger.LogError(e.Message);
                 throw;
             }
+        }
+
+        private async Task<HobbyEntity> IsExist(int id)
+        {
+            var hobby = await _unitOfWork.HobbyArticleRepository.GetByIdAsync(id);
+            return hobby ?? throw new NullReferenceException($"Hobby with id: {id} does not exist!");
         }
     }
 }

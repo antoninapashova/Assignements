@@ -1,6 +1,7 @@
 ﻿using Application.Logger;
 using Application.Repositories;
 using HobbyProject.Application.Helpers;
+using HobbyProject.Domain.Entity;
 using MediatR;
 using Microsoft.Extensions.Options;
 using System.Security.Cryptography;
@@ -28,8 +29,7 @@ namespace HobbyProject.Application.User.Command.ForgetPassword
         {
             try
             {
-                var user = await _unitOfWork.UserRepository.GetByEmail(command.Email);
-                if (user == null) throw new NullReferenceException("User with that email does not exists!");
+                var user = await IsUserExist(command.Email);
 
                 var tokenBytes = RandomNumberGenerator.GetBytes(64);
                 var emailToken = Convert.ToBase64String(tokenBytes);
@@ -52,5 +52,11 @@ namespace HobbyProject.Application.User.Command.ForgetPassword
                 throw;
             }
         }
+
+         private async Task<UserEntity> IsUserExist(string email)
+         {
+            var isExists = await _unitOfWork.UserRepository.GetByEmail(email);
+            return isExists ?? throw new NullReferenceException("User with that email already exists");
+         }
     }
 }

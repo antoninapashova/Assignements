@@ -1,5 +1,6 @@
 ﻿using Application.Logger;
 using Application.Repositories;
+using Hobby_Project;
 using MediatR;
 
 namespace Application.Comments.Commands.Delete
@@ -19,11 +20,9 @@ namespace Application.Comments.Commands.Delete
         {
             try
             {
-                var entity = await _unitOfWork.CommentRepository.GetByIdAsync(command.Id);
+                var comment = await IsExist(command.Id);
 
-                if (entity == null) throw new NullReferenceException($"Comment with id: {command.Id} does not exist!");
-
-                _unitOfWork.CommentRepository.Delete(entity);
+                _unitOfWork.CommentRepository.Delete(comment);
                 await _unitOfWork.Save();
 
                 return command.Id;
@@ -33,6 +32,12 @@ namespace Application.Comments.Commands.Delete
                 _log.LogError(e.Message);
                 throw;
             }
+        }
+
+        private async Task<Comment> IsExist(int id)
+        {
+            var comment = await _unitOfWork.CommentRepository.GetByIdAsync(id);
+            return comment ?? throw new NullReferenceException($"Comment with id: {id} does not exist!");
         }
     }
 }

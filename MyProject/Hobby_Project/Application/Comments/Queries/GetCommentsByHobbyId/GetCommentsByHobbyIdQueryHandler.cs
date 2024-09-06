@@ -6,7 +6,7 @@ using MediatR;
 
 namespace HobbyProject.Application.Comments.Queries.GetCommentsByHobbyId
 {
-    public class GetCommentsByHobbyIdQueryHandler : IRequestHandler<GetCommentsByHobbyIdQuery, List<CommentDto>>
+    public class GetCommentsByHobbyIdQueryHandler : IRequestHandler<GetCommentsByHobbyIdQuery, IList<CommentDto>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -19,12 +19,12 @@ namespace HobbyProject.Application.Comments.Queries.GetCommentsByHobbyId
             _log = SingletonLogger.Instance;
         }
 
-        public async Task<List<CommentDto>> Handle(GetCommentsByHobbyIdQuery request, CancellationToken cancellationToken)
+        public async Task<IList<CommentDto>> Handle(GetCommentsByHobbyIdQuery request, CancellationToken cancellationToken)
         {
             try
             {
                 var result = _unitOfWork.CommentRepository.GetCommentsByHobbyId(request.HobbyId);
-                return _mapper.Map<List<CommentDto>>(result);
+                return _mapper.Map<IList<CommentDto>>(result);
             }
             catch (Exception e)
             {
