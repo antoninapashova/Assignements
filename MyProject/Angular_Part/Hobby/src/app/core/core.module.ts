@@ -27,7 +27,7 @@ import { DialogTemplateComponent } from './dialog/dialog-template/dialog-templat
 import { DialogService } from './dialog/dialog.service';
 import { DataSharingService } from './data-sharing.service';
 import { LightboxModule } from 'ngx-lightbox';
-
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +38,7 @@ import { LightboxModule } from 'ngx-lightbox';
     HomeComponent,
     AboutComponent,
     DialogTemplateComponent,
+    WelcomeComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [

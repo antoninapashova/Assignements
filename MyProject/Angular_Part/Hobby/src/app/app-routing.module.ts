@@ -16,8 +16,13 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EditHobbyFormComponent } from './hobby-article/edit-hobby-form/edit-hobby-form.component';
 import { RegisterAdminComponent } from './user/register-admin/register-admin.component';
+import { WelcomeComponent } from './core/welcome/welcome.component';
 
 const routes: Routes = [
+  {
+     path: '',
+     component: WelcomeComponent
+  },
   {
     path: 'login',
     component: LoginComponent
