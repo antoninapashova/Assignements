@@ -7,11 +7,10 @@
 </mat-card-header>
 <mat-card-content>
   <p>{{h.title}}</p> 
+  <div class="container">
+    <app-carousel [slides]="h.hobbyPhoto"></app-carousel>
+  </div>
 </mat-card-content>
-<div *ngFor="let p of h.hobbyPhoto">
-   <img class="image" mat-card-image src={{p.url}}>
-   <p>{{h.likes}} Likes</p>
-</div> 
 <mat-card-actions class="actions">
   <a mat-button (click)="openDialog(h)">Preview</a>
   <a *ngIf="currentUsername==h.username" mat-button [routerLink]="['user', 'edit-article', h.id]">Edit</a>

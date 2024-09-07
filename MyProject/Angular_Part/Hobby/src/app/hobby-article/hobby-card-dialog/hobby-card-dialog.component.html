@@ -1,6 +1,6 @@
 <mat-card class="example-card">
-  <div class="container-photo" *ngFor="let p of modalPhotos">
-    <img class="image" mat-card-image src={{p.url}} alt="Galery">
+  <div class="container-carousel">
+    <app-carousel [slides]="modalPhotos"></app-carousel>
   </div>
   <div class="container">
     <mat-card-header class="card-header">
