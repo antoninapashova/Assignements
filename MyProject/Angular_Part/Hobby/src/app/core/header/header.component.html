@@ -6,22 +6,22 @@
     </div>
     <span class="nav-caption">Hobby Blog</span>
     <span *ngIf="isAuthenticated" class="nav-caption">Hello {{fullName}}</span>
-  <mat-nav-list class="list-horizontal">
-        <a  routerLink="/subcategory/add" *ngIf="isAuthenticated && role==='Admin'">
+    <mat-nav-list class="list-horizontal">
+        <a routerLink="/subcategory/add" *ngIf="isAuthenticated && role==='Admin'">
             <mat-icon>app_registration</mat-icon> <span class="nav-caption">New subcategory</span>
         </a>
-        <a  routerLink="/user/add-article"  *ngIf="isAuthenticated && (role==='Admin' || role==='User')">
+        <a routerLink="/user/add-article" *ngIf="isAuthenticated && (role==='Admin' || role==='User')">
             <mat-icon>app_registration</mat-icon> <span class="nav-caption">New hobby</span>
-            </a>
+        </a>
         <a routerLink="/register/user" *ngIf="!isAuthenticated">
-            <mat-icon>app_registration</mat-icon> <span class="nav-caption" *ngIf="!isAuthenticated">Sign up</span>   
-            </a>
+            <mat-icon>app_registration</mat-icon> <span class="nav-caption" *ngIf="!isAuthenticated">Sign up</span>
+        </a>
         <a routerLink="/register/admin" *ngIf="isAuthenticated && role==='Admin'">
-            <mat-icon>app_registration</mat-icon> <span class="nav-caption">Register admin</span>   
+            <mat-icon>app_registration</mat-icon> <span class="nav-caption">Register admin</span>
         </a>
         <a routerLink="/login" *ngIf="!isAuthenticated">
-            <mat-icon aria-hidden="false">login</mat-icon> <span class="nav-caption">Sign in</span>   
-          </a>
-           <a><button class="nav-caption" (click)="logOut()" *ngIf="isAuthenticated">Logout</button></a>
+            <mat-icon aria-hidden="false">login</mat-icon> <span class="nav-caption">Sign in</span>
+        </a>
+        <a><button class="nav-caption" (click)="logOut()" *ngIf="isAuthenticated">Logout</button></a>
     </mat-nav-list>
 </mat-toolbar>

@@ -27,19 +27,19 @@ section {
     height: 19rem;
 }
 
-.need-hobby{
+.need-hobby {
     height: 17rem;
     max-width: 41rem;
     margin: 2rem 1rem 0.2rem 10rem;
 }
 
-.need-hobby img{
+.need-hobby img {
     height: 17rem;
 }
 
 .steps {
-   margin-left: 20rem;
-   height: 20rem;
+    margin-left: 20rem;
+    height: 20rem;
 }
 
 .advices {

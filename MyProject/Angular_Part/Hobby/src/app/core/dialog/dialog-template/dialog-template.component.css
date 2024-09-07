@@ -3,10 +3,10 @@
   padding: 10px 12px 25px 12px;
 }
 
-.custom-dialog.info{
-  background:#F1F8E9;
+.custom-dialog.info {
+  background: #F1F8E9;
 }
 
-.custom-dialog.warn{
+.custom-dialog.warn {
   background: #FFEBEE;
 }

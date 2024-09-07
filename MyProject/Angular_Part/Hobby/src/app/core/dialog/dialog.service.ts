@@ -7,26 +7,26 @@ export class DialogService {
 
   constructor(public dialog: MatDialog) { }
 
-  openModal(title:string, message:string, yes: Function, no: Function) {
+  openModal(title: string, message: string, yes: Function, no: Function) {
     const dialogConfig = new MatDialogConfig();
 
     // dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.data = {
-        title: title,
-        message:message
+      title: title,
+      message: message
     };
     dialogConfig.minWidth = 400;
 
     const dialogRef = this.dialog.open(DialogTemplateComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        if(yes){
+      if (result) {
+        if (yes) {
           yes();
         }
-      }else{
-        if(no){
+      } else {
+        if (no) {
           no();
         }
       }

@@ -14,59 +14,59 @@ import { DialogTemplateComponent, ModalType } from 'src/app/core/dialog/dialog-t
   styleUrls: ['./category-list.component.css']
 })
 export class CategoryListComponent implements OnInit {
-    displayedColumns: string[] = ['id', 'name','created-date', 'action'];
-    categories: ICategory[] = [];
-    subCategories: ISubCategory[] | undefined;
-    category! : ICategory | undefined;  
-    isAdded!: boolean;
-    @ViewChild(MatTable, {static:true}) table!: MatTable<any>;
+  displayedColumns: string[] = ['id', 'name', 'created-date', 'action'];
+  categories: ICategory[] = [];
+  subCategories: ISubCategory[] | undefined;
+  category!: ICategory | undefined;
+  isAdded!: boolean;
+  @ViewChild(MatTable, { static: true }) table!: MatTable<any>;
 
-    constructor(private categoryService: CategoryService, private dataSharingService: DataSharingService,
-      public dialog: MatDialog){
-          this.dataSharingService.isCategoryAdded.subscribe(value => {
-          this.isAdded= value;
-       });
-    }
+  constructor(private categoryService: CategoryService, private dataSharingService: DataSharingService,
+    public dialog: MatDialog) {
+    this.dataSharingService.isCategoryAdded.subscribe(value => {
+      this.isAdded = value;
+    });
+  }
 
   ngOnInit(): void {
-      this.categoryService.getCategories().subscribe(res=>{
-        this.categories = res;
-        this.categories.forEach(x=>x.createdDate=x.createdDate.substring(0, 10)); 
-     });
-   }
-   
-  openDialog(action: any, obj: any ) {
+    this.categoryService.getCategories().subscribe(res => {
+      this.categories = res;
+      this.categories.forEach(x => x.createdDate = x.createdDate.substring(0, 10));
+    });
+  }
+
+  openDialog(action: any, obj: any) {
     obj.action = action;
     const dialogRef = this.dialog.open(AddCategoryComponent, {
       width: '250px',
-      data:obj
+      data: obj
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if(result.event == 'Add'){
+      if (result.event == 'Add') {
         this.addRowData(result.data);
-      }else if(result.event == 'Delete'){
+      } else if (result.event == 'Delete') {
         this.deleteRowData(result.data);
-      }
-    });
-}
-
-addRowData(obj: any){
-    this.categoryService.addCategory({name: obj.name}).subscribe({
-      next:() => {
-        let obj ={title: 'Add category', message: 'New category is added successful', type: ModalType.INFO}
-        this.dialog.open(DialogTemplateComponent, {data: obj});
-        this.dataSharingService.isCategoryAdded.next(true);
-        this.table.renderRows();
-      },
-      error:(err) => {
-        let obj ={title: 'Add category', message: err.message, type: ModalType.WARN};
-        this.dialog.open( DialogTemplateComponent, {data: obj});
       }
     });
   }
 
-  deleteRowData(obj: any){
+  addRowData(obj: any) {
+    this.categoryService.addCategory({ name: obj.name }).subscribe({
+      next: () => {
+        let obj = { title: 'Add category', message: 'New category is added successful', type: ModalType.INFO }
+        this.dialog.open(DialogTemplateComponent, { data: obj });
+        this.dataSharingService.isCategoryAdded.next(true);
+        this.table.renderRows();
+      },
+      error: (err) => {
+        let obj = { title: 'Add category', message: err.message, type: ModalType.WARN };
+        this.dialog.open(DialogTemplateComponent, { data: obj });
+      }
+    });
+  }
+
+  deleteRowData(obj: any) {
     this.categoryService.delete(obj.id).subscribe();
   }
 }

@@ -17,11 +17,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { NavigationListComponent } from './navigation-list/navigation-list.component';
 import { UserCardComponent } from './user-card/user-card.component';
 import { HomeComponent } from './home/home.component';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { AboutComponent } from './about/about.component';
 import { DialogTemplateComponent } from './dialog/dialog-template/dialog-template.component';
 import { DialogService } from './dialog/dialog.service';
@@ -71,8 +71,8 @@ import { WelcomeComponent } from './welcome/welcome.component';
     MatListModule,
     HomeComponent,
     UserCardComponent,
-],
-providers: [ DialogService, DataSharingService ],
-entryComponents: [ DialogTemplateComponent ],
+  ],
+  providers: [DialogService, DataSharingService],
+  entryComponents: [DialogTemplateComponent],
 })
 export class CoreModule { }
