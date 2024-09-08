@@ -9,11 +9,11 @@ import { DialogTemplateComponent, ModalType } from 'src/app/core/dialog/dialog-t
   templateUrl: './forget-password.component.html',
   styleUrls: ['./forget-password.component.css']
 })
-export class ForgetPasswordComponent implements OnInit{
+export class ForgetPasswordComponent implements OnInit {
   resetPasswordForm: FormGroup = new FormGroup({});
 
   constructor(private formBuilder: FormBuilder, public dialogRef: MatDialogRef<ForgetPasswordComponent>, private matDialog: MatDialog,
-     private resetPasswordService: ResetPasswordService){}
+    private resetPasswordService: ResetPasswordService) { }
 
   ngOnInit(): void {
     this.resetPasswordForm = this.formBuilder.group({
@@ -21,24 +21,24 @@ export class ForgetPasswordComponent implements OnInit{
     });
   }
 
-  onSubmit (form: FormGroup) {
-    if(form.valid){
+  onSubmit(form: FormGroup) {
+    if (form.valid) {
       this.resetPasswordService.sendResetPassworLink(form.value.email).subscribe({
-        next: ()=>{
-           let obj ={title: 'Send email', message: 'Email is send successfull!', type: ModalType.INFO}
-           this.matDialog.open( DialogTemplateComponent, {data: obj});
-           this.closeDialog();
+        next: () => {
+          let obj = { title: 'Send email', message: 'Email is send successfull!', type: ModalType.INFO }
+          this.matDialog.open(DialogTemplateComponent, { data: obj });
+          this.closeDialog();
         },
-        error: (err)=>{
-          let obj ={title: 'Send email', message: err, type: ModalType.WARN}
-          this.matDialog.open( DialogTemplateComponent, {data: obj});
+        error: (err) => {
+          let obj = { title: 'Send email', message: err, type: ModalType.WARN }
+          this.matDialog.open(DialogTemplateComponent, { data: obj });
           this.closeDialog();
         }
       });
     }
   }
 
-  closeDialog(){
-    this.dialogRef.close({event:'Cancel'});
+  closeDialog() {
+    this.dialogRef.close({ event: 'Cancel' });
   }
 }

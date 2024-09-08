@@ -1,6 +1,6 @@
 import { TagListComponent } from './tag-list/tag-list.component';
 import { FormsModule } from '@angular/forms';
-import {  NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AddTagComponent } from './add-tag/add-tag.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,11 +21,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     AddTagComponent,
     TagListComponent,
   ],
-  schemas: 
-  [
-    NO_ERRORS_SCHEMA
-
-  ],
+  schemas: [NO_ERRORS_SCHEMA],
   imports: [
     CommonModule,
     FormsModule,
@@ -41,7 +37,6 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatRadioModule,
     MatButtonModule,
     MatDialogModule
-  ],
- 
+  ]
 })
 export class TagModule { }

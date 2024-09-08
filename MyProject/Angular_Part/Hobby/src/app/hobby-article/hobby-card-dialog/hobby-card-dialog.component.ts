@@ -2,7 +2,7 @@ import { IHobby } from 'src/app/shared/interfaces/hobby-article';
 import { CommentService } from './../services/comment.service';
 import { IComment } from './../../shared/interfaces/comment';
 import { IPhoto } from './../../shared/interfaces/photo';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { DialogTemplateComponent, ModalType } from 'src/app/core/dialog/dialog-template/dialog-template.component';
 import { UserStoreService } from 'src/app/user/user-store.service';

@@ -15,7 +15,7 @@ export class ArticlesComponent implements OnInit {
   hobbies: IHobby[] = [];
   userHobbies: IHobby[] = [];
 
-  constructor(private hobbyService: HobbyService){}
+  constructor(private hobbyService: HobbyService, private userService: UserService){}
 
   @ViewChild(MatAccordion) accordion!: MatAccordion;
 
@@ -23,12 +23,13 @@ export class ArticlesComponent implements OnInit {
     //TO DO:
         //this.activeAccount = this.authService.instance.getActiveAccount()?.name; 
         //to provide active account from jwt
+        this.activeAccount = this.userService.getFullNameFromToken();
+        console.log(this.activeAccount);
         this.hobbyService.getAll().subscribe(res=> {
             this.hobbies = res;
             this.userHobbies = this.hobbies.filter(x=>x.username == this.activeAccount);
         });
    }     
-
 
   deleteArticle(id: any, username: any){
     //TO DO:
