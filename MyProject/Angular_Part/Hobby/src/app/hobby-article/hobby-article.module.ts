@@ -24,8 +24,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { LightboxModule } from 'ngx-lightbox';
 import { HobbyCardDialogComponent } from './hobby-card-dialog/hobby-card-dialog.component';
 import { EditHobbyFormComponent } from './edit-hobby-form/edit-hobby-form.component';
-import { CarouselComponent } from './carousel/carousel.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CarouselComponent } from './carousel/carousel.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +64,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   exports:[
     CommentFormComponent,
     AddHobbyComponent, 
-     CommentComponent,
+    CommentComponent,
     HobbyCardComponent,
     CommentsListComponent,
   ]

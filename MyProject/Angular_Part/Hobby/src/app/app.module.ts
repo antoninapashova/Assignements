@@ -21,7 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
-import {MatToolbarModule} from '@angular/material/toolbar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -79,7 +79,7 @@ export function tokenGetter() {
     MatDialogModule,
     LightboxModule
   ],
-  exports:[
+  exports: [
     TagModule,
     FormsModule,
     HobbyArticleModule,
@@ -104,8 +104,8 @@ export function tokenGetter() {
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
-    multi:true
-  } ],
+    multi: true
+  }],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
