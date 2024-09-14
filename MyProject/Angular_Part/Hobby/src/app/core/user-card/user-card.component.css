@@ -1,22 +1,27 @@
 .profile-card {
-    width: 80%;
     display: flex;
     align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin: auto;
+    flex-direction: row;
+    gap: 1rem;
+    width: 24%;
+    height: auto;
+    margin-left: 10rem;
     margin-top: 1.5rem;
+    background-color: azure;
+    border-radius: 1rem;
 }
 
-.profile-card span {
+span {
     display: block;
-    font-size: 15px;
-    font-weight: 700;
-    margin-top: 1rem;
+}
+
+.username {
+    font-weight: 500;
+    font-size: medium;
 }
 
 .profile-image {
     border-radius: 50px;
-    width: 90%;
-    margin-bottom: 2rem;
+    width: 15rem;
+    height: 15rem;
 }

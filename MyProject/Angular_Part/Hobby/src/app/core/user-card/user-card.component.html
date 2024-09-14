@@ -1,13 +1,9 @@
 <md-card class="profile-card">
-    <img class="profile-image"
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4wTQySWL01Oo0Clt2jBav69Hxl5QjpNLbsQ&usqp=CAU">
+    <img class="profile-image" src="/assets/profile-photo.jpg">
     <md-card-content>
         <div class="user-information">
-            <p>Email: </p>
+            <span class="username">{{profile?.firstName}} {{profile?.lastName}}</span>
             <span>{{profile?.email}}</span>
-            <p>Name:</p>
-            <span>{{profile?.firstName}}</span>
-            <span>{{profile?.lastName}}</span>
         </div>
     </md-card-content>
 <md-card>
