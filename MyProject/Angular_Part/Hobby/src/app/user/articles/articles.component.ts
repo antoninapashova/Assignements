@@ -3,6 +3,8 @@ import { UserService } from './../user.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IHobby } from 'src/app/shared/interfaces/hobby-article';
 import { MatAccordion } from '@angular/material/expansion';
+import { DialogTemplateComponent, ModalType } from 'src/app/core/dialog/dialog-template/dialog-template.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-articles',
@@ -13,30 +15,37 @@ import { MatAccordion } from '@angular/material/expansion';
 export class ArticlesComponent implements OnInit {
   activeAccount: string | undefined;
   hobbies: IHobby[] = [];
-  userHobbies: IHobby[] = [];
 
-  constructor(private hobbyService: HobbyService, private userService: UserService){}
+  constructor(private hobbyService: HobbyService, private userService: UserService, private matDialog: MatDialog) { }
 
   @ViewChild(MatAccordion) accordion!: MatAccordion;
 
   ngOnInit(): void {
-    //TO DO:
-        //this.activeAccount = this.authService.instance.getActiveAccount()?.name; 
-        //to provide active account from jwt
-        this.activeAccount = this.userService.getFullNameFromToken();
-        console.log(this.activeAccount);
-        this.hobbyService.getAll().subscribe(res=> {
-            this.hobbies = res;
-            this.userHobbies = this.hobbies.filter(x=>x.username == this.activeAccount);
-        });
-   }     
+    this.activeAccount = this.userService.getFullNameFromToken();
+    this.hobbyService.getAll().subscribe(res => {
+      this.hobbies = res;
+    });
+  }
 
-  deleteArticle(id: any, username: any){
-    //TO DO:
-    const role = false 
-    //get role from jwt --> this.authService.instance.getActiveAccount()?.idTokenClaims?.roles
-    if(this.activeAccount == username || role ){
-      this.hobbyService.deleteHobby(id).subscribe();
+  deleteArticle(id: any, username: any) {
+    const role = this.userService.getRoleFromToken();
+
+    if (this.activeAccount == username || role == 'Admin') {
+      this.deleteArticleById(id);
     }
+  }
+
+  deleteArticleById(id: any) {
+    this.hobbyService.deleteHobby(id).subscribe({
+      next: () => {
+        let obj = { title: 'Delete article', message: "Article is deleted successfull!", type: ModalType.INFO }
+        this.matDialog.open(DialogTemplateComponent, { data: obj });
+        this.hobbies = [...this.hobbies];
+      },
+      error: (err) => {
+        let obj = { title: 'Create article', message: err, type: ModalType.WARN }
+        this.matDialog.open(DialogTemplateComponent, { data: obj })
+      }
+    });
   }
 }
