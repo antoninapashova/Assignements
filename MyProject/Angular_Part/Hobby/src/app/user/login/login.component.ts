@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { DialogTemplateComponent } from 'src/app/core/dialog/dialog-template/dialog-template.component';
-import { IUser } from 'src/app/shared/interfaces/user';
+import { TokenApiDto } from 'src/app/shared/dtos/token-api-dto';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +19,7 @@ import { IUser } from 'src/app/shared/interfaces/user';
 export class LoginComponent implements OnInit {
   invalidLogin?: boolean;
   hide: boolean = true;
-  user!: IUser;
+  authenticationResponse!: TokenApiDto;
   loginUserForm: FormGroup = new FormGroup({});
 
   constructor(private formBuilder: FormBuilder, private router: Router,
@@ -38,8 +38,6 @@ export class LoginComponent implements OnInit {
     if (form.valid) {
       this.userService.login(form.value).subscribe({
         next: (res) => {
-          this.user = res;
-          this.dataSharingService.loggedInUser = this.user;
           this.userService.storeToken(res.accessToken);
           this.userService.storeRefreshToken(res.refreshToken);
           const tokenPayload = this.userService.decodeToken();
@@ -47,6 +45,7 @@ export class LoginComponent implements OnInit {
           this.userStoreService.setRoleForStore(tokenPayload.role);
           this.router.navigate(['home']);
           this.dataSharingService.isUserLoggedIn.next(true);
+          this.dataSharingService.storeUserId(res.userId);
         },
         error: (err) => {
           let obj = { title: 'Login', message: err, type: ModalType.WARN };
@@ -58,10 +57,9 @@ export class LoginComponent implements OnInit {
 
   isUserAuthenticated() {
     const token = localStorage.getItem("jwt");
-    if (token && !this.jwtHelper.isTokenExpired(token)) {
-      return true;
-    }
-    else { return false; }
+    
+    if (token && !this.jwtHelper.isTokenExpired(token)) return true;
+    else return false; 
   }
 
   openDialog() {
