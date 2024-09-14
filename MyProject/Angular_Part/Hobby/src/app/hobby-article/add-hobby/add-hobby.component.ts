@@ -67,7 +67,7 @@ export class AddHobbyComponent implements OnInit {
   onSubmit(form: FormGroup) {
     this.hobby = form.value;
     this.hobby.hobbySubcategoryId = form.value['subcategory'];
-    this.hobby.userId = this.datasharingService.loggedInUser.userId;
+    this.hobby.userId = Number(this.datasharingService.getUserId());
     this.hobby.hobbyPhoto = [];
     this.uploadPhotosOnCloudinary();
 

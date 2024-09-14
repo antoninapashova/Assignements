@@ -25,7 +25,7 @@ export class CommentsListComponent {
     let comment = {
       id: null,
       commentContent,
-      userId: this.datasharingService.loggedInUser.userId,
+      userId: Number(this.datasharingService.getUserId()),
       hobbyArticleId: this.hobbyArticleId,
       parentId: null
     }
