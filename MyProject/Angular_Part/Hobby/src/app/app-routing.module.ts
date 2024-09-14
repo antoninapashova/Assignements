@@ -17,6 +17,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { EditHobbyFormComponent } from './hobby-article/edit-hobby-form/edit-hobby-form.component';
 import { RegisterAdminComponent } from './user/register-admin/register-admin.component';
 import { WelcomeComponent } from './core/welcome/welcome.component';
+import { UserCardComponent } from './core/user-card/user-card.component';
 
 const routes: Routes = [
   {
@@ -63,6 +64,14 @@ const routes: Routes = [
   {
     path: 'user',
     children: [
+      {
+         path: 'profile',
+         component: UserCardComponent,
+         canActivate: [AuthGuard],
+         data: {
+           roles: ['Admin', 'User']
+         },
+      },
       {
         path: 'articles',
         component: ArticlesComponent,

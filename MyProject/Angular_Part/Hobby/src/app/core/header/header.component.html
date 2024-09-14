@@ -22,6 +22,9 @@
         <a routerLink="/login" *ngIf="!isAuthenticated">
             <mat-icon aria-hidden="false">login</mat-icon> <span class="nav-caption">Sign in</span>
         </a>
+        <a routerLink="/user/profile" *ngIf="isAuthenticated"><mat-icon aria-hidden="false">mood</mat-icon> <span class="nav-caption">My
+                account</span>
+        </a>
         <a><button class="nav-caption" (click)="logOut()" *ngIf="isAuthenticated">Logout</button></a>
     </mat-nav-list>
 </mat-toolbar>
